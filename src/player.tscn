@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cho43txfn5opj"]
+
+[ext_resource type="Texture2D" uid="uid://p3jbg8hx8y3o" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_6r5y3"]
+[ext_resource type="Script" path="res://src/player.gd" id="1_fwq4i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_recnh"]
+atlas = ExtResource("1_6r5y3")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i83sw"]
+atlas = ExtResource("1_6r5y3")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lxw8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_recnh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i83sw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enlgl"]
+size = Vector2(18, 29)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_fwq4i")
+
+[node name="PrototypeSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_lxw8r")
+frame_progress = 0.725547
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_enlgl")
