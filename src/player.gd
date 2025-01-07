@@ -30,9 +30,9 @@ func _unhandled_input(event):
 			for valid_coord in valid_movement:
 				var valid_input = valid_movement[valid_coord]
 				if event.as_text_key_label().to_lower() == valid_input:
-					print(event.as_text_key_label())
-					print("Match!")
-					print("Move to: " + str(valid_coord))
+					#print(event.as_text_key_label())
+					#print("Match!")
+					#print("Move to: " + str(valid_coord))
 					move(current_overworld_tile_coords, valid_coord)
 
 func move(current_coord: Vector2i, target_coord: Vector2i):	

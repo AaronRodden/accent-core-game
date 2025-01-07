@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cho43txfn5opj"]
+[gd_scene load_steps=8 format=3 uid="uid://cho43txfn5opj"]
 
 [ext_resource type="Texture2D" uid="uid://p3jbg8hx8y3o" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_6r5y3"]
 [ext_resource type="Script" path="res://src/player.gd" id="1_fwq4i"]
+[ext_resource type="Script" path="res://src/player_camera.gd" id="3_s7uxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_recnh"]
 atlas = ExtResource("1_6r5y3")
@@ -29,6 +30,7 @@ animations = [{
 size = Vector2(18, 29)
 
 [node name="Player" type="CharacterBody2D"]
+position = Vector2(960, 540)
 scale = Vector2(2, 2)
 script = ExtResource("1_fwq4i")
 
@@ -40,3 +42,9 @@ frame_progress = 0.725547
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_enlgl")
+
+[node name="PlayerCamera" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(-480, -270)
+anchor_mode = 0
+script = ExtResource("3_s7uxn")
+player = NodePath("..")

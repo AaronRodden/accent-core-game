@@ -8,7 +8,7 @@ func _ready():
 	var player_scene = preload("res://src/player.tscn")
 	var player_node = player_scene.instantiate()
 	player_node.init("p1", overworld_map)
-	player_node.position = Vector2(927, 607)
+	player_node.position = Vector2(960, 540)
 	add_child(player_node)
 
 
