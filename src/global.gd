@@ -33,7 +33,12 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	Vector2i(23,12) : "b",
 	Vector2i(24,12) : "n",
 	Vector2i(25,12) : "m",
+	# PUNCTUATION
+	Vector2i(31,9) : "!",
+	Vector2i(28,12) : "?",
+	Vector2i(27,13) : ".",
 }
+
 
 const TILE_SIZE = 64
 

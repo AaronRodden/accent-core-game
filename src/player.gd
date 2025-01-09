@@ -24,16 +24,27 @@ func _unhandled_input(event):
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed:
+			var physical_key = translate_physical_key(event)
 			if moving:
 				return
 			var valid_movement = current_overworld_layer.get_valid_movement(current_overworld_tile_coords)
 			for valid_coord in valid_movement:
 				var valid_input = valid_movement[valid_coord]
-				if event.as_text_key_label().to_lower() == valid_input:
+				if physical_key == valid_input:
 					#print(event.as_text_key_label())
 					#print("Match!")
 					#print("Move to: " + str(valid_coord))
 					move(current_overworld_tile_coords, valid_coord)
+
+func translate_physical_key(input_event : InputEventKey):
+	var keystroke = OS.get_keycode_string(input_event.get_keycode_with_modifiers()).to_lower()
+	if keystroke == "shift+slash":
+		keystroke = "?"
+	elif keystroke == "shift+1":
+		keystroke = "!"
+	elif keystroke == "period":
+		keystroke = "."
+	return keystroke.to_lower()
 
 func move(current_coord: Vector2i, target_coord: Vector2i):	
 	var position_delta : Vector2 = target_coord - current_coord
