@@ -61,6 +61,7 @@ func move(current_coord: Vector2i, target_coord: Vector2i):
 	# TODO: We have to fix the position because the scaling! How can we avoid this!
 	var fixed_position = Vector2i(position.x/4, position.y/4)	
 	current_overworld_tile_coords = current_overworld_layer.local_to_map(fixed_position)
+	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords)
 	
 func _ready():
 	position = position.snapped(Vector2.ONE * TILE_SIZE)
@@ -69,7 +70,6 @@ func _ready():
 	# TODO: We have to fix the position because the scaling! How can we avoid this!
 	var fixed_position = Vector2i(position.x/4, position.y/4)
 	current_overworld_tile_coords = current_overworld_layer.local_to_map(fixed_position)
-
 
 func _physics_process(delta):	
 	pass

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccpo5b46647ov"]
 
-[ext_resource type="Script" path="res://overworld_layer.gd" id="1_k157h"]
+[ext_resource type="Script" path="res://src/overworld_layer.gd" id="1_k157h"]
 
 [node name="OverworldLayer" type="TileMapLayer"]
 script = ExtResource("1_k157h")

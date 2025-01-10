@@ -14,12 +14,19 @@ func _ready():
 	player_node.position = Vector2(960, 540)
 	add_child(player_node)
 
-#func _on_joy_connection_changed(device_id, connected):
-	#if connected:
-		#print(Input.get_joy_name(device_id))
-	#else:
-		#print("Keyboard")
+	$Timer.start(90)
+	SignalBus.resource_collected.connect(_update_timer)
 
+# NOTE: Timer stuff is demo code!
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if $Timer.time_left <= 0:
+			SignalBus.endgame.emit("defeat")
+	SignalBus.timer_update.emit(int($Timer.time_left))
+
+func _update_timer():
+	var current_time = $Timer.time_left
+	$Timer.stop()
+	$Timer.wait_time = current_time + 10
+	$Timer.start()
+	SignalBus.timer_update.emit(int($Timer.time_left))

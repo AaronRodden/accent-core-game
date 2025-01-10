@@ -5,7 +5,12 @@ extends Node
 
 var rng = RandomNumberGenerator.new()
 
+var current_player_tile : Vector2i
+
 # NOTE: Right now overworld sections are (30, 17) tiles 
+
+# TODO: Make some sort of system for recognizing when character goes on certain tiles
+# TODO: Design - should we have entire map on the OverworldLayer, or create new layers for each chunk?
 
 # Helper function for y coordinate sorting
 func compare_y(a, b): 
@@ -13,6 +18,10 @@ func compare_y(a, b):
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Signals and connections
+	SignalBus.player_moved_tiles.connect(_on_player_moved_tiles)
+	
+	# Overworld creation set-up
 	var all_tile_zero_cells = overworld_map.get_used_cells()
 	var walkable_tiles_coords = []
 	for tile_coords in all_tile_zero_cells: 
@@ -22,19 +31,20 @@ func _ready():
 	# NOTE: Imperative that this sorting happens for adjacancy checking
 	walkable_tiles_coords.sort_custom(compare_y)  
 	
+	# Overworld creation 
 	for overworld_tile_coords in walkable_tiles_coords:
 		var valid_input_cell_atlas_coords : Vector2i
 		# Exit tile detection
 		var overworld_tile_data = overworld_map.get_cell_tile_data(overworld_tile_coords)
-		if overworld_tile_data.get_custom_data("exit_tile"):
-			valid_input_cell_atlas_coords = get_valid_exit_cell_atlas_coords()
-		else:
-			# Short algorithm to ensure adjacent tiles do not share input values
-			var valid_movement = overworld_map.check_adjacancy(overworld_tile_coords)
-			var adjacent_input_values = []
-			for coords in valid_movement:  # Extract input values from adjacent squares 
-				adjacent_input_values.append(valid_movement[coords])
-			valid_input_cell_atlas_coords = get_valid_input_cell_atlas_coords(adjacent_input_values)
+		#if overworld_tile_data.get_custom_data("exit_tile"):
+			#valid_input_cell_atlas_coords = get_valid_exit_cell_atlas_coords()
+		#else:
+		# Short algorithm to ensure adjacent tiles do not share input values
+		var valid_movement = overworld_map.check_adjacancy(overworld_tile_coords)
+		var adjacent_input_values = []
+		for coords in valid_movement:  # Extract input values from adjacent squares 
+			adjacent_input_values.append(valid_movement[coords])
+		valid_input_cell_atlas_coords = get_valid_input_cell_atlas_coords(adjacent_input_values)
 		
 		# Assign valid input value to a given square on the overworld 
 		var valid_input_cell_value = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[valid_input_cell_atlas_coords]
@@ -48,6 +58,12 @@ func _ready():
 func _process(delta):
 	pass # DEBUG stop
 	
+func _on_player_moved_tiles(overworld_tile_coords: Vector2i):
+	current_player_tile = overworld_tile_coords
+	var overworld_tile_data = overworld_map.get_cell_tile_data(current_player_tile)
+	if overworld_tile_data.get_custom_data("exit_tile"):
+		handle_exit_tile_event(current_player_tile)
+
 func get_valid_input_cell_atlas_coords(adjacent_input_values):
 	var atlas_row : int
 	var atlas_col : int
@@ -72,3 +88,15 @@ func get_valid_exit_cell_atlas_coords():
 			return Vector2i(28,12) # ?
 		2: 
 			return Vector2i(27,13) # .
+
+
+func handle_exit_tile_event(exit_tile_coords: Vector2i):
+	print("on exit tile!")
+	var valid_movement = overworld_map.get_valid_movement(exit_tile_coords)
+	var adjacent_exit_tiles = []
+	for tile_coords in valid_movement:
+		var tile_data = overworld_map.get_cell_tile_data(tile_coords)
+		if tile_data.get_custom_data("exit_tile"):
+			adjacent_exit_tiles.append(tile_coords)
+	#print(adjacent_exit_tiles)
+	
