@@ -9,12 +9,12 @@ const ANIMATION_SPEED = 5
 var moving = false
 
 var player_id : String
-var current_overworld_layer : OverworldLayer
+var current_overworld_chunk : OverworldChunk  # TODO: Change to chunks!
 var current_overworld_tile_coords : Vector2i
 
-func init(player_str: String, overworld_layer: OverworldLayer):
+func init(player_str: String, overworld_chunk: OverworldChunk):
 	player_id = player_str
-	current_overworld_layer = overworld_layer
+	current_overworld_chunk = overworld_chunk
 
 func _process(delta):
 	pass
@@ -27,7 +27,7 @@ func _unhandled_input(event):
 			var physical_key = translate_physical_key(event)
 			if moving:
 				return
-			var valid_movement = current_overworld_layer.get_valid_movement(current_overworld_tile_coords)
+			var valid_movement = current_overworld_chunk.overworld_map.get_valid_movement(current_overworld_tile_coords)
 			for valid_coord in valid_movement:
 				var valid_input = valid_movement[valid_coord]
 				if physical_key == valid_input:
@@ -60,7 +60,7 @@ func move(current_coord: Vector2i, target_coord: Vector2i):
 	
 	# TODO: We have to fix the position because the scaling! How can we avoid this!
 	var fixed_position = Vector2i(position.x/4, position.y/4)	
-	current_overworld_tile_coords = current_overworld_layer.local_to_map(fixed_position)
+	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(fixed_position)
 	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords)
 	
 func _ready():
@@ -69,7 +69,7 @@ func _ready():
 	
 	# TODO: We have to fix the position because the scaling! How can we avoid this!
 	var fixed_position = Vector2i(position.x/4, position.y/4)
-	current_overworld_tile_coords = current_overworld_layer.local_to_map(fixed_position)
+	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(fixed_position)
 
 func _physics_process(delta):	
 	pass

@@ -1,6 +1,6 @@
 extends Node
 
-@onready var overworld_map : OverworldLayer = $WorldNode.overworld_map
+@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunk2B
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +10,7 @@ func _ready():
 	pass # Replace with function body.
 	var player_scene = preload("res://src/player.tscn")
 	var player_node = player_scene.instantiate()
-	player_node.init("p1", overworld_map)
+	player_node.init("p1", starting_overworld_chunk)
 	player_node.position = Vector2(960, 540)
 	add_child(player_node)
 
