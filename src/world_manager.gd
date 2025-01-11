@@ -3,14 +3,13 @@ extends Node
 #@onready var overworld_map : OverworldLayer = $OverwoldLayer
 #@onready var input_map : TileMapLayer = $InputMapLayer
 
-var rng = RandomNumberGenerator.new()
+#var rng = RandomNumberGenerator.new()
 
-var current_player_tile : Vector2i
+#var current_player_tile : Vector2i
 
 # NOTE: Right now overworld sections are (30, 17) tiles 
 
-# TODO: Make some sort of system for recognizing when character goes on certain tiles
-# TODO: Design - should we have entire map on the OverworldLayer, or create new layers for each chunk?
+# TODO: Doubly linked list as a data structure to contain the world in?
 
 ## Helper function for y coordinate sorting
 #func compare_y(a, b): 

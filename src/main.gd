@@ -4,10 +4,9 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# Controller Connections
-	#Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	# Signals and connections
+	SignalBus.resource_collected.connect(_update_timer)
 	
-	pass # Replace with function body.
 	var player_scene = preload("res://src/player.tscn")
 	var player_node = player_scene.instantiate()
 	player_node.init("p1", starting_overworld_chunk)
@@ -15,7 +14,6 @@ func _ready():
 	add_child(player_node)
 
 	$Timer.start(90)
-	SignalBus.resource_collected.connect(_update_timer)
 
 # NOTE: Timer stuff is demo code!
 # Called every frame. 'delta' is the elapsed time since the previous frame.

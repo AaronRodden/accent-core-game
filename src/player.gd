@@ -49,14 +49,14 @@ func translate_physical_key(input_event : InputEventKey):
 func move(current_coord: Vector2i, target_coord: Vector2i):	
 	var position_delta : Vector2 = target_coord - current_coord
 	# Tween movement
-	var tween = create_tween()
-	tween.tween_property(self, "position", 
-	   position + position_delta * TILE_SIZE, 1.0/ANIMATION_SPEED).set_trans(Tween.TRANS_SINE)
-	moving = true
-	await tween.finished
-	moving = false
+	#var tween = create_tween()
+	#tween.tween_property(self, "position", 
+	   #position + position_delta * TILE_SIZE, 1.0/ANIMATION_SPEED).set_trans(Tween.TRANS_SINE)
+	#moving = true
+	#await tween.finished
+	#moving = false
 	# No tween movement
-	#position += position_delta * TILE_SIZE
+	position += position_delta * TILE_SIZE
 	
 	# TODO: We have to fix the position because the scaling! How can we avoid this!
 	var fixed_position = Vector2i(position.x/4, position.y/4)	

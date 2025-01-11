@@ -10,5 +10,6 @@ script = ExtResource("1_snde4")
 [node name="WorldNode" parent="." instance=ExtResource("2_etkka")]
 
 [node name="Timer" type="Timer" parent="."]
+one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_k5t27")]

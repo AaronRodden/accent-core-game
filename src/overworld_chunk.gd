@@ -2,21 +2,25 @@
 extends Node
 class_name OverworldChunk
 
+var current_player_tile : Vector2i
+
 @onready var overworld_map : OverworldLayer = $OverworldMapLayer
 @onready var input_map : TileMapLayer = $InputMapLayer
 
+var walkable_tiles_coords = []
+var exit_tiles_coords = []
 
 func compare_y(a, b): 
 	return a.y < b.y  
-	
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Signals and connections
-	#SignalBus.player_moved_tiles.connect(_on_player_moved_tiles)
+	SignalBus.player_moved_tiles.connect(_on_player_moved_tiles)
 	
 	# Overworld creation set-up
 	var all_tile_zero_cells = overworld_map.get_used_cells()
-	var walkable_tiles_coords = []
+	walkable_tiles_coords = []
 	for tile_coords in all_tile_zero_cells: 
 		var tile = overworld_map.get_cell_tile_data(tile_coords)
 		if tile.get_custom_data("walkable"):
@@ -29,8 +33,9 @@ func _ready():
 		var valid_input_cell_atlas_coords : Vector2i
 		# Exit tile detection
 		var overworld_tile_data = overworld_map.get_cell_tile_data(overworld_tile_coords)
-		#if overworld_tile_data.get_custom_data("exit_tile"):
+		if overworld_tile_data.get_custom_data("exit_tile"):
 			#valid_input_cell_atlas_coords = get_valid_exit_cell_atlas_coords()
+			exit_tiles_coords.append(overworld_tile_coords)
 		#else:
 		# Short algorithm to ensure adjacent tiles do not share input values
 		var valid_movement = overworld_map.check_adjacancy(overworld_tile_coords)
@@ -51,7 +56,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
 	
 func get_valid_input_cell_atlas_coords(adjacent_input_values):
 	var atlas_row : int
@@ -77,3 +81,20 @@ func get_valid_exit_cell_atlas_coords():
 			return Vector2i(28,12) # ?
 		2: 
 			return Vector2i(27,13) # .
+			
+			
+func _on_player_moved_tiles(overworld_tile_coords: Vector2i):
+	current_player_tile = overworld_tile_coords
+	var overworld_tile_data = overworld_map.get_cell_tile_data(current_player_tile)
+	if overworld_tile_data.get_custom_data("exit_tile"):
+		handle_exit_tile_event(current_player_tile)
+		
+func handle_exit_tile_event(exit_tile_coords: Vector2i):
+	print("on exit tile!")
+	var valid_movement = overworld_map.get_valid_movement(exit_tile_coords)
+	var adjacent_exit_tiles = []
+	for tile_coords in valid_movement:
+		var tile_data = overworld_map.get_cell_tile_data(tile_coords)
+		if tile_data.get_custom_data("exit_tile"):
+			adjacent_exit_tiles.append(tile_coords)
+	#print(adjacent_exit_tiles)
