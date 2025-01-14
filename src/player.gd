@@ -9,12 +9,13 @@ const ANIMATION_SPEED = 5
 var moving = false
 
 var player_id : String
-var current_overworld_chunk : OverworldChunk  # TODO: Change to chunks!
+var current_overworld_chunk : OverworldChunk
 var current_overworld_tile_coords : Vector2i
 
 func init(player_str: String, overworld_chunk: OverworldChunk):
 	player_id = player_str
 	current_overworld_chunk = overworld_chunk
+	SignalBus.player_overworld_chunk_sync.emit(current_overworld_chunk)
 
 func _process(delta):
 	pass
@@ -31,10 +32,8 @@ func _unhandled_input(event):
 			for valid_coord in valid_movement:
 				var valid_input = valid_movement[valid_coord]
 				if physical_key == valid_input:
-					#print(event.as_text_key_label())
-					#print("Match!")
-					#print("Move to: " + str(valid_coord))
 					move(current_overworld_tile_coords, valid_coord)
+					break # Move has already happened, no reason to check other keys
 
 func translate_physical_key(input_event : InputEventKey):
 	var keystroke = OS.get_keycode_string(input_event.get_keycode_with_modifiers()).to_lower()
@@ -58,20 +57,31 @@ func move(current_coord: Vector2i, target_coord: Vector2i):
 	# No tween movement
 	position += position_delta * TILE_SIZE
 	
-	# TODO: We have to fix the position because the scaling! How can we avoid this!
-	var fixed_position = Vector2i(position.x/4, position.y/4)	
-	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(fixed_position)
+	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
 	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords)
 	
-func _ready():
-	position = position.snapped(Vector2.ONE * TILE_SIZE)
-	position += Vector2.ONE * TILE_SIZE / 2
+func exit_tile_move(exit_vector: Vector2, target_overworld_chunk: OverworldChunk):
+	# Transition between chunks positionally
+	position += exit_vector * TILE_SIZE
+	var out_of_chunk_coord = current_overworld_chunk.overworld_map.local_to_map(position)
+	var target_chunk_starting_coord = Vector2(posmod(out_of_chunk_coord.x, 30), posmod(out_of_chunk_coord.y, 17))
+	position = target_overworld_chunk.overworld_map.map_to_local(target_chunk_starting_coord)
 	
-	# TODO: We have to fix the position because the scaling! How can we avoid this!
-	var fixed_position = Vector2i(position.x/4, position.y/4)
-	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(fixed_position)
+	# Add player node to target chunk sceen
+	SignalBus.add_player_to_chunk.emit(self, target_overworld_chunk)
+	
+	# Update variables
+	current_overworld_chunk = target_overworld_chunk
+	current_overworld_tile_coords = target_chunk_starting_coord
+	
+	
+func _ready():
+	# Signals and connections
+	SignalBus.exit_tile_event.connect(exit_tile_move)
+	
+	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
 
-func _physics_process(delta):	
+func _physics_process(delta):
 	pass
 	## Add the gravity.
 	#if not is_on_floor():

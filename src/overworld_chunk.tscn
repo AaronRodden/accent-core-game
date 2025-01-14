@@ -1,12 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://cuxjnoxgajluh"]
 
 [ext_resource type="Script" path="res://src/overworld_chunk.gd" id="1_m016o"]
-[ext_resource type="Texture2D" uid="uid://cmehfwripr4b8" path="res://assets/kenny_prototype_tilemap/Tilemap/tilemap_color_packed.png" id="2_hxtvc"]
+[ext_resource type="Texture2D" uid="uid://d0tqvsvufmb7y" path="res://assets/kenny_prototype_tilemap/Tilemap/tilemap_color_packed_x4.png" id="3_aattv"]
 [ext_resource type="Script" path="res://src/overworld_layer.gd" id="3_drl5x"]
 [ext_resource type="Texture2D" uid="uid://b8c0v43xa58fl" path="res://assets/kenny_input_prompts/Tilemap/tilemap_white_packed.png" id="3_qhtut"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1mvhj"]
-texture = ExtResource("2_hxtvc")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_psg06"]
+texture = ExtResource("3_aattv")
+texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -76,11 +77,12 @@ texture = ExtResource("2_hxtvc")
 7:7/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_wok16"]
+tile_size = Vector2i(64, 64)
 custom_data_layer_0/name = "walkable"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "exit_tile"
 custom_data_layer_1/type = 1
-sources/0 = SubResource("TileSetAtlasSource_1mvhj")
+sources/1 = SubResource("TileSetAtlasSource_psg06")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfi3a"]
 texture = ExtResource("3_qhtut")
@@ -904,12 +906,10 @@ texture = ExtResource("3_qhtut")
 [sub_resource type="TileSet" id="TileSet_yk6ka"]
 sources/0 = SubResource("TileSetAtlasSource_bfi3a")
 
-[node name="OverworldChunk" type="Node"]
+[node name="OverworldChunk" type="Node2D"]
 script = ExtResource("1_m016o")
 
 [node name="OverworldMapLayer" type="TileMapLayer" parent="."]
-position = Vector2(0, -7)
-scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_wok16")
 script = ExtResource("3_drl5x")
 

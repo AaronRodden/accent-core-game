@@ -1,8 +1,5 @@
 extends Node
 
-
-@onready var overworld_map : OverworldLayer
-
 var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	# TOP ROW OF KEYBOARD
 	Vector2i(17,10) : "q",

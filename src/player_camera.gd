@@ -7,17 +7,15 @@ var start_offset_position : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# Signals and connections
+	SignalBus.exit_tile_event.connect(_update_camera)
+	
 	start_offset_position = global_position
 
 func _physics_process(delta):
-	update_camera()
-
-# TODO: I think camera jitters because whenever player moves the camera MUST move, then adjusts itself
-# I could expand / modify this function to be world based instead of player based?
-func update_camera():
-	var current_cell = ((player.global_position - start_offset_position) / screen_size).floor()
-	global_position = start_offset_position + (current_cell * screen_size)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
 	pass
+
+# Update camera when chunk transitions happen
+func _update_camera(exit_direction: Vector2, target_overworld_chunk: OverworldChunk):
+	# TODO: Zelda 1 style camera transitions?
+	offset = target_overworld_chunk.position

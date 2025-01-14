@@ -10,8 +10,13 @@ func _ready():
 	var player_scene = preload("res://src/player.tscn")
 	var player_node = player_scene.instantiate()
 	player_node.init("p1", starting_overworld_chunk)
-	player_node.position = Vector2(960, 540)
-	add_child(player_node)
+	player_node.position = $WorldNode.to_local(starting_overworld_chunk.center_position)
+	
+	#DEBUG
+	#player_node.position = $WorldNode.to_local(starting_overworld_chunk.overworld_map.map_to_local(Vector2(1,8))) # left side
+	#player_node.position = $WorldNode.to_local(starting_overworld_chunk.overworld_map.map_to_local(Vector2(28,8))) # right side
+	
+	SignalBus.add_player_to_chunk.emit(player_node, starting_overworld_chunk)
 
 	$Timer.start(90)
 
