@@ -1,6 +1,6 @@
 extends Node
 
-@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunk2B
+@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunk3C
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
