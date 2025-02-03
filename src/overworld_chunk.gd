@@ -6,6 +6,8 @@ const CENTER_TILE_COORDS = Vector2(15, 8)
 const LOCAL_COORD_SPACE_X_MAX = 30
 const LOCAL_COORD_SPACE_Y_MAX = 17
 
+var ResourceArrow = preload("res://src/resource_arrow.tscn")
+
 var player_node : Player
 var current_player_tile : Vector2i
 
@@ -22,6 +24,7 @@ var center_position : Vector2
 
 var walkable_tiles_coords = []
 var exit_tiles_coords = {}
+var global_resource_locations = []
 
 func compare_y(a, b): 
 	return a.y < b.y  
@@ -50,6 +53,7 @@ func _ready():
 			valid_input_cell_atlas_coords = get_valid_exit_cell_atlas_coords()
 			#exit_tiles_coords.append(overworld_tile_coords)
 			# TODO: Use constants for the min/max row/col info...
+			# TODO: How do we resolve how corner tiles work?
 			if overworld_tile_coords.x == 0:
 				exit_tiles_coords[overworld_tile_coords] = "west"
 			elif overworld_tile_coords.x == 29:
@@ -117,11 +121,48 @@ func _player_disconnect():
 func _on_player_moved_tiles(overworld_tile_coords: Vector2i):
 	current_player_tile = overworld_tile_coords
 	var overworld_tile_data = overworld_map.get_cell_tile_data(current_player_tile)
+	# TODO: Do an adjaceny check for any event tiles
+	var adjacent_tiles_data = overworld_map.get_adjacent_tile_data(current_player_tile)
+	for adjacent_coord in adjacent_tiles_data:
+		var adjacent_tile_data = adjacent_tiles_data[adjacent_coord]
+		if adjacent_tile_data:  # Don't look at out of bounds tiles
+			if adjacent_tile_data.get_custom_data("navigation_tile"):
+				handle_navigation_tile_event(adjacent_coord)
+			if adjacent_tile_data.get_custom_data("health_tile"):
+				adjacent_tile_data.set_custom_data("health_tile", false)
+				SignalBus.health_tile_event.emit()
+				adjacent_tile_data.set_modulate(Color(1,1,1,1))
 	if overworld_tile_data.get_custom_data("exit_tile"):
 		handle_exit_tile_event(current_player_tile)
-		
+
+
+# Get distance to EACH resource. Then point an arrow to the closest one.
+func handle_navigation_tile_event(current_navigation_tile_coords: Vector2i):
+	# Remove any existing arrows
+	for N in self.get_children():
+		if N.name == "resource_arrow":
+			N.free()
+	
+	var min_distance = INF
+	var closest_resource_coords : Vector2
+	
+	var navigation_tile_global_coords = overworld_map.map_to_local(current_navigation_tile_coords)
+	for resource_position in Global.world_resources_global_positions:
+		var resource_distance = navigation_tile_global_coords.distance_to(resource_position)
+		if resource_distance < min_distance:
+			min_distance = resource_distance
+			closest_resource_coords = resource_position
+	
+	var direction_vector = closest_resource_coords - navigation_tile_global_coords
+	var rotation_angle = atan2(direction_vector.y, direction_vector.x)
+	
+	var new_arrow = ResourceArrow.instantiate()
+	new_arrow.name = "resource_arrow"
+	new_arrow.position = navigation_tile_global_coords
+	new_arrow.look_at(closest_resource_coords)
+	add_child(new_arrow)
+
 func handle_exit_tile_event(current_exit_tile_coords: Vector2i):
-	print("on exit tile!")
 	var neighbor : OverworldChunk
 	var exit_vector: Vector2i
 	var exit_direction = exit_tiles_coords[current_exit_tile_coords]

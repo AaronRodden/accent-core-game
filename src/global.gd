@@ -36,8 +36,11 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	Vector2i(27,13) : ".",
 }
 
-
+# Constants
 const TILE_SIZE = 64
+
+# Global data
+var world_resources_global_positions = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
