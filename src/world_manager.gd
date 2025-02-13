@@ -28,6 +28,10 @@ func get_all_children(node):
 func _set_resources_global_positions():
 	Global.world_resources_global_positions = []
 	for node in world_nodes:
+		# BUG 02/05/25: On picking up 2nd resource this broke in one playtest
+		# Resource was in the top right quadrent of the map
+		# I think it may be because we are trying to access a node that is already freed?
+		# so an ordering / timing issue perhaps
 		if node.name == "Resource":
 			if not node.is_queued_for_deletion():
 				Global.world_resources_global_positions.append(node.global_position)

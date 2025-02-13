@@ -1,6 +1,6 @@
 extends Node
 
-@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunk3C
+@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunkHub2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,6 +12,9 @@ func _ready():
 	var player_node = player_scene.instantiate()
 	player_node.init("p1", starting_overworld_chunk)
 	player_node.position = $WorldNode.to_local(starting_overworld_chunk.center_position)
+	#$PlayerCamera.offset = starting_overworld_chunk.position
+	$PlayerCamera.player = player_node
+	#player_node.add_child($PlayerCamera)
 	
 	# TODO: Figure out camera movement for different starting positions, important for debugging
 	#DEBUG
@@ -20,7 +23,7 @@ func _ready():
 	
 	SignalBus.add_player_to_chunk.emit(player_node, starting_overworld_chunk)
 
-	$Timer.start(240)
+	$Timer.start(1000)
 
 # NOTE: Timer stuff is demo code!
 # Called every frame. 'delta' is the elapsed time since the previous frame.

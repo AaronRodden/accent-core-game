@@ -7,6 +7,7 @@ const TILE_SIZE = Global.TILE_SIZE
 const ANIMATION_SPEED = 5
 
 var moving = false
+var capslock = false
 
 var player_id : String
 var current_overworld_chunk : OverworldChunk
@@ -21,6 +22,7 @@ func _process(delta):
 	pass
 	
 func _unhandled_input(event):
+	var capital_case = false
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
@@ -28,24 +30,61 @@ func _unhandled_input(event):
 			var physical_key = translate_physical_key(event)
 			if moving:
 				return
+			if physical_key == "capslock":
+				capslock = !capslock
 			var valid_movement = current_overworld_chunk.overworld_map.get_valid_movement(current_overworld_tile_coords)
 			for valid_coord in valid_movement:
 				var valid_input = valid_movement[valid_coord]
-				if physical_key == valid_input:
-					move(current_overworld_tile_coords, valid_coord)
+				# TODO: More elegent way to do this shift functionallity?
+				if physical_key.to_lower() == valid_input:
+					# TODO: This breaks down a bit with numbers...
+					# Have to add an extra case to cover for it...
+					if capslock or physical_key == physical_key.to_upper() and physical_key.is_valid_int() == false:
+						capital_case = true
+					move(current_overworld_tile_coords, valid_coord, capital_case)
 					break # Move has already happened, no reason to check other keys
 
 func translate_physical_key(input_event : InputEventKey):
 	var keystroke = OS.get_keycode_string(input_event.get_keycode_with_modifiers()).to_lower()
+	# TODO: NumLock will change the behavior of the keypad keys
+	
+	# Keypad 
+	if keystroke == "insert":
+		keystroke = "0"
+	elif keystroke == "end":
+		keystroke = "1"
+	elif keystroke == "down":
+		keystroke = "2"
+	elif keystroke == "pagedown":
+		keystroke = "3"
+	elif keystroke == "left":
+		keystroke = "4"
+	elif keystroke == "clear":
+		keystroke = "5"
+	elif keystroke == "right":
+		keystroke = "6"
+	elif keystroke == "home":
+		keystroke = "7"
+	elif keystroke == "up":
+		keystroke = "8"
+	elif keystroke == "pageup":
+		keystroke = "9"
+	# Punctuation
 	if keystroke == "shift+slash":
 		keystroke = "?"
 	elif keystroke == "shift+1":
 		keystroke = "!"
 	elif keystroke == "period":
 		keystroke = "."
-	return keystroke.to_lower()
+	# Special Keys
+	if keystroke == "capslock":
+		keystroke = "capslock"
+	# Shift keys
+	if keystroke.contains("shift") and keystroke.contains("+"):
+		keystroke = str(keystroke[-1]).to_upper()
+	return keystroke
 
-func move(current_coord: Vector2i, target_coord: Vector2i):	
+func move(current_coord: Vector2i, target_coord: Vector2i, capital_case: bool):	
 	var position_delta : Vector2 = target_coord - current_coord
 	# Tween movement
 	#var tween = create_tween()
@@ -56,9 +95,8 @@ func move(current_coord: Vector2i, target_coord: Vector2i):
 	#moving = false
 	# No tween movement
 	position += position_delta * TILE_SIZE
-	
 	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
-	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords)
+	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, capital_case)
 	
 func exit_tile_move(exit_vector: Vector2, target_overworld_chunk: OverworldChunk):
 	# Transition between chunks positionally

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cuxjnoxgajluh"]
+[gd_scene load_steps=11 format=3 uid="uid://cuxjnoxgajluh"]
 
 [ext_resource type="Script" path="res://src/overworld_chunk.gd" id="1_m016o"]
 [ext_resource type="Texture2D" uid="uid://d0tqvsvufmb7y" path="res://assets/kenny_prototype_tilemap/Tilemap/tilemap_color_packed_x4.png" id="3_aattv"]
@@ -91,6 +91,12 @@ custom_data_layer_2/type = 1
 custom_data_layer_3/name = "health_tile"
 custom_data_layer_3/type = 1
 sources/1 = SubResource("TileSetAtlasSource_psg06")
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_loqc6"]
+tile_data = PackedInt32Array(0, 1114112, 9, 65536, 1310720, 9, 131072, 1507328, 9, 1, 1179648, 9, 65537, 1376256, 9, 131073, 1572864, 9, 196609, 1703936, 9, 2, 1245184, 9, 65538, 1441792, 9, 131074, 1638400, 9)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_edaqx"]
+tile_data = PackedInt32Array(65536, 1179648, 11, 65537, 1638400, 10, 2, 1703936, 10, 65538, 1245184, 10, 131074, 1114112, 10, 3, 1441792, 10, 65539, 1507328, 10, 131075, 1572864, 11, 4, 1376256, 11, 65540, 1572864, 10, 131076, 1638400, 11, 5, 1441792, 11, 65541, 1310720, 11, 131077, 1310720, 12, 6, 1376256, 12, 65542, 1507328, 11, 131078, 1507328, 12, 7, 1310720, 10, 65543, 1376256, 10, 131079, 1638400, 12, 8, 1703936, 11, 65544, 1572864, 12, 131080, 1179648, 10, 65545, 1245184, 11, 131081, 1441792, 12, 131082, 1245184, 12)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bfi3a"]
 texture = ExtResource("3_qhtut")
@@ -418,15 +424,25 @@ texture = ExtResource("3_qhtut")
 15:9/0 = 0
 16:9/0 = 0
 17:9/0 = 0
+17:9/0/custom_data_0 = "1"
 18:9/0 = 0
+18:9/0/custom_data_0 = "2"
 19:9/0 = 0
+19:9/0/custom_data_0 = "3"
 20:9/0 = 0
+20:9/0/custom_data_0 = "4"
 21:9/0 = 0
+21:9/0/custom_data_0 = "5"
 22:9/0 = 0
+22:9/0/custom_data_0 = "6"
 23:9/0 = 0
+23:9/0/custom_data_0 = "7"
 24:9/0 = 0
+24:9/0/custom_data_0 = "8"
 25:9/0 = 0
+25:9/0/custom_data_0 = "9"
 26:9/0 = 0
+26:9/0/custom_data_0 = "0"
 27:9/0 = 0
 28:9/0 = 0
 29:9/0 = 0
@@ -452,15 +468,25 @@ texture = ExtResource("3_qhtut")
 15:10/0 = 0
 16:10/0 = 0
 17:10/0 = 0
+17:10/0/custom_data_0 = "q"
 18:10/0 = 0
+18:10/0/custom_data_0 = "w"
 19:10/0 = 0
+19:10/0/custom_data_0 = "e"
 20:10/0 = 0
+20:10/0/custom_data_0 = "r"
 21:10/0 = 0
+21:10/0/custom_data_0 = "t"
 22:10/0 = 0
+22:10/0/custom_data_0 = "y"
 23:10/0 = 0
+23:10/0/custom_data_0 = "u"
 24:10/0 = 0
+24:10/0/custom_data_0 = "i"
 25:10/0 = 0
+25:10/0/custom_data_0 = "o"
 26:10/0 = 0
+26:10/0/custom_data_0 = "p"
 27:10/0 = 0
 28:10/0 = 0
 29:10/0 = 0
@@ -487,14 +513,23 @@ texture = ExtResource("3_qhtut")
 16:11/0 = 0
 17:11/0 = 0
 18:11/0 = 0
+18:11/0/custom_data_0 = "a"
 19:11/0 = 0
+19:11/0/custom_data_0 = "s"
 20:11/0 = 0
+20:11/0/custom_data_0 = "d"
 21:11/0 = 0
+21:11/0/custom_data_0 = "f"
 22:11/0 = 0
+22:11/0/custom_data_0 = "g"
 23:11/0 = 0
+23:11/0/custom_data_0 = "h"
 24:11/0 = 0
+24:11/0/custom_data_0 = "j"
 25:11/0 = 0
+25:11/0/custom_data_0 = "k"
 26:11/0 = 0
+26:11/0/custom_data_0 = "l"
 27:11/0 = 0
 28:11/0 = 0
 29:11/0 = 0
@@ -522,12 +557,19 @@ texture = ExtResource("3_qhtut")
 17:12/0 = 0
 18:12/0 = 0
 19:12/0 = 0
+19:12/0/custom_data_0 = "z"
 20:12/0 = 0
+20:12/0/custom_data_0 = "x"
 21:12/0 = 0
+21:12/0/custom_data_0 = "c"
 22:12/0 = 0
+22:12/0/custom_data_0 = "v"
 23:12/0 = 0
+23:12/0/custom_data_0 = "b"
 24:12/0 = 0
+24:12/0/custom_data_0 = "n"
 25:12/0 = 0
+25:12/0/custom_data_0 = "m"
 26:12/0 = 0
 27:12/0 = 0
 28:12/0 = 0
@@ -912,7 +954,11 @@ texture = ExtResource("3_qhtut")
 33:23/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_yk6ka"]
+custom_data_layer_0/name = "input_value"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_bfi3a")
+pattern_0 = SubResource("TileMapPattern_loqc6")
+pattern_1 = SubResource("TileMapPattern_edaqx")
 
 [node name="OverworldChunk" type="Node2D"]
 script = ExtResource("1_m016o")

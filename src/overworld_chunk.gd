@@ -1,8 +1,7 @@
-@tool
 extends Node2D
 class_name OverworldChunk
 
-const CENTER_TILE_COORDS = Vector2(15, 8)
+const CENTER_TILE_COORDS = Vector2(10, 10)
 const LOCAL_COORD_SPACE_X_MAX = 30
 const LOCAL_COORD_SPACE_Y_MAX = 17
 
@@ -44,6 +43,12 @@ func _ready():
 	# NOTE: Imperative that this sorting happens for adjacancy checking
 	walkable_tiles_coords.sort_custom(compare_y)  
 	
+	var all_input_map_set_tiles = input_map.get_used_cells()
+	
+	# DEBUG
+	if self.chunk_coordinate == "Hub2":
+		pass
+	
 	# Overworld creation 
 	for overworld_tile_coords in walkable_tiles_coords:
 		var valid_input_cell_atlas_coords : Vector2i
@@ -62,6 +67,10 @@ func _ready():
 				exit_tiles_coords[overworld_tile_coords] = "north"
 			elif overworld_tile_coords.y == 16:
 				exit_tiles_coords[overworld_tile_coords] = "south"
+		if overworld_tile_coords in all_input_map_set_tiles:
+			var input_tile_data = input_map.get_cell_tile_data(overworld_tile_coords)
+			var input_value = input_tile_data.get_custom_data("input_value")
+			overworld_map.OverworldInputMapping[overworld_tile_coords] = input_value
 		else:
 			# Short algorithm to ensure adjacent tiles do not share input values
 			var valid_movement = overworld_map.check_adjacancy(overworld_tile_coords)
@@ -70,11 +79,11 @@ func _ready():
 				adjacent_input_values.append(valid_movement[coords])
 			valid_input_cell_atlas_coords = get_valid_input_cell_atlas_coords(adjacent_input_values)
 		
-		# Assign valid input value to a given square on the overworld 
-		var valid_input_cell_value = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[valid_input_cell_atlas_coords]
-		overworld_map.OverworldInputMapping[overworld_tile_coords] = valid_input_cell_value # Sets the cell in data
-		input_map.set_cell(overworld_tile_coords, 0, valid_input_cell_atlas_coords, 0) # Visually sets the cell
-		
+			# Assign valid input value to a given square on the overworld 
+			var valid_input_cell_value = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[valid_input_cell_atlas_coords]
+			overworld_map.OverworldInputMapping[overworld_tile_coords] = valid_input_cell_value # Sets the cell in data
+			input_map.set_cell(overworld_tile_coords, 0, valid_input_cell_atlas_coords, 0) # Visually sets the cell
+			
 	# Update the global variables and position information
 	center_position = overworld_map.map_to_local(CENTER_TILE_COORDS)
 
@@ -118,8 +127,15 @@ func _player_disconnect():
 	remove_child(player_node)
 	SignalBus.player_moved_tiles.disconnect(_on_player_moved_tiles)
 
-func _on_player_moved_tiles(overworld_tile_coords: Vector2i):
-	current_player_tile = overworld_tile_coords
+func _on_player_moved_tiles(overworld_tile_coords: Vector2i, capital_case: bool):
+	var previous_player_tile = current_player_tile
+	# DEBUG: Erasing previous tiles after walking on them
+	#print("Previous: " + str(previous_player_tile))
+	#current_player_tile = overworld_tile_coords
+	#print("Current: " + str(current_player_tile))
+	#print(capital_case)
+	if capital_case:
+		clear_tile_input_map(previous_player_tile)
 	var overworld_tile_data = overworld_map.get_cell_tile_data(current_player_tile)
 	# TODO: Do an adjaceny check for any event tiles
 	var adjacent_tiles_data = overworld_map.get_adjacent_tile_data(current_player_tile)
@@ -135,6 +151,10 @@ func _on_player_moved_tiles(overworld_tile_coords: Vector2i):
 	if overworld_tile_data.get_custom_data("exit_tile"):
 		handle_exit_tile_event(current_player_tile)
 
+
+func clear_tile_input_map(overworld_tile_coords: Vector2i):
+	var input_atlas_cleared_cell = Vector2i(29, 14) #TODO: Magic number make constant
+	input_map.set_cell(overworld_tile_coords, 0, input_atlas_cleared_cell, 0) # Visually sets the cell
 
 # Get distance to EACH resource. Then point an arrow to the closest one.
 func handle_navigation_tile_event(current_navigation_tile_coords: Vector2i):

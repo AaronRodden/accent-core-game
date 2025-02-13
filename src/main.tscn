@@ -14,7 +14,9 @@ script = ExtResource("1_snde4")
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource("3_k5t27")]
+visible = false
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
-anchor_mode = 0
+position = Vector2(0, -1080)
 script = ExtResource("4_qxdp8")
+screen_size = Vector2(1920, 1080)
