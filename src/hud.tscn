@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://cpg8ojx5rgg0e"]
 
 [ext_resource type="Script" path="res://src/hud.gd" id="1_gbfys"]
-[ext_resource type="Texture2D" uid="uid://b7aj60e1833vf" path="res://assets/laser_charge.png" id="2_1v1wk"]
+[ext_resource type="Texture2D" uid="uid://1eu5fcdb3vju" path="res://assets/laser_charge.png" id="2_1v1wk"]
 [ext_resource type="Texture2D" uid="uid://bflu43kjwra1p" path="res://assets/Pixel Heart Sprite Sheet 16x16.png" id="3_x12oa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vybbp"]

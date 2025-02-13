@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/overworld_chunk.gd" id="1_m016o"]
 [ext_resource type="Texture2D" uid="uid://d0tqvsvufmb7y" path="res://assets/kenny_prototype_tilemap/Tilemap/tilemap_color_packed_x4.png" id="3_aattv"]
 [ext_resource type="Script" path="res://src/overworld_layer.gd" id="3_drl5x"]
-[ext_resource type="Texture2D" uid="uid://b8c0v43xa58fl" path="res://assets/kenny_input_prompts/Tilemap/tilemap_white_packed.png" id="3_qhtut"]
+[ext_resource type="Texture2D" uid="uid://dp3dv4kweom1o" path="res://assets/kenny_input_prompts/Tilemap/tilemap_white_packed.png" id="3_qhtut"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_psg06"]
 texture = ExtResource("3_aattv")

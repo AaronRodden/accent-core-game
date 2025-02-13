@@ -1,6 +1,6 @@
 extends Node
 
-@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunkHub2
+@onready var starting_overworld_chunk : OverworldChunk = $WorldNode/OverworldChunkOutskirts1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +11,8 @@ func _ready():
 	var player_scene = preload("res://src/player.tscn")
 	var player_node = player_scene.instantiate()
 	player_node.init("p1", starting_overworld_chunk)
-	player_node.position = $WorldNode.to_local(starting_overworld_chunk.center_position)
+	player_node.position = $WorldNode.to_local(starting_overworld_chunk.current_player_position)
+	#player_node.position = $WorldNode.to_local(starting_overworld_chunk.overworld_map.OverworldInputMapping.keys()[0])
 	#$PlayerCamera.offset = starting_overworld_chunk.position
 	$PlayerCamera.player = player_node
 	#player_node.add_child($PlayerCamera)

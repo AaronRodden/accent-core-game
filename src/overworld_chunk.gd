@@ -1,19 +1,17 @@
 extends Node2D
 class_name OverworldChunk
 
-const CENTER_TILE_COORDS = Vector2(10, 10)
 const LOCAL_COORD_SPACE_X_MAX = 30
 const LOCAL_COORD_SPACE_Y_MAX = 17
 
 var ResourceArrow = preload("res://src/resource_arrow.tscn")
 
 var player_node : Player
+var current_player_position : Vector2i
 var current_player_tile : Vector2i
 
 @onready var overworld_map : OverworldLayer = $OverworldMapLayer
 @onready var input_map : TileMapLayer = $InputMapLayer
-
-var center_position : Vector2
 
 @export var chunk_coordinate : String
 @export var north_neighbor : OverworldChunk
@@ -85,7 +83,10 @@ func _ready():
 			input_map.set_cell(overworld_tile_coords, 0, valid_input_cell_atlas_coords, 0) # Visually sets the cell
 			
 	# Update the global variables and position information
-	center_position = overworld_map.map_to_local(CENTER_TILE_COORDS)
+	
+	# Place player on a valid tile
+	current_player_position = overworld_map.map_to_local(overworld_map.OverworldInputMapping.keys()[0])
+	current_player_tile = overworld_map.OverworldInputMapping.keys()[0]
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -151,7 +152,7 @@ func _on_player_moved_tiles(overworld_tile_coords: Vector2i, capital_case: bool)
 	if overworld_tile_data.get_custom_data("exit_tile"):
 		handle_exit_tile_event(current_player_tile)
 
-
+# BUG: This seems to have been broken in some design exploration
 func clear_tile_input_map(overworld_tile_coords: Vector2i):
 	var input_atlas_cleared_cell = Vector2i(29, 14) #TODO: Magic number make constant
 	input_map.set_cell(overworld_tile_coords, 0, input_atlas_cleared_cell, 0) # Visually sets the cell
