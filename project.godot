@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SignalBus="*res://src/signal_bus.gd"
 Global="*res://src/global.gd"
+PythonRunner="*res://src/python_runner.gd"
 
 [display]
 

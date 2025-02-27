@@ -4,6 +4,12 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	# TODO: Creating an entire pipeline for this...
+	# Python testing
+	#var output = []
+	var output = PythonRunner.run("text2emotion_test.py", ["This is a test sentence, it is very short so I am scared how well it will do with the python library!"])
+	PythonRunner.output_parser(output)
+	
 	# Signals and connections
 	#SignalBus.resource_collected.connect(_update_timer)
 	SignalBus.health_tile_event.connect(_update_timer)
