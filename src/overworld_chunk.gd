@@ -70,7 +70,7 @@ func _ready():
 			var input_value = input_tile_data.get_custom_data("input_value")
 			overworld_map.OverworldInputMapping[overworld_tile_coords] = input_value
 		else:
-			# Short algorithm to ensure adjacent tiles do not share input values
+			## Short algorithm to ensure adjacent tiles do not share input values
 			var valid_movement = overworld_map.check_adjacancy(overworld_tile_coords)
 			var adjacent_input_values = []
 			for coords in valid_movement:  # Extract input values from adjacent squares 
@@ -118,6 +118,10 @@ func get_valid_exit_cell_atlas_coords():
 		2: 
 			return Vector2i(27,13) # .
 
+func get_atlas_coord_from_keystoke(keystroke: String):
+	var atlas_coord = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.find_key(keystroke)
+	return atlas_coord
+
 func _player_connect(player: Player, target_overworld_chunk: OverworldChunk):
 	if self.name == target_overworld_chunk.name:
 		add_child(player)
@@ -128,15 +132,17 @@ func _player_disconnect():
 	remove_child(player_node)
 	SignalBus.player_moved_tiles.disconnect(_on_player_moved_tiles)
 
-func _on_player_moved_tiles(overworld_tile_coords: Vector2i, capital_case: bool):
+func _on_player_moved_tiles(overworld_tile_coords: Vector2i, keypress: String, capital_case: bool):
 	var previous_player_tile = current_player_tile
 	# DEBUG: Erasing previous tiles after walking on them
 	#print("Previous: " + str(previous_player_tile))
-	#current_player_tile = overworld_tile_coords
+	current_player_tile = overworld_tile_coords
 	#print("Current: " + str(current_player_tile))
 	#print(capital_case)
-	if capital_case:
-		clear_tile_input_map(previous_player_tile)
+	#if capital_case:
+		#clear_tile_input_map(previous_player_tile)
+	input_map.set_cell(previous_player_tile, 0, get_atlas_coord_from_keystoke(keypress), 0)
+	
 	var overworld_tile_data = overworld_map.get_cell_tile_data(current_player_tile)
 	# TODO: Do an adjaceny check for any event tiles
 	var adjacent_tiles_data = overworld_map.get_adjacent_tile_data(current_player_tile)

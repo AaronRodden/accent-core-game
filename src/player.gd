@@ -21,9 +21,13 @@ func init(player_str: String, overworld_chunk: OverworldChunk):
 func _process(delta):
 	pass
 	
+# TODO: This function is a bit overloaded in concept right now.
+# We have multiple ways we need to move for the different gameplay loops,
+# How will we handle the same input event for these different game loops!
 func _unhandled_input(event):
 	var capital_case = false
 	if event is InputEventKey:
+		SignalBus.player_keystroke.emit(event)
 		if event.pressed and event.keycode == KEY_ESCAPE:
 			get_tree().quit()
 		if event.pressed:
@@ -32,17 +36,28 @@ func _unhandled_input(event):
 				return
 			if physical_key == "capslock":
 				capslock = !capslock
-			var valid_movement = current_overworld_chunk.overworld_map.get_valid_movement(current_overworld_tile_coords)
-			for valid_coord in valid_movement:
+				
+			# TODO: How should we determine the next place to go in the path!!
+			#var valid_movement = current_overworld_chunk.overworld_map.get_valid_movement(current_overworld_tile_coords)
+			var valid_movement = current_overworld_chunk.overworld_map.get_forward_movement(current_overworld_tile_coords)
+			print(current_overworld_tile_coords)
+			print(valid_movement)
+			# TODO: We can't loop through the valid movements like this! We need exaclty one/two and choose!
+			for valid_coord in valid_movement: 
 				var valid_input = valid_movement[valid_coord]
-				# TODO: More elegent way to do this shift functionallity?
-				if physical_key.to_lower() == valid_input:
-					# TODO: This breaks down a bit with numbers...
-					# Have to add an extra case to cover for it...
-					if capslock or physical_key == physical_key.to_upper() and physical_key.is_valid_int() == false:
-						capital_case = true
-					move(current_overworld_tile_coords, valid_coord, capital_case)
-					break # Move has already happened, no reason to check other keys
+				
+				if len(physical_key) == 1: # TODO: Hack to check if a keypress should be rendered
+					current_overworld_chunk.overworld_map.treaded_tiles.append(current_overworld_tile_coords)
+					move(current_overworld_tile_coords, valid_coord, physical_key, capital_case)
+				
+				## TODO: More elegent way to do this shift functionallity?
+				#if physical_key.to_lower() == valid_input:
+					## TODO: This breaks down a bit with numbers...
+					## Have to add an extra case to cover for it...
+					#if capslock or physical_key == physical_key.to_upper() and physical_key.is_valid_int() == false:
+						#capital_case = true
+					#move(current_overworld_tile_coords, valid_coord, capital_case)
+					#break # Move has already happened, no reason to check other keys
 
 func translate_physical_key(input_event : InputEventKey):
 	var keystroke = OS.get_keycode_string(input_event.get_keycode_with_modifiers()).to_lower()
@@ -84,7 +99,7 @@ func translate_physical_key(input_event : InputEventKey):
 		keystroke = str(keystroke[-1]).to_upper()
 	return keystroke
 
-func move(current_coord: Vector2i, target_coord: Vector2i, capital_case: bool):	
+func move(current_coord: Vector2i, target_coord: Vector2i, keypress: String, capital_case: bool):	
 	var position_delta : Vector2 = target_coord - current_coord
 	# Tween movement
 	#var tween = create_tween()
@@ -96,7 +111,7 @@ func move(current_coord: Vector2i, target_coord: Vector2i, capital_case: bool):
 	# No tween movement
 	position += position_delta * TILE_SIZE
 	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
-	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, capital_case)
+	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, keypress, capital_case)
 	
 func exit_tile_move(exit_vector: Vector2, target_overworld_chunk: OverworldChunk):
 	# Transition between chunks positionally
@@ -117,7 +132,8 @@ func _ready():
 	# Signals and connections
 	SignalBus.exit_tile_event.connect(exit_tile_move)
 	
-	current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
+	if current_overworld_chunk:
+		current_overworld_tile_coords = current_overworld_chunk.overworld_map.local_to_map(position)
 
 func _physics_process(delta):
 	pass

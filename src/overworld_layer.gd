@@ -2,6 +2,7 @@ extends TileMapLayer
 class_name OverworldLayer
 
 var OverworldInputMapping : Dictionary = {}  # Dict with structure: {Vector2i, String}
+var treaded_tiles : Array = []
 
 func get_input_val(overworld_coords: Vector2i):
 	return OverworldInputMapping[overworld_coords]
@@ -18,6 +19,20 @@ func get_valid_movement(current_overworld_coords: Vector2i):
 				continue
 			
 			if OverworldInputMapping.has(target_tile_coords):
+				valid_movement_coords[target_tile_coords] = get_input_val(target_tile_coords)
+	return valid_movement_coords
+	
+func get_forward_movement(current_overworld_coords: Vector2i):
+	var valid_movement_coords = {}
+	var target_tile_coords
+	for y in 3:
+		for x in 3: 
+			target_tile_coords = current_overworld_coords + Vector2i(x-1, y-1)
+			
+			if current_overworld_coords == target_tile_coords:
+				continue
+			
+			if OverworldInputMapping.has(target_tile_coords) and not treaded_tiles.has(target_tile_coords):
 				valid_movement_coords[target_tile_coords] = get_input_val(target_tile_coords)
 	return valid_movement_coords
 	

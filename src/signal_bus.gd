@@ -10,8 +10,9 @@ signal add_player_to_chunk(player : Player, target_chunk : OverworldChunk)
 signal get_world_resource_positions()
 
 # Player signals
-signal player_moved_tiles(current_overworld_coords: Vector2i, capital_case: bool)
+signal player_moved_tiles(current_overworld_coords: Vector2i, keypress: String, capital_case: bool)
 signal player_overworld_chunk_sync(target_oveworld_chunk: OverworldChunk)
+signal player_keystroke(keystroke: InputEventKey)
 
 # OverworldChunk signals
 signal exit_tile_event(exit_direction: Vector2i, target_overworld_chunk: OverworldChunk)

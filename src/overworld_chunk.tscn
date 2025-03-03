@@ -91,6 +91,8 @@ texture_region_size = Vector2i(64, 64)
 2:0/0 = 0
 0:1/0 = 0
 1:1/0 = 0
+2:1/0 = 0
+2:1/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_wok16"]
 tile_size = Vector2i(64, 64)
@@ -104,6 +106,153 @@ custom_data_layer_3/name = "health_tile"
 custom_data_layer_3/type = 1
 sources/1 = SubResource("TileSetAtlasSource_psg06")
 sources/2 = SubResource("TileSetAtlasSource_y5180")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5novw"]
+texture = ExtResource("7_xp4ew")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_0 = "A"
+1:0/0 = 0
+1:0/0/custom_data_0 = "B"
+2:0/0 = 0
+2:0/0/custom_data_0 = "C"
+3:0/0 = 0
+3:0/0/custom_data_0 = "D"
+4:0/0 = 0
+4:0/0/custom_data_0 = "E"
+5:0/0 = 0
+5:0/0/custom_data_0 = "F"
+6:0/0 = 0
+6:0/0/custom_data_0 = "G"
+7:0/0 = 0
+7:0/0/custom_data_0 = "H"
+8:0/0 = 0
+8:0/0/custom_data_0 = "I"
+9:0/0 = 0
+9:0/0/custom_data_0 = "J"
+10:0/0 = 0
+10:0/0/custom_data_0 = "K"
+11:0/0 = 0
+11:0/0/custom_data_0 = "L"
+12:0/0 = 0
+12:0/0/custom_data_0 = "M"
+13:0/0 = 0
+13:0/0/custom_data_0 = "N"
+14:0/0 = 0
+14:0/0/custom_data_0 = "O"
+15:0/0 = 0
+15:0/0/custom_data_0 = "P"
+16:0/0 = 0
+16:0/0/custom_data_0 = "Q"
+17:0/0 = 0
+17:0/0/custom_data_0 = "R"
+18:0/0 = 0
+18:0/0/custom_data_0 = "S"
+19:0/0 = 0
+19:0/0/custom_data_0 = "T"
+20:0/0 = 0
+20:0/0/custom_data_0 = "U"
+21:0/0 = 0
+21:0/0/custom_data_0 = "V"
+22:0/0 = 0
+22:0/0/custom_data_0 = "W"
+23:0/0 = 0
+23:0/0/custom_data_0 = "X"
+24:0/0 = 0
+24:0/0/custom_data_0 = "Y"
+25:0/0 = 0
+25:0/0/custom_data_0 = "Z"
+26:0/0 = 0
+0:1/0 = 0
+0:1/0/custom_data_0 = "a"
+1:1/0 = 0
+1:1/0/custom_data_0 = "b"
+2:1/0 = 0
+2:1/0/custom_data_0 = "c"
+3:1/0 = 0
+3:1/0/custom_data_0 = "d"
+4:1/0 = 0
+4:1/0/custom_data_0 = "e"
+5:1/0 = 0
+5:1/0/custom_data_0 = "f"
+6:1/0 = 0
+6:1/0/custom_data_0 = "g"
+7:1/0 = 0
+7:1/0/custom_data_0 = "h"
+8:1/0 = 0
+8:1/0/custom_data_0 = "i"
+9:1/0 = 0
+9:1/0/custom_data_0 = "j"
+10:1/0 = 0
+10:1/0/custom_data_0 = "k"
+11:1/0 = 0
+11:1/0/custom_data_0 = "l"
+12:1/0 = 0
+12:1/0/custom_data_0 = "m"
+13:1/0 = 0
+13:1/0/custom_data_0 = "n"
+14:1/0 = 0
+14:1/0/custom_data_0 = "o"
+15:1/0 = 0
+15:1/0/custom_data_0 = "p"
+16:1/0 = 0
+16:1/0/custom_data_0 = "q"
+17:1/0 = 0
+17:1/0/custom_data_0 = "r"
+18:1/0 = 0
+18:1/0/custom_data_0 = "s"
+19:1/0 = 0
+19:1/0/custom_data_0 = "t"
+20:1/0 = 0
+20:1/0/custom_data_0 = "u"
+21:1/0 = 0
+21:1/0/custom_data_0 = "v"
+22:1/0 = 0
+22:1/0/custom_data_0 = "w"
+23:1/0 = 0
+23:1/0/custom_data_0 = "x"
+24:1/0 = 0
+24:1/0/custom_data_0 = "y"
+25:1/0 = 0
+25:1/0/custom_data_0 = "z"
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3fv8"]
+texture = ExtResource("6_x841i")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+16:0/0 = 0
+17:0/0 = 0
+18:0/0 = 0
+19:0/0 = 0
+20:0/0 = 0
+21:0/0 = 0
+22:0/0 = 0
+23:0/0 = 0
+24:0/0 = 0
+25:0/0 = 0
+26:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p74io"]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "input_value"
+custom_data_layer_0/type = 4
+sources/0 = SubResource("TileSetAtlasSource_5novw")
+sources/2 = SubResource("TileSetAtlasSource_b3fv8")
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_loqc6"]
 tile_data = PackedInt32Array(0, 1114112, 9, 65536, 1310720, 9, 131072, 1507328, 9, 1, 1179648, 9, 65537, 1376256, 9, 131073, 1572864, 9, 196609, 1703936, 9, 2, 1245184, 9, 65538, 1441792, 9, 131074, 1638400, 9)
@@ -1394,73 +1543,6 @@ sources/1 = SubResource("TileSetAtlasSource_vhhtr")
 pattern_0 = SubResource("TileMapPattern_loqc6")
 pattern_1 = SubResource("TileMapPattern_edaqx")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5novw"]
-texture = ExtResource("7_xp4ew")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-18:0/0 = 0
-19:0/0 = 0
-20:0/0 = 0
-21:0/0 = 0
-22:0/0 = 0
-23:0/0 = 0
-24:0/0 = 0
-25:0/0 = 0
-26:0/0 = 0
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b3fv8"]
-texture = ExtResource("6_x841i")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-9:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-14:0/0 = 0
-15:0/0 = 0
-16:0/0 = 0
-17:0/0 = 0
-18:0/0 = 0
-19:0/0 = 0
-20:0/0 = 0
-21:0/0 = 0
-22:0/0 = 0
-23:0/0 = 0
-24:0/0 = 0
-25:0/0 = 0
-26:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_p74io"]
-tile_size = Vector2i(64, 64)
-sources/0 = SubResource("TileSetAtlasSource_5novw")
-sources/2 = SubResource("TileSetAtlasSource_b3fv8")
-
 [node name="OverworldChunk" type="Node2D"]
 script = ExtResource("1_m016o")
 
@@ -1469,8 +1551,8 @@ tile_set = SubResource("TileSet_wok16")
 script = ExtResource("3_drl5x")
 
 [node name="InputMapLayer" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_p74io")
+
+[node name="InputMapLayer-depricated" type="TileMapLayer" parent="."]
 scale = Vector2(4, 4)
 tile_set = SubResource("TileSet_yk6ka")
-
-[node name="TileMapLayer-large-sizing" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_p74io")
