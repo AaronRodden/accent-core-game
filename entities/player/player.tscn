@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dfwo0v0x630d7"]
+
+[ext_resource type="Texture2D" uid="uid://bb52dv08t2h42" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_jiujg"]
+[ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxhe8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5frq5"]
+size = Vector2(9, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_41hn1"]
+atlas = ExtResource("1_jiujg")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q0th1"]
+atlas = ExtResource("1_jiujg")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtp1j"]
+atlas = ExtResource("1_jiujg")
+region = Rect2(64, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5qe4"]
+atlas = ExtResource("1_jiujg")
+region = Rect2(96, 128, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wv7ja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_41hn1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q0th1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtp1j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5qe4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(4, 4)
+script = ExtResource("1_xxhe8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_5frq5")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wv7ja")
+autoplay = "default"
+frame = 2
+frame_progress = 0.387244

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=4 uid="uid://b7xlagx62rlya"]
 
 [ext_resource type="Script" path="res://thought_path_writing.gd" id="1_ncxad"]
-[ext_resource type="PackedScene" uid="uid://cuxjnoxgajluh" path="res://src/overworld_chunk.tscn" id="2_emawy"]
-[ext_resource type="PackedScene" uid="uid://dtf2f78xtv0q" path="res://src/typing_interface.tscn" id="4_6h2ej"]
+[ext_resource type="PackedScene" uid="uid://cuxjnoxgajluh" path="res://deprecated/src/overworld_chunk.tscn" id="2_emawy"]
+[ext_resource type="PackedScene" uid="uid://dtf2f78xtv0q" path="res://deprecated/src/typing_interface.tscn" id="4_6h2ej"]
 
 [node name="ThoughtPathWriting" type="Node"]
 script = ExtResource("1_ncxad")

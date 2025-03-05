@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=4 uid="uid://dbmyss0ndp1ve"]
 
-[ext_resource type="Script" path="res://src/world_manager.gd" id="1_pmcxj"]
+[ext_resource type="Script" path="res://deprecated/src/world_manager.gd" id="1_pmcxj"]
 [ext_resource type="Texture2D" uid="uid://bh50evaxa50ly" path="res://icon.svg" id="2_3c0be"]
-[ext_resource type="PackedScene" uid="uid://b5p12i083ibet" path="res://src/resource.tscn" id="2_br4a0"]
-[ext_resource type="PackedScene" uid="uid://cuxjnoxgajluh" path="res://src/overworld_chunk.tscn" id="6_8bhv2"]
+[ext_resource type="PackedScene" uid="uid://b5p12i083ibet" path="res://deprecated/src/resource.tscn" id="2_br4a0"]
+[ext_resource type="PackedScene" uid="uid://cuxjnoxgajluh" path="res://deprecated/src/overworld_chunk.tscn" id="6_8bhv2"]
 
 [node name="WorldNode" type="Node2D"]
 script = ExtResource("1_pmcxj")

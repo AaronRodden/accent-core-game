@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cho43txfn5opj"]
 
 [ext_resource type="Texture2D" uid="uid://bb52dv08t2h42" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_6r5y3"]
-[ext_resource type="Script" path="res://src/player.gd" id="1_fwq4i"]
+[ext_resource type="Script" path="res://deprecated/src/player.gd" id="1_fwq4i"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_recnh"]
 atlas = ExtResource("1_6r5y3")

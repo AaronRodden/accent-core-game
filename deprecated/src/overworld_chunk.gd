@@ -4,7 +4,7 @@ class_name OverworldChunk
 const LOCAL_COORD_SPACE_X_MAX = 30
 const LOCAL_COORD_SPACE_Y_MAX = 17
 
-var ResourceArrow = preload("res://src/resource_arrow.tscn")
+var ResourceArrow = preload("res://deprecated/src/resource_arrow.tscn")
 
 var player_node : Player
 var current_player_position : Vector2i

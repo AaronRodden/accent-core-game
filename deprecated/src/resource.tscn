@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b5p12i083ibet"]
 
 [ext_resource type="Texture2D" uid="uid://1eu5fcdb3vju" path="res://assets/laser_charge.png" id="1_frxt6"]
-[ext_resource type="Script" path="res://src/resource.gd" id="1_jge52"]
+[ext_resource type="Script" path="res://deprecated/src/resource.gd" id="1_jge52"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vybbp"]
 atlas = ExtResource("1_frxt6")

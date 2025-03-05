@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="accent-core-game"
-run/main_scene="res://src/main.tscn"
+run/main_scene="res://scenes/writing/thought_path_writing.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-SignalBus="*res://src/signal_bus.gd"
-Global="*res://src/global.gd"
-PythonRunner="*res://src/python_runner.gd"
+SignalBus="*res://globals/signal_bus.gd"
+PythonRunner="*res://deprecated/src/python_runner.gd"
+KeyboardInterface="*res://globals/keyboard_interface.gd"
+Global="*res://globals/global.gd"
 
 [display]
 

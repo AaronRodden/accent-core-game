@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://2gbmvh2mnekm"]
+
+[ext_resource type="Script" path="res://scenes/writing/typing_interface.gd" id="1_32vpw"]
+[ext_resource type="Texture2D" uid="uid://qpwqw8i7jr1r" path="res://assets/typing_box_v1.png" id="1_bejy3"]
+
+[node name="TypingInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_32vpw")
+
+[node name="TypingInterfaceVector" type="Sprite2D" parent="."]
+position = Vector2(982, 827)
+scale = Vector2(1.06614, 1.06614)
+texture = ExtResource("1_bejy3")
+
+[node name="RunningText" type="Label" parent="TypingInterfaceVector"]
+offset_left = -619.0
+offset_top = -67.0
+offset_right = 624.0
+offset_bottom = 155.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 48

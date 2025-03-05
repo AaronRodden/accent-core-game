@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://cuxjnoxgajluh"]
 
-[ext_resource type="Script" path="res://src/overworld_chunk.gd" id="1_m016o"]
+[ext_resource type="Script" path="res://deprecated/src/overworld_chunk.gd" id="1_m016o"]
 [ext_resource type="Texture2D" uid="uid://d0tqvsvufmb7y" path="res://assets/kenny_prototype_tilemap/Tilemap/tilemap_color_packed_x4.png" id="3_aattv"]
 [ext_resource type="Texture2D" uid="uid://u7ae5cv5lr7e" path="res://assets/Cingulate-Cortex-EmptyTiles.png" id="3_dj6ft"]
-[ext_resource type="Script" path="res://src/overworld_layer.gd" id="3_drl5x"]
+[ext_resource type="Script" path="res://deprecated/src/overworld_layer.gd" id="3_drl5x"]
 [ext_resource type="Texture2D" uid="uid://dp3dv4kweom1o" path="res://assets/kenny_input_prompts/Tilemap/tilemap_white_packed.png" id="3_qhtut"]
 [ext_resource type="Texture2D" uid="uid://dcxev61fs17s1" path="res://assets/Cingulate-Cortex-LetterTiles.png" id="6_x841i"]
 [ext_resource type="Texture2D" uid="uid://ctsx0nsvobbsf" path="res://assets/Hippocampus-LetterTiles.png" id="7_xp4ew"]
