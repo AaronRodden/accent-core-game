@@ -117,7 +117,7 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	"y" : Vector2i(24,1),  
 	"z" : Vector2i(25,1), 
 	# Spacing
-	" " : Vector2i(26,1),
+	" " : Vector2i(0,6),
 }
 
 # Called when the node enters the scene tree for the first time.

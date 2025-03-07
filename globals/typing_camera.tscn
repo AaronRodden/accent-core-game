@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cky2j5ujb433"]
+
+[ext_resource type="Script" path="res://globals/typing_camera.gd" id="1_yrj8v"]
+
+[node name="TypingCamera" type="Camera2D"]
+anchor_mode = 0
+script = ExtResource("1_yrj8v")

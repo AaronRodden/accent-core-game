@@ -3,6 +3,10 @@ extends Node
 # Keystroke constants
 const Backspace = "Backspace"
 const Shift = "Shift"
+const Space = " "
+
+var total_keystrokes = 0
+var wpm = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,7 +27,13 @@ func handle_input_event(event : InputEventKey):
 	var keystroke : String
 	if !(event.keycode & KEY_SPECIAL): 
 		keystroke = String.chr(event.unicode)
+		total_keystrokes += 1
 	elif event.keycode & KEY_SPECIAL:
 		keystroke = OS.get_keycode_string(event.keycode)
-	SignalBus.player_keystroke.emit(event, keystroke)
+	_calculate_current_wpm()
+	SignalBus.player_keystroke.emit(event, keystroke, total_keystrokes)
 	return keystroke
+	
+func _calculate_current_wpm():
+	pass
+	#var wpm = (total_keystrokes / 5) * 

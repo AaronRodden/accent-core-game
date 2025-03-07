@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
+
 var game_stance : String
 
 var current_overworld_chunk : TileMapLayer
@@ -14,6 +15,7 @@ var coordinate_history : Array
 func initalize(overworld_chunk : TileMapLayer, game_type : String):
 	game_stance = game_type
 	current_overworld_chunk = overworld_chunk
+	position = current_overworld_chunk.map_to_local(current_overworld_chunk.starting_cell_coordinate)
 	current_overworld_tile_coords = current_overworld_chunk.local_to_map(position)
 
 func _ready():

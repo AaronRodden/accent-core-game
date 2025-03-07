@@ -6,7 +6,7 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_render_keystroke)
 
-func _render_keystroke(event: InputEventKey, keystroke : String):
+func _render_keystroke(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	if KeyboardInterface.is_input_event_printable(event):
 		$TypingInterfaceVector/RunningText.text += keystroke
 	else: 

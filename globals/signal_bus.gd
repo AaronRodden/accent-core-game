@@ -4,7 +4,7 @@ extends Node
 signal player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String)
 
 # Keyboard Interface
-signal player_keystroke(event : InputEventKey, keystroke: String)
+signal player_keystroke(event : InputEventKey, keystroke: String, total_keystrokes: int)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
