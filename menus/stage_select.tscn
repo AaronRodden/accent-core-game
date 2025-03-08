@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://xtul7u7t640j"]
+
+[ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
+
+[node name="StageSelect" type="Node"]
+script = ExtResource("1_xgjc3")
+
+[node name="writing-joy" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 85.0
+offset_right = 699.0
+offset_bottom = 173.0
+focus_neighbor_bottom = NodePath("../writing-sadness")
+text = "Writing - Joy"
+
+[node name="writing-sadness" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 268.0
+offset_right = 699.0
+offset_bottom = 356.0
+focus_neighbor_top = NodePath("../writing-joy")
+focus_neighbor_bottom = NodePath("../save")
+text = "Writing - Sadness"
+
+[node name="save" type="Button" parent="."]
+offset_left = 388.0
+offset_top = 908.0
+offset_right = 937.0
+offset_bottom = 996.0
+focus_neighbor_top = NodePath("../writing-sadness")
+focus_neighbor_right = NodePath("../load")
+text = "save"
+
+[node name="load" type="Button" parent="."]
+offset_left = 1023.0
+offset_top = 908.0
+offset_right = 1572.0
+offset_bottom = 996.0
+focus_neighbor_left = NodePath("../save")
+focus_neighbor_top = NodePath("../writing-sadness")
+text = "load"
+
+[connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
+[connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]
+[connection signal="pressed" from="save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="load" to="." method="_on_load_pressed"]

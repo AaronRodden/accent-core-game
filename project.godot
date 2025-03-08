@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*res://globals/signal_bus.gd"
-PythonRunner="*res://deprecated/src/python_runner.gd"
 Global="*res://globals/global.gd"
 KeyboardInterface="*res://globals/keyboard_interface.gd"
+WorldManager="*res://scenes/common/world_manager.gd"
 
 [display]
 

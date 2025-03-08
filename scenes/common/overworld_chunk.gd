@@ -1,5 +1,7 @@
 extends TileMapLayer
 
+const CHUNK_SIZE = 300
+
 var walkable_tiles : Dictionary = {}
 var overworld_input_mapping : Dictionary = {}
 
@@ -13,7 +15,6 @@ var astar_width = 10
 
 var rng = RandomNumberGenerator.new()
 
-# TODO: How should we swap between these?
 var shared_atlas_id = 0
 var area_atlas_id = 1
 
@@ -28,7 +29,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	var astar_path : Array = []
 	
 	var astargrid = AStarGrid2D.new()
-	astar_width += 100
+	astar_width += CHUNK_SIZE
 	astargrid.size = Vector2i(astar_width, 16)
 	astargrid.cell_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
 	astargrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
@@ -40,7 +41,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	
 	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
-	for x in range(starting_cell_x, (starting_cell_x + 100)):
+	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
 		for y in range(0, 8):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
@@ -60,22 +61,25 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 		set_cell(coordinate, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
 		
 	# Once thought path is created, create a map around it
-	for x in range(starting_cell_x, (starting_cell_x + 100)):
+	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
 		for y in range(0, 17):
 			if Vector2i(x, y) in self.get_used_cells():
 				continue
 			k = noise.get_noise_2d(x, y)
-			# TODO: These values have to change based on the atlas!!!
 			if k < -0.2:
-				# joy
-				set_cell(Vector2(x, y), area_atlas_id, Vector2(rng.randi_range(1, 2), 6), 0)
-				# sadness
-				#set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
+				if area_atlas_id == 1:
+					# joy
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(rng.randi_range(1, 2), 6), 0)
+				elif area_atlas_id == 2:
+					# sadness
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
 			elif k > 0.3:
-				# joy
-				set_cell(Vector2(x, y), area_atlas_id, Vector2(3, 6), 0)
-				# sadness
-				#set_cell(Vector2(x, y), area_atlas_id, Vector2(2, 6), 0)
+				if area_atlas_id == 1:
+					# joy
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(3, 6), 0)
+				elif area_atlas_id == 2:
+					# sadness
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(2, 6), 0)
 			else:
 				set_cell(Vector2(x, y), shared_atlas_id, Vector2(rng.randi_range(0, 2), rng.randi_range(0, 1)), 0)
 	return 
@@ -91,15 +95,6 @@ func _ready():
 	
 	starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 	generate_level_chunk(starting_cell_coordinate)
-	
-	# TODO: How much is this overarching data needed now?
-	#var all_cells = get_used_cells()
-	#for cell_coordinate : Vector2i in all_cells:
-		#var cell_data = get_cell_tile_data(cell_coordinate)
-		#if cell_data.get_custom_data("walkable"):
-			#self.walkable_tiles[cell_coordinate] = cell_data
-			#if cell_data.get_custom_data("input_value"):
-				#self.overworld_input_mapping[cell_coordinate] = cell_data.get_custom_data("input_value")
 
 # Given a coordinate, gives all valid movement in coordinate : cell_data form
 func get_valid_movement(cell_coordinate : Vector2i):
@@ -142,14 +137,13 @@ func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vect
 		stepped_upon_tiles.pop_back()
 		
 		if keystroke == KeyboardInterface.Backspace:
-			self.set_cell(next_tile_coords, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
+			self.set_cell(next_tile_coords, self.area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
 	else:
 		stepped_upon_tiles.append(prev_tile_coords)
 		
 		# Update tiles
 		if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
-			# TODO: How should I systematically swap between the tile sets?
-			self.set_cell(prev_tile_coords, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke], 0)
+			self.set_cell(prev_tile_coords, self.area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke], 0)
 
 # TODO: Threads are not safed to be used with visual elements!
 # We will need a different solution!!!
@@ -163,10 +157,10 @@ func _chunk_event_handler(event: InputEventKey, keystroke : String, total_keystr
 				#thread.wait_to_finish()
 		#thread.start(generate_level_chunk.bind(current_ending_cell_coordinate))
 
-func _exit_tree():
-	print("Thread killed")
-	thread.wait_to_finish()
-	#thread.
+#func _exit_tree():
+	#print("Thread killed")
+	#thread.wait_to_finish()
+	##thread.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
