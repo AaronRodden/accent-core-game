@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://bii2bibwuhhnx"]
+
+[ext_resource type="Texture2D" uid="uid://3o5jmww2q2fl" path="res://assets/thought-bubble-temp-intrusive-word-vector.png" id="1_l6d41"]
+[ext_resource type="Shader" path="res://scenes/writing/intrusive_word.gdshader" id="1_ydwan"]
+[ext_resource type="Script" path="res://scenes/writing/intrusive_word.gd" id="3_4lmh2"]
+
+[sub_resource type="Gradient" id="Gradient_f8i2e"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pddgc"]
+gradient = SubResource("Gradient_f8i2e")
+fill_from = Vector2(1, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3jcth"]
+resource_local_to_scene = true
+shader = ExtResource("1_ydwan")
+shader_parameter/size_effect = 0.1
+shader_parameter/speed = 1.0
+shader_parameter/highlight_strength = 0.5
+shader_parameter/color_mode_toggle = false
+shader_parameter/is_horizontal = true
+shader_parameter/gradient_percentage = 0.0
+shader_parameter/color_gradient = SubResource("GradientTexture2D_pddgc")
+
+[node name="IntrusiveWord" type="Sprite2D"]
+material = SubResource("ShaderMaterial_3jcth")
+texture = ExtResource("1_l6d41")
+script = ExtResource("3_4lmh2")
+
+[node name="IntrusiveWordText" type="RichTextLabel" parent="."]
+offset_left = -72.0
+offset_top = -48.0
+offset_right = 82.0
+offset_bottom = 24.0
+theme_override_font_sizes/normal_font_size = 24

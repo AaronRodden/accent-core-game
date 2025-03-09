@@ -120,6 +120,10 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	" " : Vector2i(0,6),
 }
 
+var INTRUSIVE_WORD_BANK = ['happy', 'sad', 'angry', 'excited', 'nervous', 'frustrated', 'joyful', 'anxious', 'peaceful', 'annoyed', 'hopeful', 'disappointed', 'grateful', 'fearful', 'content', 'guilty', 'embarrassed', 'proud', 'lonely', 'overwhelmed', 'relaxed', 'confused', 'jealous', 'loving', 'ashamed', 'determined', 'bored', 'resentful', 'ecstatic', 'miserable', 'furious', 'eager', 'doubtful', 'inspired', 'nostalgic', 'sorrowful', 'optimistic', 'hesitant', 'panicked', 'envious', 'relieved', 'indifferent', 'melancholic', 'startled', 'affectionate', 'irritated', 'empowered', 'insecure', 'heartbroken', 'smug', 'remorseful', 'suspicious', 'adventurous', 'weary', 'mortified', 'triumphant', 'defensive', 'sentimental', 'restless', 'vulnerable', 'discouraged', 'confident', 'betrayed', 'elated', 'furious', 'amused', 'sorrowful', 'exhausted', 'bitter', 'hopeful', 'shy', 'tender', 'uneasy', 'curious', 'regretful', 'cheerful', 'weary', 'brave', 'guilty', 'panicked', 'humiliated', 'liberated', 'comforted', 'enraptured', 'aggravated', 'uneasy', 'ambitious', 'stunned', 'devastated', 'enthusiastic', 'inadequate', 'loving']
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
