@@ -7,14 +7,22 @@ var overworld_input_mapping : Dictionary = {}
 
 var thread : Thread
 
+# Shared Variables
+var rng = RandomNumberGenerator.new()
 # TODO: Interrogate this solution for storing back coordinates
 var stepped_upon_tiles : Array = [null]
 var starting_cell_coordinate : Vector2i
 var current_ending_cell_coordinate : Vector2i
 var astar_width = 10
+var thought_path_coordinates : Array
 
-var rng = RandomNumberGenerator.new()
+# Thought Racing Variables
+var thought_path_passage : String
 
+
+# DEBUG: All of these defaulting to a value for debugging purposes
+#var gameplay_mode = self.WRITING_MODE
+var gameplay_mode = Global.RACING_MODE
 var shared_atlas_id = 0
 var area_atlas_id = 1
 
@@ -82,7 +90,16 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 					set_cell(Vector2(x, y), area_atlas_id, Vector2(2, 6), 0)
 			else:
 				set_cell(Vector2(x, y), shared_atlas_id, Vector2(rng.randi_range(0, 2), rng.randi_range(0, 1)), 0)
-	return 
+	return astar_path
+	
+func write_existing_passage(start_cell_coordinate : Vector2i):
+	self.thought_path_coordinates.append(Vector2i(self.thought_path_coordinates[-1].x+1, self.thought_path_coordinates[-1].y))
+	for i in range(0, len(self.thought_path_passage)):
+		var char_at_index = thought_path_passage[i]
+		var coords_at_index = self.thought_path_coordinates[i+1]
+		#print("Char at index " + str(i) + ": " + str(char_at_index))
+		#print("Corresponding path coordinates: " + str(coords_at_index))
+		set_cell(coords_at_index, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[char_at_index], 0)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -93,8 +110,14 @@ func _ready():
 	# Threading
 	thread = Thread.new()
 	
-	starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
-	generate_level_chunk(starting_cell_coordinate)
+	if gameplay_mode == Global.WRITING_MODE:
+		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
+		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
+	elif gameplay_mode == Global.RACING_MODE:
+		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
+		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
+		write_existing_passage(starting_cell_coordinate)
+		
 
 # Given a coordinate, gives all valid movement in coordinate : cell_data form
 func get_valid_movement(cell_coordinate : Vector2i):

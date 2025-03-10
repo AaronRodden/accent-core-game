@@ -22,6 +22,18 @@ position = Vector2(982, 827)
 scale = Vector2(1.06614, 1.06614)
 texture = ExtResource("1_bejy3")
 
+[node name="TargetText" type="RichTextLabel" parent="TypingInterfaceVector"]
+offset_left = -619.0
+offset_top = -67.0
+offset_right = 624.0
+offset_bottom = 155.0
+theme_override_colors/default_color = Color(0.593134, 0.593134, 0.593134, 1)
+theme_override_fonts/mono_font = SubResource("FontVariation_drd1o")
+theme_override_font_sizes/mono_font_size = 48
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][code]|[/code][/pulse]"
+
 [node name="RunningText" type="RichTextLabel" parent="TypingInterfaceVector"]
 offset_left = -619.0
 offset_top = -67.0
@@ -33,17 +45,6 @@ theme_override_font_sizes/mono_font_size = 48
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][code]|[/code][/pulse]"
-
-[node name="BBCodeCursor" type="RichTextLabel" parent="TypingInterfaceVector"]
-visible = false
-offset_left = -619.0
-offset_top = -67.0
-offset_right = 624.0
-offset_bottom = 155.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-1.0]|[/pulse]"
 
 [node name="DoneButton" type="Sprite2D" parent="."]
 visible = false

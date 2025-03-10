@@ -4,10 +4,13 @@ var area_enum : int
 
 func load_level(area_init_data : Dictionary, area_dynamic_data : Dictionary):
 	# Initalize variables
-	area_enum = area_init_data["overworld_chunk_atlas_id"]
+	area_enum = area_init_data[WorldManager.AtlasID]
 	
 	# Load chunk with data
+	$OverworldChunk.gameplay_mode = Global.WRITING_MODE
 	$OverworldChunk.area_atlas_id = area_enum
+	
+	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
 	
 	# DEBUG: Write global data
 	WorldManager.write_world_data(area_enum, WorldManager.AreaHealth, 90)

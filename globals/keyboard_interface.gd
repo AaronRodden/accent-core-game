@@ -4,6 +4,7 @@ extends Node
 const Backspace = "Backspace"
 const Shift = "Shift"
 const Enter = "Enter"
+const Tab = "Tab"
 const Space = " "
 
 # TODO: Maybe this should be an object that lives and dies alongside typing interfaces?

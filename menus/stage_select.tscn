@@ -10,8 +10,18 @@ offset_left = 150.0
 offset_top = 85.0
 offset_right = 699.0
 offset_bottom = 173.0
+focus_neighbor_right = NodePath("../racing-joy")
 focus_neighbor_bottom = NodePath("../writing-sadness")
 text = "Writing - Joy"
+
+[node name="racing-joy" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 85.0
+offset_right = 1625.0
+offset_bottom = 173.0
+focus_neighbor_left = NodePath("../writing-joy")
+focus_neighbor_bottom = NodePath("../racing-sadness")
+text = "Racing  - Joy"
 
 [node name="writing-sadness" type="Button" parent="."]
 offset_left = 150.0
@@ -19,8 +29,19 @@ offset_top = 268.0
 offset_right = 699.0
 offset_bottom = 356.0
 focus_neighbor_top = NodePath("../writing-joy")
+focus_neighbor_right = NodePath("../racing-sadness")
 focus_neighbor_bottom = NodePath("../save")
 text = "Writing - Sadness"
+
+[node name="racing-sadness" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 267.0
+offset_right = 1625.0
+offset_bottom = 355.0
+focus_neighbor_left = NodePath("../writing-sadness")
+focus_neighbor_top = NodePath("../racing-joy")
+focus_neighbor_bottom = NodePath("../load")
+text = "Racing  - Sadness"
 
 [node name="save" type="Button" parent="."]
 offset_left = 388.0
@@ -37,10 +58,12 @@ offset_top = 908.0
 offset_right = 1572.0
 offset_bottom = 996.0
 focus_neighbor_left = NodePath("../save")
-focus_neighbor_top = NodePath("../writing-sadness")
+focus_neighbor_top = NodePath("../racing-sadness")
 text = "load"
 
 [connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
+[connection signal="pressed" from="racing-joy" to="." method="_on_racingjoy_pressed"]
 [connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]
+[connection signal="pressed" from="racing-sadness" to="." method="_on_racingsadness_pressed"]
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="load" to="." method="_on_load_pressed"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://oj8elahuwcx0"]
+
+[ext_resource type="Script" path="res://scenes/racing/thought_path_racing.gd" id="1_frgdv"]
+[ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_qo0dm"]
+[ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="2_52l5i"]
+[ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="3_yi6rb"]
+[ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="4_nse8o"]
+
+[node name="ThoughtPathRacing" type="Node"]
+script = ExtResource("1_frgdv")
+
+[node name="OverworldChunkA" parent="." instance=ExtResource("1_qo0dm")]
+
+[node name="OverworldChunkB" parent="." instance=ExtResource("1_qo0dm")]
+position = Vector2(0, 540)
+
+[node name="Player" parent="." instance=ExtResource("2_52l5i")]
+
+[node name="TypingCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_yi6rb")]
+player = NodePath("../Player")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TypingInterface" parent="CanvasLayer" instance=ExtResource("4_nse8o")]
+offset_left = -16.0
+offset_top = 248.0
+offset_right = -16.0
+offset_bottom = 248.0
+
+[node name="TargetText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="0"]
+offset_right = 617.0
+offset_bottom = -3.0
+
+[node name="RunningText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="1"]
+offset_right = 617.0
+offset_bottom = -3.0
+
+[node name="AreaDivider" type="ColorRect" parent="."]
+offset_top = 540.0
+offset_right = 1920.0
+offset_bottom = 550.0
+color = Color(0, 0, 0, 1)
+
+[editable path="OverworldChunkA"]
+[editable path="OverworldChunkB"]
+[editable path="CanvasLayer/TypingInterface"]

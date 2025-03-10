@@ -4,6 +4,8 @@ extends Node
 var TILE_SIZE = 64  # in pixels
 
 # Dictionaries and Enums
+enum {WRITING_MODE, RACING_MODE}
+
 #var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	## Upper case
 	#Vector2i(0,0) : "A",

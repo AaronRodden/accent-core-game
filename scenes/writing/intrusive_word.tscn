@@ -23,12 +23,22 @@ shader_parameter/color_gradient = SubResource("GradientTexture2D_pddgc")
 
 [node name="IntrusiveWord" type="Sprite2D"]
 material = SubResource("ShaderMaterial_3jcth")
+scale = Vector2(1.2722, 1.2722)
 texture = ExtResource("1_l6d41")
 script = ExtResource("3_4lmh2")
 
 [node name="IntrusiveWordText" type="RichTextLabel" parent="."]
-offset_left = -72.0
-offset_top = -48.0
-offset_right = 82.0
-offset_bottom = 24.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -208.3
+offset_top = -183.933
+offset_right = -43.3005
+offset_bottom = -99.9332
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "overwhelmed"

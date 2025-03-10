@@ -35,7 +35,7 @@ func _unhandled_input(event):
 
 
 # TODO: Implement sound effects / notices of end of line?
-func writing_move(event : InputEventKey, keystroke : String):	
+func writing_move(event : InputEventKey, keystroke : String):
 	# Determine forwards / backwords coordinate
 	var forwards_backwards = self.current_overworld_chunk.get_cardinal_movement(current_overworld_tile_coords)
 	var forwards_coordinate = forwards_backwards["forward"]
@@ -58,6 +58,7 @@ func writing_move(event : InputEventKey, keystroke : String):
 		print("End of the line...")
 		return
 	
+	SignalBus.player_actionable_keystroke.emit(event, keystroke)
 	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
 	var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
 	position += position_delta * Global.TILE_SIZE
@@ -65,7 +66,37 @@ func writing_move(event : InputEventKey, keystroke : String):
 
 
 func racing_move(event : InputEventKey, keystroke : String):
-	pass
+	# Determine forwards / backwords coordinate
+	#var forwards_backwards = self.current_overworld_chunk.get_cardinal_movement(current_overworld_tile_coords)
+	#var forwards_coordinate = forwards_backwards["forward"]
+	#var backwards_coordinate = forwards_backwards["backward"]
+	var current_coordinate_index = self.current_overworld_chunk.thought_path_coordinates.find(current_overworld_tile_coords)
+	var forwards_coordinate = self.current_overworld_chunk.thought_path_coordinates[current_coordinate_index + 1]
+	var backwards_coordinate
+	if current_coordinate_index - 1 < 0:
+		backwards_coordinate = null
+	else:
+		backwards_coordinate = self.current_overworld_chunk.thought_path_coordinates[current_coordinate_index - 1]
+	
+	var forwards_input = self.current_overworld_chunk.get_cell_tile_data(forwards_coordinate).get_custom_data("input_value")
+	
+	var target_tile_coords
+	if keystroke == forwards_input:
+		target_tile_coords = forwards_coordinate
+	elif keystroke == KeyboardInterface.Backspace:
+		target_tile_coords = backwards_coordinate
+	elif keystroke == KeyboardInterface.Tab:
+		# TODO: Passage swapping!
+		pass
+	else: 
+		print("Non-matching or non-actional key pressed...")
+		return 
+		
+	#SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
+	SignalBus.player_actionable_keystroke.emit(event, keystroke)
+	var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
+	position += position_delta * Global.TILE_SIZE
+	current_overworld_tile_coords = current_overworld_chunk.local_to_map(position)
 	
 #func _physics_process(delta):
 	## Add the gravity.
