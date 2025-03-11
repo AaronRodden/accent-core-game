@@ -35,12 +35,7 @@ func _unhandled_input(event):
 		else:
 			pass
 
-#func _handle_swap_keystroke(sender):
-	#if self.player_locked:
-		#unlock(sender)
-	#else:
-		#lock(sender)
-#
+
 func lock():
 	self.player_locked = true
 	self.visible = false
@@ -73,7 +68,7 @@ func writing_move(event : InputEventKey, keystroke : String):
 		print("End of the line...")
 		return
 	
-	SignalBus.player_actionable_keystroke.emit(event, keystroke)
+	SignalBus.player_actionable_keystroke.emit(event, keystroke, self)
 	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
 	var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
 	position += position_delta * Global.TILE_SIZE
@@ -116,8 +111,8 @@ func racing_move(event : InputEventKey, keystroke : String):
 			return
 			
 		#SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
-		SignalBus.player_actionable_keystroke.emit(event, keystroke)
-		#SignalBus.player_racing_keystroke.emit(event, keystroke)
+		#SignalBus.player_actionable_keystroke.emit(event, keystroke, self)
+		SignalBus.player_racing_keystroke.emit(event, keystroke, self)
 		var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
 		position += position_delta * Global.TILE_SIZE
 		current_overworld_tile_coords = current_overworld_chunk.local_to_map(position)

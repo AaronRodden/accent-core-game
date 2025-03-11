@@ -10,6 +10,7 @@
 script = ExtResource("1_frgdv")
 
 [node name="OverworldChunkA" parent="." instance=ExtResource("1_qo0dm")]
+scale = Vector2(0.75, 0.75)
 
 [node name="PlayerA" parent="OverworldChunkA" node_paths=PackedStringArray("running_partner", "typing_interface") instance=ExtResource("2_52l5i")]
 running_partner = NodePath("../../OverworldChunkB/PlayerB")
@@ -17,6 +18,7 @@ typing_interface = NodePath("../../CanvasLayer/TypingInterfaceA")
 
 [node name="OverworldChunkB" parent="." instance=ExtResource("1_qo0dm")]
 position = Vector2(0, 544)
+scale = Vector2(0.75, 0.75)
 
 [node name="PlayerB" parent="OverworldChunkB" node_paths=PackedStringArray("running_partner", "typing_interface") instance=ExtResource("2_52l5i")]
 position = Vector2(0, 64)
@@ -35,37 +37,35 @@ offset_right = 1920.0
 offset_bottom = 550.0
 color = Color(0, 0, 0, 1)
 
-[node name="TypingInterfaceA" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner") instance=ExtResource("4_nse8o")]
-offset_left = -16.0
-offset_top = 248.0
-offset_right = -16.0
-offset_bottom = 248.0
+[node name="TypingInterfaceA" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner", "player") instance=ExtResource("4_nse8o")]
 interface_partner = NodePath("../TypingInterfaceB")
+player = NodePath("../../OverworldChunkA/PlayerA")
 
 [node name="TargetText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="0"]
 offset_right = 617.0
 offset_bottom = -3.0
+autowrap_mode = 1
 
 [node name="RunningText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="1"]
 offset_right = 617.0
-offset_bottom = -3.0
+offset_bottom = 162.0
+theme_override_colors/default_color = Color(0.745098, 0.745098, 0.745098, 1)
 
-[node name="TypingInterfaceB" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner") instance=ExtResource("4_nse8o")]
+[node name="TypingInterfaceB" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner", "player") instance=ExtResource("4_nse8o")]
 visible = false
 modulate = Color(0.996078, 0.0941176, 0.0196078, 1)
-offset_left = -16.0
-offset_top = 248.0
-offset_right = -16.0
-offset_bottom = 248.0
 interface_partner = NodePath("../TypingInterfaceA")
+player = NodePath("../../OverworldChunkB/PlayerB")
 
 [node name="TargetText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="0"]
 offset_right = 617.0
 offset_bottom = -3.0
+autowrap_mode = 1
 
 [node name="RunningText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="1"]
 offset_right = 617.0
-offset_bottom = -3.0
+offset_bottom = 162.0
+theme_override_colors/default_color = Color(0.745, 0.745, 0.745, 1)
 
 [editable path="OverworldChunkA"]
 [editable path="OverworldChunkB"]

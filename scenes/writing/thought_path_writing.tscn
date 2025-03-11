@@ -23,6 +23,8 @@ playerA = NodePath("../Player")
 
 [node name="IntrusiveWordManager" parent="CanvasLayer" instance=ExtResource("6_feq40")]
 
-[node name="TypingInterface" parent="CanvasLayer" instance=ExtResource("2_1fks0")]
+[node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_1fks0")]
+player = NodePath("../../Player")
 
 [editable path="OverworldChunk"]
+[editable path="CanvasLayer/TypingInterface"]

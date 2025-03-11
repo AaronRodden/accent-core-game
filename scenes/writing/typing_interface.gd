@@ -3,11 +3,15 @@ extends Control
 @onready var text_box = $TypingInterfaceVector/RunningText
 @onready var target_text_box = $TypingInterfaceVector/TargetText
 
-@export var interface_partner : Control
+@export var gray = Color.GRAY
+@export var black = Color.BLACK
 
-var BBCodeCursorString = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][code]|[/code][/pulse]"
-var input_index = 15
-var target_index = 38
+@export var interface_partner : Control
+@export var player : CharacterBody2D
+
+var BBCodeCursorString = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][color=#000000][code]|[/code][/color][/pulse]"
+var current_char_index : int
+var next_char_index : int
 
 var gameplay_mode = 0
 var target_passage : String
@@ -27,14 +31,20 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_keystroke_events)
 	SignalBus.player_actionable_keystroke.connect(_render_keystroke)
-	#SignalBus.player_swap_keystroke.connect(_swap_interfaces)
-	#SignalBus.player_racing_keystroke.connect(_render_racing_keystroke)
+	SignalBus.player_racing_keystroke.connect(_render_racing_keystroke)
 	text_box.scroll_following = true
 	
-	if target_passage:
-		target_text_box.text = target_passage
-		target_text_box.visible = true
-		#text_box.text = text_box.text.insert(target_index, target_passage)
+	if gameplay_mode == Global.WRITING_MODE:
+		text_box.text += BBCodeCursorString
+	
+	if gameplay_mode == Global.RACING_MODE:
+		if target_passage:
+			text_box.text = target_passage
+		current_char_index = 0
+		next_char_index = 1
+
+func scroll_to_char_position():
+	text_box.scroll_to_line(text_box.get_character_line(current_char_index))
 	
 func _keystroke_events(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	# TODO: Temporary metric for when the passage is done
@@ -45,36 +55,50 @@ func _keystroke_events(event: InputEventKey, keystroke : String, total_keystroke
 		text_box.text = text_box.text.erase(self.current_passage_length, len(BBCodeCursorString))  # Remove BBCodeCursor
 		SignalBus.passage_complete.emit(text_box.text)
 
-# TODO: How should running text be swapped between?
-# TODO: How should "future" text be properly handled?
-func _render_keystroke(event: InputEventKey, keystroke : String):
-	if KeyboardInterface.is_input_event_printable(event):
-		text_box.text = text_box.text.insert(self.current_passage_length, keystroke)
-		current_passage_length += 1
-	else: 
-		if keystroke == KeyboardInterface.Backspace:
-			text_box.text = text_box.text.erase(self.current_passage_length - 1)
-			current_passage_length -= 1
+
+func _render_keystroke(event: InputEventKey, keystroke : String, sender : CharacterBody2D):
+	if sender == player:
+		if KeyboardInterface.is_input_event_printable(event):
+			text_box.text = text_box.text.insert(self.current_passage_length, keystroke)
+			current_passage_length += 1
+		else: 
+			if keystroke == KeyboardInterface.Backspace:
+				text_box.text = text_box.text.erase(self.current_passage_length - 1)
+				current_passage_length -= 1
 	
 func lock():
 	self.visible = false
 	interface_partner.visible = true
-#func _swap_interfaces():
-	#self.visible = false
-	#interface_partner.visible = true
 	
-#func _render_racing_keystroke(event: InputEventKey, keystroke: String):
-	#if KeyboardInterface.is_input_event_printable(event):
-		#text_box.text = text_box.text.insert(self.input_index, keystroke)
-		#target_index+=1
-		#text_box.text = text_box.text.erase(self.target_index)
-		##current_passage_length += 1
-		#input_index+=1
-	#else: 
-		#if keystroke == KeyboardInterface.Backspace:
-			#text_box.text = text_box.text.erase(self.input_index - 1)
-			#input_index-=1
-			#target_index-=1
+func _render_racing_keystroke(event: InputEventKey, keystroke: String, sender: CharacterBody2D):
+	if sender == player:
+		if KeyboardInterface.is_input_event_printable(event):
+			var finished_text = get_bbcode_color_tag(black) + text_box.text.substr(0, next_char_index) + get_bbcode_end_color_tag()
+			var unfinished_text = ""
+			
+			if next_char_index != target_passage.length():
+				unfinished_text = get_bbcode_color_tag(gray) + text_box.text.substr(next_char_index, target_passage.length() - next_char_index + 1) + get_bbcode_end_color_tag()
+			
+			text_box.parse_bbcode(finished_text + BBCodeCursorString + unfinished_text)
+			current_char_index += 1
+			next_char_index += 1
+		else: 
+			if keystroke == KeyboardInterface.Backspace:
+				var finished_text = get_bbcode_color_tag(black) + text_box.text.substr(0,  current_char_index - 1) + get_bbcode_end_color_tag()
+				var unfinished_text = ""
+				
+				unfinished_text = get_bbcode_color_tag(gray) + text_box.text.substr(current_char_index-1, target_passage.length() - current_char_index + 1) + get_bbcode_end_color_tag()
+				
+				text_box.parse_bbcode(finished_text + BBCodeCursorString + unfinished_text)
+				current_char_index -= 1
+				next_char_index -= 1
+
+func get_bbcode_color_tag(color : Color):
+	return "[color=#" + color.to_html(false) + "]"
+	
+func get_bbcode_end_color_tag():
+	return "[/color]"
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	scroll_to_char_position() # TODO: Is this what causes the jittering?
