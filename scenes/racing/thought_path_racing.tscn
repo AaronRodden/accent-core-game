@@ -11,36 +11,63 @@ script = ExtResource("1_frgdv")
 
 [node name="OverworldChunkA" parent="." instance=ExtResource("1_qo0dm")]
 
+[node name="PlayerA" parent="OverworldChunkA" node_paths=PackedStringArray("running_partner", "typing_interface") instance=ExtResource("2_52l5i")]
+running_partner = NodePath("../../OverworldChunkB/PlayerB")
+typing_interface = NodePath("../../CanvasLayer/TypingInterfaceA")
+
 [node name="OverworldChunkB" parent="." instance=ExtResource("1_qo0dm")]
-position = Vector2(0, 540)
+position = Vector2(0, 544)
 
-[node name="Player" parent="." instance=ExtResource("2_52l5i")]
+[node name="PlayerB" parent="OverworldChunkB" node_paths=PackedStringArray("running_partner", "typing_interface") instance=ExtResource("2_52l5i")]
+position = Vector2(0, 64)
+running_partner = NodePath("../../OverworldChunkA/PlayerA")
+typing_interface = NodePath("../../CanvasLayer/TypingInterfaceB")
 
-[node name="TypingCamera" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_yi6rb")]
-player = NodePath("../Player")
+[node name="TypingCamera" parent="." node_paths=PackedStringArray("playerA", "playerB") instance=ExtResource("3_yi6rb")]
+playerA = NodePath("../OverworldChunkA/PlayerA")
+playerB = NodePath("../OverworldChunkB/PlayerB")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TypingInterface" parent="CanvasLayer" instance=ExtResource("4_nse8o")]
-offset_left = -16.0
-offset_top = 248.0
-offset_right = -16.0
-offset_bottom = 248.0
-
-[node name="TargetText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="0"]
-offset_right = 617.0
-offset_bottom = -3.0
-
-[node name="RunningText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="1"]
-offset_right = 617.0
-offset_bottom = -3.0
-
-[node name="AreaDivider" type="ColorRect" parent="."]
+[node name="AreaDivider" type="ColorRect" parent="CanvasLayer"]
 offset_top = 540.0
 offset_right = 1920.0
 offset_bottom = 550.0
 color = Color(0, 0, 0, 1)
 
+[node name="TypingInterfaceA" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner") instance=ExtResource("4_nse8o")]
+offset_left = -16.0
+offset_top = 248.0
+offset_right = -16.0
+offset_bottom = 248.0
+interface_partner = NodePath("../TypingInterfaceB")
+
+[node name="TargetText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="0"]
+offset_right = 617.0
+offset_bottom = -3.0
+
+[node name="RunningText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="1"]
+offset_right = 617.0
+offset_bottom = -3.0
+
+[node name="TypingInterfaceB" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner") instance=ExtResource("4_nse8o")]
+visible = false
+modulate = Color(0.996078, 0.0941176, 0.0196078, 1)
+offset_left = -16.0
+offset_top = 248.0
+offset_right = -16.0
+offset_bottom = 248.0
+interface_partner = NodePath("../TypingInterfaceA")
+
+[node name="TargetText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="0"]
+offset_right = 617.0
+offset_bottom = -3.0
+
+[node name="RunningText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="1"]
+offset_right = 617.0
+offset_bottom = -3.0
+
 [editable path="OverworldChunkA"]
 [editable path="OverworldChunkB"]
-[editable path="CanvasLayer/TypingInterface"]
+[editable path="CanvasLayer/TypingInterfaceA"]
+[editable path="CanvasLayer/TypingInterfaceB"]

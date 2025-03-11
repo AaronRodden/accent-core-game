@@ -23,6 +23,7 @@ scale = Vector2(1.06614, 1.06614)
 texture = ExtResource("1_bejy3")
 
 [node name="TargetText" type="RichTextLabel" parent="TypingInterfaceVector"]
+visible = false
 offset_left = -619.0
 offset_top = -67.0
 offset_right = 624.0

@@ -34,7 +34,6 @@ func _check_active_words(event : InputEventKey, keystroke: String, total_keystro
 	for word in self.active_words:
 		word.running_string = running_string
 		word.check_word()
-	#print(self.running_string)
 			
 
 func _on_timer_timeout():

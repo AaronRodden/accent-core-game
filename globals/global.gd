@@ -117,7 +117,36 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	"w" : Vector2i(22,1),  
 	"x" : Vector2i(23,1),  
 	"y" : Vector2i(24,1),  
-	"z" : Vector2i(25,1), 
+	"z" : Vector2i(25,1),
+	# Numbers
+	"1" : Vector2i(0,2),
+	"2" : Vector2i(1,2),
+	"3" : Vector2i(2,2),
+	"4" : Vector2i(3,2),
+	"5" : Vector2i(4,2),
+	"6" : Vector2i(5,2),
+	"7" : Vector2i(6,2),
+	"8" : Vector2i(7,2),
+	"9" : Vector2i(8,2),
+	"0" : Vector2i(9,2),
+	# Punctuation
+	"." : Vector2i(10,2),
+	"," : Vector2i(11,2),
+	"!" : Vector2i(12,2),
+	"?" : Vector2i(13,2),
+	# Special Characters
+	"(" : Vector2i(14,2),
+	")" : Vector2i(15,2),
+	"[" : Vector2i(16,2),
+	"]" : Vector2i(17,2),
+	"{" : Vector2i(18,2),
+	"}" : Vector2i(19,2),
+	":" : Vector2i(20,2),
+	";" : Vector2i(21,2),
+	"\'" : Vector2i(22,2), # TODO: We are missing single quotes in the tilesets right now!
+	"@" : Vector2i(23,2),
+	"#" : Vector2i(24,2),
+	"&" : Vector2i(25,2),
 	# Spacing
 	" " : Vector2i(0,6),
 }
