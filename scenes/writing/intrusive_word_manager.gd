@@ -1,5 +1,11 @@
 extends Control
 
+# Constants magic numbers from screen sizing (e.g. 1920x1080 screen) and typing interface size (~300 px)
+const SPAWN_AREA_X_MIN = 64
+const SPAWN_AREA_X_MAX = 1920 - 64
+const SPAWN_AREA_Y_MIN = 64
+const SPAWN_AREA_Y_MAX = (1080 - 300) - 64
+
 @onready var timer = $Timer
 
 var IntrusiveWord = preload("res://scenes/writing/intrusive_word.tscn")
@@ -38,9 +44,10 @@ func _check_active_words(event : InputEventKey, keystroke: String, total_keystro
 
 func _on_timer_timeout():
 	if self.intrusive_word_count < 3:
+		pass
 		var intrusive_word = IntrusiveWord.instantiate()
 		intrusive_word.target_word = Global.INTRUSIVE_WORD_BANK.pick_random()
-		intrusive_word.position = Vector2(rng.randi_range(0,1000), rng.randi_range(0,1000))
+		intrusive_word.position = Vector2(rng.randi_range(SPAWN_AREA_X_MIN,SPAWN_AREA_X_MAX), rng.randi_range(SPAWN_AREA_Y_MIN,SPAWN_AREA_Y_MAX))
 		add_child(intrusive_word)
 		self.intrusive_word_count += 1
 

@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const CHUNK_SIZE = 300
+const CHUNK_SIZE = 400
 
 var walkable_tiles : Dictionary = {}
 var overworld_input_mapping : Dictionary = {}
@@ -23,6 +23,7 @@ var thought_path_passage : String
 # DEBUG: All of these defaulting to a value for debugging purposes
 #var gameplay_mode = self.WRITING_MODE
 var gameplay_mode = Global.RACING_MODE
+#var thought_path_passage = "Well I want to write a new story about my day. At least I wasen't panicked when the saving didn't work! In many ways I have had a lot of smug joy recently, I mean even being able to play magic makes me content enough! Well I want to write a new story about my day. At least I wasen't panicked"
 var shared_atlas_id = 0
 var area_atlas_id = 1
 
@@ -47,10 +48,17 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.4
 	
+	var y_bounds_min = 0
+	var y_bounds_max
+	if gameplay_mode == Global.WRITING_MODE:
+		y_bounds_max = 8
+	elif gameplay_mode == Global.RACING_MODE:
+		y_bounds_max = 5
+		
 	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
 	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
-		for y in range(0, 8):
+		for y in range(y_bounds_min, y_bounds_max):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
 			if astar_checkpoint_chance == 0:
@@ -81,6 +89,12 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 				elif area_atlas_id == 2:
 					# sadness
 					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
+				elif area_atlas_id == 3:
+					# fear
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(rng.randi_range(1, 2), 6), 0)
+				elif area_atlas_id == 4:
+					# anger
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
 			elif k > 0.3:
 				if area_atlas_id == 1:
 					# joy
@@ -88,10 +102,17 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 				elif area_atlas_id == 2:
 					# sadness
 					set_cell(Vector2(x, y), area_atlas_id, Vector2(2, 6), 0)
+				if area_atlas_id == 3:
+					# fear
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(3, 6), 0)
+				elif area_atlas_id == 4:
+					# anger
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
 			else:
 				set_cell(Vector2(x, y), shared_atlas_id, Vector2(rng.randi_range(0, 2), rng.randi_range(0, 1)), 0)
 	return astar_path
-	
+
+# TODO: Some sort of error thrown when thought_path_passage size > thought_path_coordinates size
 func write_existing_passage(start_cell_coordinate : Vector2i):
 	self.thought_path_coordinates.append(Vector2i(self.thought_path_coordinates[-1].x+1, self.thought_path_coordinates[-1].y))
 	for i in range(0, len(self.thought_path_passage)):
@@ -99,7 +120,10 @@ func write_existing_passage(start_cell_coordinate : Vector2i):
 		var coords_at_index = self.thought_path_coordinates[i+1]
 		#print("Char at index " + str(i) + ": " + str(char_at_index))
 		#print("Corresponding path coordinates: " + str(coords_at_index))
-		set_cell(coords_at_index, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[char_at_index], 0)
+		if char_at_index in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
+			set_cell(coords_at_index, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[char_at_index], 0)
+		else:
+			set_cell(coords_at_index, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -114,10 +138,11 @@ func _ready():
 		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 	elif gameplay_mode == Global.RACING_MODE:
-		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
+		# TODO: In Racing mode we have a limit of 0 to 4 for starting cell
+		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 4))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 		write_existing_passage(starting_cell_coordinate)
-		
+
 
 # Given a coordinate, gives all valid movement in coordinate : cell_data form
 func get_valid_movement(cell_coordinate : Vector2i):

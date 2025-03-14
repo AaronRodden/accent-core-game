@@ -29,6 +29,12 @@ func _thought_path_complete(passage : String):
 	if area_enum == 2:
 		WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassage, passage)
 		KeyboardInterface.reset()
+	if area_enum == 3:
+		WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassage, passage)
+		KeyboardInterface.reset()
+	if area_enum == 4:
+		WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassage, passage)
+		KeyboardInterface.reset()
 	WorldManager.current_player_area = WorldManager.STAGE_SELECT
 	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 

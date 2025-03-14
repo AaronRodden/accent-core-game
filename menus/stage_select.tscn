@@ -10,18 +10,10 @@ offset_left = 150.0
 offset_top = 85.0
 offset_right = 699.0
 offset_bottom = 173.0
+focus_neighbor_top = NodePath("../save")
 focus_neighbor_right = NodePath("../racing-joy")
 focus_neighbor_bottom = NodePath("../writing-sadness")
 text = "Writing - Joy"
-
-[node name="racing-joy" type="Button" parent="."]
-offset_left = 1076.0
-offset_top = 85.0
-offset_right = 1625.0
-offset_bottom = 173.0
-focus_neighbor_left = NodePath("../writing-joy")
-focus_neighbor_bottom = NodePath("../racing-sadness")
-text = "Racing  - Joy"
 
 [node name="writing-sadness" type="Button" parent="."]
 offset_left = 150.0
@@ -30,8 +22,38 @@ offset_right = 699.0
 offset_bottom = 356.0
 focus_neighbor_top = NodePath("../writing-joy")
 focus_neighbor_right = NodePath("../racing-sadness")
-focus_neighbor_bottom = NodePath("../save")
+focus_neighbor_bottom = NodePath("../writing-fear")
 text = "Writing - Sadness"
+
+[node name="writing-fear" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 435.0
+offset_right = 699.0
+offset_bottom = 523.0
+focus_neighbor_top = NodePath("../writing-sadness")
+focus_neighbor_right = NodePath("../racing-fear")
+focus_neighbor_bottom = NodePath("../writing-anger")
+text = "Writing - Fear"
+
+[node name="writing-anger" type="Button" parent="."]
+offset_left = 150.0
+offset_top = 590.0
+offset_right = 699.0
+offset_bottom = 678.0
+focus_neighbor_top = NodePath("../writing-fear")
+focus_neighbor_right = NodePath("../racing-fear")
+focus_neighbor_bottom = NodePath("../save")
+text = "Writing - Anger"
+
+[node name="racing-joy" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 85.0
+offset_right = 1625.0
+offset_bottom = 173.0
+focus_neighbor_left = NodePath("../writing-joy")
+focus_neighbor_top = NodePath("../load")
+focus_neighbor_bottom = NodePath("../racing-sadness")
+text = "Racing  - Joy"
 
 [node name="racing-sadness" type="Button" parent="."]
 offset_left = 1076.0
@@ -40,16 +62,37 @@ offset_right = 1625.0
 offset_bottom = 355.0
 focus_neighbor_left = NodePath("../writing-sadness")
 focus_neighbor_top = NodePath("../racing-joy")
-focus_neighbor_bottom = NodePath("../load")
+focus_neighbor_bottom = NodePath("../racing-fear")
 text = "Racing  - Sadness"
+
+[node name="racing-fear" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 430.0
+offset_right = 1625.0
+offset_bottom = 518.0
+focus_neighbor_left = NodePath("../writing-fear")
+focus_neighbor_top = NodePath("../racing-sadness")
+focus_neighbor_bottom = NodePath("../racing-anger")
+text = "Racing  - Fear"
+
+[node name="racing-anger" type="Button" parent="."]
+offset_left = 1076.0
+offset_top = 588.0
+offset_right = 1625.0
+offset_bottom = 676.0
+focus_neighbor_left = NodePath("../writing-anger")
+focus_neighbor_top = NodePath("../racing-fear")
+focus_neighbor_bottom = NodePath("../load")
+text = "Racing  - Anger"
 
 [node name="save" type="Button" parent="."]
 offset_left = 388.0
 offset_top = 908.0
 offset_right = 937.0
 offset_bottom = 996.0
-focus_neighbor_top = NodePath("../writing-sadness")
+focus_neighbor_top = NodePath("../writing-anger")
 focus_neighbor_right = NodePath("../load")
+focus_neighbor_bottom = NodePath("../writing-joy")
 text = "save"
 
 [node name="load" type="Button" parent="."]
@@ -58,12 +101,24 @@ offset_top = 908.0
 offset_right = 1572.0
 offset_bottom = 996.0
 focus_neighbor_left = NodePath("../save")
-focus_neighbor_top = NodePath("../racing-sadness")
+focus_neighbor_top = NodePath("../racing-anger")
+focus_neighbor_bottom = NodePath("../racing-joy")
 text = "load"
 
+[node name="VersionNumberDisplay" type="RichTextLabel" parent="."]
+offset_left = 1784.0
+offset_top = 1006.0
+offset_right = 1914.0
+offset_bottom = 1075.0
+theme_override_font_sizes/normal_font_size = 48
+
 [connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
-[connection signal="pressed" from="racing-joy" to="." method="_on_racingjoy_pressed"]
 [connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]
+[connection signal="pressed" from="writing-fear" to="." method="_on_writingfear_pressed"]
+[connection signal="pressed" from="writing-anger" to="." method="_on_writinganger_pressed"]
+[connection signal="pressed" from="racing-joy" to="." method="_on_racingjoy_pressed"]
 [connection signal="pressed" from="racing-sadness" to="." method="_on_racingsadness_pressed"]
+[connection signal="pressed" from="racing-fear" to="." method="_on_racingfear_pressed"]
+[connection signal="pressed" from="racing-anger" to="." method="_on_racinganger_pressed"]
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="load" to="." method="_on_load_pressed"]

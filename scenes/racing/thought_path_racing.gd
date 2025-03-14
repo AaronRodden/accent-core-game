@@ -16,7 +16,6 @@ func load_level(area_init_data_a : Dictionary, area_dynamic_data_a : Dictionary,
 	$CanvasLayer/TypingInterfaceB.gameplay_mode = Global.RACING_MODE
 	$CanvasLayer/TypingInterfaceB.target_passage = area_dynamic_data_b[WorldManager.CurrAreaPassage]
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -24,10 +23,17 @@ func _ready():
 	#$PlayerA.initalize($OverworldChunkA, "racing")
 	#$PlayerB.initalize($OverworldChunkB, "racing")
 	
+	# Initalize Objects dependent on OverworldChunk Creation
 	# TODO: Should Player be a child of OverworldChunk in writing gameplay as well?
 	$OverworldChunkA/PlayerA.initalize($OverworldChunkA, "racing")
 	$OverworldChunkB/PlayerB.initalize($OverworldChunkB, "racing")
 	$OverworldChunkB/PlayerB.lock()
+
+	$OverworldChunkA/ObjectSpawnerA.initalize($OverworldChunkA)
+	$OverworldChunkB/ObjectSpawnerB.initalize($OverworldChunkB)
+	
+	# TODO: Should the session start here or on first key pressed?
+	KeyboardInterface.start_typing_session()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1mfi2u8badvo"]
+
+[ext_resource type="Texture2D" uid="uid://68d1eguleg30" path="res://assets/Pixel Heart Sprite Sheet Single.png" id="1_5g4at"]
+[ext_resource type="Script" path="res://scenes/common/hud.gd" id="1_y47lj"]
+[ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="2_tkie3"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y47lj")
+
+[node name="Health_Score" type="Sprite2D" parent="."]
+position = Vector2(146, 58.5)
+scale = Vector2(0.566025, 0.963964)
+texture = ExtResource("2_tkie3")
+
+[node name="Word_Info" type="Sprite2D" parent="."]
+position = Vector2(1056, 58.5)
+scale = Vector2(0.566025, 0.963964)
+texture = ExtResource("2_tkie3")
+
+[node name="Heart1" type="Sprite2D" parent="."]
+position = Vector2(56, 56)
+scale = Vector2(5, 5)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart2" type="Sprite2D" parent="."]
+position = Vector2(144, 56)
+scale = Vector2(5, 5)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart3" type="Sprite2D" parent="."]
+position = Vector2(232, 56)
+scale = Vector2(5, 5)
+texture = ExtResource("1_5g4at")
+
+[node name="Tab2SwitchSprite" type="Sprite2D" parent="."]
+position = Vector2(600, 56)
+texture = ExtResource("2_tkie3")
+
+[node name="Tab2Switch" type="RichTextLabel" parent="Tab2SwitchSprite"]
+offset_left = -248.0
+offset_top = -48.0
+offset_right = 272.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[pulse freq=0.5 color=#ffffff40 ease=-2.0]TAB TO SWITCH[/pulse]"
+
+[node name="Keystrokes" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 968.0
+offset_top = 32.0
+offset_right = 1176.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32

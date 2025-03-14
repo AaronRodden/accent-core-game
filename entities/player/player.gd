@@ -39,10 +39,12 @@ func _unhandled_input(event):
 func lock():
 	self.player_locked = true
 	self.visible = false
+	$CollisionShape2D.disabled = true
 	
 func unlock():
 	self.player_locked = false
 	self.visible = true
+	$CollisionShape2D.disabled = false
 
 # TODO: Implement sound effects / notices of end of line?
 func writing_move(event : InputEventKey, keystroke : String):

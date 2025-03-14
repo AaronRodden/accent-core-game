@@ -10,6 +10,7 @@ func _ready():
 	world_node = get_node("/root/Main/World")  # NOTE: Hardcoded path
 	$"writing-joy".grab_focus()
 	
+	$VersionNumberDisplay.text = Global.VERSION_NUMBER
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -45,8 +46,8 @@ func _on_load_pressed():
 
 func _on_racingjoy_pressed():
 	var previous_area = WorldManager.current_player_area
-	# DEBUG: Default to previous area Joy
-	previous_area = WorldManager.JOY_AREA
+	# DEBUG: Default to previous area Sadness
+	previous_area = WorldManager.SADNESS_AREA
 	WorldManager.current_player_area = WorldManager.JOY_AREA
 	
 	thought_racing_scene.load_level(
@@ -65,6 +66,49 @@ func _on_racingsadness_pressed():
 	
 	thought_racing_scene.load_level(
 		WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA),
+		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
+		
+	world_node.add_child(thought_racing_scene)
+	get_node("/root/Main/World/StageSelect").queue_free()
+
+
+func _on_writingfear_pressed():
+	WorldManager.current_player_area = WorldManager.FEAR_AREA
+	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
+	
+	world_node.add_child(thought_writing_scene)
+	get_node("/root/Main/World/StageSelect").queue_free()
+	
+func _on_writinganger_pressed():
+	WorldManager.current_player_area = WorldManager.ANGER_AREA
+	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
+	
+	world_node.add_child(thought_writing_scene)
+	get_node("/root/Main/World/StageSelect").queue_free()
+
+
+func _on_racingfear_pressed():
+	var previous_area = WorldManager.current_player_area
+	# DEBUG: Default to previous area Joy
+	previous_area = WorldManager.JOY_AREA
+	WorldManager.current_player_area = WorldManager.FEAR_AREA
+	
+	thought_racing_scene.load_level(
+		WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA),
+		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
+		
+	world_node.add_child(thought_racing_scene)
+	get_node("/root/Main/World/StageSelect").queue_free()
+
+
+func _on_racinganger_pressed():
+	var previous_area = WorldManager.current_player_area
+	# DEBUG: Default to previous area Joy
+	previous_area = WorldManager.FEAR_AREA
+	WorldManager.current_player_area = WorldManager.ANGER_AREA
+	
+	thought_racing_scene.load_level(
+		WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA),
 		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
 		
 	world_node.add_child(thought_racing_scene)

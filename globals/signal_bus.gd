@@ -16,6 +16,12 @@ signal player_racing_keystroke(event : InputEventKey, keystroke: String, sender:
 # Typing Interface
 signal passage_complete(passage : String)
 
+# Fireball Hazard
+signal player_hit()
+
+# HUD 
+signal game_over()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.

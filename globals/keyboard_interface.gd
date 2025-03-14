@@ -11,11 +11,12 @@ const Space = " "
 # With this pattern then data will be persistant with individual sessions!
 var total_keystrokes = 0
 var wpm = 0
+var typing_session_flag = false
+var time_elapsed = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -34,14 +35,21 @@ func handle_input_event(event : InputEventKey):
 		total_keystrokes += 1
 	elif event.keycode & KEY_SPECIAL:
 		keystroke = OS.get_keycode_string(event.keycode)
-	_calculate_current_wpm()
+	_calculate_metrics()
 	SignalBus.player_keystroke.emit(event, keystroke, total_keystrokes)
 	return keystroke
+
+func start_typing_session():
+	self.reset()
+	typing_session_flag = true
 	
 func reset():
 	total_keystrokes = 0
 	wpm = 0
-
-func _calculate_current_wpm():
-	pass
-	#var wpm = (total_keystrokes / 5) * 
+	time_elapsed = 0.0
+	
+	typing_session_flag = false
+	
+func _calculate_metrics():
+	if time_elapsed > 0:
+		wpm = (total_keystrokes / 5) / time_elapsed

@@ -40,8 +40,9 @@ func _ready():
 	if gameplay_mode == Global.RACING_MODE:
 		if target_passage:
 			text_box.text = target_passage
-		current_char_index = 0
-		next_char_index = 1
+			
+	current_char_index = 0
+	next_char_index = 1
 
 func scroll_to_char_position():
 	text_box.scroll_to_line(text_box.get_character_line(current_char_index))
@@ -52,24 +53,25 @@ func _keystroke_events(event: InputEventKey, keystroke : String, total_keystroke
 		$DoneButton.visible = true
 		minimum_passage_size_flag = true
 	if keystroke == KeyboardInterface.Enter and minimum_passage_size_flag == true:
-		text_box.text = text_box.text.erase(self.current_passage_length, len(BBCodeCursorString))  # Remove BBCodeCursor
+		text_box.text = text_box.text.erase(self.current_char_index, len(BBCodeCursorString))  # Remove BBCodeCursor
 		SignalBus.passage_complete.emit(text_box.text)
 
 
 func _render_keystroke(event: InputEventKey, keystroke : String, sender : CharacterBody2D):
 	if sender == player:
 		if KeyboardInterface.is_input_event_printable(event):
-			text_box.text = text_box.text.insert(self.current_passage_length, keystroke)
-			current_passage_length += 1
+			text_box.text = text_box.text.insert(self.current_char_index, keystroke)
+			current_char_index += 1
 		else: 
 			if keystroke == KeyboardInterface.Backspace:
-				text_box.text = text_box.text.erase(self.current_passage_length - 1)
-				current_passage_length -= 1
+				text_box.text = text_box.text.erase(self.current_char_index - 1)
+				current_char_index -= 1
 	
 func lock():
 	self.visible = false
 	interface_partner.visible = true
-	
+
+# TODO: In racing mode sometimes typing at the end of the text box gets akward! 
 func _render_racing_keystroke(event: InputEventKey, keystroke: String, sender: CharacterBody2D):
 	if sender == player:
 		if KeyboardInterface.is_input_event_printable(event):
@@ -101,4 +103,4 @@ func get_bbcode_end_color_tag():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	scroll_to_char_position() # TODO: Is this what causes the jittering?
+	scroll_to_char_position()
