@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_NUMBER = "1.0.0"
+const VERSION_NUMBER = "1.1.0"
 
 @onready var WORLD_NODE = get_node("/root/Main/World")
 
