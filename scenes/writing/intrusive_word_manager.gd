@@ -20,7 +20,8 @@ var running_string = ""
 func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_check_active_words)
-
+	
+	timer.set_wait_time(20)
 	timer.start()
 
 
@@ -50,6 +51,7 @@ func _on_timer_timeout():
 		intrusive_word.position = Vector2(rng.randi_range(SPAWN_AREA_X_MIN,SPAWN_AREA_X_MAX), rng.randi_range(SPAWN_AREA_Y_MIN,SPAWN_AREA_Y_MAX))
 		add_child(intrusive_word)
 		self.intrusive_word_count += 1
+	timer.set_wait_time(10)
 
 # TODO : How can I make this more specific to IntrusiveWords rather then Sprite2D?
 func _on_child_entered_tree(node):

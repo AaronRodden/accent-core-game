@@ -31,7 +31,7 @@ func strip_bbcode(source:String) -> String:
 func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_keystroke_events)
-	SignalBus.player_actionable_keystroke.connect(_render_keystroke)
+	SignalBus.player_writing_keystroke.connect(_render_writing_keystroke)
 	SignalBus.player_racing_keystroke.connect(_render_racing_keystroke)
 	text_box.scroll_following = true
 	
@@ -51,7 +51,7 @@ func scroll_to_char_position():
 func _keystroke_events(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	# TODO: Temporary metric for when the passage is done
 	# TODO: Right now this logic is locked into TypingInterface, perhaps a mistake
-	if (total_keystrokes / 5) >= 10 and gameplay_mode == Global.WRITING_MODE:
+	if (total_keystrokes / 5) >= 60 and gameplay_mode == Global.WRITING_MODE:
 		$DoneButton.visible = true
 		minimum_passage_size_flag = true
 	if keystroke == KeyboardInterface.Enter and minimum_passage_size_flag == true:
@@ -59,7 +59,7 @@ func _keystroke_events(event: InputEventKey, keystroke : String, total_keystroke
 		SignalBus.passage_complete.emit(text_box.text)
 		
 
-func _render_keystroke(event: InputEventKey, keystroke : String, sender : CharacterBody2D):
+func _render_writing_keystroke(event: InputEventKey, keystroke : String, sender : CharacterBody2D):
 	if sender == player:
 		if KeyboardInterface.is_input_event_printable(event):
 			text_box.text = text_box.text.insert(self.current_char_index, keystroke)

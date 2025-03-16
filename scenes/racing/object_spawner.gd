@@ -17,7 +17,7 @@ func initalize(overworld_chunk : TileMapLayer):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.wait_time = rng.randf_range(5.0, 15.0)  # TODO: Magic numbers here, needs to be balanced
+	timer.wait_time = rng.randf_range(5.0, 10.0)  # TODO: Magic numbers here, needs to be balanced
 	timer.start()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

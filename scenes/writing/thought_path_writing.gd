@@ -27,7 +27,7 @@ func _ready():
 
 func _thought_path_complete(passage : String):
 	# Change to score scene
-	score_scene.load_score_screen(area_enum, passage)
+	score_scene.load_score_screen(Global.WRITING_MODE, passage, area_enum)
 	Global.WORLD_NODE.add_child(score_scene)
 	get_node("/root/Main/World/ThoughtPathWriting").queue_free()
 	

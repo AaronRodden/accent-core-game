@@ -70,7 +70,7 @@ func writing_move(event : InputEventKey, keystroke : String):
 		print("End of the line...")
 		return
 	
-	SignalBus.player_actionable_keystroke.emit(event, keystroke, self)
+	SignalBus.player_writing_keystroke.emit(event, keystroke, self)
 	SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
 	var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
 	position += position_delta * Global.TILE_SIZE

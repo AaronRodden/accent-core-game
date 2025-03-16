@@ -7,7 +7,8 @@ var thought_racing_scene = preload("res://scenes/racing/thought_path_racing.tscn
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	world_node = get_node("/root/Main/World")  # NOTE: Hardcoded path
+	# Grab World Node again before moving between game scenes
+	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
 	$"writing-joy".grab_focus()
 	
 	$VersionNumberDisplay.text = Global.VERSION_NUMBER
@@ -24,7 +25,7 @@ func _on_writingjoy_pressed():
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
 	
 	# TODO: Why do we have to do this instead of change scene?
-	world_node.add_child(thought_writing_scene)
+	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -32,7 +33,7 @@ func _on_writingsadness_pressed():
 	WorldManager.current_player_area = WorldManager.SADNESS_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA))
 	
-	world_node.add_child(thought_writing_scene)
+	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -54,7 +55,7 @@ func _on_racingjoy_pressed():
 		WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA),
 		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
 	
-	world_node.add_child(thought_racing_scene)
+	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -68,7 +69,7 @@ func _on_racingsadness_pressed():
 		WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA),
 		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
 		
-	world_node.add_child(thought_racing_scene)
+	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -76,14 +77,14 @@ func _on_writingfear_pressed():
 	WorldManager.current_player_area = WorldManager.FEAR_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
 	
-	world_node.add_child(thought_writing_scene)
+	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	
 func _on_writinganger_pressed():
 	WorldManager.current_player_area = WorldManager.ANGER_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
 	
-	world_node.add_child(thought_writing_scene)
+	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -97,7 +98,7 @@ func _on_racingfear_pressed():
 		WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA),
 		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
 		
-	world_node.add_child(thought_racing_scene)
+	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 
 
@@ -111,5 +112,5 @@ func _on_racinganger_pressed():
 		WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA),
 		WorldManager.get_initalization_data(previous_area), WorldManager.get_dynamic_data(previous_area))
 		
-	world_node.add_child(thought_racing_scene)
+	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()

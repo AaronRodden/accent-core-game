@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="3_yi6rb"]
 [ext_resource type="PackedScene" uid="uid://cvdd8deakeqwa" path="res://scenes/racing/object_spawner.tscn" id="4_joylv"]
 [ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="4_nse8o"]
-[ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://scenes/common/HUD.tscn" id="7_u7i4i"]
+[ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_u7i4i"]
 
 [node name="ThoughtPathRacing" type="Node"]
 script = ExtResource("1_frgdv")

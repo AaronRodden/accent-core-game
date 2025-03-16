@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="3_mw1q6"]
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="5_b6pbx"]
 [ext_resource type="PackedScene" uid="uid://dm0205pi74m4" path="res://scenes/writing/intrusive_word_manager.tscn" id="6_feq40"]
-[ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://scenes/common/HUD.tscn" id="7_lq5hx"]
+[ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_lq5hx"]
 
 [node name="ThoughtPathWriting" type="Node"]
 script = ExtResource("1_bepvy")

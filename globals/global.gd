@@ -2,6 +2,13 @@ extends Node
 
 const VERSION_NUMBER = "1.1.0"
 
+# Sceme string constants
+const main = "main"
+const stage_select = "stage_select"
+const thought_path_writing = "thought_path_writing"
+const thought_path_racing = "thought_path_racing"
+const score_screen = "score_screen"
+
 @onready var WORLD_NODE = get_node("/root/Main/World")
 
 # Variables and Constants

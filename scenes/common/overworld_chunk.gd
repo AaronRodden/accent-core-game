@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const CHUNK_SIZE = 400
+const CHUNK_SIZE = 500
 const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
 
 var walkable_tiles : Dictionary = {}
@@ -19,6 +19,7 @@ var thought_path_coordinates : Array
 
 # Thought Racing Variables
 var thought_path_passage : String
+var forward_steps = 0 
 
 
 # DEBUG: All of these defaulting to a value for debugging purposes
@@ -196,15 +197,26 @@ func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vect
 		if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
 			self.set_cell(prev_tile_coords, self.area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke], 0)
 
-
 func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String):
 	if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
-		var keystroke_tile_coordinate = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke]
+		var keystroke_atlas_coordinate = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke]
 		var atlas_offset = 0
 		if keystroke != KeyboardInterface.Space:
 			atlas_offset = 3
-		var completed_keystroke_tile_coordinate = Vector2(keystroke_tile_coordinate.x, keystroke_tile_coordinate.y + atlas_offset)
+		var completed_keystroke_tile_coordinate = Vector2(keystroke_atlas_coordinate.x, keystroke_atlas_coordinate.y + atlas_offset)
 		self.set_cell(next_tile_coords, self.area_atlas_id, completed_keystroke_tile_coordinate, 0)
+		forward_steps += 1
+	elif keystroke == KeyboardInterface.Backspace:
+		var prev_tile_input_val = self.get_cell_tile_data(prev_tile_coords).get_custom_data("input_value")
+		var keystroke_atlas_coordinate = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[prev_tile_input_val]
+		self.set_cell(prev_tile_coords, self.area_atlas_id, keystroke_atlas_coordinate, 0)
+		forward_steps -= 1
+	
+	# TODO: Tech Debt!! Logic for ending game loops is split around the code
+	# This also needs some more testing for robustness in general
+	if forward_steps == thought_path_passage.length():
+		print("Reached the end of a passage")
+		SignalBus.racing_complete.emit()
 
 # TODO: Threads are not safed to be used with visual elements!
 # We will need a different solution!!!

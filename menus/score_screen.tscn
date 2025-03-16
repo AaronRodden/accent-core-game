@@ -8,14 +8,15 @@
 [node name="ScoreScreen" type="Node"]
 script = ExtResource("1_ahe5v")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="WritingCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
-[node name="StoryOverview" type="Sprite2D" parent="CanvasLayer"]
+[node name="StoryOverview" type="Sprite2D" parent="WritingCanvasLayer"]
 position = Vector2(968, 363.164)
 scale = Vector2(1.04147, 2.23912)
 texture = ExtResource("2_6kvn2")
 
-[node name="PassageLabel" type="RichTextLabel" parent="CanvasLayer"]
+[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer"]
 anchors_preset = -1
 anchor_left = -0.0349519
 anchor_top = -0.151478
@@ -27,15 +28,14 @@ offset_right = 1792.92
 offset_bottom = 459.413
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 36
-text = "You know recently I have been feeling quite amused and happy! Things have been going well and I have almost even felt comforted by the things going on around me. While sometimes I am exhausted from all the cool things I am working on, at the same time there is a lot of excitment. Most of all I have stayed curious and that has helped me stay happy!"
 metadata/_edit_use_anchors_ = true
 
-[node name="EndingInfo" type="Sprite2D" parent="CanvasLayer"]
+[node name="EndingInfo" type="Sprite2D" parent="WritingCanvasLayer"]
 position = Vector2(976, 712)
 scale = Vector2(0.471731, 0.471731)
 texture = ExtResource("2_6kvn2")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/EndingInfo"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WritingCanvasLayer/EndingInfo"]
 offset_left = -814.023
 offset_top = -67.8352
 offset_right = 813.977
@@ -46,11 +46,11 @@ bbcode_enabled = true
 text = "Enter in initials (can be left empty if desired!):"
 metadata/_edit_use_anchors_ = true
 
-[node name="InitialsBox" type="Sprite2D" parent="CanvasLayer"]
+[node name="InitialsBox" type="Sprite2D" parent="WritingCanvasLayer"]
 position = Vector2(840, 825)
 texture = ExtResource("3_pwhcy")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/InitialsBox"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WritingCanvasLayer/InitialsBox"]
 offset_left = -64.0
 offset_top = -40.0
 offset_right = 80.0
@@ -59,7 +59,7 @@ theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 48
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/InitialsBox"]
+[node name="ColorRect" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
 offset_left = -64.0
 offset_top = 16.0
 offset_right = -32.0
@@ -67,7 +67,7 @@ offset_bottom = 24.0
 color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect2" type="ColorRect" parent="CanvasLayer/InitialsBox"]
+[node name="ColorRect2" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
 offset_left = -23.0
 offset_top = 16.0
 offset_right = 9.0
@@ -75,7 +75,7 @@ offset_bottom = 24.0
 color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/InitialsBox"]
+[node name="ColorRect3" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
 offset_left = 22.0
 offset_top = 16.0
 offset_right = 54.0
@@ -83,6 +83,118 @@ offset_bottom = 24.0
 color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
-[node name="EnterButton" type="Sprite2D" parent="CanvasLayer"]
+[node name="EnterButton" type="Sprite2D" parent="WritingCanvasLayer"]
 position = Vector2(1232, 825)
+texture = ExtResource("4_kgnh7")
+
+[node name="RacingCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="StoryOverviewB" type="Sprite2D" parent="RacingCanvasLayer"]
+modulate = Color(0.94902, 0.501961, 0.509804, 1)
+position = Vector2(992, 384)
+scale = Vector2(1.04147, 2.23912)
+texture = ExtResource("2_6kvn2")
+
+[node name="StoryOverviewA" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(968, 409.164)
+scale = Vector2(1.04147, 2.23912)
+texture = ExtResource("2_6kvn2")
+
+[node name="PassageLabelA" type="RichTextLabel" parent="RacingCanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0349519
+anchor_top = -0.151478
+anchor_right = 0.0203564
+anchor_bottom = 0.116284
+offset_left = 179.108
+offset_top = 295.596
+offset_right = 1792.92
+offset_bottom = 495.413
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="PassageLabelB" type="RichTextLabel" parent="RacingCanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_left = -0.0349519
+anchor_top = -0.151478
+anchor_right = 0.0203564
+anchor_bottom = 0.116284
+offset_left = 203.108
+offset_top = 291.596
+offset_right = 1816.92
+offset_bottom = 491.413
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="EndingInfo" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(976.001, 758)
+scale = Vector2(0.471731, 0.471731)
+texture = ExtResource("2_6kvn2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/EndingInfo"]
+offset_left = -814.023
+offset_top = -67.8352
+offset_right = 813.977
+offset_bottom = 68.1648
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Tab to Switch! Enter when done reading!"
+metadata/_edit_use_anchors_ = true
+
+[node name="InitialsBox" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(968, 78)
+texture = ExtResource("3_pwhcy")
+
+[node name="RichTextLabelA" type="RichTextLabel" parent="RacingCanvasLayer/InitialsBox"]
+offset_left = -64.0
+offset_top = -40.0
+offset_right = 80.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabelB" type="RichTextLabel" parent="RacingCanvasLayer/InitialsBox"]
+offset_left = -64.0
+offset_top = -40.0
+offset_right = 80.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
+visible = false
+offset_left = -64.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
+visible = false
+offset_left = -23.0
+offset_top = 16.0
+offset_right = 9.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
+visible = false
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="EnterButton" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(1504, 758)
 texture = ExtResource("4_kgnh7")
