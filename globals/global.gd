@@ -2,6 +2,8 @@ extends Node
 
 const VERSION_NUMBER = "1.0.0"
 
+@onready var WORLD_NODE = get_node("/root/Main/World")
+
 # Variables and Constants
 var TILE_SIZE = 64  # in pixels
 

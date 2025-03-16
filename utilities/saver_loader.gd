@@ -4,8 +4,6 @@ extends Node
 # NOTE: Great tutorial where I copied this code structure from
 # https://www.youtube.com/watch?v=43BZsLZheA4
 
-#@onready var world = WorldManager
-
 func _ready():
 	# Signals and Connections
 	SignalBus.save_game.connect(save_game)

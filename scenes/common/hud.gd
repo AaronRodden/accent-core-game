@@ -1,6 +1,7 @@
 extends Control
 
-var current_health = 3
+# TODO: Health connected to HUD is for demo
+var current_health = 5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -8,7 +9,11 @@ func _ready():
 	SignalBus.player_hit.connect(_reduce_health)
 
 func _reduce_health():
-	if current_health == 3:
+	if current_health == 5:
+		$Heart5.visible = false
+	elif current_health == 4:
+		$Heart4.visible = false
+	elif current_health == 3:
 		$Heart3.visible = false
 	elif current_health == 2:
 		$Heart2.visible = false
@@ -20,4 +25,4 @@ func _reduce_health():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#$TotalWords.text = KeyboardInterface.word_count + " / " + KeyboardInterface.word_total + " words" 
-	$Keystrokes.text = str(KeyboardInterface.total_keystrokes)
+	$Word_Info/Keystrokes.text = str(KeyboardInterface.total_keystrokes)

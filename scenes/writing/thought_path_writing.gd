@@ -2,6 +2,9 @@ extends Node
 
 var area_enum : int
 
+var score_scene = preload("res://menus/score_screen.tscn").instantiate()
+
+
 func load_level(area_init_data : Dictionary, area_dynamic_data : Dictionary):
 	# Initalize variables
 	area_enum = area_init_data[WorldManager.AtlasID]
@@ -23,20 +26,11 @@ func _ready():
 	$Player.initalize($OverworldChunk, "writing")
 
 func _thought_path_complete(passage : String):
-	if area_enum == 1:
-		WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassage, passage)
-		KeyboardInterface.reset()
-	if area_enum == 2:
-		WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassage, passage)
-		KeyboardInterface.reset()
-	if area_enum == 3:
-		WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassage, passage)
-		KeyboardInterface.reset()
-	if area_enum == 4:
-		WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassage, passage)
-		KeyboardInterface.reset()
-	WorldManager.current_player_area = WorldManager.STAGE_SELECT
-	get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	# Change to score scene
+	score_scene.load_score_screen(area_enum, passage)
+	Global.WORLD_NODE.add_child(score_scene)
+	get_node("/root/Main/World/ThoughtPathWriting").queue_free()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

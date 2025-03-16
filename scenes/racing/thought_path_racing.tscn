@@ -49,41 +49,38 @@ offset_bottom = 240.0
 interface_partner = NodePath("../TypingInterfaceB")
 player = NodePath("../../OverworldChunkA/PlayerA")
 
-[node name="TargetText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="0"]
-offset_right = 617.0
-offset_bottom = -3.0
-autowrap_mode = 1
+[node name="InfoBox" parent="CanvasLayer/TypingInterfaceA" index="0"]
+visible = false
 
-[node name="RunningText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="1"]
+[node name="RunningText" parent="CanvasLayer/TypingInterfaceA/TypingInterfaceVector" index="0"]
+anchors_preset = -1
+anchor_right = 0.116935
 offset_right = 617.0
 offset_bottom = 5.0
-theme_override_colors/default_color = Color(0.745098, 0.745098, 0.745098, 1)
+theme_override_colors/default_color = Color(0.501961, 0.658824, 0.94902, 1)
 autowrap_mode = 1
 
 [node name="TypingInterfaceB" parent="CanvasLayer" node_paths=PackedStringArray("interface_partner", "player") instance=ExtResource("4_nse8o")]
 visible = false
-modulate = Color(0.996078, 0.0941176, 0.0196078, 1)
 offset_top = 240.0
 offset_bottom = 240.0
 interface_partner = NodePath("../TypingInterfaceA")
 player = NodePath("../../OverworldChunkB/PlayerB")
 
-[node name="TargetText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="0"]
-offset_right = 617.0
-offset_bottom = -3.0
-autowrap_mode = 1
+[node name="InfoBox" parent="CanvasLayer/TypingInterfaceB" index="0"]
+visible = false
 
-[node name="RunningText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="1"]
-offset_right = 617.0
+[node name="TypingInterfaceVector" parent="CanvasLayer/TypingInterfaceB" index="1"]
+modulate = Color(0.94902, 0.501961, 0.509804, 1)
+
+[node name="RunningText" parent="CanvasLayer/TypingInterfaceB/TypingInterfaceVector" index="0"]
+offset_right = 820.0
 offset_bottom = 5.0
-theme_override_colors/default_color = Color(0.745, 0.745, 0.745, 1)
+theme_override_colors/default_color = Color(0.501961, 0.658824, 0.94902, 1)
+text = "[color=#2f5bac]Lets see wh[/color] [color=#80a8f2]at the font looks like here in the sadness [/color]"
 autowrap_mode = 1
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_u7i4i")]
-offset_left = 384.0
-offset_top = 488.0
-offset_right = 384.0
-offset_bottom = 488.0
 
 [editable path="OverworldChunkA"]
 [editable path="OverworldChunkB"]

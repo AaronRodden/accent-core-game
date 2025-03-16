@@ -107,14 +107,17 @@ func racing_move(event : InputEventKey, keystroke : String):
 			print("Non-matching or non-actional key pressed...")
 			return 
 			
-		# Player Movement
+		# Check for end of the line
 		if target_tile_coords == null:
 			print("End of the line...")
 			return
 			
-		#SignalBus.player_moved_tiles.emit(current_overworld_tile_coords, target_tile_coords, keystroke)
-		#SignalBus.player_actionable_keystroke.emit(event, keystroke, self)
-		SignalBus.player_racing_keystroke.emit(event, keystroke, self)
+		
+		SignalBus.player_racing_keystroke.emit(event, keystroke, self)  # Racing specific signal emittion
+		# Players should modify their specific overworld chunks, hence not using signals for this overworld edit
+		self.current_overworld_chunk.racing_place_complete_tile(current_overworld_tile_coords, target_tile_coords, keystroke)
+		
+		# Movement 
 		var position_delta : Vector2 = target_tile_coords - Vector2i(current_overworld_tile_coords.x, current_overworld_tile_coords.y)
 		position += position_delta * Global.TILE_SIZE
 		current_overworld_tile_coords = current_overworld_chunk.local_to_map(position)

@@ -14,32 +14,50 @@ grow_vertical = 2
 script = ExtResource("1_y47lj")
 
 [node name="Health_Score" type="Sprite2D" parent="."]
-position = Vector2(146, 58.5)
+position = Vector2(540.223, 538)
 scale = Vector2(0.566025, 0.963964)
 texture = ExtResource("2_tkie3")
+
+[node name="Heart1" type="Sprite2D" parent="Health_Score"]
+position = Vector2(-197.871, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart2" type="Sprite2D" parent="Health_Score"]
+position = Vector2(-98.9355, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart3" type="Sprite2D" parent="Health_Score"]
+position = Vector2(0, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart4" type="Sprite2D" parent="Health_Score"]
+position = Vector2(98.9355, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart5" type="Sprite2D" parent="Health_Score"]
+position = Vector2(197.871, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
 
 [node name="Word_Info" type="Sprite2D" parent="."]
-position = Vector2(1056, 58.5)
+position = Vector2(1450.22, 538)
 scale = Vector2(0.566025, 0.963964)
 texture = ExtResource("2_tkie3")
 
-[node name="Heart1" type="Sprite2D" parent="."]
-position = Vector2(56, 56)
-scale = Vector2(5, 5)
-texture = ExtResource("1_5g4at")
-
-[node name="Heart2" type="Sprite2D" parent="."]
-position = Vector2(144, 56)
-scale = Vector2(5, 5)
-texture = ExtResource("1_5g4at")
-
-[node name="Heart3" type="Sprite2D" parent="."]
-position = Vector2(232, 56)
-scale = Vector2(5, 5)
-texture = ExtResource("1_5g4at")
+[node name="Keystrokes" type="RichTextLabel" parent="Word_Info"]
+offset_left = -155.47
+offset_top = -27.4907
+offset_right = 52.53
+offset_bottom = 20.5093
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
 
 [node name="Tab2SwitchSprite" type="Sprite2D" parent="."]
-position = Vector2(600, 56)
+position = Vector2(994.223, 535.5)
 texture = ExtResource("2_tkie3")
 
 [node name="Tab2Switch" type="RichTextLabel" parent="Tab2SwitchSprite"]
@@ -51,12 +69,3 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "[pulse freq=0.5 color=#ffffff40 ease=-2.0]TAB TO SWITCH[/pulse]"
-
-[node name="Keystrokes" type="RichTextLabel" parent="."]
-layout_mode = 0
-offset_left = 968.0
-offset_top = 32.0
-offset_right = 1176.0
-offset_bottom = 80.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 32

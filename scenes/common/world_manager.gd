@@ -9,6 +9,7 @@ const AtlasID = "overworld_chunk_atlas_id"
 # Dynamic data key constants
 const AreaHealth = "area_health"
 const CurrAreaPassage = "current_area_passage"
+const CurrAreaPassageAuthor = "current_area_passage_author"
 
 @export var current_player_area = self.STAGE_SELECT
 
@@ -30,19 +31,23 @@ const CurrAreaPassage = "current_area_passage"
 @export var world_dynamic_data = {
 	self.JOY_AREA : {
 		"area_health" = 100,
-		"current_area_passage" = null
+		"current_area_passage" = null,
+		"current_area_passage_author" = null,
 	},
 	self.SADNESS_AREA : {
 		"area_health" = 100,
-		"current_area_passage" = null
+		"current_area_passage" = null,
+		"current_area_passage_author" = null,
 	},
 	self.FEAR_AREA : {
 		"area_health" = 100,
-		"current_area_passage" = null
+		"current_area_passage" = null,
+		"current_area_passage_author" = null,
 	},
 	self.ANGER_AREA : {
 		"area_health" = 100,
-		"current_area_passage" = null
+		"current_area_passage" = null,
+		"current_area_passage_author" = null,
 	},
 }
 

@@ -1,6 +1,7 @@
 extends TileMapLayer
 
 const CHUNK_SIZE = 400
+const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
 
 var walkable_tiles : Dictionary = {}
 var overworld_input_mapping : Dictionary = {}
@@ -48,11 +49,13 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.4
 	
-	var y_bounds_min = 0
+	var y_bounds_min
 	var y_bounds_max
 	if gameplay_mode == Global.WRITING_MODE:
+		y_bounds_min = 0
 		y_bounds_max = 8
 	elif gameplay_mode == Global.RACING_MODE:
+		y_bounds_min = 1
 		y_bounds_max = 5
 		
 	# TODO: Randomly set A star points that will then be connected to make a thought path
@@ -138,8 +141,8 @@ func _ready():
 		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 	elif gameplay_mode == Global.RACING_MODE:
-		# TODO: In Racing mode we have a limit of 0 to 4 for starting cell
-		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 4))
+		# TODO: In Racing mode we have a limit of 1 to 4 for starting cell
+		starting_cell_coordinate = Vector2i(0, rng.randi_range(1, 4))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 		write_existing_passage(starting_cell_coordinate)
 
@@ -192,6 +195,16 @@ func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vect
 		# Update tiles
 		if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
 			self.set_cell(prev_tile_coords, self.area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke], 0)
+
+
+func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String):
+	if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
+		var keystroke_tile_coordinate = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke]
+		var atlas_offset = 0
+		if keystroke != KeyboardInterface.Space:
+			atlas_offset = 3
+		var completed_keystroke_tile_coordinate = Vector2(keystroke_tile_coordinate.x, keystroke_tile_coordinate.y + atlas_offset)
+		self.set_cell(next_tile_coords, self.area_atlas_id, completed_keystroke_tile_coordinate, 0)
 
 # TODO: Threads are not safed to be used with visual elements!
 # We will need a different solution!!!

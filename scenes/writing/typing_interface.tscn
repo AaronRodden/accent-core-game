@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://2gbmvh2mnekm"]
+[gd_scene load_steps=7 format=3 uid="uid://2gbmvh2mnekm"]
 
 [ext_resource type="Script" path="res://scenes/writing/typing_interface.gd" id="1_32vpw"]
 [ext_resource type="Texture2D" uid="uid://qpwqw8i7jr1r" path="res://assets/typing_box_v1.png" id="1_bejy3"]
+[ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="2_pfq63"]
 [ext_resource type="Texture2D" uid="uid://dpuym7u7k2q33" path="res://assets/enter_button.png" id="3_ef143"]
+[ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="5_jgp4q"]
 
 [sub_resource type="FontVariation" id="FontVariation_drd1o"]
 variation_embolden = 1.0
@@ -18,37 +20,46 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_32vpw")
 
-[node name="TypingInterfaceVector" type="Sprite2D" parent="."]
-position = Vector2(982, 827)
-scale = Vector2(1.06614, 1.06614)
-texture = ExtResource("1_bejy3")
+[node name="InfoBox" type="Sprite2D" parent="."]
+position = Vector2(350, 698)
+texture = ExtResource("5_jgp4q")
 
-[node name="TargetText" type="RichTextLabel" parent="TypingInterfaceVector"]
-visible = false
-offset_left = -619.0
-offset_top = -67.0
-offset_right = 624.0
-offset_bottom = 155.0
-theme_override_colors/default_color = Color(0.593134, 0.593134, 0.593134, 1)
-theme_override_fonts/mono_font = SubResource("FontVariation_drd1o")
-theme_override_font_sizes/mono_font_size = 48
+[node name="InfoBox" type="RichTextLabel" parent="InfoBox"]
+offset_left = -248.0
+offset_top = -36.0
+offset_right = 252.0
+offset_bottom = 39.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
-text = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][code]|[/code][/pulse]"
+text = "[b]ENTER STORY[/b]"
+
+[node name="TypingInterfaceVector" type="Sprite2D" parent="."]
+position = Vector2(979, 880.75)
+scale = Vector2(1.04064, 1.04064)
+texture = ExtResource("2_pfq63")
 
 [node name="RunningText" type="RichTextLabel" parent="TypingInterfaceVector"]
-offset_left = -619.0
-offset_top = -67.0
-offset_right = 624.0
-offset_bottom = 155.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+offset_left = -828.0
+offset_top = -114.0
+offset_right = 835.0
+offset_bottom = 108.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_fonts/mono_font = SubResource("FontVariation_drd1o")
 theme_override_font_sizes/mono_font_size = 48
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 scroll_active = false
+metadata/_edit_use_anchors_ = true
 
 [node name="DoneButton" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1782, 965)
+position = Vector2(1773, 693)
 texture = ExtResource("3_ef143")
+
+[node name="TypingInterfaceVector_full" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(982, 827)
+scale = Vector2(1.06614, 1.06614)
+texture = ExtResource("1_bejy3")
