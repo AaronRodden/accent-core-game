@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_NUMBER = "1.2.0"
+const VERSION_NUMBER = "1.2.1"
 
 # Sceme string constants
 const main = "main"
