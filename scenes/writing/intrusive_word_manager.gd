@@ -8,7 +8,7 @@ const SPAWN_AREA_Y_MAX = (1080 - 300) - 64
 
 @onready var timer = $Timer
 
-var IntrusiveWord = preload("res://scenes/writing/intrusive_word.tscn")
+var IntrusiveWordScene = preload("res://scenes/writing/intrusive_word.tscn")
 
 var rng = RandomNumberGenerator.new()
 
@@ -21,7 +21,7 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_check_active_words)
 	
-	timer.set_wait_time(20)
+	timer.set_wait_time(12)
 	timer.start()
 
 
@@ -45,8 +45,7 @@ func _check_active_words(event : InputEventKey, keystroke: String, total_keystro
 
 func _on_timer_timeout():
 	if self.intrusive_word_count < 3:
-		pass
-		var intrusive_word = IntrusiveWord.instantiate()
+		var intrusive_word = IntrusiveWordScene.instantiate()
 		intrusive_word.target_word = Global.INTRUSIVE_WORD_BANK.pick_random()
 		intrusive_word.position = Vector2(rng.randi_range(SPAWN_AREA_X_MIN,SPAWN_AREA_X_MAX), rng.randi_range(SPAWN_AREA_Y_MIN,SPAWN_AREA_Y_MAX))
 		add_child(intrusive_word)

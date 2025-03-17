@@ -99,5 +99,5 @@ func _save_writing_data():
 	WorldManager.current_player_area = WorldManager.STAGE_SELECT
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass

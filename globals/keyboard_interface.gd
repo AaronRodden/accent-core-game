@@ -10,7 +10,7 @@ const Space = " "
 # TODO: Maybe this should be an object that lives and dies alongside typing interfaces?
 # With this pattern then data will be persistant with individual sessions!
 var total_keystrokes = 0
-var wpm = 0
+var wpm = 0.0
 var typing_session_flag = false
 var time_elapsed = 0.0
 
@@ -19,7 +19,7 @@ func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func is_input_event_printable(event : InputEventKey):

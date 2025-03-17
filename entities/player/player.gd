@@ -56,7 +56,6 @@ func writing_move(event : InputEventKey, keystroke : String):
 	
 	# Check if player is trying to go forwards or backwards
 	var target_tile_coords
-	var target_tile_data
 	if KeyboardInterface.is_input_event_printable(event):
 		target_tile_coords = forwards_coordinate
 	else: 

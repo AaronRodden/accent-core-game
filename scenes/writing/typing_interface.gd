@@ -104,5 +104,5 @@ func get_bbcode_end_color_tag():
 	return "[/color]"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	scroll_to_char_position()

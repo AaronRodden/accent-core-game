@@ -117,7 +117,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	return astar_path
 
 # TODO: Some sort of error thrown when thought_path_passage size > thought_path_coordinates size
-func write_existing_passage(start_cell_coordinate : Vector2i):
+func write_existing_passage():
 	self.thought_path_coordinates.append(Vector2i(self.thought_path_coordinates[-1].x+1, self.thought_path_coordinates[-1].y))
 	for i in range(0, len(self.thought_path_passage)):
 		var char_at_index = thought_path_passage[i]
@@ -133,7 +133,7 @@ func write_existing_passage(start_cell_coordinate : Vector2i):
 func _ready():
 	# Signals and Connections
 	SignalBus.player_moved_tiles.connect(_on_player_moved_tiles)
-	SignalBus.player_keystroke.connect(_chunk_event_handler)
+	#SignalBus.player_keystroke.connect(_chunk_event_handler)
 	
 	# Threading
 	thread = Thread.new()
@@ -145,7 +145,7 @@ func _ready():
 		# TODO: In Racing mode we have a limit of 1 to 4 for starting cell
 		starting_cell_coordinate = Vector2i(0, rng.randi_range(1, 4))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
-		write_existing_passage(starting_cell_coordinate)
+		write_existing_passage()
 
 
 # Given a coordinate, gives all valid movement in coordinate : cell_data form
@@ -181,10 +181,7 @@ func get_cardinal_movement(cell_coordinate : Vector2i):
 				forwards_backwords_dict["backward"] = cardinal_cell
 	return forwards_backwords_dict
 
-func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String):
-	var prev_tile_data = get_cell_tile_data(prev_tile_coords)
-	var next_tile_data = get_cell_tile_data(next_tile_coords)
-	
+func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String):	
 	if next_tile_coords == stepped_upon_tiles[-1]:  # Player is trying to move backwards
 		stepped_upon_tiles.pop_back()
 		
@@ -221,8 +218,8 @@ func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : 
 # TODO: Threads are not safed to be used with visual elements!
 # We will need a different solution!!!
 # There are performance tradeoffs to be had here...
-func _chunk_event_handler(event: InputEventKey, keystroke : String, total_keystrokes : int):
-	pass
+#func _chunk_event_handler(event: InputEventKey, keystroke : String, total_keystrokes : int):
+	#pass
 	#if total_keystrokes != 0 and total_keystrokes % 50 == 0:
 		#generate_level_chunk(current_ending_cell_coordinate)
 		#if thread.is_alive() == false:
@@ -236,5 +233,5 @@ func _chunk_event_handler(event: InputEventKey, keystroke : String, total_keystr
 	##thread.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
