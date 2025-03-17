@@ -39,6 +39,8 @@ func _on_timer_timeout():
 		new_hazard.current_overworld_chunk = current_overworld_chunk
 		new_hazard.pathing = pathing
 		new_hazard.position = current_overworld_chunk.map_to_local(pathing[0])
+		# TODO: Hacky way of implementing double screens... 
+		# Better way would be more fine tuned control over coordinate space?
 		if current_overworld_chunk.name == "OverworldChunkA":
 			new_hazard.screen_position = "A"
 		if current_overworld_chunk.name == "OverworldChunkB":

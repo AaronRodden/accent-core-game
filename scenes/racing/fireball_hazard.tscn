@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://3it2ye1atu8o"]
+[gd_scene load_steps=10 format=3 uid="uid://3it2ye1atu8o"]
 
 [ext_resource type="Texture2D" uid="uid://cker2pm1qj31o" path="res://assets/fireball.png" id="1_6o0ux"]
 [ext_resource type="Script" path="res://scenes/racing/fireball_hazard.gd" id="1_8fpft"]
+[ext_resource type="AudioStream" uid="uid://4cn8yr0b7emv" path="res://assets/sfx/big_fireball.wav" id="3_4v0eh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tfdb"]
 atlas = ExtResource("1_6o0ux")
@@ -56,5 +57,9 @@ frame_progress = 0.151292
 position = Vector2(4, 0)
 rotation = -1.5708
 shape = SubResource("CapsuleShape2D_2xvy8")
+
+[node name="SpawnFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4v0eh")
+volume_db = 10.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

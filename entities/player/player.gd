@@ -21,9 +21,8 @@ func initalize(overworld_chunk : TileMapLayer, game_type : String):
 	current_overworld_tile_coords = current_overworld_chunk.local_to_map(position)
 
 func _ready():
-	pass
 	# Signals and Connections
-	#SignalBus.player_swap_keystroke.connect(_handle_swap_keystroke)
+	SignalBus.player_hit.connect(_player_hit)
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
@@ -34,7 +33,9 @@ func _unhandled_input(event):
 			racing_move(event, keystroke)
 		else:
 			pass
-
+			
+func _player_hit():
+	$HitFx.play()
 
 func lock():
 	self.player_locked = true

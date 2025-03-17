@@ -27,6 +27,7 @@ func _on_writingjoy_pressed():
 	# TODO: Why do we have to do this instead of change scene?
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.JOY_AREA)
 
 
 func _on_writingsadness_pressed():
@@ -35,6 +36,7 @@ func _on_writingsadness_pressed():
 	
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.SADNESS_AREA)
 
 
 func _on_save_pressed():
@@ -57,6 +59,7 @@ func _on_racingjoy_pressed():
 	
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.JOY_AREA)
 
 
 func _on_racingsadness_pressed():
@@ -71,6 +74,7 @@ func _on_racingsadness_pressed():
 		
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.SADNESS_AREA)
 
 
 func _on_writingfear_pressed():
@@ -79,6 +83,7 @@ func _on_writingfear_pressed():
 	
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.FEAR_AREA)
 	
 func _on_writinganger_pressed():
 	WorldManager.current_player_area = WorldManager.ANGER_AREA
@@ -86,6 +91,7 @@ func _on_writinganger_pressed():
 	
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.ANGER_AREA)
 
 
 func _on_racingfear_pressed():
@@ -100,6 +106,7 @@ func _on_racingfear_pressed():
 		
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.FEAR_AREA)
 
 
 func _on_racinganger_pressed():
@@ -114,3 +121,4 @@ func _on_racinganger_pressed():
 		
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
+	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.ANGER_AREA)

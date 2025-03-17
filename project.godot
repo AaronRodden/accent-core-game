@@ -21,7 +21,6 @@ SignalBus="*res://globals/signal_bus.gd"
 Global="*res://globals/global.gd"
 KeyboardInterface="*res://globals/keyboard_interface.gd"
 WorldManager="*res://scenes/common/world_manager.gd"
-MusicManager="*res://scenes/common/music_manager.gd"
 
 [display]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0t2jumvnhk8b"]
+[gd_scene load_steps=6 format=3 uid="uid://d0t2jumvnhk8b"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bvj07"]
 [ext_resource type="PackedScene" uid="uid://csy3i872d8ug4" path="res://scenes/common/world.tscn" id="2_dqrgi"]
 [ext_resource type="PackedScene" uid="uid://xtul7u7t640j" path="res://menus/stage_select.tscn" id="3_by2sk"]
+[ext_resource type="PackedScene" uid="uid://cck2t63374uhc" path="res://scenes/common/MusicManager.tscn" id="4_7pwht"]
 [ext_resource type="Script" path="res://utilities/saver_loader.gd" id="4_8viy3"]
 
 [node name="Main" type="Node"]
@@ -13,6 +14,10 @@ unique_name_in_owner = true
 
 [node name="StageSelect" parent="World" instance=ExtResource("3_by2sk")]
 
+[node name="MusicManager" parent="." instance=ExtResource("4_7pwht")]
+
 [node name="SaverLoader" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("4_8viy3")
+
+[editable path="MusicManager"]

@@ -14,6 +14,7 @@ var moving = false
 func _ready():
 	current_overworld_tile_coords = pathing[0]
 	target_tile_coords = current_overworld_tile_coords  # Init target tile coords to start animation loop
+	$SpawnFX.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,5 +45,6 @@ func move_false():
 
 func _on_body_entered(body):
 	print("Hit a player!")
+	$FireballCollision.set_deferred("disabled", true)
 	SignalBus.player_hit.emit()
 	self.queue_free()
