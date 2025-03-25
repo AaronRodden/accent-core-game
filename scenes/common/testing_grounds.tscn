@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://sbef7166dgqs"]
+[gd_scene load_steps=6 format=3 uid="uid://sbef7166dgqs"]
 
 [ext_resource type="Script" path="res://scenes/common/testing_grounds.gd" id="1_87yv1"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="2_orqle"]
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="3_l1egy"]
 [ext_resource type="PackedScene" uid="uid://cvdd8deakeqwa" path="res://scenes/racing/object_spawner.tscn" id="3_qnbdx"]
+[ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="5_gkqff"]
 
 [node name="TestingGrounds" type="Node"]
 script = ExtResource("1_87yv1")
@@ -14,3 +15,7 @@ script = ExtResource("1_87yv1")
 position = Vector2(69, 90)
 
 [node name="ObjectSpawner" parent="OverworldChunk" instance=ExtResource("3_qnbdx")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TypingInterface" parent="CanvasLayer" instance=ExtResource("5_gkqff")]

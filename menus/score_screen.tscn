@@ -88,6 +88,7 @@ position = Vector2(1232, 825)
 texture = ExtResource("4_kgnh7")
 
 [node name="RacingCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="StoryOverviewB" type="Sprite2D" parent="RacingCanvasLayer"]
 modulate = Color(0.94902, 0.501961, 0.509804, 1)
@@ -197,4 +198,116 @@ metadata/_edit_use_anchors_ = true
 
 [node name="EnterButton" type="Sprite2D" parent="RacingCanvasLayer"]
 position = Vector2(1504, 758)
+texture = ExtResource("4_kgnh7")
+
+[node name="RacingCanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="StoryOverview" type="Sprite2D" parent="RacingCanvasLayer2"]
+position = Vector2(991.996, 332.835)
+scale = Vector2(1.04147, 2.23912)
+texture = ExtResource("2_6kvn2")
+
+[node name="PassageLabel" type="RichTextLabel" parent="RacingCanvasLayer2"]
+anchors_preset = -1
+anchor_left = -0.0349519
+anchor_top = -0.151478
+anchor_right = 0.0203564
+anchor_bottom = 0.116284
+offset_left = 203.104
+offset_top = 219.267
+offset_right = 1816.92
+offset_bottom = 419.084
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Well I want to write a new story about my day. At least I wasen't panicked when the saving didn't work! In many ways I have had a lot of smug joy recently, I mean even being able to play magic makes me content enough! Well I want to write a new story about my day. At least I wasen't panicked"
+metadata/_edit_use_anchors_ = true
+
+[node name="Reply" type="Sprite2D" parent="RacingCanvasLayer2"]
+position = Vector2(977, 854.418)
+scale = Vector2(0.668198, 0.794472)
+texture = ExtResource("2_6kvn2")
+
+[node name="Reply Label" type="RichTextLabel" parent="RacingCanvasLayer2"]
+anchors_preset = -1
+anchor_left = -0.308812
+anchor_top = -0.195753
+anchor_right = -0.308812
+anchor_bottom = -0.195753
+offset_left = 500.108
+offset_top = 938.432
+offset_right = 2113.92
+offset_bottom = 1138.25
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36
+text = "Great story, I not only enjoyed reading it but my speedy typing was quite fun on it :)"
+metadata/_edit_use_anchors_ = true
+
+[node name="EndingInfo" type="Sprite2D" parent="RacingCanvasLayer2"]
+position = Vector2(999.997, 681.671)
+scale = Vector2(0.471731, 0.471731)
+texture = ExtResource("2_6kvn2")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer2/EndingInfo"]
+anchors_preset = -1
+anchor_left = -0.332162
+anchor_top = -0.00215688
+anchor_right = -0.332162
+anchor_bottom = -0.00215688
+offset_left = -321.795
+offset_top = -70.7681
+offset_right = 1306.2
+offset_bottom = 65.2319
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+text = "Enter in a reply (can be left empty)!"
+metadata/_edit_use_anchors_ = true
+
+[node name="InitialsBox" type="Sprite2D" parent="RacingCanvasLayer2"]
+position = Vector2(1008, 563.672)
+texture = ExtResource("3_pwhcy")
+
+[node name="RichTextLabelA" type="RichTextLabel" parent="RacingCanvasLayer2/InitialsBox"]
+anchors_preset = -1
+anchor_left = -0.318841
+anchor_right = 0.188406
+offset_left = -16.0
+offset_top = -40.0
+offset_right = 128.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+text = "Written by ATR"
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RacingCanvasLayer2/InitialsBox"]
+visible = false
+offset_left = -64.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="RacingCanvasLayer2/InitialsBox"]
+visible = false
+offset_left = -23.0
+offset_top = 16.0
+offset_right = 9.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="RacingCanvasLayer2/InitialsBox"]
+visible = false
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="EnterButton" type="Sprite2D" parent="RacingCanvasLayer2"]
+position = Vector2(1688, 920)
 texture = ExtResource("4_kgnh7")

@@ -1,6 +1,7 @@
 extends TileMapLayer
 
-const CHUNK_SIZE = 500
+#const CHUNK_SIZE = 100
+var CHUNK_SIZE = 300
 const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
 
 var walkable_tiles : Dictionary = {}
@@ -40,7 +41,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	var astar_path : Array = []
 	
 	var astargrid = AStarGrid2D.new()
-	astar_width += CHUNK_SIZE
+	astar_width += (len(thought_path_coordinates) + CHUNK_SIZE)
 	astargrid.size = Vector2i(astar_width, 16)
 	astargrid.cell_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
 	astargrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
@@ -58,13 +59,18 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	elif gameplay_mode == Global.RACING_MODE:
 		y_bounds_min = 1
 		y_bounds_max = 5
-		
+	
+	var astar_checkpoint_counter = 0
 	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
 	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
 		for y in range(y_bounds_min, y_bounds_max):
 			var curr_vector = Vector2i(x, y)
+			# TODO: This system has to be more robust for smaller chunk sizes!!!
 			var astar_checkpoint_chance = rng.randi_range(0,50)
+			#astar_checkpoint_counter += 1
+			#if astar_checkpoint_counter == 6:
+				#astar_checkpoint_counter = 0
 			if astar_checkpoint_chance == 0:
 				checkpoints.append(curr_vector)
 				if len(checkpoints) >= 2:
@@ -81,7 +87,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 		set_cell(coordinate, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
 		
 	# Once thought path is created, create a map around it
-	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
+	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE) + 1):
 		for y in range(0, 17):
 			if Vector2i(x, y) in self.get_used_cells():
 				continue
@@ -115,6 +121,83 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 			else:
 				set_cell(Vector2(x, y), shared_atlas_id, Vector2(rng.randi_range(0, 2), rng.randi_range(0, 1)), 0)
 	return astar_path
+
+
+# TODO: COPIED CODE!! TESTING SOMETHING
+# Once thought path is created, create a map around it
+func continue_level_chunk():
+	var r = rng.randi_range(0,1)
+	var direction 
+	match r: 
+		0:
+			direction = Vector2i(1, 0)
+		1:
+			direction = Vector2i(0, -1)
+		2:
+			direction = Vector2i(0, 1)
+	var next_cell = current_ending_cell_coordinate + direction
+	
+	var astargrid = AStarGrid2D.new()
+	astar_width += (len(thought_path_coordinates) + CHUNK_SIZE)
+	astargrid.size = Vector2i(astar_width, 16)
+	astargrid.cell_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
+	astargrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astargrid.update()
+	
+	var new_path_chunk : Array
+	for x in range(current_ending_cell_coordinate.x, (current_ending_cell_coordinate.x + CHUNK_SIZE) + 1):
+		for y in range(0, 8):
+			var curr_vector = Vector2i(x, y)
+			var astar_checkpoint_chance = rng.randi_range(0,5)
+			if astar_checkpoint_chance == 0:
+				new_path_chunk = astargrid.get_id_path(self.thought_path_coordinates[-1], curr_vector)
+				for coordinate in new_path_chunk:
+						astargrid.set_point_solid(coordinate, true)
+	
+	if len(new_path_chunk) > 0:
+		current_ending_cell_coordinate = new_path_chunk[-1]
+		for coordinate in new_path_chunk:
+			set_cell(coordinate, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
+	
+	var noise = FastNoiseLite.new()
+	var k = 0
+	
+	for x in range(current_ending_cell_coordinate.x, (current_ending_cell_coordinate.x + CHUNK_SIZE) + 1):
+		print(x)
+		for y in range(0, 17):
+			if Vector2i(x, y) in self.get_used_cells():
+				continue
+			k = noise.get_noise_2d(x, y)
+			if k < -0.2:
+				if area_atlas_id == 1:
+					# joy
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(rng.randi_range(1, 2), 6), 0)
+				elif area_atlas_id == 2:
+					# sadness
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
+				elif area_atlas_id == 3:
+					# fear
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(rng.randi_range(1, 2), 6), 0)
+				elif area_atlas_id == 4:
+					# anger
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
+			elif k > 0.3:
+				if area_atlas_id == 1:
+					# joy
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(3, 6), 0)
+				elif area_atlas_id == 2:
+					# sadness
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(2, 6), 0)
+				if area_atlas_id == 3:
+					# fear
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(3, 6), 0)
+				elif area_atlas_id == 4:
+					# anger
+					set_cell(Vector2(x, y), area_atlas_id, Vector2(1, 6), 0)
+			else:
+				set_cell(Vector2(x, y), shared_atlas_id, Vector2(rng.randi_range(0, 2), rng.randi_range(0, 1)), 0)
+	current_ending_cell_coordinate = next_cell
+	return next_cell
 
 # TODO: Some sort of error thrown when thought_path_passage size > thought_path_coordinates size
 func write_existing_passage():
@@ -235,3 +318,6 @@ func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
+	#self.CHUNK_SIZE = 10
+	# TODO: Of course this needs to be triggered in some way not just happening at all times 
+	#self.thought_path_coordinates.append(continue_level_chunk())

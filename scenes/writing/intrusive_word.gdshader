@@ -17,7 +17,7 @@ uniform float size_effect: hint_range(-5.0, 5.0, 0.05) = 0.1; // size of the eff
 uniform float speed = -0.5; // effect speed; Will reverse effect is set to negative
 uniform float highlight_strength: hint_range(-4.0, 4.0, 0.05) = 0.1; // how strong the color overides the base color
 uniform bool color_mode_toggle = true; // changes how the color gradient is applied. Default is on the entire texture, if set to true it is only applied to the effect
-uniform bool is_horizontal = false; //changes direction from vertical to horizontal 
+uniform bool is_horizontal = false; //changes direction from vertical to horizontal
 
 uniform float gradient_percentage : hint_range(0.0, 0.9, 0.1) = 0.0;
 
@@ -32,7 +32,7 @@ void fragment() {
 	float current_time = fract(-time);
 	current_time = gradient_percentage;
 	//gradient_percentage = 0.3;
-	// sets time to fit better with the effect. (Barely detectable change) 
+	// sets time to fit better with the effect. (Barely detectable change)
 	//current_time = mix(0. - size_effect, 1. + size_effect, current_time);
 	float effect_lower_bound = gradient_percentage - size_effect;
 	effect_lower_bound = 1.0;
