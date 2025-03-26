@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cksftjglahnm4"]
+
+[ext_resource type="Texture2D" uid="uid://cdg6yls41lw5r" path="res://assets/progress_bar_empty.png" id="1_vhq17"]
+[ext_resource type="Texture2D" uid="uid://dxdgb0ks3xyrc" path="res://assets/progress_bar_fill.png" id="2_w6ur0"]
+[ext_resource type="Script" path="res://ui/general_progress_bar.gd" id="3_hvofg"]
+[ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="4_1vugq"]
+
+[node name="GeneralProgressBar" type="TextureProgressBar"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5208.0
+offset_bottom = -676.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.25, 0.25)
+texture_under = ExtResource("1_vhq17")
+texture_progress = ExtResource("2_w6ur0")
+script = ExtResource("3_hvofg")
+
+[node name="NeuronHeadSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 104)
+scale = Vector2(1.0731, 1.06921)
+texture = ExtResource("4_1vugq")

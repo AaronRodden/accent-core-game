@@ -14,6 +14,8 @@ signal player_swap_keystroke(event : InputEventKey, keystroke: String)
 
 # OverworldChunk Signals
 signal racing_complete()
+signal update_writing_progress()
+signal update_racing_progress()
 
 # Keyboard Interface
 signal player_keystroke(event : InputEventKey, keystroke: String, total_keystrokes: int)

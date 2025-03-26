@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1mfi2u8badvo"]
+[gd_scene load_steps=6 format=3 uid="uid://c1mfi2u8badvo"]
 
 [ext_resource type="Texture2D" uid="uid://68d1eguleg30" path="res://assets/Pixel Heart Sprite Sheet Single.png" id="1_5g4at"]
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_y47lj"]
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="2_tkie3"]
 [ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="4_1oob8"]
+[ext_resource type="PackedScene" uid="uid://cksftjglahnm4" path="res://ui/general_progress_bar.tscn" id="5_6svcu"]
 
 [node name="HUD" type="Control"]
 layout_mode = 3
@@ -15,6 +16,7 @@ grow_vertical = 2
 script = ExtResource("1_y47lj")
 
 [node name="Health_Score" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(540.223, 538)
 scale = Vector2(0.566025, 0.963964)
 texture = ExtResource("2_tkie3")
@@ -45,6 +47,7 @@ scale = Vector2(5.30012, 3.11215)
 texture = ExtResource("1_5g4at")
 
 [node name="Word_Info" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(1450.22, 538)
 scale = Vector2(0.566025, 0.963964)
 texture = ExtResource("2_tkie3")
@@ -58,6 +61,7 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="Tab2SwitchSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(994.223, 535.5)
 texture = ExtResource("2_tkie3")
 
@@ -84,3 +88,10 @@ offset_bottom = 80.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
+
+[node name="GeneralProgressBar" parent="." instance=ExtResource("5_6svcu")]
+layout_mode = 1
+offset_left = 76.0
+offset_top = 600.0
+offset_right = 5284.0
+offset_bottom = -76.0

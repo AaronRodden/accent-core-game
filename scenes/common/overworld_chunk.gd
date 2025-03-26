@@ -50,19 +50,10 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.4
 	
-	var y_bounds_min
-	var y_bounds_max
-	if gameplay_mode == Global.WRITING_MODE:
-		y_bounds_min = 0
-		y_bounds_max = 8
-	elif gameplay_mode == Global.RACING_MODE:
-		y_bounds_min = 1
-		y_bounds_max = 5
-		
 	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
 	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
-		for y in range(y_bounds_min, y_bounds_max):
+		for y in range(0, 8):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
 			if astar_checkpoint_chance == 0:
@@ -143,7 +134,7 @@ func _ready():
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 	elif gameplay_mode == Global.RACING_MODE:
 		# TODO: In Racing mode we have a limit of 1 to 4 for starting cell
-		starting_cell_coordinate = Vector2i(0, rng.randi_range(1, 4))
+		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 		write_existing_passage()
 
@@ -193,6 +184,7 @@ func _on_player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vect
 		# Update tiles
 		if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
 			self.set_cell(prev_tile_coords, self.area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke], 0)
+	SignalBus.update_writing_progress.emit(stepped_upon_tiles.size())
 
 func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String):
 	if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
@@ -208,6 +200,11 @@ func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : 
 		var keystroke_atlas_coordinate = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[prev_tile_input_val]
 		self.set_cell(prev_tile_coords, self.area_atlas_id, keystroke_atlas_coordinate, 0)
 		forward_steps -= 1
+		
+	var curr_coordinate_index = self.thought_path_coordinates.find(next_tile_coords)
+	var completion_ratio = float(curr_coordinate_index) / float(len(self.thought_path_passage))
+	var completion_percentage = completion_ratio * 100
+	SignalBus.update_racing_progress.emit(completion_percentage)
 	
 	# TODO: Tech Debt!! Logic for ending game loops is split around the code
 	# This also needs some more testing for robustness in general

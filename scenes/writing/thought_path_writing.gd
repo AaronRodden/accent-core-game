@@ -22,8 +22,20 @@ func load_level(area_init_data : Dictionary, area_dynamic_data : Dictionary):
 func _ready():
 	# Signals and Connections
 	SignalBus.passage_complete.connect(_thought_path_complete)
+	SignalBus.update_writing_progress.connect(_update_writing_progress_bar)
 	
 	$Player.initalize($OverworldChunk, "writing")
+	
+	KeyboardInterface.start_typing_session()
+	
+
+func _update_writing_progress_bar(progress):
+	var progress_percentage = (float(progress / 5) / float(60)) * 100
+	$CanvasLayer/HUD/GeneralProgressBar.value = progress_percentage
+	
+	if (progress / 5) >= 60:
+		$CanvasLayer/TypingInterface/DoneButton.visible = true
+		$CanvasLayer/TypingInterface.minimum_passage_size_flag = true
 
 func _thought_path_complete(passage : String):
 	# Change to score scene

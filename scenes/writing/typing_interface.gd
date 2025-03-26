@@ -51,9 +51,6 @@ func scroll_to_char_position():
 func _keystroke_events(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	# TODO: Temporary metric for when the passage is done
 	# TODO: Right now this logic is locked into TypingInterface, perhaps a mistake
-	if (total_keystrokes / 5) >= 60 and gameplay_mode == Global.WRITING_MODE:
-		$DoneButton.visible = true
-		minimum_passage_size_flag = true
 	if keystroke == KeyboardInterface.Enter and minimum_passage_size_flag == true:
 		text_box.text = text_box.text.erase(self.current_char_index, len(BBCodeCursorString))  # Remove BBCodeCursor
 		SignalBus.passage_complete.emit(text_box.text)

@@ -29,14 +29,11 @@ player = NodePath("../../Player")
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
 
-[node name="Health_Score" parent="CanvasLayer/HUD" index="0"]
-visible = false
-
-[node name="Word_Info" parent="CanvasLayer/HUD" index="1"]
-visible = false
-
-[node name="Tab2SwitchSprite" parent="CanvasLayer/HUD" index="2"]
-visible = false
+[node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
+offset_left = 80.0
+offset_top = 528.0
+offset_right = 5288.0
+offset_bottom = -148.0
 
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/TypingInterface"]
