@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=3 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
+[ext_resource type="Texture2D" uid="uid://dfr5hspp1ynpp" path="res://assets/BrainTypeTempStageSelect.png" id="2_iks6f"]
 
 [node name="StageSelect" type="Node"]
 script = ExtResource("1_xgjc3")
+
+[node name="StageSelectIllustration" type="Sprite2D" parent="."]
+position = Vector2(960.844, 593.094)
+scale = Vector2(0.255587, 0.254707)
+texture = ExtResource("2_iks6f")
 
 [node name="writing-joy" type="Button" parent="."]
 offset_left = 150.0

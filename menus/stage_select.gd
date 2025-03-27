@@ -19,12 +19,14 @@ func _process(delta):
 	pass
 
 
+#TODO: Manage sessions here!
+
 # BUG: Stage select remaining in scene is causing issues when pressing space!
 func _on_writingjoy_pressed():
 	WorldManager.current_player_area = WorldManager.JOY_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
 	
-	# TODO: Why do we have to do this instead of change scene?
+	SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.JOY_AREA)

@@ -7,6 +7,9 @@ signal scene_change(prev_scene: String, next_scene: String, area_enum: String)
 signal save_game()
 signal load_game()
 
+# Session Manager Signals
+signal save_session(session_dictionary : Dictionary)
+
 # Player Signals
 signal player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String)
 signal player_writing_keystroke(event : InputEventKey, keystroke: String, sender : CharacterBody2D)
