@@ -18,7 +18,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(idle_timer.time_left)
 	if timer_running:
 		if idle_timer.time_left <= 0:
 			end_session()
