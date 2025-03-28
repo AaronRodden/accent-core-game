@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3bmckngq35lq"]
+[gd_scene load_steps=6 format=3 uid="uid://b3bmckngq35lq"]
 
 [ext_resource type="Script" path="res://menus/score_screen.gd" id="1_ahe5v"]
 [ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="2_6kvn2"]
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="3_pwhcy"]
 [ext_resource type="Texture2D" uid="uid://dpuym7u7k2q33" path="res://assets/enter_button.png" id="4_kgnh7"]
+[ext_resource type="Texture2D" uid="uid://b4ckhqwoe7gm7" path="res://assets/button.png" id="5_f4ojo"]
 
 [node name="ScoreScreen" type="Node"]
 script = ExtResource("1_ahe5v")
@@ -31,23 +32,28 @@ theme_override_font_sizes/normal_font_size = 36
 metadata/_edit_use_anchors_ = true
 
 [node name="EndingInfo" type="Sprite2D" parent="WritingCanvasLayer"]
-position = Vector2(976, 712)
+position = Vector2(992, 696)
 scale = Vector2(0.471731, 0.471731)
 texture = ExtResource("2_6kvn2")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WritingCanvasLayer/EndingInfo"]
-offset_left = -814.023
-offset_top = -67.8352
-offset_right = 813.977
-offset_bottom = 68.1648
+anchors_preset = -1
+anchor_left = 1.32548e-05
+anchor_top = -0.000582341
+anchor_right = 0.0195985
+anchor_bottom = 0.2397
+offset_left = -824.645
+offset_top = -103.708
+offset_right = 803.355
+offset_bottom = 32.2924
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "Enter in initials (can be left empty if desired!):"
+text = "[center]Leave a comment for the next player! (can be left empty if desired!): [/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="InitialsBox" type="Sprite2D" parent="WritingCanvasLayer"]
-position = Vector2(840, 825)
+position = Vector2(984, 856)
 texture = ExtResource("3_pwhcy")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WritingCanvasLayer/InitialsBox"]
@@ -84,13 +90,26 @@ color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="EnterButton" type="Sprite2D" parent="WritingCanvasLayer"]
-position = Vector2(1232, 825)
+position = Vector2(984, 1008)
 texture = ExtResource("4_kgnh7")
+
+[node name="CommentBox" type="Sprite2D" parent="WritingCanvasLayer"]
+position = Vector2(960, 864)
+scale = Vector2(0.782686, 0.782686)
+texture = ExtResource("2_6kvn2")
+
+[node name="CommentText" type="RichTextLabel" parent="WritingCanvasLayer/CommentBox"]
+offset_left = -818.0
+offset_top = -112.0
+offset_right = 818.0
+offset_bottom = 102.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36
 
 [node name="RacingCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StoryOverview" type="Sprite2D" parent="RacingCanvasLayer"]
-position = Vector2(968, 409.164)
+position = Vector2(968, 321.164)
 scale = Vector2(1.04147, 2.23912)
 texture = ExtResource("2_6kvn2")
 
@@ -102,40 +121,49 @@ anchor_top = -0.151478
 anchor_right = 0.0203564
 anchor_bottom = 0.116284
 offset_left = 179.108
-offset_top = 295.596
+offset_top = 227.596
 offset_right = 1792.92
-offset_bottom = 495.413
+offset_bottom = 427.413
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 36
 metadata/_edit_use_anchors_ = true
 
 [node name="EndingInfo" type="Sprite2D" parent="RacingCanvasLayer"]
-position = Vector2(976.001, 758)
+position = Vector2(977.463, 946.75)
 scale = Vector2(0.471731, 0.471731)
 texture = ExtResource("2_6kvn2")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/EndingInfo"]
-offset_left = -814.023
-offset_top = -67.8352
-offset_right = 813.977
-offset_bottom = 68.1648
+anchors_preset = -1
+anchor_left = 1.32548e-05
+anchor_top = -0.000582341
+anchor_right = 1.32548e-05
+anchor_bottom = 0.33864
+offset_left = -817.147
+offset_top = -101.058
+offset_right = 810.853
+offset_bottom = 34.942
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "Tab to Switch! Enter when done reading!"
+text = "[center] Press Tab to leave a comment, enter when done reading! [/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="InitialsBox" type="Sprite2D" parent="RacingCanvasLayer"]
-position = Vector2(968, 78)
+position = Vector2(968, 536)
 texture = ExtResource("3_pwhcy")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/InitialsBox"]
+anchors_preset = -1
+anchor_left = -0.333333
+anchor_right = 0.318841
 offset_left = -64.0
 offset_top = -40.0
 offset_right = 80.0
 offset_bottom = 32.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 48
+text = "Written by: "
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
@@ -165,6 +193,31 @@ offset_bottom = 24.0
 color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
+[node name="CommentButton" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(448, 952)
+texture = ExtResource("5_f4ojo")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentButton"]
+offset_left = -58.0
+offset_top = -36.0
+offset_right = 110.0
+offset_bottom = 36.0
+theme_override_font_sizes/bold_font_size = 48
+bbcode_enabled = true
+text = "[b] TAB [/b]"
+
 [node name="EnterButton" type="Sprite2D" parent="RacingCanvasLayer"]
-position = Vector2(1504, 758)
+position = Vector2(1505.46, 946.75)
 texture = ExtResource("4_kgnh7")
+
+[node name="CommentThreadBox" type="Sprite2D" parent="RacingCanvasLayer"]
+position = Vector2(968, 752)
+texture = ExtResource("2_6kvn2")
+
+[node name="CommentThread" type="RichTextLabel" parent="RacingCanvasLayer/CommentThreadBox"]
+offset_left = -832.0
+offset_top = -120.0
+offset_right = 832.0
+offset_bottom = 88.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 36

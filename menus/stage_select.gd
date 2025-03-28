@@ -19,14 +19,13 @@ func _process(delta):
 	pass
 
 
-#TODO: Manage sessions here!
 
-# BUG: Stage select remaining in scene is causing issues when pressing space!
 func _on_writingjoy_pressed():
 	WorldManager.current_player_area = WorldManager.JOY_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
 	
-	SessionManager.start_session()
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.JOY_AREA)
@@ -36,6 +35,8 @@ func _on_writingsadness_pressed():
 	WorldManager.current_player_area = WorldManager.SADNESS_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA))
 	
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.SADNESS_AREA)
@@ -57,6 +58,8 @@ func _on_racingjoy_pressed():
 	thought_racing_scene.load_level(
 		WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
 	
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.JOY_AREA)
@@ -69,6 +72,8 @@ func _on_racingsadness_pressed():
 	thought_racing_scene.load_level(
 		WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA))
 		
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.SADNESS_AREA)
@@ -78,6 +83,8 @@ func _on_writingfear_pressed():
 	WorldManager.current_player_area = WorldManager.FEAR_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
 	
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.FEAR_AREA)
@@ -86,6 +93,8 @@ func _on_writinganger_pressed():
 	WorldManager.current_player_area = WorldManager.ANGER_AREA
 	thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
 	
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_writing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.ANGER_AREA)
@@ -98,6 +107,8 @@ func _on_racingfear_pressed():
 	thought_racing_scene.load_level(
 		WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
 		
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.FEAR_AREA)
@@ -110,6 +121,8 @@ func _on_racinganger_pressed():
 	thought_racing_scene.load_level(
 		WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
 		
+	if not SessionManager.active_session:
+		SessionManager.start_session()
 	Global.WORLD_NODE.add_child(thought_racing_scene)
 	get_node("/root/Main/World/StageSelect").queue_free()
 	SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.ANGER_AREA)

@@ -1,5 +1,7 @@
 extends Node
 
+const MINIMUM_WORD_COUNT = 50
+
 var area_enum : int
 
 var score_scene = preload("res://menus/score_screen.tscn").instantiate()
@@ -30,10 +32,10 @@ func _ready():
 	
 
 func _update_writing_progress_bar(progress):
-	var progress_percentage = (float(progress / 5) / float(60)) * 100
+	var progress_percentage = (float(progress / 5) / float(MINIMUM_WORD_COUNT)) * 100
 	$CanvasLayer/HUD/GeneralProgressBar.value = progress_percentage
 	
-	if (progress / 5) >= 60:
+	if (progress / 5) >= MINIMUM_WORD_COUNT:
 		$CanvasLayer/TypingInterface/DoneButton.visible = true
 		$CanvasLayer/TypingInterface.minimum_passage_size_flag = true
 

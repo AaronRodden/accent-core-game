@@ -7,6 +7,7 @@ var end_timestamp : Dictionary
 var keystroke_count : int
 var reply_count : int
 
+var active_session = false
 var timer_running = false
 var idle_timer = Timer.new()
 
@@ -20,6 +21,7 @@ func _ready():
 func _process(delta):
 	if timer_running:
 		if idle_timer.time_left <= 0:
+			# TODO: Should we also have a signal here that triggers the game to go back to stage select if a player is in a gameplay loop?
 			end_session()
 			
 func _keystroke_session_update(event : InputEventKey, keystroke: String, total_keystrokes: int):
@@ -32,13 +34,14 @@ func start_session():
 	start_timestamp =  Time.get_datetime_dict_from_system()
 	keystroke_count = 0
 	
+	active_session = true
 	timer_running = true
 	idle_timer.set_wait_time(IDLE_SECONDS)
 	idle_timer.one_shot = true
 	idle_timer.start()
 
-# TODO: Calculate all needed metrics and stuff
 func end_session():
+	active_session = false
 	timer_running = false
 	idle_timer.stop()
 	end_timestamp = Time.get_datetime_dict_from_system()

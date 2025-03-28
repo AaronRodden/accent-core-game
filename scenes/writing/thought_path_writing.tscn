@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfqsu0ef0tbwr"]
+[gd_scene load_steps=7 format=3 uid="uid://bfqsu0ef0tbwr"]
 
 [ext_resource type="Script" path="res://scenes/writing/thought_path_writing.gd" id="1_bepvy"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_v0cbj"]
 [ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="2_1fks0"]
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="3_mw1q6"]
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="5_b6pbx"]
-[ext_resource type="PackedScene" uid="uid://dm0205pi74m4" path="res://scenes/writing/intrusive_word_manager.tscn" id="6_feq40"]
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_lq5hx"]
 
 [node name="ThoughtPathWriting" type="Node"]
@@ -21,8 +20,6 @@ position_smoothing_enabled = true
 playerA = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="IntrusiveWordManager" parent="CanvasLayer" instance=ExtResource("6_feq40")]
 
 [node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_1fks0")]
 player = NodePath("../../Player")

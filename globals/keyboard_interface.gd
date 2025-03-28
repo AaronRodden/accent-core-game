@@ -7,8 +7,6 @@ const Enter = "Enter"
 const Tab = "Tab"
 const Space = " "
 
-# TODO: Maybe this should be an object that lives and dies alongside typing interfaces?
-# With this pattern then data will be persistant with individual sessions!
 var total_keystrokes = 0
 var wpm = 0.0
 var typing_session_flag = false

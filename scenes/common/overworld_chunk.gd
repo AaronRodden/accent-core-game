@@ -133,7 +133,6 @@ func _ready():
 		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 	elif gameplay_mode == Global.RACING_MODE:
-		# TODO: In Racing mode we have a limit of 1 to 4 for starting cell
 		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 		write_existing_passage()

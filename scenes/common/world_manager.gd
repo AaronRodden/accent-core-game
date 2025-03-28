@@ -10,6 +10,7 @@ const AtlasID = "overworld_chunk_atlas_id"
 const AreaHealth = "area_health"
 const CurrAreaPassage = "current_area_passage"
 const CurrAreaPassageAuthor = "current_area_passage_author"
+const AreaComments = "area_comments"
 
 @export var current_player_area = self.STAGE_SELECT
 
@@ -33,21 +34,25 @@ const CurrAreaPassageAuthor = "current_area_passage_author"
 		"area_health" = 100,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"area_comments" = [],
 	},
 	self.SADNESS_AREA : {
 		"area_health" = 100,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"area_comments" = [],
 	},
 	self.FEAR_AREA : {
 		"area_health" = 100,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"area_comments" = [],
 	},
 	self.ANGER_AREA : {
 		"area_health" = 100,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"area_comments" = [],
 	},
 }
 
@@ -58,7 +63,10 @@ func get_dynamic_data(area_enum : int):
 	return self.world_dynamic_data[area_enum]
 
 func write_world_data(area_enum : int, key : String, value):
-	self.world_dynamic_data[area_enum][key] = value
+	if typeof(self.world_dynamic_data[area_enum][key]) == TYPE_ARRAY:
+		self.world_dynamic_data[area_enum][key].append(value)
+	else:
+		self.world_dynamic_data[area_enum][key] = value
 	
 
 # Called when the node enters the scene tree for the first time.
