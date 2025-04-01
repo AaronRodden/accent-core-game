@@ -146,7 +146,7 @@ offset_bottom = 34.942
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 72
 bbcode_enabled = true
-text = "[center] Press Tab to leave a comment, enter when done reading! [/center]"
+text = "[center] Type to leave a comment, press enter when done! [/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="InitialsBox" type="Sprite2D" parent="RacingCanvasLayer"]
@@ -156,44 +156,19 @@ texture = ExtResource("3_pwhcy")
 [node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/InitialsBox"]
 anchors_preset = -1
 anchor_left = -0.333333
-anchor_right = 0.318841
-offset_left = -64.0
-offset_top = -40.0
-offset_right = 80.0
-offset_bottom = 32.0
+anchor_right = 0.333334
+anchor_bottom = -0.144144
+offset_left = -56.0002
+offset_top = -32.0
+offset_right = 87.9997
+offset_bottom = 40.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
-theme_override_font_sizes/normal_font_size = 48
+theme_override_font_sizes/normal_font_size = 42
 text = "Written by: "
 metadata/_edit_use_anchors_ = true
 
-[node name="ColorRect" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
-visible = false
-offset_left = -64.0
-offset_top = 16.0
-offset_right = -32.0
-offset_bottom = 24.0
-color = Color(0.184314, 0.356863, 0.67451, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect2" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
-visible = false
-offset_left = -23.0
-offset_top = 16.0
-offset_right = 9.0
-offset_bottom = 24.0
-color = Color(0.184314, 0.356863, 0.67451, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="ColorRect3" type="ColorRect" parent="RacingCanvasLayer/InitialsBox"]
-visible = false
-offset_left = 22.0
-offset_top = 16.0
-offset_right = 54.0
-offset_bottom = 24.0
-color = Color(0.184314, 0.356863, 0.67451, 1)
-metadata/_edit_use_anchors_ = true
-
 [node name="CommentButton" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(448, 952)
 texture = ExtResource("5_f4ojo")
 
@@ -220,4 +195,44 @@ offset_top = -120.0
 offset_right = 832.0
 offset_bottom = 88.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/mono_font_size = 36
 theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+
+[node name="CommentThreadInitialsBox" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(984, 824)
+texture = ExtResource("3_pwhcy")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentThreadInitialsBox"]
+offset_left = -64.0
+offset_top = -40.0
+offset_right = 80.0
+offset_bottom = 32.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="RacingCanvasLayer/CommentThreadInitialsBox"]
+offset_left = -64.0
+offset_top = 16.0
+offset_right = -32.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="RacingCanvasLayer/CommentThreadInitialsBox"]
+offset_left = -23.0
+offset_top = 16.0
+offset_right = 9.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect3" type="ColorRect" parent="RacingCanvasLayer/CommentThreadInitialsBox"]
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 54.0
+offset_bottom = 24.0
+color = Color(0.184314, 0.356863, 0.67451, 1)
+metadata/_edit_use_anchors_ = true

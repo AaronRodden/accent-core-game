@@ -50,4 +50,4 @@ func reset():
 	
 func _calculate_metrics():
 	if time_elapsed > 0:
-		wpm = (total_keystrokes / 5) / time_elapsed
+		wpm = (float(total_keystrokes) / 5) / time_elapsed

@@ -41,7 +41,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	
 	var astargrid = AStarGrid2D.new()
 	astar_width += CHUNK_SIZE
-	astargrid.size = Vector2i(astar_width, 16)
+	astargrid.region = Vector2i(astar_width, 16)
 	astargrid.cell_size = Vector2i(Global.TILE_SIZE, Global.TILE_SIZE)
 	astargrid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astargrid.update()

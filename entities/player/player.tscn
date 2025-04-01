@@ -66,3 +66,6 @@ shape = SubResource("RectangleShape2D_5frq5")
 [node name="HitFx" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_8v1yk")
 volume_db = 10.0
+
+[node name="KeyboardFx" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
