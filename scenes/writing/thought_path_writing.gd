@@ -1,6 +1,6 @@
 extends Node
 
-const MINIMUM_WORD_COUNT = 3
+const MINIMUM_WORD_COUNT = 50
 
 var area_enum : int
 

@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1mfi2u8badvo"]
+
+[ext_resource type="Texture2D" uid="uid://68d1eguleg30" path="res://assets/Pixel Heart Sprite Sheet Single.png" id="1_5g4at"]
+[ext_resource type="Script" path="res://ui/hud.gd" id="1_y47lj"]
+[ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="2_tkie3"]
+[ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="4_1oob8"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y47lj")
+
+[node name="Health_Score" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(540.223, 538)
+scale = Vector2(0.566025, 0.963964)
+texture = ExtResource("2_tkie3")
+
+[node name="Heart1" type="Sprite2D" parent="Health_Score"]
+position = Vector2(-197.871, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart2" type="Sprite2D" parent="Health_Score"]
+position = Vector2(-98.9355, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart3" type="Sprite2D" parent="Health_Score"]
+position = Vector2(0, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart4" type="Sprite2D" parent="Health_Score"]
+position = Vector2(98.9355, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Heart5" type="Sprite2D" parent="Health_Score"]
+position = Vector2(197.871, -2.59345)
+scale = Vector2(5.30012, 3.11215)
+texture = ExtResource("1_5g4at")
+
+[node name="Word_Info" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1450.22, 538)
+scale = Vector2(0.566025, 0.963964)
+texture = ExtResource("2_tkie3")
+
+[node name="Keystrokes" type="RichTextLabel" parent="Word_Info"]
+offset_left = -155.47
+offset_top = -27.4907
+offset_right = 52.53
+offset_bottom = 20.5093
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="Tab2SwitchSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(994.223, 535.5)
+texture = ExtResource("2_tkie3")
+
+[node name="Tab2Switch" type="RichTextLabel" parent="Tab2SwitchSprite"]
+offset_left = -248.0
+offset_top = -48.0
+offset_right = 272.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[pulse freq=0.5 color=#ffffff40 ease=-2.0]TAB TO SWITCH[/pulse]"
+
+[node name="GameEnd" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(944, 520)
+texture = ExtResource("4_1oob8")
+
+[node name="GameEndText" type="RichTextLabel" parent="GameEnd"]
+offset_left = -416.0
+offset_top = -104.0
+offset_right = 320.0
+offset_bottom = 80.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true

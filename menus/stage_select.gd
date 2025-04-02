@@ -5,6 +5,9 @@ var world_node : Node
 var thought_writing_scene = preload("res://scenes/writing/thought_path_writing.tscn").instantiate()
 var thought_racing_scene = preload("res://scenes/racing/thought_path_racing.tscn").instantiate()
 
+@onready var current_selector = $Selector1
+var selector_number = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Grab World Node again before moving between game scenes
@@ -12,12 +15,28 @@ func _ready():
 	$"writing-joy".grab_focus()
 	
 	$VersionNumberDisplay.text = Global.VERSION_NUMBER
+	
+	current_selector.modulate.a = 119
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	if Input.is_action_just_pressed("down"):
+		selector_number -= 1
+		selector_number = clamp(selector_number, 1, 12)
+		current_selector.modulate.a = 0.5
+		var next_selector_node = "Selector" + str(selector_number)
+		current_selector = get_node(next_selector_node)
+		current_selector.modulate.a = 1
 
+	if Input.is_action_just_pressed("up"):
+		selector_number += 1
+		selector_number = clamp(selector_number, 1, 12)
+		current_selector.modulate.a = 0.5
+		var next_selector_node = "Selector" + str(selector_number)
+		current_selector = get_node(next_selector_node)
+		current_selector.modulate.a = 1
 
 
 func _on_writingjoy_pressed():

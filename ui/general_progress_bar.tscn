@@ -19,7 +19,6 @@ texture_progress = ExtResource("2_w6ur0")
 script = ExtResource("3_hvofg")
 
 [node name="NeuronHeadSprite" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(8, 104)
 scale = Vector2(1.0731, 1.06921)
 texture = ExtResource("4_1vugq")

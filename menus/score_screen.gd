@@ -18,6 +18,7 @@ var initials_size = 0
 var current_line_count = 0
 var new_comment_substring_start = 0
 var new_comment_length = 0
+# TODO: Implement cursor into comment thread stuff
 var BBCodeCursorString = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][color=#000000][code]|[/code][/color][/pulse]"
 
 # Grab the nesseicary data and display it onto the score screen
@@ -54,10 +55,6 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var keystroke = KeyboardInterface.handle_input_event(event)
 		
-		#if keystroke == KeyboardInterface.Tab:
-			#$RacingCanvasLayer/CommentThreadBox/CommentThread.text += BBCodeCursorString
-			#var line_count = $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count()
-			#$RacingCanvasLayer/CommentThreadBox/CommentThread.scroll_to_line(line_count)
 
 	
 # Called when the node enters the scene tree for the first time.
@@ -149,6 +146,7 @@ func _enter_thread_initials(event: InputEventKey, keystroke : String, total_keys
 			else:
 				area_comment[1] = initials.strip_edges()
 			_save_new_comment()
+			SessionManager.reply_count += 1
 			WorldManager.current_player_area = WorldManager.STAGE_SELECT
 			get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
@@ -193,7 +191,6 @@ func _save_new_comment():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
 	if Input.is_action_just_pressed("down"):
 		current_line_count += 2
 		current_line_count = clamp(current_line_count, 0, $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count())
