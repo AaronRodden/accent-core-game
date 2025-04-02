@@ -21,19 +21,20 @@ grow_vertical = 2
 script = ExtResource("1_32vpw")
 
 [node name="InfoBox" type="Sprite2D" parent="."]
-position = Vector2(350, 698)
+position = Vector2(486.5, 698)
+scale = Vector2(1.49457, 1)
 texture = ExtResource("5_jgp4q")
 
-[node name="InfoBox" type="RichTextLabel" parent="InfoBox"]
-offset_left = -248.0
-offset_top = -36.0
-offset_right = 252.0
-offset_bottom = 39.0
+[node name="InfoText" type="RichTextLabel" parent="."]
+offset_left = 102.0
+offset_top = 662.0
+offset_right = 874.0
+offset_bottom = 737.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/bold_font_size = 48
 bbcode_enabled = true
-text = "[b]ENTER STORY[/b]"
+text = "[b]Write about a time you...[/b]"
 
 [node name="TypingInterfaceVector" type="Sprite2D" parent="."]
 position = Vector2(979, 880.75)
@@ -54,7 +55,7 @@ scroll_active = false
 metadata/_edit_use_anchors_ = true
 
 [node name="DoneButton" type="Sprite2D" parent="."]
-visible = false
+modulate = Color(1, 1, 1, 0.498039)
 position = Vector2(1773, 693)
 texture = ExtResource("3_ef143")
 

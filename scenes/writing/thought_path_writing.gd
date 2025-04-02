@@ -1,6 +1,6 @@
 extends Node
 
-const MINIMUM_WORD_COUNT = 50
+const MINIMUM_WORD_COUNT = 3
 
 var area_enum : int
 
@@ -36,7 +36,7 @@ func _update_writing_progress_bar(progress):
 	$CanvasLayer/HUD/GeneralProgressBar.value = progress_percentage
 	
 	if (progress / 5) >= MINIMUM_WORD_COUNT:
-		$CanvasLayer/TypingInterface/DoneButton.visible = true
+		$CanvasLayer/TypingInterface/DoneButton.modulate.a = 1
 		$CanvasLayer/TypingInterface.minimum_passage_size_flag = true
 
 func _thought_path_complete(passage : String):

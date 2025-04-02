@@ -28,6 +28,10 @@ player = NodePath("../../OverworldChunk/Player")
 [node name="InfoBox" parent="CanvasLayer/TypingInterface" index="0"]
 visible = false
 
+[node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
+visible = false
+layout_mode = 0
+
 [node name="RunningText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="0"]
 anchors_preset = -1
 anchor_right = 0.116935
@@ -36,6 +40,9 @@ offset_right = 617.0
 offset_bottom = 5.0
 theme_override_colors/default_color = Color(0.501961, 0.658824, 0.94902, 1)
 autowrap_mode = 1
+
+[node name="DoneButton" parent="CanvasLayer/TypingInterface" index="3"]
+visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_u7i4i")]
 
