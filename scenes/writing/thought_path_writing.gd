@@ -7,18 +7,23 @@ var area_enum : int
 var score_scene = preload("res://menus/score_screen.tscn").instantiate()
 
 
-func load_level(area_init_data : Dictionary, area_dynamic_data : Dictionary):
+func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	# Initalize variables
-	area_enum = area_init_data[WorldManager.AtlasID]
+	area_enum = _area_enum
 	
 	# Load chunk with data
 	$OverworldChunk.gameplay_mode = Global.WRITING_MODE
-	$OverworldChunk.area_atlas_id = area_enum
+	match area_enum:
+		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
+			$OverworldChunk.area_atlas_id = 2
+		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+			$OverworldChunk.area_atlas_id = 4
+		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
+			$OverworldChunk.area_atlas_id = 3
+		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
+			$OverworldChunk.area_atlas_id = 1
 	
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
-	
-	# DEBUG: Write global data
-	WorldManager.write_world_data(area_enum, WorldManager.AreaHealth, 90)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

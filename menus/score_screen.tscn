@@ -156,6 +156,7 @@ texture = ExtResource("3_pwhcy")
 [node name="RichTextLabel" type="RichTextLabel" parent="RacingCanvasLayer/InitialsBox"]
 anchors_preset = -1
 anchor_left = -0.333333
+anchor_top = -0.144144
 anchor_right = 0.333334
 anchor_bottom = -0.144144
 offset_left = -56.0002

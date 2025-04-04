@@ -30,7 +30,10 @@ visible = false
 
 [node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
 visible = false
-layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 772.0
+offset_bottom = 75.0
 
 [node name="RunningText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="0"]
 anchors_preset = -1

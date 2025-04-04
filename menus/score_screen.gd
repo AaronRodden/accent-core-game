@@ -151,29 +151,101 @@ func _enter_thread_initials(event: InputEventKey, keystroke : String, total_keys
 			get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
 func _save_writing_data():
+	#if area_enum == 1:
+		#if self.area_comment[0] != "":
+			#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.AreaComments, self.area_comment)
+		#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassage, self.passage)
+		#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		#KeyboardInterface.reset()
+	#if area_enum == 2:
+		#if self.area_comment[0] != "":
+			#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.AreaComments, self.area_comment)
+		#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassage, self.passage)
+		#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		#KeyboardInterface.reset()
+	#if area_enum == 3:
+		#if self.area_comment[0] != "":
+			#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.AreaComments, self.area_comment)
+		#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassage, self.passage)
+		#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		#KeyboardInterface.reset()
+	#if area_enum == 4:
+		#if self.area_comment[0] != "":
+			#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.AreaComments, self.area_comment)
+		#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassage, self.passage)
+		#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		#KeyboardInterface.reset()
 	if area_enum == 1:
 		if self.area_comment[0] != "":
-			WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.AreaComments, self.area_comment)
-		WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassage, self.passage)
-		WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
 		KeyboardInterface.reset()
 	if area_enum == 2:
 		if self.area_comment[0] != "":
-			WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.AreaComments, self.area_comment)
-		WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassage, self.passage)
-		WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_B, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_B, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_B, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
 		KeyboardInterface.reset()
 	if area_enum == 3:
 		if self.area_comment[0] != "":
-			WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.AreaComments, self.area_comment)
-		WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassage, self.passage)
-		WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_C, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_C, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.SADNESS_AREA_C, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
 		KeyboardInterface.reset()
 	if area_enum == 4:
 		if self.area_comment[0] != "":
-			WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.AreaComments, self.area_comment)
-		WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassage, self.passage)
-		WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_A, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_A, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_A, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 5:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_B, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_B, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_B, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 6:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_C, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_C, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.ANGER_AREA_C, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 7:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_A, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_A, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_A, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 8:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_B, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_B, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_B, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 9:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 10:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.JOY_AREA_A, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.JOY_AREA_A, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.JOY_AREA_A, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 11:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.JOY_AREA_B, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.JOY_AREA_B, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.JOY_AREA_B, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
+		KeyboardInterface.reset()
+	if area_enum == 12:
+		if self.area_comment[0] != "":
+			WorldManager.write_world_data(WorldManager.JOY_AREA_C, WorldManager.AreaComments, self.area_comment)
+		WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.CurrAreaPassage, self.passage)
+		WorldManager.write_world_data(WorldManager.JOY_AREA_C, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
 		KeyboardInterface.reset()
 	SignalBus.save_game.emit()
 

@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=13 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dfr5hspp1ynpp" path="res://assets/BrainTypeTempStageSelect.png" id="2_iks6f"]
-[ext_resource type="Texture2D" uid="uid://bcl4qfy3sw4o1" path="res://assets/area_select_oval.png" id="3_yykay"]
+[ext_resource type="Texture2D" uid="uid://cpytlofm3t258" path="res://assets/area_select_oval_sadness.png" id="3_vqr7c"]
 [ext_resource type="PackedScene" uid="uid://cksftjglahnm4" path="res://ui/general_progress_bar.tscn" id="4_6n1vn"]
+[ext_resource type="Texture2D" uid="uid://cf6m2nywwnorl" path="res://assets/area_select_oval_anger.png" id="4_ya3w6"]
+[ext_resource type="Texture2D" uid="uid://c30n5b5hqqx8b" path="res://assets/area_select_oval_fear.png" id="5_b82ao"]
 [ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="5_plca5"]
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="6_bx4uh"]
+[ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -26,6 +29,7 @@ scale = Vector2(0.255587, 0.254707)
 texture = ExtResource("2_iks6f")
 
 [node name="writing-joy" type="Button" parent="."]
+visible = false
 offset_left = 150.0
 offset_top = 85.0
 offset_right = 699.0
@@ -36,6 +40,7 @@ focus_neighbor_bottom = NodePath("../writing-sadness")
 text = "Writing - Joy"
 
 [node name="writing-sadness" type="Button" parent="."]
+visible = false
 offset_left = 150.0
 offset_top = 268.0
 offset_right = 699.0
@@ -46,6 +51,7 @@ focus_neighbor_bottom = NodePath("../writing-fear")
 text = "Writing - Sadness"
 
 [node name="writing-fear" type="Button" parent="."]
+visible = false
 offset_left = 150.0
 offset_top = 435.0
 offset_right = 699.0
@@ -56,6 +62,7 @@ focus_neighbor_bottom = NodePath("../writing-anger")
 text = "Writing - Fear"
 
 [node name="writing-anger" type="Button" parent="."]
+visible = false
 offset_left = 150.0
 offset_top = 590.0
 offset_right = 699.0
@@ -66,6 +73,7 @@ focus_neighbor_bottom = NodePath("../save")
 text = "Writing - Anger"
 
 [node name="racing-joy" type="Button" parent="."]
+visible = false
 offset_left = 1076.0
 offset_top = 85.0
 offset_right = 1625.0
@@ -76,6 +84,7 @@ focus_neighbor_bottom = NodePath("../racing-sadness")
 text = "Racing  - Joy"
 
 [node name="racing-sadness" type="Button" parent="."]
+visible = false
 offset_left = 1076.0
 offset_top = 267.0
 offset_right = 1625.0
@@ -86,6 +95,7 @@ focus_neighbor_bottom = NodePath("../racing-fear")
 text = "Racing  - Sadness"
 
 [node name="racing-fear" type="Button" parent="."]
+visible = false
 offset_left = 1076.0
 offset_top = 430.0
 offset_right = 1625.0
@@ -96,6 +106,7 @@ focus_neighbor_bottom = NodePath("../racing-anger")
 text = "Racing  - Fear"
 
 [node name="racing-anger" type="Button" parent="."]
+visible = false
 offset_left = 1076.0
 offset_top = 588.0
 offset_right = 1625.0
@@ -133,100 +144,88 @@ offset_bottom = 1075.0
 theme_override_font_sizes/normal_font_size = 48
 
 [node name="Selector1" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(770, 670)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("3_vqr7c")
 
 [node name="Selector2" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(599, 564)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("3_vqr7c")
 
 [node name="Selector3" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(598, 426)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("3_vqr7c")
 
 [node name="Selector4" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(817, 294)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("4_ya3w6")
 
 [node name="Selector5" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(869, 149)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("4_ya3w6")
 
 [node name="Selector6" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1052, 290)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("4_ya3w6")
 
 [node name="Selector7" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1282, 236)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("5_b82ao")
 
 [node name="Selector8" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1362, 360)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("5_b82ao")
 
 [node name="Selector9" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1470, 480)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("5_b82ao")
 
 [node name="Selector10" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1570, 642)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("6_fgnsn")
 
 [node name="Selector11" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1357, 610)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("6_fgnsn")
 
 [node name="Selector12" type="Sprite2D" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1146, 664)
 scale = Vector2(0.212243, 0.212243)
-texture = ExtResource("3_yykay")
+texture = ExtResource("6_fgnsn")
 
 [node name="Path1Complete" type="Line2D" parent="."]
 visible = false

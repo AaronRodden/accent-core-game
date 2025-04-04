@@ -25,7 +25,8 @@ playerA = NodePath("../Player")
 player = NodePath("../../Player")
 
 [node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
-layout_mode = 0
+offset_left = 113.0
+offset_right = 885.0
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
 

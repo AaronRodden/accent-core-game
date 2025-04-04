@@ -26,6 +26,7 @@ scale = Vector2(1.49457, 1)
 texture = ExtResource("5_jgp4q")
 
 [node name="InfoText" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 102.0
 offset_top = 662.0
 offset_right = 874.0

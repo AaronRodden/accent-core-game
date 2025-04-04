@@ -1,6 +1,5 @@
 extends Control
 
-# TODO: Health connected to HUD is for demo
 var current_health = 5
 
 # Called when the node enters the scene tree for the first time.

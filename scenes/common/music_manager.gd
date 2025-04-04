@@ -29,30 +29,30 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 			main_music.set_stream(current_song)
 		Global.thought_path_writing:
 			match area_enum:
-				WorldManager.ANGER_AREA:
+				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
 					current_song = load(SONG_DICTIONARY["creative_anger"])
 					main_music.set_stream(current_song)
-				WorldManager.FEAR_AREA:
+				WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
 					current_song = load(SONG_DICTIONARY["creative_fear"])
 					main_music.set_stream(current_song)
-				WorldManager.JOY_AREA:
+				WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
 					current_song = load(SONG_DICTIONARY["creative_joy"])
 					main_music.set_stream(current_song)
-				WorldManager.SADNESS_AREA:
+				WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
 					current_song = load(SONG_DICTIONARY["creative_sadness"])
 					main_music.set_stream(current_song)
 		Global.thought_path_racing:
 			match area_enum:
-				WorldManager.ANGER_AREA:
+				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
 					current_song = load(SONG_DICTIONARY["racing_anger"])
 					main_music.set_stream(current_song)
-				WorldManager.FEAR_AREA:
+				WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
 					current_song = load(SONG_DICTIONARY["racing_fear"])
 					main_music.set_stream(current_song)
-				WorldManager.JOY_AREA:
+				WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
 					current_song = load(SONG_DICTIONARY["racing_joy"])
 					main_music.set_stream(current_song)
-				WorldManager.SADNESS_AREA:
+				WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
 					current_song = load(SONG_DICTIONARY["racing_sadness"])
 					main_music.set_stream(current_song)
 		Global.score_screen:
