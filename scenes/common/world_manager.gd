@@ -63,6 +63,7 @@ const AreaComments = "area_comments"
 
 @export var world_dynamic_data = {
 	"world_data": {
+		"areas_completed" = 0,
 		"player_count" = 0,
 		"play_history" = [],
 	},
@@ -130,6 +131,12 @@ const AreaComments = "area_comments"
 
 func get_initalization_data(area_enum : int):
 	return self.world_initalization_data[area_enum]
+	
+func get_world_data():
+	return self.world_dynamic_data["world_data"]
+
+func update_areas_completed():
+	self.world_dynamic_data["world_data"]["areas_completed"] += 1
 	
 func get_dynamic_data(area_enum : int):
 	return self.world_dynamic_data[area_enum]

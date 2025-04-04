@@ -45,6 +45,8 @@ func _update_writing_progress_bar(progress):
 		$CanvasLayer/TypingInterface.minimum_passage_size_flag = true
 
 func _thought_path_complete(passage : String):
+	# Update World Dynamic Data
+	WorldManager.update_areas_completed()
 	# Change to score scene
 	score_scene.load_score_screen(Global.WRITING_MODE, passage, area_enum)
 	Global.WORLD_NODE.add_child(score_scene)

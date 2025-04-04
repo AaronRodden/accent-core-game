@@ -6,12 +6,15 @@ var thought_writing_scene = preload("res://scenes/writing/thought_path_writing.t
 var thought_racing_scene = preload("res://scenes/racing/thought_path_racing.tscn").instantiate()
 
 @onready var current_selector = $Selector1
+var areas_completed = 0
 var selector_number = 1
+var selector_max = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_level_select)
+	SignalBus.load_update.connect(_update_stage_select)
 	
 	# Grab World Node again before moving between game scenes
 	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
@@ -19,26 +22,30 @@ func _ready():
 	
 	$VersionNumberDisplay.text = Global.VERSION_NUMBER
 	
+	# Render stage select according to dynamic data
+	_update_stage_select()
+	
 	current_selector.modulate.a = 119
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
 	if Input.is_action_just_pressed("down"):
 		selector_number -= 1
-		selector_number = clamp(selector_number, 1, 12)
+		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
 		current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
 		current_selector.modulate.a = 1
+		$NeuronCursor.position = current_selector.position
 
 	if Input.is_action_just_pressed("up"):
 		selector_number += 1
-		selector_number = clamp(selector_number, 1, 12)
+		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
 		current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
 		current_selector.modulate.a = 1
+		$NeuronCursor.position = current_selector.position
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
@@ -173,7 +180,35 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 		Global.WORLD_NODE.add_child(thought_racing_scene)
 		get_node("/root/Main/World/StageSelect").queue_free()
 		SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.current_player_area)
+
+func _update_stage_select():
+	var areas_completed = WorldManager.get_world_data()["areas_completed"]
+	if areas_completed == 0:
+		var incomplete_path_str = "Path" + str(1) + "Incomplete"
+		var incomplete_path_node = get_node(incomplete_path_str)
+		incomplete_path_node.visible = true
 		
+		var selector_node = get_node(("Selector" + str(1)))
+		selector_node.visible = true
+	else:
+		for level in range(1, areas_completed+1):
+			var complete_path_str = "Path" + str(level) + "Complete"
+			var complete_path_node = get_node(complete_path_str)
+			complete_path_node.visible = true
+			
+			var selector_node = get_node(("Selector" + str(level)))
+			selector_node.visible = true
+			
+		var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
+		var incomplete_path_node = get_node(incomplete_path_str)
+		incomplete_path_node.visible = true
+		
+		var selector_node = get_node(("Selector" + str(areas_completed + 1)))
+		selector_node.visible = true
+			
+	self.areas_completed = areas_completed
+	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
+
 #func _on_writingjoy_pressed():
 	#WorldManager.current_player_area = WorldManager.JOY_AREA
 	#thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))

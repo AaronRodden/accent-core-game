@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=25 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dfr5hspp1ynpp" path="res://assets/BrainTypeTempStageSelect.png" id="2_iks6f"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="5_plca5"]
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="6_bx4uh"]
 [ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
+[ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -18,6 +19,50 @@ point_count = 2
 
 [sub_resource type="Curve" id="Curve_dqnvf"]
 _data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_rk442"]
+_data = [Vector2(0.612, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_sw4yq"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_e8mwy"]
+_data = [Vector2(0.824, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_tp7hb"]
+_data = [Vector2(0.48, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_hoytd"]
+_data = [Vector2(0.94, 0.989094), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_v645b"]
+_data = [Vector2(0.812, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_5ctrm"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_jpugk"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_yhu86"]
+_data = [Vector2(0.512, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_q5tms"]
+_data = [Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Curve" id="Curve_54870"]
+_data = [Vector2(0.888, 1), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [node name="StageSelect" type="Node"]
@@ -144,6 +189,7 @@ offset_bottom = 1075.0
 theme_override_font_sizes/normal_font_size = 48
 
 [node name="Selector1" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(770, 670)
@@ -151,6 +197,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("3_vqr7c")
 
 [node name="Selector2" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(599, 564)
@@ -158,6 +205,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("3_vqr7c")
 
 [node name="Selector3" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(598, 426)
@@ -165,6 +213,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("3_vqr7c")
 
 [node name="Selector4" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(817, 294)
@@ -172,6 +221,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("4_ya3w6")
 
 [node name="Selector5" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(869, 149)
@@ -179,6 +229,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("4_ya3w6")
 
 [node name="Selector6" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1052, 290)
@@ -186,6 +237,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("4_ya3w6")
 
 [node name="Selector7" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1282, 236)
@@ -193,6 +245,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("5_b82ao")
 
 [node name="Selector8" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1362, 360)
@@ -200,6 +253,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("5_b82ao")
 
 [node name="Selector9" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1470, 480)
@@ -207,6 +261,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("5_b82ao")
 
 [node name="Selector10" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1570, 642)
@@ -214,6 +269,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("6_fgnsn")
 
 [node name="Selector11" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1357, 610)
@@ -221,6 +277,7 @@ scale = Vector2(0.212243, 0.212243)
 texture = ExtResource("6_fgnsn")
 
 [node name="Selector12" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.466667)
 material = SubResource("ShaderMaterial_3s68k")
 position = Vector2(1146, 664)
@@ -237,10 +294,9 @@ joint_mode = 1
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Path1Incomplete" type="Node" parent="."]
+[node name="Path1Incomplete" type="Node2D" parent="."]
 
 [node name="Line2D2" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(778, 675)
 points = PackedVector2Array(-1, -3, -13.0857, -7.20373, -24, -11)
 default_color = Color(0, 0, 0, 1)
@@ -249,7 +305,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D3" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(737, 661)
 points = PackedVector2Array(-1, -3, -13.0857, -7.20373, -24, -11)
 default_color = Color(0, 0, 0, 1)
@@ -258,7 +313,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D4" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(699, 650)
 points = PackedVector2Array(-1, -3, -14, -7, -24, -11)
 default_color = Color(0, 0, 0, 1)
@@ -267,7 +321,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D5" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(660, 634)
 points = PackedVector2Array(-1, -3, -11, -9, -20, -16)
 default_color = Color(0, 0, 0, 1)
@@ -276,7 +329,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D6" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(629, 608)
 points = PackedVector2Array(-2, -3, -9, -9, -17, -17)
 default_color = Color(0, 0, 0, 1)
@@ -285,7 +337,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D7" type="Line2D" parent="Path1Incomplete"]
-visible = false
 position = Vector2(608, 577)
 points = PackedVector2Array(-4, -1, -10, -8, -17, -17)
 default_color = Color(0, 0, 0, 1)
@@ -302,10 +353,10 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="Path2Incomplete" type="Node" parent="."]
+[node name="Path2Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path2Incomplete"]
-visible = false
 position = Vector2(592, 562)
 points = PackedVector2Array(-11, -7, -20, -12)
 default_color = Color(0, 0, 0, 1)
@@ -313,7 +364,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D2" type="Line2D" parent="Path2Incomplete"]
-visible = false
 position = Vector2(560, 540)
 points = PackedVector2Array(0, -1, -2.68235, -4.12941, -6, -8, -9, -18)
 default_color = Color(0, 0, 0, 1)
@@ -321,7 +371,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D3" type="Line2D" parent="Path2Incomplete"]
-visible = false
 position = Vector2(548, 508)
 points = PackedVector2Array(0, -1, 0, -9, 1, -18)
 default_color = Color(0, 0, 0, 1)
@@ -329,7 +378,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D4" type="Line2D" parent="Path2Incomplete"]
-visible = false
 position = Vector2(556, 477)
 points = PackedVector2Array(0, -1, 4, -9, 9, -15)
 default_color = Color(0, 0, 0, 1)
@@ -337,9 +385,649 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Line2D5" type="Line2D" parent="Path2Incomplete"]
-visible = false
 position = Vector2(580, 448)
 points = PackedVector2Array(-2, -1, 4, -9, 9, -15)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path3Complete" type="Line2D" parent="."]
+visible = false
+position = Vector2(596, 418)
+points = PackedVector2Array(-6, 13, 8, -7, 37, -17, 59, -25, 67, -43, 76, -58, 93, -68, 113, -70, 125, -70, 141, -74, 153, -83, 159, -93, 165, -103, 176, -115, 190, -123, 207, -128, 224, -131)
+width_curve = SubResource("Curve_rk442")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path3Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path3Incomplete"]
+points = PackedVector2Array(596, 422, 604, 413, 610, 409, 620, 405)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(41, -22)
+points = PackedVector2Array(596, 422, 605, 419, 612, 415)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(61, -48)
+points = PackedVector2Array(601, 425, 605, 419, 609, 413)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(82, -72)
+points = PackedVector2Array(601, 425, 611, 421, 621, 420)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(123, -78)
+points = PackedVector2Array(601, 425, 612, 422, 620, 418)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(153, -99)
+points = PackedVector2Array(601, 425, 606, 417, 612, 410)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(176, -125)
+points = PackedVector2Array(601, 425, 609, 420, 616, 417)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D8" type="Line2D" parent="Path3Incomplete"]
+position = Vector2(207, -136)
+points = PackedVector2Array(601, 425, 611, 423, 618, 422)
+width_curve = SubResource("Curve_sw4yq")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path4Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(820, 287, 811, 257, 841, 230, 813, 209, 862, 192, 844, 160, 862, 139)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Path4Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path4Incomplete"]
+points = PackedVector2Array(822, 273, 811, 257)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(3, -37)
+points = PackedVector2Array(819, 283, 838, 267)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(-5, -57)
+points = PackedVector2Array(835, 278, 826, 267)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(-4, -76)
+points = PackedVector2Array(834, 278, 852, 272)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(29, -86)
+points = PackedVector2Array(831, 275, 826, 265)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(16, -109)
+points = PackedVector2Array(833, 277, 828, 268)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path4Incomplete"]
+position = Vector2(20, -128)
+points = PackedVector2Array(833, 277, 842, 267)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path5Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(858, 139, 875.085, 140.464, 912, 152, 907, 178, 940, 194, 943, 239, 973, 245, 985, 281, 1014, 274, 1037, 285, 1061, 286)
+default_color = Color(0, 0, 0, 1)
+
+[node name="Path5Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path5Incomplete"]
+points = PackedVector2Array(869, 140, 887, 144)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(36, 10)
+points = PackedVector2Array(865, 138, 878, 142)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(45, 27)
+points = PackedVector2Array(865, 138, 862, 151)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(55, 47)
+points = PackedVector2Array(865, 138, 876, 143)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(76, 60)
+points = PackedVector2Array(865, 138, 865, 147)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(77, 85)
+points = PackedVector2Array(865, 138, 865, 147)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(86, 103)
+points = PackedVector2Array(865, 138, 876, 140)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D8" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(110, 108)
+points = PackedVector2Array(865, 138, 868, 150)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D9" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(117, 131)
+points = PackedVector2Array(865, 141, 874, 148)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D10" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(142, 135)
+points = PackedVector2Array(865, 141, 876, 139)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D11" type="Line2D" parent="Path5Incomplete"]
+position = Vector2(167, 141)
+points = PackedVector2Array(865, 141, 877, 145)
+width_curve = SubResource("Curve_e8mwy")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path6Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1057, 285, 1079, 295, 1098, 301, 1117, 302, 1135, 303, 1162, 301, 1183, 297, 1209, 289, 1229, 278, 1256, 262, 1273, 246, 1282, 235)
+width_curve = SubResource("Curve_tp7hb")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path6Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path6Incomplete"]
+points = PackedVector2Array(1059, 287, 1088, 298)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(45, 13)
+points = PackedVector2Array(1059, 288, 1081, 289)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(84, 13)
+points = PackedVector2Array(1061, 289, 1085, 287)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(125, 7)
+points = PackedVector2Array(1061, 289, 1080, 284)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(159, -7)
+points = PackedVector2Array(1061, 289, 1078, 281)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(190, -25)
+points = PackedVector2Array(1061, 289, 1073, 281)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path6Incomplete"]
+position = Vector2(213, -45)
+points = PackedVector2Array(1061, 289, 1069, 280)
+width_curve = SubResource("Curve_hoytd")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path7Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1282, 234, 1299, 239, 1312, 243, 1314, 250, 1311, 259, 1301, 266, 1288, 279, 1279, 287, 1270, 295, 1268, 307, 1270, 318, 1279, 325, 1289, 327, 1300, 330, 1312, 332, 1323, 337, 1323, 343, 1324, 349, 1327, 354, 1334, 357, 1340, 357, 1347, 358, 1353, 358, 1359, 359)
+width_curve = SubResource("Curve_v645b")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path7Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(0, -2)
+points = PackedVector2Array(1294, 238, 1312, 244)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(19, 18)
+points = PackedVector2Array(1294, 238, 1284, 247)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(-2, 36)
+points = PackedVector2Array(1294, 238, 1284, 247)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(-23, 56)
+points = PackedVector2Array(1294, 238, 1291, 248)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(-24, 81)
+points = PackedVector2Array(1294, 238, 1305, 245)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(2, 91)
+points = PackedVector2Array(1294, 238, 1306, 241)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(27, 99)
+points = PackedVector2Array(1294, 238, 1299, 246)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D8" type="Line2D" parent="Path7Incomplete"]
+position = Vector2(43, 117)
+points = PackedVector2Array(1294, 238, 1305, 242)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path8Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1359, 360, 1381, 368, 1399, 368, 1423, 375, 1432, 384, 1431, 394, 1425, 400, 1413, 408, 1404, 413, 1397, 419, 1392, 426, 1394, 437, 1399, 445, 1416, 449, 1434, 448, 1453, 448, 1464, 452, 1470, 455, 1477, 461, 1478, 466, 1478, 473, 1479, 477)
+width_curve = SubResource("Curve_5ctrm")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path8Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path8Incomplete"]
+points = PackedVector2Array(1363, 363, 1386, 368)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(39, 6)
+points = PackedVector2Array(1363, 363, 1378, 367)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(67, 19)
+points = PackedVector2Array(1363, 363, 1364, 375)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(57, 41)
+points = PackedVector2Array(1363, 363, 1351, 370)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(31, 58)
+points = PackedVector2Array(1363, 363, 1362, 374)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(37, 82)
+points = PackedVector2Array(1363, 363, 1377, 367)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(68, 85)
+points = PackedVector2Array(1363, 363, 1377, 363)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D8" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(97, 88)
+points = PackedVector2Array(1363, 363, 1375, 369)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D9" type="Line2D" parent="Path8Incomplete"]
+position = Vector2(116, 106)
+points = PackedVector2Array(1363, 363, 1363, 373)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path9Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1479, 477, 1503, 493, 1532, 495, 1565, 502, 1596, 511, 1626, 527, 1646, 552, 1649, 575, 1648, 596, 1644, 614, 1633, 628, 1616, 636, 1590, 642, 1567, 646)
+width_curve = SubResource("Curve_jpugk")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path9Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path9Incomplete"]
+points = PackedVector2Array(1484, 487, 1506, 496)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(40, 8)
+points = PackedVector2Array(1484, 487, 1501, 490)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(73, 14)
+points = PackedVector2Array(1484, 487, 1502, 491)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(106, 23)
+points = PackedVector2Array(1484, 487, 1501, 494)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(137, 37)
+points = PackedVector2Array(1484, 487, 1497, 499)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(159, 62)
+points = PackedVector2Array(1484, 487, 1490, 500)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(165, 88)
+points = PackedVector2Array(1484, 487, 1483, 502)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D8" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(161, 119)
+points = PackedVector2Array(1484, 487, 1478, 501)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D9" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(146, 143)
+points = PackedVector2Array(1484, 487, 1471, 493)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D10" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(118, 152)
+points = PackedVector2Array(1484, 487, 1470, 491)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D11" type="Line2D" parent="Path9Incomplete"]
+position = Vector2(89, 158)
+points = PackedVector2Array(1484, 487, 1472, 489)
+width_curve = SubResource("Curve_yhu86")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path10Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1565, 645, 1538, 641, 1518, 633, 1503, 624, 1486, 616, 1468, 612, 1448, 609, 1428, 606, 1389, 606, 1372, 606, 1355, 605)
+width_curve = SubResource("Curve_q5tms")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path10Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path10Incomplete"]
+points = PackedVector2Array(1547, 646, 1525, 638)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path10Incomplete"]
+position = Vector2(-34, -16)
+points = PackedVector2Array(1547, 646, 1530, 637)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path10Incomplete"]
+position = Vector2(-65, -31)
+points = PackedVector2Array(1547, 646, 1528, 642)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path10Incomplete"]
+position = Vector2(-100, -37)
+points = PackedVector2Array(1547, 646, 1529, 643)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path10Incomplete"]
+position = Vector2(-134, -40)
+points = PackedVector2Array(1547, 646, 1528, 646)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path10Incomplete"]
+position = Vector2(-168, -40)
+points = PackedVector2Array(1547, 646, 1530, 645)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path11Complete" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(1354, 605, 1335, 609, 1314, 613, 1294, 619, 1279, 623, 1262, 629, 1252, 631, 1239, 633, 1225, 633, 1210, 637, 1199, 641, 1189, 648, 1174, 652, 1159, 656, 1147, 659, 1137, 662)
+width_curve = SubResource("Curve_54870")
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Path11Incomplete" type="Node2D" parent="."]
+visible = false
+
+[node name="Line2D" type="Line2D" parent="Path11Incomplete"]
+points = PackedVector2Array(1348, 606, 1324, 611)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D2" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-41, 9)
+points = PackedVector2Array(1348, 606, 1326, 612)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D3" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-77, 20)
+points = PackedVector2Array(1348, 606, 1327, 611)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D4" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-112, 26)
+points = PackedVector2Array(1348, 606, 1331, 608)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D5" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-145, 33)
+points = PackedVector2Array(1348, 606, 1335, 614)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D6" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-173, 45)
+points = PackedVector2Array(1348, 606, 1331, 612)
+default_color = Color(0, 0, 0, 1)
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="Line2D7" type="Line2D" parent="Path11Incomplete"]
+position = Vector2(-204, 56)
+points = PackedVector2Array(1348, 606, 1331, 612)
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
@@ -349,6 +1037,7 @@ offset_left = 59.0
 offset_top = 747.0
 offset_right = 5267.0
 offset_bottom = 71.0
+value = 10.0
 
 [node name="PassageBox" type="Sprite2D" parent="."]
 visible = false
@@ -380,6 +1069,11 @@ theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "0 Players Today"
 
+[node name="NeuronCursor" type="Sprite2D" parent="."]
+position = Vector2(760, 656)
+scale = Vector2(0.144725, 0.144725)
+texture = ExtResource("10_0xwyn")
+
 [connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
 [connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]
 [connection signal="pressed" from="writing-fear" to="." method="_on_writingfear_pressed"]
@@ -390,3 +1084,5 @@ text = "0 Players Today"
 [connection signal="pressed" from="racing-anger" to="." method="_on_racinganger_pressed"]
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="load" to="." method="_on_load_pressed"]
+
+[editable path="GeneralProgressBar"]

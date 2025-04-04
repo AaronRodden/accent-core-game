@@ -22,6 +22,8 @@ func load_game():
 	var saved_game : SavedGame = load("user://savegame.tres") as SavedGame
 	
 	WorldManager.world_dynamic_data = saved_game.world_dynamic_data
+	
+	SignalBus.load_update.emit()
 
 
 func save_session(session_dictionary : Dictionary):

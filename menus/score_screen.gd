@@ -151,30 +151,6 @@ func _enter_thread_initials(event: InputEventKey, keystroke : String, total_keys
 			get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	
 func _save_writing_data():
-	#if area_enum == 1:
-		#if self.area_comment[0] != "":
-			#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.AreaComments, self.area_comment)
-		#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassage, self.passage)
-		#WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
-		#KeyboardInterface.reset()
-	#if area_enum == 2:
-		#if self.area_comment[0] != "":
-			#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.AreaComments, self.area_comment)
-		#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassage, self.passage)
-		#WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
-		#KeyboardInterface.reset()
-	#if area_enum == 3:
-		#if self.area_comment[0] != "":
-			#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.AreaComments, self.area_comment)
-		#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassage, self.passage)
-		#WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
-		#KeyboardInterface.reset()
-	#if area_enum == 4:
-		#if self.area_comment[0] != "":
-			#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.AreaComments, self.area_comment)
-		#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassage, self.passage)
-		#WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
-		#KeyboardInterface.reset()
 	if area_enum == 1:
 		if self.area_comment[0] != "":
 			WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.AreaComments, self.area_comment)
@@ -252,15 +228,31 @@ func _save_writing_data():
 func _save_new_comment():
 	if self.area_comment[0] != "":
 		if area_enum == 1:
-			WorldManager.write_world_data(WorldManager.JOY_AREA, WorldManager.AreaComments, self.area_comment)
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.AreaComments, self.area_comment)
 		if area_enum == 2:
-			WorldManager.write_world_data(WorldManager.SADNESS_AREA, WorldManager.AreaComments, self.area_comment)
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_B, WorldManager.AreaComments, self.area_comment)
 		if area_enum == 3:
-			WorldManager.write_world_data(WorldManager.FEAR_AREA, WorldManager.AreaComments, self.area_comment)
+			WorldManager.write_world_data(WorldManager.SADNESS_AREA_C, WorldManager.AreaComments, self.area_comment)
 		if area_enum == 4:
-			WorldManager.write_world_data(WorldManager.ANGER_AREA, WorldManager.AreaComments, self.area_comment)
-		SignalBus.save_game.emit()
-		
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_A, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 5:
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_B, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 6:
+			WorldManager.write_world_data(WorldManager.ANGER_AREA_C, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 7:
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_A, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 8:
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_B, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 9:
+			WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 10:
+			WorldManager.write_world_data(WorldManager.JOY_AREA_A, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 11:
+			WorldManager.write_world_data(WorldManager.JOY_AREA_B, WorldManager.AreaComments, self.area_comment)
+		if area_enum == 12:
+			WorldManager.write_world_data(WorldManager.JOY_AREA_C, WorldManager.AreaComments, self.area_comment)
+	SignalBus.save_game.emit()
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("down"):
