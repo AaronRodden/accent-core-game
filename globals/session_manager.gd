@@ -39,6 +39,7 @@ func start_session():
 	idle_timer.set_wait_time(IDLE_SECONDS)
 	idle_timer.one_shot = true
 	idle_timer.start()
+	
 
 func end_session():
 	active_session = false
@@ -53,6 +54,25 @@ func end_session():
 	var unix_end = Time.get_unix_time_from_datetime_dict(end_timestamp)
 	var session_length = unix_end - unix_start
 	
+	
+	var end_time_string = Time.get_time_string_from_unix_time(unix_end)
+	end_time_string = end_time_string.left(end_time_string.length() - 3)
+	var hour = int(end_time_string.substr(0, 2))
+	if hour == 12:
+		end_time_string += "PM"
+	if hour < 12:
+		end_time_string += "AM"
+	elif hour > 12:
+		var converted_hour = hour - 12
+		end_time_string = end_time_string.erase(0, 2)
+		end_time_string = end_time_string.insert(0, str(converted_hour))
+		end_time_string += "PM"
+	
+	# Add to world data
+	# TODO: Need to get player initial data to here
+	var play_feed_string = end_time_string + " - " + str(keystroke_count) + " keystrokes pressed"
+	WorldManager.update_player_count()
+	WorldManager.update_play_history(play_feed_string)
 	
 	var session_dict = {
 		"session_start" : start_timestamp_string,

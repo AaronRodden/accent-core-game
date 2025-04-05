@@ -1050,21 +1050,18 @@ position = Vector2(-591, -181)
 texture = ExtResource("6_bx4uh")
 
 [node name="GameHistory" type="RichTextLabel" parent="."]
-visible = false
-offset_right = 383.0
-offset_bottom = 307.0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 407.0
+offset_bottom = 654.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 36
-text = "11:15 - ATR raced through passage 1 11:13 - ATR raced through passage 1 
-11:02 - JTR wrote a 67 word passage
-"
+theme_override_font_sizes/normal_font_size = 24
 
 [node name="PlayerCount" type="RichTextLabel" parent="."]
-visible = false
-offset_left = 1623.0
-offset_top = 7.0
-offset_right = 1912.0
-offset_bottom = 83.0
+offset_left = 1618.0
+offset_top = 20.0
+offset_right = 1907.0
+offset_bottom = 96.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 36
 text = "0 Players Today"

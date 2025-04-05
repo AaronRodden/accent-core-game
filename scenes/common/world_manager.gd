@@ -13,8 +13,12 @@ enum {
 
 # Initalization data key constants
 const AtlasID = "overworld_chunk_atlas_id"
+const Prompt = "prompt"
 
 # Dynamic data key constants
+const AreasCompleted = "areas_completed"
+const PlayerCount = "player_count"
+const PlayHistory = "play_history"
 const AreaHealth = "area_health"
 const CurrAreaPassage = "current_area_passage"
 const CurrAreaPassageAuthor = "current_area_passage_author"
@@ -25,39 +29,51 @@ const AreaComments = "area_comments"
 @export var world_initalization_data = {
 	self.JOY_AREA_A : {
 		self.AtlasID : 1,
+		self.Prompt : "What are you happy about?\nIt is always good to share the positives!",
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
+		self.Prompt : "Write about the joy of the journey, and what it means to reach the destination!",
 	},
 	self.JOY_AREA_C : {
 		self.AtlasID : 1,
+		self.Prompt : "",
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
+		self.Prompt : "What are you sad about?\nMaybe someone shares similar feelings.",
 	},
 	self.SADNESS_AREA_B : {
 		self.AtlasID : 2,
+		self.Prompt : "Share a time you were sad.\nMaybe someone can relate.",
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
+		self.Prompt : "Write a poem about how sadness can turn into anger.\nYour creativity just might fuel someone elses!",
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
+		self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
+		self.Prompt : "Is fear something to be conquered or to be lived with?",
 	},
 	self.FEAR_AREA_C : {
 		self.AtlasID : 3,
+		self.Prompt : "Write a poem about how fear and joy interact.\nYour creativity might just fuel someone elses!",
 	},
 	self.ANGER_AREA_A : {
 		self.AtlasID : 4,
+		self.Prompt : "What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
 	},
 	self.ANGER_AREA_B : {
 		self.AtlasID : 4,
+		self.Prompt : "What made you angry this year?",
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
+		self.Prompt : "Write a poem about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
 	},
 }
 
@@ -132,11 +148,20 @@ const AreaComments = "area_comments"
 func get_initalization_data(area_enum : int):
 	return self.world_initalization_data[area_enum]
 	
-func get_world_data():
-	return self.world_dynamic_data["world_data"]
+func get_world_data(key = null):
+	if key != null:
+		return self.world_dynamic_data["world_data"][key]
+	else:
+		return self.world_dynamic_data["world_data"]
 
 func update_areas_completed():
 	self.world_dynamic_data["world_data"]["areas_completed"] += 1
+	
+func update_player_count():
+	self.world_dynamic_data["world_data"]["player_count"] += 1
+	
+func update_play_history(play_feed_string : String):
+	self.world_dynamic_data["world_data"]["play_history"].append(play_feed_string)
 	
 func get_dynamic_data(area_enum : int):
 	return self.world_dynamic_data[area_enum]

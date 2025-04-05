@@ -49,6 +49,12 @@ visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_u7i4i")]
 
+[node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
+offset_left = 96.0
+offset_top = 648.0
+offset_right = 5304.0
+offset_bottom = -28.0
+
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/TypingInterface"]
 [editable path="CanvasLayer/HUD"]

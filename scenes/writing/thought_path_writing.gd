@@ -24,6 +24,9 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 			$OverworldChunk.area_atlas_id = 1
 	
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
+	
+	var area_init_data = WorldManager.get_initalization_data(area_enum)
+	$CanvasLayer/TypingInterface/InfoText.text = area_init_data[WorldManager.Prompt]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

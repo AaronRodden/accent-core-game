@@ -21,21 +21,32 @@ playerA = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
+offset_top = -64.0
+offset_bottom = -64.0
+
+[node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
+offset_left = 911.0
+offset_top = 650.0
+offset_right = 6119.0
+offset_bottom = -26.0
+
 [node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_1fks0")]
 player = NodePath("../../Player")
 
+[node name="InfoBox" parent="CanvasLayer/TypingInterface" index="0"]
+position = Vector2(485.501, 667.75)
+scale = Vector2(1.4837, 1.67117)
+
 [node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
-offset_left = 113.0
-offset_right = 885.0
-
-[node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
-
-[node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
-offset_left = 80.0
-offset_top = 528.0
-offset_right = 5288.0
-offset_bottom = -148.0
+offset_left = 120.0
+offset_top = 608.0
+offset_right = 868.0
+offset_bottom = 745.0
+theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/bold_font_size = 42
+text = "[b]Write about...[/b]"
 
 [editable path="OverworldChunk"]
-[editable path="CanvasLayer/TypingInterface"]
 [editable path="CanvasLayer/HUD"]
+[editable path="CanvasLayer/TypingInterface"]

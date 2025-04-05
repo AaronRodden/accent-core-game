@@ -15,6 +15,7 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_level_select)
 	SignalBus.load_update.connect(_update_stage_select)
+	SignalBus.save_session.connect(_update_world_data_text)
 	
 	# Grab World Node again before moving between game scenes
 	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
@@ -208,6 +209,18 @@ func _update_stage_select():
 			
 	self.areas_completed = areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
+	
+	_update_world_data_text()
+	
+func _update_world_data_text(session_dict = null):
+	# Update player count
+	var player_count = WorldManager.get_world_data(WorldManager.PlayerCount)
+	$PlayerCount.text = str(player_count) + " players today"
+	# Update play feed
+	var play_history_list = WorldManager.get_world_data(WorldManager.PlayHistory)
+	for play_feed_string in play_history_list:
+		if not $GameHistory.text.contains(play_feed_string):
+			$GameHistory.text += play_feed_string + "\n"
 
 #func _on_writingjoy_pressed():
 	#WorldManager.current_player_area = WorldManager.JOY_AREA
