@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=26 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dfr5hspp1ynpp" path="res://assets/BrainTypeTempStageSelect.png" id="2_iks6f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="6_bx4uh"]
 [ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
 [ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
+[ext_resource type="Texture2D" uid="uid://ctwdd38xig0y2" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -160,26 +161,6 @@ focus_neighbor_left = NodePath("../writing-anger")
 focus_neighbor_top = NodePath("../racing-fear")
 focus_neighbor_bottom = NodePath("../load")
 text = "Racing  - Anger"
-
-[node name="save" type="Button" parent="."]
-offset_left = 388.0
-offset_top = 908.0
-offset_right = 937.0
-offset_bottom = 996.0
-focus_neighbor_top = NodePath("../writing-anger")
-focus_neighbor_right = NodePath("../load")
-focus_neighbor_bottom = NodePath("../writing-joy")
-text = "save"
-
-[node name="load" type="Button" parent="."]
-offset_left = 1023.0
-offset_top = 908.0
-offset_right = 1572.0
-offset_bottom = 996.0
-focus_neighbor_left = NodePath("../save")
-focus_neighbor_top = NodePath("../racing-anger")
-focus_neighbor_bottom = NodePath("../racing-joy")
-text = "load"
 
 [node name="VersionNumberDisplay" type="RichTextLabel" parent="."]
 offset_left = 1784.0
@@ -1034,10 +1015,32 @@ end_cap_mode = 2
 
 [node name="GeneralProgressBar" parent="." instance=ExtResource("4_6n1vn")]
 offset_left = 59.0
-offset_top = 747.0
+offset_top = 902.0
 offset_right = 5267.0
-offset_bottom = 71.0
+offset_bottom = 226.0
 value = 10.0
+
+[node name="save" type="Button" parent="."]
+visible = false
+offset_left = 388.0
+offset_top = 908.0
+offset_right = 937.0
+offset_bottom = 996.0
+focus_neighbor_top = NodePath("../writing-anger")
+focus_neighbor_right = NodePath("../load")
+focus_neighbor_bottom = NodePath("../writing-joy")
+text = "save"
+
+[node name="load" type="Button" parent="."]
+visible = false
+offset_left = 1023.0
+offset_top = 908.0
+offset_right = 1572.0
+offset_bottom = 996.0
+focus_neighbor_left = NodePath("../save")
+focus_neighbor_top = NodePath("../racing-anger")
+focus_neighbor_bottom = NodePath("../racing-joy")
+text = "load"
 
 [node name="PassageBox" type="Sprite2D" parent="."]
 visible = false
@@ -1070,6 +1073,51 @@ text = "0 Players Today"
 position = Vector2(760, 656)
 scale = Vector2(0.144725, 0.144725)
 texture = ExtResource("10_0xwyn")
+
+[node name="InfoBox" type="Sprite2D" parent="."]
+position = Vector2(992, 827)
+scale = Vector2(1.19369, 1.19369)
+texture = ExtResource("6_bx4uh")
+
+[node name="InfoText" type="RichTextLabel" parent="."]
+offset_left = 698.0
+offset_top = 778.0
+offset_right = 1293.0
+offset_bottom = 872.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]Press Enter, to type a passage! Go to the end of the path to write a new one!"
+
+[node name="ArrowKeyInfoBox" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(286, 760.875)
+scale = Vector2(0.525362, 1.19144)
+texture = ExtResource("6_bx4uh")
+
+[node name="ArrowKeyInfoText" type="RichTextLabel" parent="."]
+visible = false
+offset_left = 155.0
+offset_top = 708.0
+offset_right = 411.0
+offset_bottom = 806.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]Move between areas"
+
+[node name="ArrowKeyUpTip" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(87.5938, 741.594)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("11_6jod1")
+
+[node name="ArrowKeyDownTip" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(88, 744)
+rotation = 3.14159
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("11_6jod1")
 
 [connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
 [connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]

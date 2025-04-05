@@ -52,7 +52,13 @@ func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var keystroke = KeyboardInterface.handle_input_event(event)
 		
+		
 func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: int):
+	# NOTE: Demo Code?
+	if keystroke == "M":
+		$save.visible = !($save.visible)
+		$load.visible = !($load.visible)
+	
 	if keystroke != KeyboardInterface.Enter:
 		return
 		
@@ -209,6 +215,13 @@ func _update_stage_select():
 			
 	self.areas_completed = areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
+	
+	# NOTE: Demo Code?
+	if areas_completed > 0:
+		$ArrowKeyInfoBox.visible = true
+		$ArrowKeyInfoText.visible = true
+		$ArrowKeyUpTip.visible = true
+		$ArrowKeyDownTip.visible = true
 	
 	_update_world_data_text()
 	
