@@ -1,6 +1,6 @@
 extends Node
 
-const MINIMUM_WORD_COUNT = 3
+const MINIMUM_WORD_COUNT = 34
 
 var area_enum : int
 
@@ -27,6 +27,8 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	
 	var area_init_data = WorldManager.get_initalization_data(area_enum)
 	$CanvasLayer/TypingInterface/InfoText.text = area_init_data[WorldManager.Prompt]
+	
+	# TODO: Need flow / way to pick character color before hand and pass that info to assets that need to know! 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

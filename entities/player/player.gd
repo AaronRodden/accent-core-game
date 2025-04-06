@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 @export var running_partner : CharacterBody2D
 @export var typing_interface : Control
+var NeuronSprite : AnimatedSprite2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const KEYBOARD_SFX = ["res://assets/sfx/K1.wav", "res://assets/sfx/K2.wav", "res://assets/sfx/K3.wav"]
+const KEYBOARD_SFX = ["res://assets/sfx/Kb1.wav", "res://assets/sfx/Kb2.wav", "res://assets/sfx/Kb3.wav"]
 
 var player_locked = false
 
@@ -26,12 +27,31 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_hit.connect(_player_hit)
 	
+	var random_color = randi_range(1, 5)
+	match random_color:
+		1:
+			$NeuronSpriteBlue.visible = true
+			NeuronSprite = $NeuronSpriteBlue
+		2:
+			$AnimatedSpritePurple.visible = true
+			NeuronSprite = $AnimatedSpritePurple
+		3:
+			$AnimatedSpriteGreen.visible = true
+			NeuronSprite = $AnimatedSpriteGreen
+		4:
+			$AnimatedSpriteRed.visible = true
+			NeuronSprite = $AnimatedSpriteRed
+		5:
+			$AnimatedSpriteYellow.visible = true
+			NeuronSprite = $AnimatedSpriteYellow
+	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		# TODO: More sophisticated sound selection implementation?
 		var random_key_sfx = load(KEYBOARD_SFX.pick_random())
 		$KeyboardFx.set_stream(random_key_sfx)
 		$KeyboardFx.play()
+		NeuronSprite.play()
 		var keystroke = KeyboardInterface.handle_input_event(event)
 		if self.game_stance == "writing":
 			writing_move(event, keystroke)

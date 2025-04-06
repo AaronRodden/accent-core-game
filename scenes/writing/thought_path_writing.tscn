@@ -43,7 +43,7 @@ offset_left = 120.0
 offset_top = 608.0
 offset_right = 868.0
 offset_bottom = 745.0
-theme_override_font_sizes/normal_font_size = 36
+theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 42
 text = "[b]Write about...[/b]"
 

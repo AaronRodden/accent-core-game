@@ -66,6 +66,7 @@ theme_override_font_sizes/normal_font_size = 48
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
+visible = false
 offset_left = -64.0
 offset_top = 16.0
 offset_right = -32.0
@@ -74,6 +75,7 @@ color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
+visible = false
 offset_left = -23.0
 offset_top = 16.0
 offset_right = 9.0
@@ -82,6 +84,7 @@ color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect3" type="ColorRect" parent="WritingCanvasLayer/InitialsBox"]
+visible = false
 offset_left = 22.0
 offset_top = 16.0
 offset_right = 54.0
