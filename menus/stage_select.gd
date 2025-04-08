@@ -54,10 +54,14 @@ func _unhandled_input(event):
 		
 		
 func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: int):
-	# NOTE: Demo Code?
+	# NOTE: Very sneaky debug keys
 	if keystroke == "M":
 		$save.visible = !($save.visible)
 		$load.visible = !($load.visible)
+	if keystroke == "S":
+		$save.emit_signal("pressed")
+	if keystroke == "L":
+		$load.emit_signal("pressed")
 	
 	if keystroke != KeyboardInterface.Enter:
 		return
@@ -180,12 +184,14 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 		SessionManager.start_session()
 		
 	if writing_flag == true:
-		Global.WORLD_NODE.add_child(thought_writing_scene)
-		get_node("/root/Main/World/StageSelect").queue_free()
+		#Global.WORLD_NODE.add_child(thought_writing_scene)
+		#get_node("/root/Main/World/StageSelect").queue_free()
+		SceneTransition.change_scene(thought_writing_scene)
 		SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.current_player_area)
 	elif racing_flag == true:
-		Global.WORLD_NODE.add_child(thought_racing_scene)
-		get_node("/root/Main/World/StageSelect").queue_free()
+		#Global.WORLD_NODE.add_child(thought_racing_scene)
+		#get_node("/root/Main/World/StageSelect").queue_free()
+		SceneTransition.change_scene(thought_racing_scene)
 		SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.current_player_area)
 
 func _update_stage_select():

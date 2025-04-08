@@ -30,6 +30,7 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	$OverworldChunk.thought_path_passage = area_dynamic_data[WorldManager.CurrAreaPassage]
 	
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.RACING_MODE
+	$CanvasLayer/TypingInterface.area_enum = area_enum
 	$CanvasLayer/TypingInterface.target_passage = area_dynamic_data[WorldManager.CurrAreaPassage]
 
 # Called when the node enters the scene tree for the first time.

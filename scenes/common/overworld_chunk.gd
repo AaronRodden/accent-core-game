@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const CHUNK_SIZE = 500
+const CHUNK_SIZE = 650
 const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
 
 var walkable_tiles : Dictionary = {}

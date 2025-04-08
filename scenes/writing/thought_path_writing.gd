@@ -1,6 +1,7 @@
 extends Node
 
-const MINIMUM_WORD_COUNT = 34
+# NOTE: 34 was used for Caliburst Test, it seemed good!
+const MINIMUM_WORD_COUNT = 3
 
 var area_enum : int
 
@@ -23,10 +24,11 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
 			$OverworldChunk.area_atlas_id = 1
 	
+	# Set up TypingInterface
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
-	
+	$CanvasLayer/TypingInterface.area_enum = area_enum
 	var area_init_data = WorldManager.get_initalization_data(area_enum)
-	$CanvasLayer/TypingInterface/InfoText.text = area_init_data[WorldManager.Prompt]
+	$CanvasLayer/TypingInterface.prompt = area_init_data[WorldManager.Prompt]
 	
 	# TODO: Need flow / way to pick character color before hand and pass that info to assets that need to know! 
 

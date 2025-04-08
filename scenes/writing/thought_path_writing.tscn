@@ -26,9 +26,9 @@ offset_top = -64.0
 offset_bottom = -64.0
 
 [node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
-offset_left = 911.0
+offset_left = 919.0
 offset_top = 650.0
-offset_right = 6119.0
+offset_right = 6127.0
 offset_bottom = -26.0
 
 [node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_1fks0")]
