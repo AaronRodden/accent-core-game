@@ -27,23 +27,28 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_hit.connect(_player_hit)
 	
+	
 	var random_color = randi_range(1, 5)
 	match random_color:
 		1:
-			$NeuronSpriteBlue.visible = true
 			NeuronSprite = $NeuronSpriteBlue
 		2:
-			$AnimatedSpritePurple.visible = true
 			NeuronSprite = $AnimatedSpritePurple
 		3:
-			$AnimatedSpriteGreen.visible = true
 			NeuronSprite = $AnimatedSpriteGreen
 		4:
-			$AnimatedSpriteRed.visible = true
 			NeuronSprite = $AnimatedSpriteRed
 		5:
-			$AnimatedSpriteYellow.visible = true
 			NeuronSprite = $AnimatedSpriteYellow
+			
+	var random_animation = randi_range(0, 1)
+	if random_animation == 0:
+		NeuronSprite.play("hop")
+	elif random_animation == 1:
+		NeuronSprite.play("run")
+	
+	NeuronSprite.stop()
+	NeuronSprite.visible = true 
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:

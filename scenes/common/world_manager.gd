@@ -26,62 +26,10 @@ const AreaComments = "area_comments"
 
 @export var current_player_area = self.STAGE_SELECT
 
-#@export var world_initalization_data = {
-	#self.JOY_AREA_A : {
-		#self.AtlasID : 1,
-		#self.Prompt : "What are you happy about?\nIt is always good to share the positives!",
-	#},
-	#self.JOY_AREA_B : {
-		#self.AtlasID : 1,
-		#self.Prompt : "Write about the joy of the journey, and what it means to reach the destination!",
-	#},
-	#self.JOY_AREA_C : {
-		#self.AtlasID : 1,
-		#self.Prompt : "",
-	#},
-	#self.SADNESS_AREA_A : {
-		#self.AtlasID : 2,
-		#self.Prompt : "What are you sad about?\nMaybe someone shares similar feelings.",
-	#},
-	#self.SADNESS_AREA_B : {
-		#self.AtlasID : 2,
-		#self.Prompt : "Share a time you were sad.\nMaybe someone can relate.",
-	#},
-	#self.SADNESS_AREA_C : {
-		#self.AtlasID : 2,
-		#self.Prompt : "Write a poem about how sadness can turn into anger.\nYour creativity just might fuel someone elses!",
-	#},
-	#self.FEAR_AREA_A : {
-		#self.AtlasID : 3,
-		#self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
-	#},
-	#self.FEAR_AREA_B : {
-		#self.AtlasID : 3,
-		#self.Prompt : "Is fear something to be conquered or to be lived with?",
-	#},
-	#self.FEAR_AREA_C : {
-		#self.AtlasID : 3,
-		#self.Prompt : "Write a poem about how fear and joy interact.\nYour creativity might just fuel someone elses!",
-	#},
-	#self.ANGER_AREA_A : {
-		#self.AtlasID : 4,
-		#self.Prompt : "What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
-	#},
-	#self.ANGER_AREA_B : {
-		#self.AtlasID : 4,
-		#self.Prompt : "What made you angry this year?",
-	#},
-	#self.ANGER_AREA_C : {
-		#self.AtlasID : 4,
-		#self.Prompt : "Write a poem about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
-	#},
-#}
-
-# NOTE: Caliburst Demo!
 @export var world_initalization_data = {
 	self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : "What is the best part of Xrd?\nIt is always good to share the positives!",
+		self.Prompt : "What are you happy about?\nIt is always good to share the positives!",
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
@@ -93,41 +41,93 @@ const AreaComments = "area_comments"
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
-		self.Prompt : "What makes you sad about your character?\nWill other players call you crazy?",
+		self.Prompt : "What are you sad about?\nMaybe someone shares similar feelings.",
 	},
 	self.SADNESS_AREA_B : {
 		self.AtlasID : 2,
-		self.Prompt : "What makes you sad about another character?\nMaybe someone can relate.",
+		self.Prompt : "Share a time you were sad.\nMaybe someone can relate.",
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
-		self.Prompt : "Write a poem about sadness, anger, and Xrd.\nYour creativity just might fuel someone elses!",
+		self.Prompt : "Write a poem about how sadness can turn into anger.\nYour creativity just might fuel someone elses!",
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : "Which character is the scariest to run into in bracket and why?\nMaybe someone shares similar feelings.",
+		self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
-		self.Prompt : "What is the spookiest button in Xrd? Spoooooooky.",
+		self.Prompt : "Is fear something to be conquered or to be lived with?",
 	},
 	self.FEAR_AREA_C : {
 		self.AtlasID : 3,
-		self.Prompt : "Write a poem about fear, joy, and Xrd.\nYour creativity might just fuel someone elses!",
+		self.Prompt : "Write a poem about how fear and joy interact.\nYour creativity might just fuel someone elses!",
 	},
 	self.ANGER_AREA_A : {
 		self.AtlasID : 4,
-		self.Prompt : "What makes you angry about your own character?\nJust might say what someone wants to hear...",
+		self.Prompt : "What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
 	},
 	self.ANGER_AREA_B : {
 		self.AtlasID : 4,
-		self.Prompt : "Which character do you hate the most?\n Let it out, we are here for you.",
+		self.Prompt : "What made you angry this year?",
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
-		self.Prompt : "Write a poem about anger, fear, and Xrd.\nYour creativity might just fuel someone elses!",
+		self.Prompt : "Write a poem about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
 	},
 }
+
+# NOTE: Caliburst Demo!
+#@export var world_initalization_data = {
+	#self.JOY_AREA_A : {
+		#self.AtlasID : 1,
+		#self.Prompt : "What is the best part of Xrd?\nIt is always good to share the positives!",
+	#},
+	#self.JOY_AREA_B : {
+		#self.AtlasID : 1,
+		#self.Prompt : "Write about the joy of the journey, and what it means to reach the destination!",
+	#},
+	#self.JOY_AREA_C : {
+		#self.AtlasID : 1,
+		#self.Prompt : "",
+	#},
+	#self.SADNESS_AREA_A : {
+		#self.AtlasID : 2,
+		#self.Prompt : "What makes you sad about your character?\nWill other players call you crazy?",
+	#},
+	#self.SADNESS_AREA_B : {
+		#self.AtlasID : 2,
+		#self.Prompt : "What makes you sad about another character?\nMaybe someone can relate.",
+	#},
+	#self.SADNESS_AREA_C : {
+		#self.AtlasID : 2,
+		#self.Prompt : "Write a poem about sadness, anger, and Xrd.\nYour creativity just might fuel someone elses!",
+	#},
+	#self.FEAR_AREA_A : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Which character is the scariest to run into in bracket and why?\nMaybe someone shares similar feelings.",
+	#},
+	#self.FEAR_AREA_B : {
+		#self.AtlasID : 3,
+		#self.Prompt : "What is the spookiest button in Xrd? Spoooooooky.",
+	#},
+	#self.FEAR_AREA_C : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Write a poem about fear, joy, and Xrd.\nYour creativity might just fuel someone elses!",
+	#},
+	#self.ANGER_AREA_A : {
+		#self.AtlasID : 4,
+		#self.Prompt : "What makes you angry about your own character?\nJust might say what someone wants to hear...",
+	#},
+	#self.ANGER_AREA_B : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Which character do you hate the most?\n Let it out, we are here for you.",
+	#},
+	#self.ANGER_AREA_C : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Write a poem about anger, fear, and Xrd.\nYour creativity might just fuel someone elses!",
+	#},
+#}
 
 @export var world_dynamic_data = {
 	"world_data": {

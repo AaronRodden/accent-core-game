@@ -180,6 +180,7 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data)
 			
+		
 	if not SessionManager.active_session:
 		SessionManager.start_session()
 		

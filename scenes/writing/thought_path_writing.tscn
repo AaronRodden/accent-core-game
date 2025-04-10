@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bfqsu0ef0tbwr"]
+[gd_scene load_steps=11 format=3 uid="uid://bfqsu0ef0tbwr"]
 
 [ext_resource type="Script" path="res://scenes/writing/thought_path_writing.gd" id="1_bepvy"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_v0cbj"]
@@ -6,6 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="3_mw1q6"]
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="5_b6pbx"]
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_lq5hx"]
+[ext_resource type="Texture2D" uid="uid://g2htlc4jk3ln" path="res://assets/InstructionsOverlaySadness.png" id="7_rw13e"]
+[ext_resource type="Texture2D" uid="uid://bpwd4pv8w160j" path="res://assets/InstructionsOverlayAnger.png" id="8_a2haq"]
+[ext_resource type="Texture2D" uid="uid://cxr4mqpbv36wd" path="res://assets/InstructionsOverlayFear.png" id="9_vkrg7"]
+[ext_resource type="Texture2D" uid="uid://dqr4vy1iw44up" path="res://assets/InstructionsOverlayJoy.png" id="10_w4dex"]
 
 [node name="ThoughtPathWriting" type="Node"]
 script = ExtResource("1_bepvy")
@@ -13,13 +17,16 @@ script = ExtResource("1_bepvy")
 [node name="OverworldChunk" parent="." instance=ExtResource("1_v0cbj")]
 
 [node name="Player" parent="." instance=ExtResource("3_mw1q6")]
+visible = false
 position = Vector2(33, 156)
 
 [node name="TypingCamera" parent="." node_paths=PackedStringArray("playerA") instance=ExtResource("5_b6pbx")]
+zoom = Vector2(1.25, 1.25)
 position_smoothing_enabled = true
 playerA = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
 offset_top = -64.0
@@ -46,6 +53,94 @@ offset_bottom = 745.0
 theme_override_font_sizes/normal_font_size = 30
 theme_override_font_sizes/bold_font_size = 42
 text = "[b]Write about...[/b]"
+
+[node name="InstructionsSadness" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(408, 368)
+scale = Vector2(0.772727, 0.772727)
+texture = ExtResource("7_rw13e")
+
+[node name="PromptLabel" type="RichTextLabel" parent="InstructionsSadness"]
+offset_left = -816.0
+offset_top = 21.0
+offset_right = 807.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 31
+
+[node name="InitialsLabel" type="RichTextLabel" parent="InstructionsSadness"]
+offset_left = -776.0
+offset_top = 186.0
+offset_right = -517.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsAnger" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(408, 368)
+scale = Vector2(0.772727, 0.772727)
+texture = ExtResource("8_a2haq")
+
+[node name="PromptLabel" type="RichTextLabel" parent="InstructionsAnger"]
+offset_left = -816.0
+offset_top = 21.0
+offset_right = 807.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 31
+
+[node name="InitialsLabel" type="RichTextLabel" parent="InstructionsAnger"]
+offset_left = -776.0
+offset_top = 186.0
+offset_right = -517.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsFear" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(408, 368)
+scale = Vector2(0.772727, 0.772727)
+texture = ExtResource("9_vkrg7")
+
+[node name="PromptLabel" type="RichTextLabel" parent="InstructionsFear"]
+offset_left = -816.0
+offset_top = 21.0
+offset_right = 807.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 31
+
+[node name="InitialsLabel" type="RichTextLabel" parent="InstructionsFear"]
+offset_left = -776.0
+offset_top = 186.0
+offset_right = -517.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0.288518, 0.288518, 0.288518, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsJoy" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(408, 368)
+scale = Vector2(0.772727, 0.772727)
+texture = ExtResource("10_w4dex")
+
+[node name="PromptLabel" type="RichTextLabel" parent="InstructionsJoy"]
+offset_left = -816.0
+offset_top = 21.0
+offset_right = 807.0
+offset_bottom = 124.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 31
+
+[node name="InitialsLabel" type="RichTextLabel" parent="InstructionsJoy"]
+offset_left = -776.0
+offset_top = 186.0
+offset_right = -517.0
+offset_bottom = 258.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 48
 
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/HUD"]

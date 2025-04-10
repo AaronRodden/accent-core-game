@@ -16,6 +16,7 @@ script = ExtResource("1_frgdv")
 typing_interface = NodePath("../../CanvasLayer/TypingInterface")
 
 [node name="TypingCamera" parent="." node_paths=PackedStringArray("playerA") instance=ExtResource("3_yi6rb")]
+zoom = Vector2(1.25, 1.25)
 playerA = NodePath("../OverworldChunk/Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

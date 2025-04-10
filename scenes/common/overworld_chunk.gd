@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-const CHUNK_SIZE = 650
+const CHUNK_SIZE = 600
 const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
 
 var walkable_tiles : Dictionary = {}
@@ -53,7 +53,7 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
 	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
-		for y in range(0, 8):
+		for y in range(1, 7):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
 			if astar_checkpoint_chance == 0:
@@ -72,8 +72,8 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 		set_cell(coordinate, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[KeyboardInterface.Space], 0)
 		
 	# Once thought path is created, create a map around it
-	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
-		for y in range(0, 17):
+	for x in range(starting_cell_x - 10, (starting_cell_x + CHUNK_SIZE)):
+		for y in range(0, 14):
 			if Vector2i(x, y) in self.get_used_cells():
 				continue
 			k = noise.get_noise_2d(x, y)
@@ -130,10 +130,10 @@ func _ready():
 	thread = Thread.new()
 	
 	if gameplay_mode == Global.WRITING_MODE:
-		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
+		starting_cell_coordinate = Vector2i(1, rng.randi_range(1, 7))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 	elif gameplay_mode == Global.RACING_MODE:
-		starting_cell_coordinate = Vector2i(0, rng.randi_range(0, 8))
+		starting_cell_coordinate = Vector2i(1, rng.randi_range(1, 7))
 		self.thought_path_coordinates = generate_level_chunk(starting_cell_coordinate)
 		write_existing_passage()
 
