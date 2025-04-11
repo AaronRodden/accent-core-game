@@ -69,7 +69,6 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 	var writing_flag = false
 	var racing_flag = false
 
-	# TODO: Perhaps after matching here can pass everything via signal & parameters to avoid more match functions
 	match selector_number:
 		1:
 			WorldManager.current_player_area = WorldManager.SADNESS_AREA_A

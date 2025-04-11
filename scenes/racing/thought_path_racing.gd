@@ -1,12 +1,5 @@
 extends Node
 
-# TODO: Game Design Notes 03/14/25
-# Sometimes the words <> writing a story are in conflict with each other
-# Is there a way we can make it obvious how people may use the words
-# We need some sort of onboarding / tutorial! 
-# Timing as a part of the experience, 
-# Tutorializing this in some way. 
-
 var area_enum : int
 
 var instructions_sprite : Node

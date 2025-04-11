@@ -50,7 +50,6 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 	noise.fractal_octaves = 2
 	noise.fractal_lacunarity = 1.4
 	
-	# TODO: Randomly set A star points that will then be connected to make a thought path
 	# TODO: Should moving between split paths be a gameplay mechanic?
 	for x in range(starting_cell_x, (starting_cell_x + CHUNK_SIZE)):
 		for y in range(1, 7):
