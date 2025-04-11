@@ -97,7 +97,6 @@ func _thought_racing_complete():
 	
 # Since score_screen will be in the same node structure, eliminate connectivity with racing gameplay
 func _close_racing_gameplay():
-	SignalBus.player_keystroke.disconnect(_racing_instructions_input_event)
 	SignalBus.racing_complete.disconnect(_thought_racing_complete)
 	SignalBus.game_over.disconnect(_thought_racing_failed)
 	SignalBus.update_racing_progress.disconnect(_update_racing_progress_bar)

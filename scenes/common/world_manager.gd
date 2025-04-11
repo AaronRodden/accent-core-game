@@ -30,7 +30,7 @@ const AreaComments = "area_comments"
 @export var world_initalization_data = {
 	self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : "What are you happy about?\nIt is always good to share the positives!",
+		self.Prompt : "What are you happy about coming to the end of the semester?\nIt is always good to share the positives!",
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
@@ -42,11 +42,11 @@ const AreaComments = "area_comments"
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
-		self.Prompt : "What are you sad about?\nMaybe someone shares similar feelings.",
+		self.Prompt : "What made you sad about this semester?\nMaybe someone shares similar feelings.",
 	},
 	self.SADNESS_AREA_B : {
 		self.AtlasID : 2,
-		self.Prompt : "Share a time you were sad.\nMaybe someone can relate.",
+		self.Prompt : "Share about the last movie that made you sad.\nMaybe someone can relate.",
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
@@ -54,11 +54,11 @@ const AreaComments = "area_comments"
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
+		self.Prompt : "What are you fearful about coming to the end of this semester?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
-		self.Prompt : "Is fear something to be conquered or to be lived with?",
+		self.Prompt : "Share about the last movie that made you fearful?\nSome people love a good scary movie.",
 	},
 	self.FEAR_AREA_C : {
 		self.AtlasID : 3,
@@ -70,7 +70,7 @@ const AreaComments = "area_comments"
 	},
 	self.ANGER_AREA_B : {
 		self.AtlasID : 4,
-		self.Prompt : "What made you angry this year?",
+		self.Prompt : "Share about the last movie that made you angry.\nI wonder if anyone else watched it?",
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
