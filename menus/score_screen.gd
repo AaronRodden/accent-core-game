@@ -175,28 +175,7 @@ func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keyst
 	var line_count = story_comments_sprite.get_child(0).get_line_count()
 	story_comments_sprite.get_child(0).scroll_to_line(line_count)
 	current_line_count = line_count
-	#
-## TODO: This is copied code from the other initials function!
-#func _enter_thread_initials(event: InputEventKey, keystroke : String, total_keystrokes : int):
-	#if KeyboardInterface.is_input_event_printable(event):
-		#if initials_size < 3:
-			#initials += keystroke.capitalize() + " "
-			#$RacingCanvasLayer/CommentThreadInitialsBox/RichTextLabel.text = initials
-			#initials_size += 1
-	#else:
-		#if keystroke == KeyboardInterface.Backspace:
-			#initials = ""
-			#$RacingCanvasLayer/CommentThreadInitialsBox/RichTextLabel.text = ""
-			#initials_size = 0
-		#if keystroke == KeyboardInterface.Enter:
-			#if initials == "":
-				#area_comment[1] = "Anonymous"
-			#else:
-				#area_comment[1] = initials.strip_edges()
-			#_save_new_comment()
-			#SessionManager.reply_count += 1
-			#WorldManager.current_player_area = WorldManager.STAGE_SELECT
-			#get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+	
 	
 func _save_writing_data():
 	WorldManager.write_world_data(area_enum, WorldManager.CurrAreaPassage, self.passage.strip_edges())
@@ -206,31 +185,6 @@ func _save_writing_data():
 	SignalBus.save_game.emit()
 
 func _save_new_comment():
-	#if self.area_comment[0] != "":
-		#if area_enum == 1:
-			#WorldManager.write_world_data(WorldManager.SADNESS_AREA_A, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 2:
-			#WorldManager.write_world_data(WorldManager.SADNESS_AREA_B, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 3:
-			#WorldManager.write_world_data(WorldManager.SADNESS_AREA_C, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 4:
-			#WorldManager.write_world_data(WorldManager.ANGER_AREA_A, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 5:
-			#WorldManager.write_world_data(WorldManager.ANGER_AREA_B, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 6:
-			#WorldManager.write_world_data(WorldManager.ANGER_AREA_C, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 7:
-			#WorldManager.write_world_data(WorldManager.FEAR_AREA_A, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 8:
-			#WorldManager.write_world_data(WorldManager.FEAR_AREA_B, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 9:
-			#WorldManager.write_world_data(WorldManager.FEAR_AREA_C, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 10:
-			#WorldManager.write_world_data(WorldManager.JOY_AREA_A, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 11:
-			#WorldManager.write_world_data(WorldManager.JOY_AREA_B, WorldManager.AreaComments, self.area_comment)
-		#if area_enum == 12:
-			#WorldManager.write_world_data(WorldManager.JOY_AREA_C, WorldManager.AreaComments, self.area_comment)
 	WorldManager.write_world_data(area_enum, WorldManager.AreaComments, self.area_comment)
 	SignalBus.save_game.emit()
 	
