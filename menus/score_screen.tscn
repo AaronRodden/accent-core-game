@@ -1,10 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3bmckngq35lq"]
+[gd_scene load_steps=26 format=3 uid="uid://b3bmckngq35lq"]
 
 [ext_resource type="Script" path="res://menus/score_screen.gd" id="1_ahe5v"]
 [ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="2_6kvn2"]
+[ext_resource type="Texture2D" uid="uid://b1vcq6m1xsmci" path="res://assets/ReviewPassageSadness.png" id="2_g5t7j"]
 [ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="3_pwhcy"]
+[ext_resource type="Texture2D" uid="uid://c76r68pk15apl" path="res://assets/TitlePassageSadness.png" id="3_rr5rl"]
 [ext_resource type="Texture2D" uid="uid://dpuym7u7k2q33" path="res://assets/enter_button.png" id="4_kgnh7"]
+[ext_resource type="Texture2D" uid="uid://b1aj0a24tbhw4" path="res://assets/ReviewPassageAnger.png" id="4_olpm4"]
 [ext_resource type="Texture2D" uid="uid://b4ckhqwoe7gm7" path="res://assets/button.png" id="5_f4ojo"]
+[ext_resource type="Texture2D" uid="uid://deukefoqgaope" path="res://assets/TitlePassageAnger.png" id="5_x8plm"]
+[ext_resource type="Texture2D" uid="uid://ccu51udsgpw2c" path="res://assets/ReviewPassageFear.png" id="6_7whfq"]
+[ext_resource type="Texture2D" uid="uid://d2w8upirmg0qg" path="res://assets/TitlePassageFear.png" id="7_vekqv"]
+[ext_resource type="Texture2D" uid="uid://b1j247umypm5l" path="res://assets/ReviewPassageJoy.png" id="8_swtqd"]
+[ext_resource type="Texture2D" uid="uid://d0py8iteuo3c6" path="res://assets/TitlePassageJoy.png" id="9_ylydj"]
+[ext_resource type="Texture2D" uid="uid://crogfq8oho5tj" path="res://assets/RacingReviewPassageSadness.png" id="14_r0qm4"]
+[ext_resource type="Texture2D" uid="uid://b0hhk1tp0cm3t" path="res://assets/RacingReviewCommentsSadness.png" id="15_ky0oa"]
+[ext_resource type="Texture2D" uid="uid://yrbgyuq507s5" path="res://assets/RacingReviewPassageAnger.png" id="15_wndfo"]
+[ext_resource type="Texture2D" uid="uid://dw8owtna8n6jf" path="res://assets/RacingReviewPassageFear.png" id="16_d7y22"]
+[ext_resource type="Texture2D" uid="uid://bnk5k4627tsok" path="res://assets/RacingCommentingSadness.png" id="16_y2tb4"]
+[ext_resource type="Texture2D" uid="uid://bnwi5jbwk4cqh" path="res://assets/RacingReviewPassageJoy.png" id="17_60x3a"]
+[ext_resource type="Texture2D" uid="uid://dmfgc1nm2rdpp" path="res://assets/RacingReviewCommentsAnger.png" id="18_6k5w5"]
+[ext_resource type="Texture2D" uid="uid://c5o1ww1xld6cm" path="res://assets/RacingCommentingAnger.png" id="19_m4mmb"]
+[ext_resource type="Texture2D" uid="uid://dqw3xym4sq1wg" path="res://assets/RacingReviewCommentsFear.png" id="21_ybqfx"]
+[ext_resource type="Texture2D" uid="uid://bgavjd7bgk3bt" path="res://assets/RacingCommentingFear.png" id="22_k8kjx"]
+[ext_resource type="Texture2D" uid="uid://dmnlyjhujwmnr" path="res://assets/RacingReviewCommentsJoy.png" id="24_p3346"]
+[ext_resource type="Texture2D" uid="uid://bav7v2f0tecx1" path="res://assets/RacingCommentingJoy.png" id="25_gler2"]
 
 [node name="ScoreScreen" type="Node"]
 script = ExtResource("1_ahe5v")
@@ -12,26 +32,168 @@ script = ExtResource("1_ahe5v")
 [node name="WritingCanvasLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="StoryOverview" type="Sprite2D" parent="WritingCanvasLayer"]
-position = Vector2(968, 363.164)
-scale = Vector2(1.04147, 2.23912)
-texture = ExtResource("2_6kvn2")
+[node name="StoryOverviewSadness" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 526)
+texture = ExtResource("2_g5t7j")
 
-[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer"]
+[node name="PromptLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewSadness"]
+offset_left = -800.0
+offset_top = -326.0
+offset_right = 808.0
+offset_bottom = -182.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 42
+
+[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewSadness"]
 anchors_preset = -1
-anchor_left = -0.0349519
-anchor_top = -0.151478
-anchor_right = 0.0203564
-anchor_bottom = 0.116284
-offset_left = 179.108
-offset_top = 259.596
-offset_right = 1792.92
-offset_bottom = 459.413
+anchor_left = 0.0163502
+anchor_top = 0.344
+anchor_right = 0.961
+anchor_bottom = 0.791
+offset_left = -828.384
+offset_top = -464.072
+offset_right = -860.296
+offset_bottom = -456.183
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 36
 metadata/_edit_use_anchors_ = true
 
+[node name="StoryTitleSadness" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 544)
+texture = ExtResource("3_rr5rl")
+
+[node name="TitleLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryTitleSadness"]
+offset_left = -801.0
+offset_top = -12.0
+offset_right = 799.0
+offset_bottom = 44.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="StoryOverviewAnger" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 526)
+texture = ExtResource("4_olpm4")
+
+[node name="PromptLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewAnger"]
+offset_left = -800.0
+offset_top = -326.0
+offset_right = 808.0
+offset_bottom = -182.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 42
+
+[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewAnger"]
+anchors_preset = -1
+anchor_left = 0.0163502
+anchor_top = 0.344
+anchor_right = 0.961
+anchor_bottom = 0.791
+offset_left = -828.384
+offset_top = -464.072
+offset_right = -860.296
+offset_bottom = -456.183
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="StoryTitleAnger" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 544)
+texture = ExtResource("5_x8plm")
+
+[node name="TitleLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryTitleAnger"]
+offset_left = -801.0
+offset_top = -12.0
+offset_right = 799.0
+offset_bottom = 44.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="StoryOverviewFear" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 526)
+texture = ExtResource("6_7whfq")
+
+[node name="PromptLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewFear"]
+offset_left = -800.0
+offset_top = -326.0
+offset_right = 808.0
+offset_bottom = -182.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 42
+
+[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewFear"]
+anchors_preset = -1
+anchor_left = 0.0163502
+anchor_top = 0.344
+anchor_right = 0.961
+anchor_bottom = 0.791
+offset_left = -828.384
+offset_top = -464.072
+offset_right = -860.296
+offset_bottom = -456.183
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="StoryTitleFear" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 544)
+texture = ExtResource("7_vekqv")
+
+[node name="TitleLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryTitleFear"]
+offset_left = -801.0
+offset_top = -12.0
+offset_right = 799.0
+offset_bottom = 44.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="StoryOverviewJoy" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 526)
+texture = ExtResource("8_swtqd")
+
+[node name="PromptLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewJoy"]
+offset_left = -800.0
+offset_top = -326.0
+offset_right = 808.0
+offset_bottom = -182.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 42
+
+[node name="PassageLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryOverviewJoy"]
+anchors_preset = -1
+anchor_left = 0.0163502
+anchor_top = 0.344
+anchor_right = 0.961
+anchor_bottom = 0.791
+offset_left = -828.384
+offset_top = -464.072
+offset_right = -860.296
+offset_bottom = -456.183
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 36
+metadata/_edit_use_anchors_ = true
+
+[node name="StoryTitleJoy" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
+position = Vector2(968, 544)
+texture = ExtResource("9_ylydj")
+
+[node name="TitleLabel" type="RichTextLabel" parent="WritingCanvasLayer/StoryTitleJoy"]
+offset_left = -801.0
+offset_top = -12.0
+offset_right = 799.0
+offset_bottom = 44.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 32
+
 [node name="EndingInfo" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
 position = Vector2(992, 696)
 scale = Vector2(0.471731, 0.471731)
 texture = ExtResource("2_6kvn2")
@@ -53,6 +215,7 @@ text = "[center]Leave a comment for the next player! (can be left empty if desir
 metadata/_edit_use_anchors_ = true
 
 [node name="InitialsBox" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
 position = Vector2(984, 856)
 texture = ExtResource("3_pwhcy")
 
@@ -93,10 +256,12 @@ color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="EnterButton" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
 position = Vector2(984, 1008)
 texture = ExtResource("4_kgnh7")
 
 [node name="CommentBox" type="Sprite2D" parent="WritingCanvasLayer"]
+visible = false
 position = Vector2(960, 864)
 scale = Vector2(0.782686, 0.782686)
 texture = ExtResource("2_6kvn2")
@@ -112,6 +277,7 @@ theme_override_font_sizes/normal_font_size = 36
 [node name="RacingCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="StoryOverview" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(968, 321.164)
 scale = Vector2(1.04147, 2.23912)
 texture = ExtResource("2_6kvn2")
@@ -132,6 +298,7 @@ theme_override_font_sizes/normal_font_size = 36
 metadata/_edit_use_anchors_ = true
 
 [node name="EndingInfo" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(977.463, 946.75)
 scale = Vector2(0.471731, 0.471731)
 texture = ExtResource("2_6kvn2")
@@ -153,6 +320,7 @@ text = "[center] Type to leave a comment, press enter when done! [/center]"
 metadata/_edit_use_anchors_ = true
 
 [node name="InitialsBox" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(968, 536)
 texture = ExtResource("3_pwhcy")
 
@@ -186,10 +354,12 @@ bbcode_enabled = true
 text = "[b] TAB [/b]"
 
 [node name="EnterButton" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(1505.46, 946.75)
 texture = ExtResource("4_kgnh7")
 
 [node name="CommentThreadBox" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
 position = Vector2(968, 752)
 texture = ExtResource("2_6kvn2")
 
@@ -240,3 +410,223 @@ offset_right = 54.0
 offset_bottom = 24.0
 color = Color(0.184314, 0.356863, 0.67451, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="ReviewStorySadness" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 509)
+texture = ExtResource("14_r0qm4")
+
+[node name="PromptLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStorySadness"]
+offset_left = -776.0
+offset_top = -325.0
+offset_right = 824.0
+offset_bottom = -229.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStorySadness"]
+offset_left = -49.0
+offset_top = -209.0
+offset_right = 199.0
+offset_bottom = -137.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="PassageLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStorySadness"]
+offset_left = -784.0
+offset_top = -93.0
+offset_right = 792.0
+offset_bottom = 243.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewCommentsSadness" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 504)
+texture = ExtResource("15_ky0oa")
+
+[node name="CommentsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewCommentsSadness"]
+offset_left = -800.0
+offset_top = -256.0
+offset_right = 800.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CommentingSadness" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(970, 600)
+texture = ExtResource("16_y2tb4")
+
+[node name="CommentLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentingSadness"]
+offset_left = -754.0
+offset_top = -88.0
+offset_right = 662.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewStoryAnger" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 509)
+texture = ExtResource("15_wndfo")
+
+[node name="PromptLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryAnger"]
+offset_left = -776.0
+offset_top = -325.0
+offset_right = 824.0
+offset_bottom = -229.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryAnger"]
+offset_left = -49.0
+offset_top = -209.0
+offset_right = 199.0
+offset_bottom = -137.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="PassageLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryAnger"]
+offset_left = -784.0
+offset_top = -85.0
+offset_right = 792.0
+offset_bottom = 251.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewCommentsAnger" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 504)
+texture = ExtResource("18_6k5w5")
+
+[node name="CommentsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewCommentsAnger"]
+offset_left = -800.0
+offset_top = -256.0
+offset_right = 800.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CommentingAnger" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(970, 600)
+texture = ExtResource("19_m4mmb")
+
+[node name="CommentLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentingAnger"]
+offset_left = -754.0
+offset_top = -88.0
+offset_right = 662.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewStoryFear" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 509)
+texture = ExtResource("16_d7y22")
+
+[node name="PromptLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryFear"]
+offset_left = -776.0
+offset_top = -325.0
+offset_right = 824.0
+offset_bottom = -229.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryFear"]
+offset_left = -49.0
+offset_top = -209.0
+offset_right = 199.0
+offset_bottom = -137.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="PassageLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryFear"]
+offset_left = -784.0
+offset_top = -93.0
+offset_right = 792.0
+offset_bottom = 243.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewCommentsFear" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 504)
+texture = ExtResource("21_ybqfx")
+
+[node name="CommentsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewCommentsFear"]
+offset_left = -800.0
+offset_top = -256.0
+offset_right = 800.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CommentingFear" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(970, 600)
+texture = ExtResource("22_k8kjx")
+
+[node name="CommentLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentingFear"]
+offset_left = -754.0
+offset_top = -88.0
+offset_right = 662.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewStoryJoy" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 509)
+texture = ExtResource("17_60x3a")
+
+[node name="PromptLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryJoy"]
+offset_left = -776.0
+offset_top = -325.0
+offset_right = 824.0
+offset_bottom = -229.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryJoy"]
+offset_left = -49.0
+offset_top = -209.0
+offset_right = 199.0
+offset_bottom = -137.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="PassageLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryJoy"]
+offset_left = -784.0
+offset_top = -93.0
+offset_right = 792.0
+offset_bottom = 243.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="ReviewCommentsJoy" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(968, 504)
+texture = ExtResource("24_p3346")
+
+[node name="CommentsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewCommentsJoy"]
+offset_left = -800.0
+offset_top = -256.0
+offset_right = 800.0
+offset_bottom = 256.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32
+
+[node name="CommentingJoy" type="Sprite2D" parent="RacingCanvasLayer"]
+visible = false
+position = Vector2(970, 600)
+texture = ExtResource("25_gler2")
+
+[node name="CommentLabel" type="RichTextLabel" parent="RacingCanvasLayer/CommentingJoy"]
+offset_left = -754.0
+offset_top = -88.0
+offset_right = 662.0
+offset_bottom = -40.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 32

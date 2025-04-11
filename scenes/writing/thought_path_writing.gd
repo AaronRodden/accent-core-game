@@ -1,7 +1,7 @@
 extends Node
 
 # NOTE: 34 was used for Caliburst Test, it seemed good!
-const MINIMUM_WORD_COUNT = 3
+const MINIMUM_WORD_COUNT = 34
 
 var area_enum : int
 
@@ -25,16 +25,16 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	match area_enum:
 		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
 			$OverworldChunk.area_atlas_id = 2
-			instructions = $InstructionsSadness
+			instructions = $MenusCanvasLayer/InstructionsSadness
 		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
 			$OverworldChunk.area_atlas_id = 4
-			instructions = $InstructionsAnger
+			instructions = $MenusCanvasLayer/InstructionsAnger
 		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
 			$OverworldChunk.area_atlas_id = 3
-			instructions = $InstructionsFear
+			instructions = $MenusCanvasLayer/InstructionsFear
 		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
 			$OverworldChunk.area_atlas_id = 1
-			instructions = $InstructionsJoy
+			instructions = $MenusCanvasLayer/InstructionsJoy
 	
 	# Get init data
 	var area_init_data = WorldManager.get_initalization_data(area_enum)
@@ -97,11 +97,19 @@ func _thought_path_complete(passage : String):
 	# Update World Dynamic Data
 	WorldManager.update_areas_completed()
 	# Change to score scene
-	# TODO: Pass author!
-	score_scene.load_score_screen(Global.WRITING_MODE, passage, area_enum)
+	score_scene.load_score_screen(Global.WRITING_MODE, passage, area_enum, self.player_initials)
 	Global.WORLD_NODE.add_child(score_scene)
-	get_node("/root/Main/World/ThoughtPathWriting").queue_free()
+	_close_writing_gameplay()
 	
+
+# Since score_screen will be in the same node structure, eliminate connectivity with writing gameplay
+func _close_writing_gameplay():
+	SignalBus.passage_complete.disconnect(_thought_path_complete)
+	SignalBus.update_writing_progress.disconnect(_update_writing_progress_bar)
+	
+	$Player.queue_free()
+	
+	$CanvasLayer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

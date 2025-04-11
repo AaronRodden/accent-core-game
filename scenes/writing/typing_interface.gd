@@ -115,7 +115,7 @@ func lock():
 func _render_racing_keystroke(event: InputEventKey, keystroke: String, sender: CharacterBody2D):
 	if sender == player:
 		if current_char_index == 0:
-			typing_text.text = typing_text.text.lstrip(BBCodeCursorString)
+			typing_text.text = typing_text.text.trim_prefix(BBCodeCursorString)
 		
 		if KeyboardInterface.is_input_event_printable(event):
 			var finished_text = get_bbcode_color_tag(typed_color) + typing_text.text.substr(0, next_char_index) + get_bbcode_end_color_tag()

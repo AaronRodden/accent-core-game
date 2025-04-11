@@ -19,8 +19,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	# TODO: Acceleration and Deceleration based on WPM?
-	self.global_position.y = lockedY
-	self.global_position.x = player.global_position.x - 400
+	if player != null:
+		self.global_position.y = lockedY
+		self.global_position.x = player.global_position.x - 400
 	
 func _swap_player(event: InputEventKey, keystroke : String):
 	if player == playerA:

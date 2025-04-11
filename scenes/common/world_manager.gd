@@ -22,6 +22,7 @@ const PlayHistory = "play_history"
 const AreaHealth = "area_health"
 const CurrAreaPassage = "current_area_passage"
 const CurrAreaPassageAuthor = "current_area_passage_author"
+const CurrAreaPassageTitle = "passage_title"
 const AreaComments = "area_comments"
 
 @export var current_player_area = self.STAGE_SELECT
@@ -138,61 +139,73 @@ const AreaComments = "area_comments"
 	self.JOY_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.JOY_AREA_B : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.JOY_AREA_C : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_B : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_C : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.FEAR_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.FEAR_AREA_B : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.FEAR_AREA_C : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.ANGER_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.ANGER_AREA_B : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.ANGER_AREA_C : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
+		"passage_title" = null,
 		"area_comments" = [],
 	},
 }

@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://oj8elahuwcx0"]
+[gd_scene load_steps=11 format=3 uid="uid://oj8elahuwcx0"]
 
 [ext_resource type="Script" path="res://scenes/racing/thought_path_racing.gd" id="1_frgdv"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_qo0dm"]
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="2_52l5i"]
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="3_yi6rb"]
 [ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="4_nse8o"]
+[ext_resource type="Texture2D" uid="uid://cmohdnulsr2t4" path="res://assets/RacingInstructionsOverlaySadness.png" id="7_djae7"]
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_u7i4i"]
+[ext_resource type="Texture2D" uid="uid://bpwd4pv8w160j" path="res://assets/InstructionsOverlayAnger.png" id="8_leqal"]
+[ext_resource type="Texture2D" uid="uid://dxn1nsuwdrwp0" path="res://assets/RacingInstructionsOverlayFear.png" id="9_4s76o"]
+[ext_resource type="Texture2D" uid="uid://dqr4vy1iw44up" path="res://assets/InstructionsOverlayJoy.png" id="10_uuvc8"]
 
 [node name="ThoughtPathRacing" type="Node"]
 script = ExtResource("1_frgdv")
@@ -13,6 +17,7 @@ script = ExtResource("1_frgdv")
 [node name="OverworldChunk" parent="." instance=ExtResource("1_qo0dm")]
 
 [node name="Player" parent="OverworldChunk" node_paths=PackedStringArray("typing_interface") instance=ExtResource("2_52l5i")]
+visible = false
 typing_interface = NodePath("../../CanvasLayer/TypingInterface")
 
 [node name="TypingCamera" parent="." node_paths=PackedStringArray("playerA") instance=ExtResource("3_yi6rb")]
@@ -20,6 +25,7 @@ zoom = Vector2(1.25, 1.25)
 playerA = NodePath("../OverworldChunk/Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("4_nse8o")]
 offset_left = -16.0
@@ -75,6 +81,92 @@ offset_left = 960.0
 offset_top = 648.0
 offset_right = 6168.0
 offset_bottom = -28.0
+
+[node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InstructionsSadness" type="Sprite2D" parent="MenusCanvasLayer"]
+visible = false
+position = Vector2(958, 499)
+texture = ExtResource("7_djae7")
+
+[node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsSadness"]
+offset_left = -814.0
+offset_top = 21.0
+offset_right = 810.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InitialsLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsSadness"]
+offset_left = -783.0
+offset_top = 185.0
+offset_right = -551.0
+offset_bottom = 257.0
+theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsAnger" type="Sprite2D" parent="MenusCanvasLayer"]
+visible = false
+position = Vector2(958, 499)
+texture = ExtResource("8_leqal")
+
+[node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsAnger"]
+offset_left = -814.0
+offset_top = 21.0
+offset_right = 810.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InitialsLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsAnger"]
+offset_left = -783.0
+offset_top = 185.0
+offset_right = -551.0
+offset_bottom = 257.0
+theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsFear" type="Sprite2D" parent="MenusCanvasLayer"]
+visible = false
+position = Vector2(958, 499)
+texture = ExtResource("9_4s76o")
+
+[node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsFear"]
+offset_left = -814.0
+offset_top = 21.0
+offset_right = 810.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InitialsLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsFear"]
+offset_left = -783.0
+offset_top = 185.0
+offset_right = -551.0
+offset_bottom = 257.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InstructionsJoy" type="Sprite2D" parent="MenusCanvasLayer"]
+visible = false
+position = Vector2(958, 499)
+texture = ExtResource("10_uuvc8")
+
+[node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsJoy"]
+offset_left = -814.0
+offset_top = 21.0
+offset_right = 810.0
+offset_bottom = 101.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 48
+
+[node name="InitialsLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsJoy"]
+offset_left = -783.0
+offset_top = 185.0
+offset_right = -551.0
+offset_bottom = 257.0
+theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
+theme_override_font_sizes/normal_font_size = 48
 
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/TypingInterface"]

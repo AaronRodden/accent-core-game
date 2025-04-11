@@ -185,16 +185,13 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 		SessionManager.start_session()
 		
 	if writing_flag == true:
-		#Global.WORLD_NODE.add_child(thought_writing_scene)
-		#get_node("/root/Main/World/StageSelect").queue_free()
 		SceneTransition.change_scene(thought_writing_scene)
 		SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.current_player_area)
 	elif racing_flag == true:
-		#Global.WORLD_NODE.add_child(thought_racing_scene)
-		#get_node("/root/Main/World/StageSelect").queue_free()
 		SceneTransition.change_scene(thought_racing_scene)
 		SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.current_player_area)
 
+# Step through each area, rendering and updating the path ahead 
 func _update_stage_select():
 	var areas_completed = WorldManager.get_world_data()["areas_completed"]
 	if areas_completed == 0:
@@ -206,19 +203,26 @@ func _update_stage_select():
 		selector_node.visible = true
 	else:
 		for level in range(1, areas_completed+1):
+			if level == 12:
+				continue
 			var complete_path_str = "Path" + str(level) + "Complete"
 			var complete_path_node = get_node(complete_path_str)
 			complete_path_node.visible = true
 			
 			var selector_node = get_node(("Selector" + str(level)))
 			selector_node.visible = true
-			
-		var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
-		var incomplete_path_node = get_node(incomplete_path_str)
-		incomplete_path_node.visible = true
 		
-		var selector_node = get_node(("Selector" + str(areas_completed + 1)))
-		selector_node.visible = true
+			if areas_completed <= 11:
+				var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
+				var incomplete_path_node = get_node(incomplete_path_str)
+				incomplete_path_node.visible = true
+		
+		if areas_completed == 12:
+			var selector_node = get_node(("Selector" + str(areas_completed)))
+			selector_node.visible = true
+		else:
+			var selector_node = get_node(("Selector" + str(areas_completed + 1)))
+			selector_node.visible = true
 			
 	self.areas_completed = areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0

@@ -211,23 +211,6 @@ func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : 
 		print("Reached the end of a passage")
 		SignalBus.racing_complete.emit()
 
-# TODO: Threads are not safed to be used with visual elements!
-# We will need a different solution!!!
-# There are performance tradeoffs to be had here...
-#func _chunk_event_handler(event: InputEventKey, keystroke : String, total_keystrokes : int):
-	#pass
-	#if total_keystrokes != 0 and total_keystrokes % 50 == 0:
-		#generate_level_chunk(current_ending_cell_coordinate)
-		#if thread.is_alive() == false:
-			#if thread.is_started():
-				#thread.wait_to_finish()
-		#thread.start(generate_level_chunk.bind(current_ending_cell_coordinate))
-
-#func _exit_tree():
-	#print("Thread killed")
-	#thread.wait_to_finish()
-	##thread.
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
