@@ -56,6 +56,9 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
 			if astar_checkpoint_chance == 0:
+				# TODO: We want to avoid two checkpoints in x and x+1
+				if checkpoints[-1].x == x - 1:
+					continue
 				checkpoints.append(curr_vector)
 				if len(checkpoints) >= 2:
 					astar_path.pop_back()

@@ -7,9 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="4_nse8o"]
 [ext_resource type="Texture2D" uid="uid://cmohdnulsr2t4" path="res://assets/RacingInstructionsOverlaySadness.png" id="7_djae7"]
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_u7i4i"]
-[ext_resource type="Texture2D" uid="uid://bpwd4pv8w160j" path="res://assets/InstructionsOverlayAnger.png" id="8_leqal"]
+[ext_resource type="Texture2D" uid="uid://riapy67hp4jb" path="res://assets/RacingInstructionsOverlayAnger.png" id="8_km605"]
 [ext_resource type="Texture2D" uid="uid://dxn1nsuwdrwp0" path="res://assets/RacingInstructionsOverlayFear.png" id="9_4s76o"]
-[ext_resource type="Texture2D" uid="uid://dqr4vy1iw44up" path="res://assets/InstructionsOverlayJoy.png" id="10_uuvc8"]
+[ext_resource type="Texture2D" uid="uid://5705p4nsadbp" path="res://assets/RacingInstructionsOverlayJoy.png" id="10_8ascw"]
 
 [node name="ThoughtPathRacing" type="Node"]
 script = ExtResource("1_frgdv")
@@ -108,7 +108,7 @@ theme_override_font_sizes/normal_font_size = 48
 [node name="InstructionsAnger" type="Sprite2D" parent="MenusCanvasLayer"]
 visible = false
 position = Vector2(958, 499)
-texture = ExtResource("8_leqal")
+texture = ExtResource("8_km605")
 
 [node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsAnger"]
 offset_left = -814.0
@@ -150,7 +150,7 @@ theme_override_font_sizes/normal_font_size = 48
 [node name="InstructionsJoy" type="Sprite2D" parent="MenusCanvasLayer"]
 visible = false
 position = Vector2(958, 499)
-texture = ExtResource("10_uuvc8")
+texture = ExtResource("10_8ascw")
 
 [node name="TitleLabel" type="RichTextLabel" parent="MenusCanvasLayer/InstructionsJoy"]
 offset_left = -814.0

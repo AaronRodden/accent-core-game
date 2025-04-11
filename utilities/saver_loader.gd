@@ -11,7 +11,7 @@ func _ready():
 	
 	SignalBus.save_session.connect(save_session)
 
-func save_game():	
+func save_game():
 	var saved_game : SavedGame = SavedGame.new()
 	
 	saved_game.world_dynamic_data = WorldManager.world_dynamic_data

@@ -238,7 +238,7 @@ func _update_stage_select():
 func _update_world_data_text(session_dict = null):
 	# Update player count
 	var player_count = WorldManager.get_world_data(WorldManager.PlayerCount)
-	$PlayerCount.text = str(player_count) + " players today"
+	$PlayerCount.text = str(player_count) + " players played today"
 	# Update play feed
 	var play_history_list = WorldManager.get_world_data(WorldManager.PlayHistory)
 	for play_feed_string in play_history_list:

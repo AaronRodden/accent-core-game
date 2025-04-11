@@ -470,4 +470,4 @@ volume_db = 10.0
 
 [node name="KeyboardFx" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(2.75, 0.5)
-volume_db = 10.0
+volume_db = -80.0
