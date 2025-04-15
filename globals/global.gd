@@ -102,6 +102,7 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	"@" : Vector2i(24,2),
 	"#" : Vector2i(25,2),
 	"&" : Vector2i(26,2),
+	"-" : Vector2i(27,2),
 	# Spacing
 	" " : Vector2i(0,6),
 }

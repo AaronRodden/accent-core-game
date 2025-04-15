@@ -92,7 +92,7 @@ offset_right = 879.0
 offset_bottom = 734.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
 text = "[b] [/b]"
 
@@ -129,7 +129,7 @@ offset_right = 879.0
 offset_bottom = 734.0
 theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
 theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
 text = "[b][/b]"
 
@@ -166,7 +166,7 @@ offset_right = 879.0
 offset_bottom = 734.0
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
 text = "[b][/b]"
 
@@ -203,7 +203,7 @@ offset_right = 879.0
 offset_bottom = 734.0
 theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 32
-theme_override_font_sizes/bold_font_size = 28
+theme_override_font_sizes/bold_font_size = 20
 bbcode_enabled = true
 text = "[b][/b]"
 

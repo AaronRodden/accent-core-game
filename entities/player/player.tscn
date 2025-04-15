@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bb52dv08t2h42" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_jiujg"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxhe8"]
 [ext_resource type="Texture2D" uid="uid://dfey8ceykln42" path="res://assets/neuron_beta.png" id="3_4o22o"]
-[ext_resource type="AudioStream" uid="uid://drc8o1ub5g008" path="res://assets/sfx/hitHurt.wav" id="4_8v1yk"]
+[ext_resource type="AudioStream" path="res://assets/sfx/hitHurt.wav" id="4_8v1yk"]
 [ext_resource type="Texture2D" uid="uid://deaq301pubykw" path="res://assets/NeuronBlue.png" id="4_prua3"]
 [ext_resource type="Texture2D" uid="uid://joik2bovu4d7" path="res://assets/NeuronPurple.png" id="5_uyv6o"]
 [ext_resource type="Texture2D" uid="uid://bu4fnk2sg20md" path="res://assets/NeuronGreen.png" id="6_4garq"]
@@ -470,4 +470,4 @@ volume_db = 10.0
 
 [node name="KeyboardFx" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(2.75, 0.5)
-volume_db = -80.0
+volume_db = 10.0

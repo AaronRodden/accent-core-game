@@ -6,7 +6,7 @@ var NeuronSprite : AnimatedSprite2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
-const KEYBOARD_SFX = ["res://assets/sfx/Kb1.wav", "res://assets/sfx/Kb2.wav", "res://assets/sfx/Kb3.wav"]
+const KEYBOARD_SFX = ["res://assets/sfx/Key1final.wav", "res://assets/sfx/Key2final.wav", "res://assets/sfx/Key3final.wav"]
 
 var player_locked = false
 
@@ -52,18 +52,26 @@ func _ready():
 	
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
-		# TODO: More sophisticated sound selection implementation?
-		var random_key_sfx = load(KEYBOARD_SFX.pick_random())
-		$KeyboardFx.set_stream(random_key_sfx)
-		$KeyboardFx.play()
 		NeuronSprite.play()
 		var keystroke = KeyboardInterface.handle_input_event(event)
+		var key_sfx
+		if keystroke in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
+			var keystroke_atlas_coords = Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[keystroke]
+			if keystroke == KeyboardInterface.Space:
+				key_sfx = load("res://assets/sfx/Space.wav")
+			elif keystroke_atlas_coords.y >= 2:
+				key_sfx = load("res://assets/sfx/Punctuation.wav")
+			else: 
+				key_sfx = load(KEYBOARD_SFX.pick_random())
+		$KeyboardFx.set_stream(key_sfx)
+		$KeyboardFx.play()
 		if self.game_stance == "writing":
 			writing_move(event, keystroke)
 		elif self.game_stance == "racing" :
 			racing_move(event, keystroke)
 		else:
 			pass
+			
 			
 func _player_hit():
 	$HitFx.play()

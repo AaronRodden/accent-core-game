@@ -452,6 +452,7 @@ offset_right = 800.0
 offset_bottom = 256.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 
 [node name="CommentingSadness" type="Sprite2D" parent="RacingCanvasLayer"]
 visible = false
@@ -507,6 +508,7 @@ offset_right = 800.0
 offset_bottom = 256.0
 theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 
 [node name="CommentingAnger" type="Sprite2D" parent="RacingCanvasLayer"]
 visible = false
@@ -547,7 +549,6 @@ offset_left = -784.0
 offset_top = -93.0
 offset_right = 792.0
 offset_bottom = 243.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="ReviewCommentsFear" type="Sprite2D" parent="RacingCanvasLayer"]
@@ -560,8 +561,8 @@ offset_left = -800.0
 offset_top = -256.0
 offset_right = 800.0
 offset_bottom = 256.0
-theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 
 [node name="CommentingFear" type="Sprite2D" parent="RacingCanvasLayer"]
 visible = false
@@ -617,6 +618,7 @@ offset_right = 800.0
 offset_bottom = 256.0
 theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
 
 [node name="CommentingJoy" type="Sprite2D" parent="RacingCanvasLayer"]
 visible = false

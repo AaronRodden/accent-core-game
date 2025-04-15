@@ -26,26 +26,26 @@ func _ready():
 	# Render stage select according to dynamic data
 	_update_stage_select()
 	
-	current_selector.modulate.a = 119
+	$NeuronCursor.position = current_selector.position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if Input.is_action_just_pressed("down"):
 		selector_number -= 1
 		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
-		current_selector.modulate.a = 0.5
+		#current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
-		current_selector.modulate.a = 1
+		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
 
 	if Input.is_action_just_pressed("up"):
 		selector_number += 1
 		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
-		current_selector.modulate.a = 0.5
+		#current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
-		current_selector.modulate.a = 1
+		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
 
 func _unhandled_input(event):
@@ -208,13 +208,17 @@ func _update_stage_select():
 			var complete_path_node = get_node(complete_path_str)
 			complete_path_node.visible = true
 			
+			var incomplete_path_str = "Path" + str(level) + "Incomplete"
+			var incomplete_path_node = get_node(incomplete_path_str)
+			incomplete_path_node.visible = false
+			
 			var selector_node = get_node(("Selector" + str(level)))
 			selector_node.visible = true
 		
-			if areas_completed <= 11:
-				var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
-				var incomplete_path_node = get_node(incomplete_path_str)
-				incomplete_path_node.visible = true
+			#if areas_completed <= 11:
+				#var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
+				#var incomplete_path_node = get_node(incomplete_path_str)
+				#incomplete_path_node.visible = true
 		
 		if areas_completed == 12:
 			var selector_node = get_node(("Selector" + str(areas_completed)))

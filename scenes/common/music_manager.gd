@@ -3,15 +3,19 @@ extends Node
 @onready var main_music = $MainMusic
 
 var SONG_DICTIONARY = {
-	"creative_anger" : "res://assets/music/acreativeexcerciseanger3-14.mp3",
-	"creative_fear" : "res://assets/music/acreativeexcercisefear3-14.mp3",
-	"creative_joy" : "res://assets/music/acreativeexcercisejoy3-14.mp3",
-	"creative_sadness" : "res://assets/music/acreativeexcercisesadness3-14.mp3",
-	"racing_anger" : "res://assets/music/RacingDemoAnger3-14.mp3",
-	"racing_fear" : "res://assets/music/RacingDemoFear3-14.mp3",
-	"racing_joy" : "res://assets/music/RacingDemoJoy3-14.mp3",
-	"racing_sadness" : "res://assets/music/RacingDemoSadness3-14.mp3",
-	"stage_select" : "res://assets/music/themind3-14.mp3",
+	"creative_anger" : "res://assets/music/AcreativeexcerciseangerFinal.wav",
+	"creative_fear" : "res://assets/music/AcreativeexcercisefearFinal.wav",
+	"creative_joy" : "res://assets/music/AcreativeexcercisejoyFinal.wav",
+	"creative_sadness" : "res://assets/music/acreativeexcercisesadnessFinal.wav",
+	"racing_anger" : "res://assets/music/RacingAngerFinal.wav",
+	"racing_fear" : "res://assets/music/RacingFearFinal.wav",
+	"racing_joy" : "res://assets/music/RacingJoyFinal.wav",
+	"racing_sadness" : "res://assets/music/RacingSadnessFinal.wav",
+	"stage_select_anger" : "res://assets/music/themindAnger.wav",
+	"stage_select_fear" : "res://assets/music/themindAnger.wav",
+	"stage_select_joy" : "res://assets/music/themindFear.wav",
+	"stage_select_sadness" : "res://assets/music/themindSadness.wav",
+	"success" : "res://assets/music/Success!.wav",
 }
 var current_song
 
@@ -25,7 +29,15 @@ func _ready():
 func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 	match next_scene:
 		Global.stage_select:
-			current_song = load(SONG_DICTIONARY["stage_select"])
+			var areas_completed = WorldManager.get_world_data(WorldManager.AreasCompleted)
+			if areas_completed < 3:
+				current_song = load(SONG_DICTIONARY["stage_select_sadness"])
+			elif areas_completed > 3 and areas_completed < 6:
+				current_song = load(SONG_DICTIONARY["stage_select_anger"])
+			elif areas_completed > 6 and areas_completed < 9:
+				current_song = load(SONG_DICTIONARY["stage_select_fear"])
+			elif areas_completed > 9:
+				current_song = load(SONG_DICTIONARY["stage_select_joy"])
 			main_music.set_stream(current_song)
 		Global.thought_path_writing:
 			match area_enum:
@@ -60,7 +72,6 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 			main_music.set_stream(current_song)
 			
 	main_music.play()
-	main_music.stream.loop = true
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

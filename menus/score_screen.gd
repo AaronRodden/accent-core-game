@@ -3,6 +3,7 @@ extends Node
 const COMMENT_INFO = "[center]Leave a comment for the next player! (can be left empty if desired!): [/center]"
 const INITIALS_INFO = "[center]Enter in your initials to sign! (can be left empty if desired!): [/center]"
 const COMMENT_DIVIDER = "----------------------------------------------------------------------------------------------------------------------------------------------"
+var COMMENT_TOOL_TIP = "[color=4d4d4d] Type a key to leave a comment! [/color]"
 
 var gameplay_mode : int
 var area_enum : int
@@ -98,6 +99,8 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 			#$RacingCanvasLayer/CommentThreadBox/CommentThread.text += COMMENT_DIVIDER + "\n"
 			story_comments_sprite.get_child(0).text += comment[0] + " - " + comment[1] + "\n"
 			story_comments_sprite.get_child(0).text += COMMENT_DIVIDER + "\n"
+		story_comments_sprite.get_child(0).text += COMMENT_TOOL_TIP
+		
 		new_comment_substring_start = story_comments_sprite.get_child(0).text.length()
 		
 		story_review_sprite.visible = true
@@ -154,6 +157,8 @@ func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : i
 			
 			
 func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keystrokes : int):
+	if story_comments_sprite.get_child(0).text.contains(COMMENT_TOOL_TIP):
+		story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.replace(COMMENT_TOOL_TIP, "")
 	if KeyboardInterface.is_input_event_printable(event):
 		story_comments_sprite.get_child(0).text += keystroke
 		new_comment_length += 1
