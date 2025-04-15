@@ -27,6 +27,7 @@ func _ready():
 	_update_stage_select()
 	
 	$NeuronCursor.position = current_selector.position
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,6 +48,7 @@ func _process(delta):
 		current_selector = get_node(next_selector_node)
 		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
+		
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
@@ -200,6 +202,8 @@ func _update_stage_select():
 		
 		var selector_node = get_node(("Selector" + str(1)))
 		selector_node.visible = true
+		# Play blink animation given 1st passage has not been written
+		selector_node.get_child(0).play("blink")
 	else:
 		for level in range(1, areas_completed+1):
 			if level == 12:
@@ -214,11 +218,7 @@ func _update_stage_select():
 			
 			var selector_node = get_node(("Selector" + str(level)))
 			selector_node.visible = true
-		
-			#if areas_completed <= 11:
-				#var incomplete_path_str = "Path" + str(areas_completed + 1) + "Incomplete"
-				#var incomplete_path_node = get_node(incomplete_path_str)
-				#incomplete_path_node.visible = true
+			
 		
 		if areas_completed == 12:
 			var selector_node = get_node(("Selector" + str(areas_completed)))
@@ -226,6 +226,8 @@ func _update_stage_select():
 		else:
 			var selector_node = get_node(("Selector" + str(areas_completed + 1)))
 			selector_node.visible = true
+			# Play blink animation for farthest node
+			selector_node.get_child(0).play("blink")
 			
 	self.areas_completed = areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
