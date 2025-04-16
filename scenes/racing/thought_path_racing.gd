@@ -69,7 +69,7 @@ func _racing_instructions_input_event(event: InputEventKey, keystroke : String, 
 			
 func _start_racing():
 	instructions_sprite.visible = false
-	SignalBus.disconnect("player_keystroke", _racing_instructions_input_event)
+	SignalBus.racing_complete.disconnect(_racing_instructions_input_event)
 	
 	$CanvasLayer.visible = true
 	$OverworldChunk/Player.initalize($OverworldChunk, "racing")
