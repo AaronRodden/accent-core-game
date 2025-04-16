@@ -81,13 +81,15 @@ position = Vector2(944, 520)
 texture = ExtResource("4_1oob8")
 
 [node name="GameEndText" type="RichTextLabel" parent="GameEnd"]
-offset_left = -416.0
-offset_top = -104.0
-offset_right = 320.0
-offset_bottom = 80.0
+offset_left = -252.0
+offset_top = -111.0
+offset_right = 429.0
+offset_bottom = 153.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 128
 bbcode_enabled = true
+text = "Success!"
+scroll_active = false
 
 [node name="GeneralProgressBar" parent="." instance=ExtResource("5_6svcu")]
 layout_mode = 1

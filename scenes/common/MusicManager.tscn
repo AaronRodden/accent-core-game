@@ -1,9 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://cck2t63374uhc"]
+[gd_scene load_steps=3 format=3 uid="uid://cck2t63374uhc"]
 
 [ext_resource type="Script" path="res://scenes/common/music_manager.gd" id="1_p4h78"]
+
+[sub_resource type="AudioStreamMP3" id="AudioStreamMP3_o2ndr"]
+loop = true
 
 [node name="MusicManager" type="Node"]
 script = ExtResource("1_p4h78")
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMP3_o2ndr")
 volume_db = -15.0
+
+[connection signal="finished" from="MainMusic" to="." method="_on_main_music_finished"]

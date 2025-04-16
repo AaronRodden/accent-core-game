@@ -219,6 +219,9 @@ func _update_stage_select():
 			var selector_node = get_node(("Selector" + str(level)))
 			selector_node.visible = true
 			
+			# Turn off existing blink animations, needed for proper file loading
+			selector_node.get_child(0).stop()
+			
 		
 		if areas_completed == 12:
 			var selector_node = get_node(("Selector" + str(areas_completed)))

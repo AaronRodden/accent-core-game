@@ -44,7 +44,7 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_racing_instructions_input_event)
 	SignalBus.racing_complete.connect(_thought_racing_complete)
-	SignalBus.game_over.connect(_thought_racing_failed)
+	#SignalBus.game_over.connect(_thought_racing_failed)
 	SignalBus.update_racing_progress.connect(_update_racing_progress_bar)
 	
 	
@@ -80,6 +80,7 @@ func _update_racing_progress_bar(progress):
 	$CanvasLayer/HUD/GeneralProgressBar.value = progress
 	
 func _thought_racing_complete():
+	SignalBus.scene_change.emit(Global.thought_path_racing, Global.score_screen, area_enum)
 	$CanvasLayer/HUD.victory()
 	await get_tree().create_timer(3.0).timeout
 	# Change to score scene
@@ -91,19 +92,19 @@ func _thought_racing_complete():
 # Since score_screen will be in the same node structure, eliminate connectivity with racing gameplay
 func _close_racing_gameplay():
 	SignalBus.racing_complete.disconnect(_thought_racing_complete)
-	SignalBus.game_over.disconnect(_thought_racing_failed)
+	#SignalBus.game_over.disconnect(_thought_racing_failed)
 	SignalBus.update_racing_progress.disconnect(_update_racing_progress_bar)
 	
 	$OverworldChunk/Player.queue_free()
 	
 	$CanvasLayer.visible = false
 	
-func _thought_racing_failed():
-	# Call prior to signal displays a game over notice, so wait 3 seconds 
-	await get_tree().create_timer(3.0).timeout
-	score_scene.load_score_screen(Global.RACING_MODE, "", area_enum)
-	Global.WORLD_NODE.add_child(score_scene)
-	get_node("/root/Main/World/ThoughtPathRacing").queue_free()
+#func _thought_racing_failed():
+	## Call prior to signal displays a game over notice, so wait 3 seconds 
+	#await get_tree().create_timer(3.0).timeout
+	#score_scene.load_score_screen(Global.RACING_MODE, "", area_enum)
+	#Global.WORLD_NODE.add_child(score_scene)
+	#get_node("/root/Main/World/ThoughtPathRacing").queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

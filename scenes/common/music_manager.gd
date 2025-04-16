@@ -19,6 +19,8 @@ var SONG_DICTIONARY = {
 }
 var current_song
 
+var loop_flag = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Signals and Connections
@@ -27,6 +29,8 @@ func _ready():
 	_load_and_play(Global.main, Global.stage_select, 0)
 
 func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
+	main_music.stop()
+	loop_flag = true
 	match next_scene:
 		Global.stage_select:
 			var areas_completed = WorldManager.get_world_data(WorldManager.AreasCompleted)
@@ -68,12 +72,19 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 					current_song = load(SONG_DICTIONARY["racing_sadness"])
 					main_music.set_stream(current_song)
 		Global.score_screen:
-			current_song = load(SONG_DICTIONARY["stage_select"])
+			current_song = load(SONG_DICTIONARY["success"])
 			main_music.set_stream(current_song)
+			loop_flag = false
 			
 	main_music.play()
+	#main_music.stream.loop = true
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_main_music_finished():
+	if loop_flag:
+		main_music.play()

@@ -28,7 +28,7 @@ func _process(delta):
 
 
 func victory():
-	$GameEnd/GameEndText.text = "Victory!!!"
+	$GameEnd/GameEndText.text = "Success!!"
 	$GameEnd.visible = true
 	
 func defeat():

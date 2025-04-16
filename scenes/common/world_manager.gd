@@ -42,7 +42,7 @@ const AreaComments = "area_comments"
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
-		self.Prompt : "What made you sad about this semester?\nMaybe someone shares similar feelings.",
+		self.Prompt : "Write a short story about sadness.\nYour creativity just might fuel someone elses!",
 	},
 	self.SADNESS_AREA_B : {
 		self.AtlasID : 2,
@@ -50,7 +50,7 @@ const AreaComments = "area_comments"
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
-		self.Prompt : "Write a poem about how sadness can turn into anger.\nYour creativity just might fuel someone elses!",
+		self.Prompt : "What made you melancholy about this semester?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
@@ -62,7 +62,7 @@ const AreaComments = "area_comments"
 	},
 	self.FEAR_AREA_C : {
 		self.AtlasID : 3,
-		self.Prompt : "Write a poem about how fear and joy interact.\nYour creativity might just fuel someone elses!",
+		self.Prompt : "Write a story about how fear and joy interact.\nYour creativity might just fuel someone elses!",
 	},
 	self.ANGER_AREA_A : {
 		self.AtlasID : 4,
@@ -74,7 +74,7 @@ const AreaComments = "area_comments"
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
-		self.Prompt : "Write a poem about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
+		self.Prompt : "Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
 	},
 }
 

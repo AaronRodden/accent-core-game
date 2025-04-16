@@ -2,7 +2,7 @@ extends Node
 
 const VERSION_NUMBER = "2.2.0"
 
-# Sceme string constants
+# Scene string constants
 const main = "main"
 const stage_select = "stage_select"
 const thought_path_writing = "thought_path_writing"

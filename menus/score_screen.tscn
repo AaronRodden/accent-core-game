@@ -549,6 +549,7 @@ offset_left = -784.0
 offset_top = -93.0
 offset_right = 792.0
 offset_bottom = 243.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="ReviewCommentsFear" type="Sprite2D" parent="RacingCanvasLayer"]
@@ -561,6 +562,7 @@ offset_left = -800.0
 offset_top = -256.0
 offset_right = 800.0
 offset_bottom = 256.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 

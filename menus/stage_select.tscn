@@ -1712,7 +1712,7 @@ default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
-[node name="PathComplete9" type="Line2D" parent="."]
+[node name="Path9Complete" type="Line2D" parent="."]
 visible = false
 points = PackedVector2Array(1351, 524, 1345, 532, 1345, 547, 1350, 560, 1359, 565, 1382, 572, 1403, 576, 1423, 586, 1432, 608, 1430, 626, 1423, 638, 1413, 647, 1399, 651, 1386, 651, 1373, 651, 1345, 641, 1321, 635, 1296, 629, 1282, 629)
 default_color = Color(0, 0, 0, 1)
