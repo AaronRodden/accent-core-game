@@ -12,8 +12,8 @@ var SONG_DICTIONARY = {
 	"racing_joy" : "res://assets/music/RacingJoyFinal.wav",
 	"racing_sadness" : "res://assets/music/RacingSadnessFinal.wav",
 	"stage_select_anger" : "res://assets/music/themindAnger.wav",
-	"stage_select_fear" : "res://assets/music/themindAnger.wav",
-	"stage_select_joy" : "res://assets/music/themindFear.wav",
+	"stage_select_fear" : "res://assets/music/themindFear.wav",
+	"stage_select_joy" : "res://assets/music/themindJoy.wav",
 	"stage_select_sadness" : "res://assets/music/themindSadness.wav",
 	"success" : "res://assets/music/Success!.wav",
 }
@@ -36,11 +36,11 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 			var areas_completed = WorldManager.get_world_data(WorldManager.AreasCompleted)
 			if areas_completed < 3:
 				current_song = load(SONG_DICTIONARY["stage_select_sadness"])
-			elif areas_completed > 3 and areas_completed < 6:
+			elif areas_completed >= 3 and areas_completed < 6:
 				current_song = load(SONG_DICTIONARY["stage_select_anger"])
-			elif areas_completed > 6 and areas_completed < 9:
+			elif areas_completed >= 6 and areas_completed < 9:
 				current_song = load(SONG_DICTIONARY["stage_select_fear"])
-			elif areas_completed > 9:
+			elif areas_completed >= 9:
 				current_song = load(SONG_DICTIONARY["stage_select_joy"])
 			main_music.set_stream(current_song)
 		Global.thought_path_writing:
