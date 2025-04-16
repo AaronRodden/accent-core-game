@@ -592,6 +592,7 @@ focus_neighbor_bottom = NodePath("../load")
 text = "Racing  - Anger"
 
 [node name="VersionNumberDisplay" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 1784.0
 offset_top = 1006.0
 offset_right = 1914.0

@@ -1,7 +1,7 @@
 extends Node
 
 # NOTE: 34 was used for Caliburst Test, it seemed good!
-const MINIMUM_WORD_COUNT = 3
+const MINIMUM_WORD_COUNT = 34
 
 var area_enum : int
 
