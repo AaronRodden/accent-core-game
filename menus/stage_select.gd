@@ -253,6 +253,8 @@ func _update_world_data_text(session_dict = null):
 	for play_feed_string in play_history_list:
 		if not $GameHistory.text.contains(play_feed_string):
 			$GameHistory.text += play_feed_string + "\n"
+			
+	SignalBus.save_game.emit()
 
 #func _on_writingjoy_pressed():
 	#WorldManager.current_player_area = WorldManager.JOY_AREA
