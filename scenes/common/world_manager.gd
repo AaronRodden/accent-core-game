@@ -27,6 +27,7 @@ const AreaComments = "area_comments"
 
 @export var current_player_area = self.STAGE_SELECT
 
+# NOTE: General Prompts
 @export var world_initalization_data = {
 	self.JOY_AREA_A : {
 		self.AtlasID : 1,
@@ -127,6 +128,58 @@ const AreaComments = "area_comments"
 	#self.ANGER_AREA_C : {
 		#self.AtlasID : 4,
 		#self.Prompt : "Write a poem about anger, fear, and Xrd.\nYour creativity might just fuel someone elses!",
+	#},
+#}
+
+# NOTE: I-school Mario Kart Night Demo!
+#@export var world_initalization_data = {
+	#self.JOY_AREA_A : {
+		#self.AtlasID : 1,
+		#self.Prompt : "What are you happy about coming to the end of the semester?\nIt is always good to share the positives!",
+	#},
+	#self.JOY_AREA_B : {
+		#self.AtlasID : 1,
+		#self.Prompt : "Write about the joy of the journey, and what it means to reach the destination!",
+	#},
+	#self.JOY_AREA_C : {
+		#self.AtlasID : 1,
+		#self.Prompt : "",
+	#},
+	#self.SADNESS_AREA_A : {
+		#self.AtlasID : 2,
+		#self.Prompt : "Write a short story about sadness.\nYour creativity just might fuel someone elses!",
+	#},
+	#self.SADNESS_AREA_B : {
+		#self.AtlasID : 2,
+		#self.Prompt : "Share about the last I-school class that made you sad.\nMaybe someone can relate.",
+	#},
+	#self.SADNESS_AREA_C : {
+		#self.AtlasID : 2,
+		#self.Prompt : "Which proffessor / lecturer will you miss the most?\nMaybe someone shares similar feelings.",
+	#},
+	#self.FEAR_AREA_A : {
+		#self.AtlasID : 3,
+		#self.Prompt : "What are you fearful about coming to the end of this semester?\nMaybe someone shares similar feelings.",
+	#},
+	#self.FEAR_AREA_B : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Share about the last I-school class that made you scared?\nSome people love a good scary story.",
+	#},
+	#self.FEAR_AREA_C : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Write a spooky scary story about South Hall.\nYour creativity might just fuel someone elses!",
+	#},
+	#self.ANGER_AREA_A : {
+		#self.AtlasID : 4,
+		#self.Prompt : "What angers you about the job search right now?\nWe always feel like, we have it figured it out sometimes...",
+	#},
+	#self.ANGER_AREA_B : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Share about the last I-school class that made you angry.\nI wonder if anyone else was in it?",
+	#},
+	#self.ANGER_AREA_C : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
 	#},
 #}
 

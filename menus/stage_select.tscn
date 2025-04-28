@@ -281,6 +281,21 @@ _data = {
 "blink": SubResource("Animation_mgsb3")
 }
 
+[sub_resource type="Animation" id="Animation_m426w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_2fa75"]
 resource_name = "blink"
 length = 2.0
@@ -298,7 +313,13 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.254902), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_m426w"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eoewv"]
+_data = {
+"RESET": SubResource("Animation_m426w"),
+"blink": SubResource("Animation_2fa75")
+}
+
+[sub_resource type="Animation" id="Animation_efl5f"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -311,12 +332,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_eoewv"]
-_data = {
-"RESET": SubResource("Animation_m426w"),
-"blink": SubResource("Animation_2fa75")
 }
 
 [sub_resource type="Animation" id="Animation_djimk"]
@@ -336,7 +351,13 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.254902), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_efl5f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2mw8"]
+_data = {
+"RESET": SubResource("Animation_efl5f"),
+"blink": SubResource("Animation_djimk")
+}
+
+[sub_resource type="Animation" id="Animation_4t3yq"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -349,12 +370,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_k2mw8"]
-_data = {
-"RESET": SubResource("Animation_efl5f"),
-"blink": SubResource("Animation_djimk")
 }
 
 [sub_resource type="Animation" id="Animation_2ulna"]
@@ -374,7 +389,13 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.254902), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_4t3yq"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4vwp"]
+_data = {
+"RESET": SubResource("Animation_4t3yq"),
+"blink": SubResource("Animation_2ulna")
+}
+
+[sub_resource type="Animation" id="Animation_46w5r"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -387,12 +408,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g4vwp"]
-_data = {
-"RESET": SubResource("Animation_4t3yq"),
-"blink": SubResource("Animation_2ulna")
 }
 
 [sub_resource type="Animation" id="Animation_sv1mc"]
@@ -410,21 +425,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.254902), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_46w5r"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_usw7o"]
