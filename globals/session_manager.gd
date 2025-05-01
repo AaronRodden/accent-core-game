@@ -1,6 +1,6 @@
 extends Node
 
-const IDLE_SECONDS = 30
+const IDLE_SECONDS = 60
 
 var start_timestamp : Dictionary
 var end_timestamp : Dictionary
