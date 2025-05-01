@@ -1,6 +1,6 @@
 extends Node
 
-const IDLE_SECONDS = 60
+const IDLE_SECONDS = 30
 
 var start_timestamp : Dictionary
 var end_timestamp : Dictionary
@@ -25,7 +25,7 @@ func _process(delta):
 			end_session()
 			
 func _keystroke_session_update(event : InputEventKey, keystroke: String, total_keystrokes: int):
-	keystroke_count = total_keystrokes
+	keystroke_count += 1
 	
 	idle_timer.set_wait_time(IDLE_SECONDS)
 	idle_timer.start()
