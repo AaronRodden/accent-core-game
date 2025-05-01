@@ -39,6 +39,7 @@ func _process(delta):
 		current_selector = get_node(next_selector_node)
 		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
+		_update_title_box(current_selector, selector_number)
 
 	if Input.is_action_just_pressed("up"):
 		selector_number += 1
@@ -49,6 +50,7 @@ func _process(delta):
 		current_selector = get_node(next_selector_node)
 		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
+		_update_title_box(current_selector, selector_number)
 		
 
 func _unhandled_input(event):
@@ -244,6 +246,16 @@ func _update_stage_select():
 		$ArrowKeyDownTip.visible = true
 	
 	_update_world_data_text()
+	
+func _update_title_box(current_selector: Node, area_selector: int):
+	$TitleBox.position = Vector2(current_selector.position.x - 250, current_selector.position.y)
+	if area_selector > self.areas_completed:
+		$TitleBox/TitleText.text = "[center][wave]" + "No passage here yet!\nWrite a new one!"
+	else:
+		var dynamic_area_data = WorldManager.get_dynamic_data(area_selector)
+		var area_passage_title = dynamic_area_data[WorldManager.CurrAreaPassageTitle]
+		var area_passage_author = dynamic_area_data[WorldManager.CurrAreaPassageAuthor]
+		$TitleBox/TitleText.text = "[center][wave]" + area_passage_title + "\n" + "By: " + area_passage_author
 	
 func _update_world_data_text(session_dict = null):
 	# Update player count

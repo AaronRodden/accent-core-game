@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=65 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dfr5hspp1ynpp" path="res://assets/BrainTypeTempStageSelect.png" id="2_iks6f"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
 [ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
 [ext_resource type="Texture2D" uid="uid://ctwdd38xig0y2" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]
+[ext_resource type="FontFile" uid="uid://chow06u5fioni" path="res://assets/fonts/CinnamonCoffeCake-Ea2Pr.ttf" id="11_t77rn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -2223,16 +2224,18 @@ offset_top = 16.0
 offset_right = 407.0
 offset_bottom = 654.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("11_t77rn")
+theme_override_font_sizes/normal_font_size = 28
 
 [node name="PlayerCount" type="RichTextLabel" parent="."]
-offset_left = 1494.0
+offset_left = 1380.0
 offset_top = 20.0
-offset_right = 1907.0
-offset_bottom = 96.0
+offset_right = 1915.0
+offset_bottom = 114.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 36
-text = "0 Players Player Today"
+theme_override_fonts/normal_font = ExtResource("11_t77rn")
+theme_override_font_sizes/normal_font_size = 64
+text = "0 Players Played Today"
 
 [node name="NeuronCursor" type="Sprite2D" parent="."]
 position = Vector2(416, 556)
@@ -2240,36 +2243,40 @@ scale = Vector2(0.144725, 0.144725)
 texture = ExtResource("10_0xwyn")
 
 [node name="InfoBox" type="Sprite2D" parent="."]
-position = Vector2(989, 827)
-scale = Vector2(1.24275, 1.19369)
+position = Vector2(986.292, 823.125)
+scale = Vector2(1.27792, 1.22748)
 texture = ExtResource("6_bx4uh")
 
 [node name="InfoText" type="RichTextLabel" parent="."]
-offset_left = 674.0
-offset_top = 781.0
-offset_right = 1307.0
-offset_bottom = 873.0
+offset_left = 669.0
+offset_top = 770.0
+offset_right = 1306.0
+offset_bottom = 875.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 28
+theme_override_fonts/normal_font = ExtResource("11_t77rn")
+theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Press Enter on a solid path, to type a passage! Go to the blinking path to write a new one!"
+text = "[center]Press Enter on a solid path, to type a passage! 
+Go to the blinking path to write a new one!"
 
 [node name="ArrowKeyInfoBox" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(286, 760.875)
-scale = Vector2(0.525362, 1.19144)
+position = Vector2(290.888, 748)
+scale = Vector2(0.540259, 1.22522)
 texture = ExtResource("6_bx4uh")
 
 [node name="ArrowKeyInfoText" type="RichTextLabel" parent="."]
 visible = false
-offset_left = 155.0
-offset_top = 708.0
-offset_right = 411.0
-offset_bottom = 806.0
+offset_left = 165.0
+offset_top = 693.0
+offset_right = 418.0
+offset_bottom = 839.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 32
+theme_override_fonts/normal_font = ExtResource("11_t77rn")
+theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "[center]Move between areas"
+text = "[center] Move between 
+areas [center]"
 
 [node name="ArrowKeyUpTip" type="Sprite2D" parent="."]
 visible = false
@@ -2283,6 +2290,26 @@ position = Vector2(88, 744)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("11_6jod1")
+
+[node name="TitleBox" type="Sprite2D" parent="."]
+position = Vector2(178, 570)
+scale = Vector2(0.65, 0.7)
+texture = ExtResource("6_bx4uh")
+
+[node name="TitleText" type="RichTextLabel" parent="TitleBox"]
+anchors_preset = -1
+anchor_right = 0.975
+anchor_bottom = 0.824
+offset_left = -263.0
+offset_top = -47.5385
+offset_right = -276.2
+offset_bottom = -51.0025
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("11_t77rn")
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center][wave]No passage here yet!
+Write a new one!"
 
 [connection signal="pressed" from="writing-joy" to="." method="_on_writingjoy_pressed"]
 [connection signal="pressed" from="writing-sadness" to="." method="_on_writingsadness_pressed"]
