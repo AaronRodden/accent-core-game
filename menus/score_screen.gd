@@ -27,7 +27,6 @@ var initials = ""
 var initials_size = 0
 
 var current_line_count = 0
-var new_comment_substring_start = 0
 var new_comment_length = 0
 # TODO: Implement cursor into comment thread stuff
 var BBCodeCursorString = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][color=#000000][code]|[/code][/color][/pulse]"
@@ -101,8 +100,6 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 			story_comments_sprite.get_child(0).text += COMMENT_DIVIDER + "\n"
 		story_comments_sprite.get_child(0).text += COMMENT_TOOL_TIP
 		
-		new_comment_substring_start = story_comments_sprite.get_child(0).text.length()
-		
 		story_review_sprite.visible = true
 			
 func _unhandled_input(event):
@@ -153,7 +150,7 @@ func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : i
 					self.initials = "Anonymous"
 				_save_writing_data()
 				WorldManager.current_player_area = WorldManager.STAGE_SELECT
-				get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+				SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
 			
 			
 func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keystrokes : int):
@@ -168,7 +165,8 @@ func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keyst
 			story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.erase(curr_comment_thread_length - 1, 1)
 			new_comment_length -= 1
 		if keystroke == KeyboardInterface.Enter:
-			var new_comment_substring = story_comments_sprite.get_child(0).text.substr(new_comment_substring_start, new_comment_length)
+			var last_line_break_index = story_comments_sprite.get_child(0).text.rfind(COMMENT_DIVIDER)
+			var new_comment_substring = story_comments_sprite.get_child(0).text.substr(last_line_break_index+COMMENT_DIVIDER.length()+1, -1)
 			if new_comment_substring == "":
 				self.area_comment[0] = "Thanks for the writing"
 			else:
@@ -176,7 +174,7 @@ func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keyst
 			_save_new_comment()
 			SessionManager.reply_count += 1
 			WorldManager.current_player_area = WorldManager.STAGE_SELECT
-			get_tree().change_scene_to_file("res://scenes/main/main.tscn")
+			SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
 	var line_count = story_comments_sprite.get_child(0).get_line_count()
 	story_comments_sprite.get_child(0).scroll_to_line(line_count)
 	current_line_count = line_count

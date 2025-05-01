@@ -39,7 +39,7 @@ const AreaComments = "area_comments"
 	},
 	self.JOY_AREA_C : {
 		self.AtlasID : 1,
-		self.Prompt : "",
+		self.Prompt : "It's the end....\nWrite whatever you want!",
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,

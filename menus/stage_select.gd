@@ -42,7 +42,8 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("up"):
 		selector_number += 1
-		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
+		selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
+		selector_number = clamp(selector_number, 1, 12)  # Them clamp between 1 and 12 for completed games
 		#current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
@@ -194,8 +195,8 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 
 # Step through each area, rendering and updating the path ahead 
 func _update_stage_select():
-	var areas_completed = WorldManager.get_world_data()["areas_completed"]
-	if areas_completed == 0:
+	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
+	if updated_areas_completed == 0:
 		var incomplete_path_str = "Path" + str(1) + "Incomplete"
 		var incomplete_path_node = get_node(incomplete_path_str)
 		incomplete_path_node.visible = true
@@ -205,7 +206,7 @@ func _update_stage_select():
 		# Play blink animation given 1st passage has not been written
 		selector_node.get_child(0).play("blink")
 	else:
-		for level in range(1, areas_completed+1):
+		for level in range(1, updated_areas_completed+1):
 			if level == 12:
 				continue
 			var complete_path_str = "Path" + str(level) + "Complete"
@@ -223,16 +224,16 @@ func _update_stage_select():
 			selector_node.get_child(0).stop()
 			
 		
-		if areas_completed == 12:
-			var selector_node = get_node(("Selector" + str(areas_completed)))
+		if updated_areas_completed == 12:
+			var selector_node = get_node(("Selector" + str(updated_areas_completed)))
 			selector_node.visible = true
 		else:
-			var selector_node = get_node(("Selector" + str(areas_completed + 1)))
+			var selector_node = get_node(("Selector" + str(updated_areas_completed + 1)))
 			selector_node.visible = true
 			# Play blink animation for farthest node
 			selector_node.get_child(0).play("blink")
 			
-	self.areas_completed = areas_completed
+	self.areas_completed = updated_areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
 	
 	# NOTE: Demo Code?
