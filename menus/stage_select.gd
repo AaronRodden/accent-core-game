@@ -19,12 +19,12 @@ func _ready():
 	
 	# Grab World Node again before moving between game scenes
 	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
-	$"writing-joy".grab_focus()
 	
 	$VersionNumberDisplay.text = Global.VERSION_NUMBER
 	
 	# Render stage select according to dynamic data
 	_update_stage_select()
+	_update_title_box(current_selector, 1)
 	
 	$NeuronCursor.position = current_selector.position
 	
@@ -34,10 +34,8 @@ func _process(delta):
 	if Input.is_action_just_pressed("down"):
 		selector_number -= 1
 		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
-		#current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
-		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
 		_update_title_box(current_selector, selector_number)
 
@@ -45,10 +43,8 @@ func _process(delta):
 		selector_number += 1
 		selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
 		selector_number = clamp(selector_number, 1, 12)  # Them clamp between 1 and 12 for completed games
-		#current_selector.modulate.a = 0.5
 		var next_selector_node = "Selector" + str(selector_number)
 		current_selector = get_node(next_selector_node)
-		#current_selector.modulate.a = 1
 		$NeuronCursor.position = current_selector.position
 		_update_title_box(current_selector, selector_number)
 		
@@ -184,7 +180,6 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data)
 			
-		
 	if not SessionManager.active_session:
 		SessionManager.start_session()
 		
@@ -225,20 +220,17 @@ func _update_stage_select():
 			# Turn off existing blink animations, needed for proper file loading
 			selector_node.get_child(0).stop()
 			
-		
 		if updated_areas_completed == 12:
 			var selector_node = get_node(("Selector" + str(updated_areas_completed)))
 			selector_node.visible = true
 		else:
 			var selector_node = get_node(("Selector" + str(updated_areas_completed + 1)))
 			selector_node.visible = true
-			# Play blink animation for farthest node
-			selector_node.get_child(0).play("blink")
+			selector_node.get_child(0).play("blink")  # Play blink animation for farthest node
 			
 	self.areas_completed = updated_areas_completed
 	$GeneralProgressBar.value = float(self.areas_completed)/12.0 * 100.0
 	
-	# NOTE: Demo Code?
 	if areas_completed > 0:
 		$ArrowKeyInfoBox.visible = true
 		$ArrowKeyInfoText.visible = true
@@ -269,109 +261,10 @@ func _update_world_data_text(session_dict = null):
 			
 	SignalBus.save_game.emit()
 
-#func _on_writingjoy_pressed():
-	#WorldManager.current_player_area = WorldManager.JOY_AREA
-	#thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
-	#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_writing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.JOY_AREA)
-#
-#
-#func _on_writingsadness_pressed():
-	#WorldManager.current_player_area = WorldManager.SADNESS_AREA
-	#thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA))
-	#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_writing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.SADNESS_AREA)
-
-
 func _on_save_pressed():
 	SignalBus.save_game.emit()
 
 
 func _on_load_pressed():
 	SignalBus.load_game.emit()
-
-
-#func _on_racingjoy_pressed():
-	#var previous_area = WorldManager.current_player_area
-	## DEBUG: Default to previous area Sadness
-	#WorldManager.current_player_area = WorldManager.JOY_AREA
-	#
-	#thought_racing_scene.load_level(
-		#WorldManager.get_initalization_data(WorldManager.JOY_AREA), WorldManager.get_dynamic_data(WorldManager.JOY_AREA))
-	#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_racing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.JOY_AREA)
-#
-#
-#func _on_racingsadness_pressed():
-	#var previous_area = WorldManager.current_player_area
-	#WorldManager.current_player_area = WorldManager.SADNESS_AREA
-	#
-	#thought_racing_scene.load_level(
-		#WorldManager.get_initalization_data(WorldManager.SADNESS_AREA), WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA))
-		#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_racing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.SADNESS_AREA)
-#
-#
-#func _on_writingfear_pressed():
-	#WorldManager.current_player_area = WorldManager.FEAR_AREA
-	#thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
-	#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_writing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.FEAR_AREA)
-	#
-#func _on_writinganger_pressed():
-	#WorldManager.current_player_area = WorldManager.ANGER_AREA
-	#thought_writing_scene.load_level(WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
-	#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_writing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_writing, WorldManager.ANGER_AREA)
-#
-#
-#func _on_racingfear_pressed():
-	#var previous_area = WorldManager.current_player_area
-	#WorldManager.current_player_area = WorldManager.FEAR_AREA
-	#
-	#thought_racing_scene.load_level(
-		#WorldManager.get_initalization_data(WorldManager.FEAR_AREA), WorldManager.get_dynamic_data(WorldManager.FEAR_AREA))
-		#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_racing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.FEAR_AREA)
-#
-#
-#func _on_racinganger_pressed():
-	#var previous_area = WorldManager.current_player_area
-	#WorldManager.current_player_area = WorldManager.ANGER_AREA
-	#
-	#thought_racing_scene.load_level(
-		#WorldManager.get_initalization_data(WorldManager.ANGER_AREA), WorldManager.get_dynamic_data(WorldManager.ANGER_AREA))
-		#
-	#if not SessionManager.active_session:
-		#SessionManager.start_session()
-	#Global.WORLD_NODE.add_child(thought_racing_scene)
-	#get_node("/root/Main/World/StageSelect").queue_free()
-	#SignalBus.scene_change.emit(Global.stage_select, Global.thought_path_racing, WorldManager.ANGER_AREA)
+	

@@ -16,7 +16,6 @@ signal load_update()
 # Player Signals
 signal player_moved_tiles(prev_tile_coords : Vector2i, next_tile_coords : Vector2i, keystroke : String)
 signal player_writing_keystroke(event : InputEventKey, keystroke: String, sender : CharacterBody2D)
-signal player_swap_keystroke(event : InputEventKey, keystroke: String)
 
 # OverworldChunk Signals
 signal racing_complete()

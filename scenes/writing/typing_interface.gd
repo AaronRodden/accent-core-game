@@ -7,7 +7,6 @@ var BBCodeCursorString = "[pulse freq=1.0 color=#ffffff40 ease=-1.0][color=#0000
 var current_char_index : int
 var next_char_index : int
 
-
 var info_box : Sprite2D
 var info_text : RichTextLabel
 var typing_interface : Sprite2D

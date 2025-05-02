@@ -1,14 +1,3 @@
-//shader_type canvas_item;
-//
-//uniform vec3 rgb : source_color;
-//
-//void fragment() {
-	//vec4 color = texture (TEXTURE, UV);
-	//vec3 gradient_color = mix(vec3(0.125,0.38,0.792), vec3(0.188,0.486,0.961), UV.x);
-	//color.rgb = mix(color.rgb, gradient_color, 1.0);
-	//COLOR = color;
-//}
-
 shader_type canvas_item;
 
 uniform sampler2D vertical_gradient; // used to set alpha values. So you can use this to make the effect dis-/re-appear at points

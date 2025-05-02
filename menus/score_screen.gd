@@ -1,15 +1,11 @@
 extends Node
 
-const COMMENT_INFO = "[center]Leave a comment for the next player! (can be left empty if desired!): [/center]"
-const INITIALS_INFO = "[center]Enter in your initials to sign! (can be left empty if desired!): [/center]"
 const COMMENT_DIVIDER = "----------------------------------------------------------------------------------------------------------------------------------------------"
 var COMMENT_TOOL_TIP = "[color=4d4d4d] Type a key to leave a comment! [/color]"
 
 var gameplay_mode : int
 var area_enum : int
 var passage : String
-
-var text_box_location = Vector2(112, 96)
 
 var area_comment = [null, null]
 
@@ -24,7 +20,6 @@ var story_comments_sprite : Node
 var commenting_sprite : Node
 
 var initials = ""
-var initials_size = 0
 
 var current_line_count = 0
 var new_comment_length = 0
@@ -94,8 +89,6 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 		story_review_sprite.get_child(2).text = dynamic_area_data[WorldManager.CurrAreaPassage]
 		
 		for comment in dynamic_area_data[WorldManager.AreaComments]:
-			#$RacingCanvasLayer/CommentThreadBox/CommentThread.text += comment[0] + " - " + comment[1] + "\n"
-			#$RacingCanvasLayer/CommentThreadBox/CommentThread.text += COMMENT_DIVIDER + "\n"
 			story_comments_sprite.get_child(0).text += comment[0] + " - " + comment[1] + "\n"
 			story_comments_sprite.get_child(0).text += COMMENT_DIVIDER + "\n"
 		story_comments_sprite.get_child(0).text += COMMENT_TOOL_TIP
@@ -107,7 +100,6 @@ func _unhandled_input(event):
 		var keystroke = KeyboardInterface.handle_input_event(event)
 		
 
-	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	# Signals and Connections
@@ -127,7 +119,6 @@ func _score_screen_input_event(event: InputEventKey, keystroke : String, total_k
 			_enter_thread_comment(event, keystroke, total_keystrokes)
 
 func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : int):
-	
 	if $WritingCanvasLayer.visible == true:
 		if keystroke == KeyboardInterface.Enter:
 			story_overview_sprite.visible = false
@@ -147,7 +138,7 @@ func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : i
 		if keystroke == KeyboardInterface.Enter:
 				self.story_title = story_title_sprite.get_child(0).text
 				if initials == "":
-					self.initials = "Anonymous"
+					self.initials = "? ? ?"
 				_save_writing_data()
 				WorldManager.current_player_area = WorldManager.STAGE_SELECT
 				SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")

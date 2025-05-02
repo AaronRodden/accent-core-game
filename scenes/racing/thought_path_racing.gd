@@ -44,7 +44,6 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_racing_instructions_input_event)
 	SignalBus.racing_complete.connect(_thought_racing_complete)
-	#SignalBus.game_over.connect(_thought_racing_failed)
 	SignalBus.update_racing_progress.connect(_update_racing_progress_bar)
 	
 	
@@ -61,7 +60,7 @@ func _racing_instructions_input_event(event: InputEventKey, keystroke : String, 
 			instructions_sprite.get_child(1).text = ""
 		if keystroke == KeyboardInterface.Enter:
 			if running_initials == "":
-				self.running_initials = "Anonymous"
+				self.running_initials = "? ? ?"
 			else:
 				self.running_initials = running_initials
 			_start_racing()
@@ -99,12 +98,6 @@ func _close_racing_gameplay():
 	
 	$CanvasLayer.visible = false
 	
-#func _thought_racing_failed():
-	## Call prior to signal displays a game over notice, so wait 3 seconds 
-	#await get_tree().create_timer(3.0).timeout
-	#score_scene.load_score_screen(Global.RACING_MODE, "", area_enum)
-	#Global.WORLD_NODE.add_child(score_scene)
-	#get_node("/root/Main/World/ThoughtPathRacing").queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

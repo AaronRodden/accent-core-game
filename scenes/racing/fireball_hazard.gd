@@ -44,7 +44,7 @@ func move_false():
 	
 
 func _on_body_entered(body):
-	print("Hit a player!")
+	#print("Hit a player!")
 	$FireballCollision.set_deferred("disabled", true)
 	SignalBus.player_hit.emit()
 	self.queue_free()

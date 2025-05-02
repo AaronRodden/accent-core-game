@@ -1,16 +1,9 @@
 extends TileMapLayer
 
 const CHUNK_SIZE = 600
-const COMPLETED_KEYSTROKE_TILE_OFFSET = 3
-
-var walkable_tiles : Dictionary = {}
-var overworld_input_mapping : Dictionary = {}
-
-var thread : Thread
 
 # Shared Variables
 var rng = RandomNumberGenerator.new()
-# TODO: Interrogate this solution for storing back coordinates
 var stepped_upon_tiles : Array = [null]
 var starting_cell_coordinate : Vector2i
 var current_ending_cell_coordinate : Vector2i
@@ -21,13 +14,9 @@ var thought_path_coordinates : Array
 var thought_path_passage : String
 var forward_steps = 0 
 
-
-# DEBUG: All of these defaulting to a value for debugging purposes
-#var gameplay_mode = self.WRITING_MODE
-var gameplay_mode = Global.RACING_MODE
-#var thought_path_passage = "Well I want to write a new story about my day. At least I wasen't panicked when the saving didn't work! In many ways I have had a lot of smug joy recently, I mean even being able to play magic makes me content enough! Well I want to write a new story about my day. At least I wasen't panicked"
-var shared_atlas_id = 0
-var area_atlas_id = 1
+var gameplay_mode : int
+var shared_atlas_id : int
+var area_atlas_id : int
 
 func generate_level_chunk(start_cell_coordinate : Vector2i):
 	rng.randomize()
@@ -56,15 +45,12 @@ func generate_level_chunk(start_cell_coordinate : Vector2i):
 			var curr_vector = Vector2i(x, y)
 			var astar_checkpoint_chance = rng.randi_range(0,50)
 			if astar_checkpoint_chance == 0:
-				# TODO: We want to avoid two checkpoints in x and x+1
 				if checkpoints[-1].x == x - 1:
 					continue
 				checkpoints.append(curr_vector)
 				if len(checkpoints) >= 2:
 					astar_path.pop_back()
 					astar_path += astargrid.get_id_path(checkpoints[-2], checkpoints[-1])
-					# TODO: Investigate, Removes dead ends?
-					# The idea is that if you never retrace steps in search, then no dead ends
 					for coordinate in astar_path:
 						astargrid.set_point_solid(coordinate, true)
 	
@@ -115,8 +101,6 @@ func write_existing_passage():
 	for i in range(0, len(self.thought_path_passage)):
 		var char_at_index = thought_path_passage[i]
 		var coords_at_index = self.thought_path_coordinates[i+1]
-		#print("Char at index " + str(i) + ": " + str(char_at_index))
-		#print("Corresponding path coordinates: " + str(coords_at_index))
 		if char_at_index in Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM.keys():
 			set_cell(coords_at_index, area_atlas_id, Global.INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM[char_at_index], 0)
 		else:
@@ -126,10 +110,6 @@ func write_existing_passage():
 func _ready():
 	# Signals and Connections
 	SignalBus.player_moved_tiles.connect(_on_player_moved_tiles)
-	#SignalBus.player_keystroke.connect(_chunk_event_handler)
-	
-	# Threading
-	thread = Thread.new()
 	
 	if gameplay_mode == Global.WRITING_MODE:
 		starting_cell_coordinate = Vector2i(1, rng.randi_range(1, 7))
@@ -210,7 +190,6 @@ func racing_place_complete_tile(prev_tile_coords : Vector2i, next_tile_coords : 
 	# TODO: Tech Debt!! Logic for ending game loops is split around the code
 	# This also needs some more testing for robustness in general
 	if forward_steps == thought_path_passage.length():
-		print("Reached the end of a passage")
 		SignalBus.racing_complete.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

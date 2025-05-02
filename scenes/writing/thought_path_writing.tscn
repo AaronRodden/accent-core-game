@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bfqsu0ef0tbwr"]
+[gd_scene load_steps=11 format=3 uid="uid://bfqsu0ef0tbwr"]
 
 [ext_resource type="Script" path="res://scenes/writing/thought_path_writing.gd" id="1_bepvy"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_v0cbj"]
@@ -10,7 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://bpwd4pv8w160j" path="res://assets/InstructionsOverlayAnger.png" id="8_a2haq"]
 [ext_resource type="Texture2D" uid="uid://cxr4mqpbv36wd" path="res://assets/InstructionsOverlayFear.png" id="9_vkrg7"]
 [ext_resource type="Texture2D" uid="uid://dqr4vy1iw44up" path="res://assets/InstructionsOverlayJoy.png" id="10_w4dex"]
-[ext_resource type="Texture2D" uid="uid://b1vcq6m1xsmci" path="res://assets/ReviewPassageSadness.png" id="11_cxfts"]
 
 [node name="ThoughtPathWriting" type="Node"]
 script = ExtResource("1_bepvy")
@@ -41,19 +40,6 @@ offset_bottom = -26.0
 
 [node name="TypingInterface" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("2_1fks0")]
 player = NodePath("../../Player")
-
-[node name="InfoBox" parent="CanvasLayer/TypingInterface" index="0"]
-position = Vector2(485.501, 667.75)
-scale = Vector2(1.4837, 1.67117)
-
-[node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
-offset_left = 120.0
-offset_top = 608.0
-offset_right = 868.0
-offset_bottom = 745.0
-theme_override_font_sizes/normal_font_size = 30
-theme_override_font_sizes/bold_font_size = 42
-text = "[b]Write about...[/b]"
 
 [node name="MenusCanvasLayer" type="CanvasLayer" parent="."]
 
@@ -140,27 +126,6 @@ offset_right = -517.0
 offset_bottom = 258.0
 theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 48
-
-[node name="ReviewPassageSadness" type="Sprite2D" parent="MenusCanvasLayer"]
-visible = false
-position = Vector2(958, 499)
-texture = ExtResource("11_cxfts")
-
-[node name="PromptLabel" type="RichTextLabel" parent="MenusCanvasLayer/ReviewPassageSadness"]
-offset_left = -811.688
-offset_top = -311.688
-offset_right = 811.312
-offset_bottom = -208.688
-theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
-theme_override_font_sizes/normal_font_size = 31
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MenusCanvasLayer/ReviewPassageSadness"]
-offset_left = -801.0
-offset_top = -156.0
-offset_right = 778.0
-offset_bottom = 239.0
-theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
-theme_override_font_sizes/normal_font_size = 36
 
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/HUD"]

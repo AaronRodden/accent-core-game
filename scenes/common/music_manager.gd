@@ -77,7 +77,6 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 			loop_flag = false
 			
 	main_music.play()
-	#main_music.stream.loop = true
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

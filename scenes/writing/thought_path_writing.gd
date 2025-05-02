@@ -71,7 +71,7 @@ func _writing_instructions_input_event(event: InputEventKey, keystroke : String,
 			instructions.get_child(1).text = ""
 		if keystroke == KeyboardInterface.Enter:
 			if running_initials == "":
-				self.player_initials = "Anonymous"
+				self.player_initials = "? ? ?"
 			else:
 				self.player_initials = running_initials
 			_start_writing()
@@ -108,7 +108,6 @@ func _close_writing_gameplay():
 	SignalBus.update_writing_progress.disconnect(_update_writing_progress_bar)
 	
 	$Player.queue_free()
-	
 	$CanvasLayer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

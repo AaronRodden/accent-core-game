@@ -1,15 +1,11 @@
 extends Node
 
-# Player Area string constants
-#enum {STAGE_SELECT, JOY_AREA, SADNESS_AREA, FEAR_AREA, ANGER_AREA}
-
 enum {
 	STAGE_SELECT, SADNESS_AREA_A, SADNESS_AREA_B, SADNESS_AREA_C, 
 	ANGER_AREA_A, ANGER_AREA_B, ANGER_AREA_C, 
 	FEAR_AREA_A, FEAR_AREA_B, FEAR_AREA_C, 
 	JOY_AREA_A, JOY_AREA_B, JOY_AREA_C, 
 	}
-
 
 # Initalization data key constants
 const AtlasID = "overworld_chunk_atlas_id"

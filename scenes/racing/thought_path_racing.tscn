@@ -16,9 +16,8 @@ script = ExtResource("1_frgdv")
 
 [node name="OverworldChunk" parent="." instance=ExtResource("1_qo0dm")]
 
-[node name="Player" parent="OverworldChunk" node_paths=PackedStringArray("typing_interface") instance=ExtResource("2_52l5i")]
+[node name="Player" parent="OverworldChunk" instance=ExtResource("2_52l5i")]
 visible = false
-typing_interface = NodePath("../../CanvasLayer/TypingInterface")
 
 [node name="TypingCamera" parent="." node_paths=PackedStringArray("playerA") instance=ExtResource("3_yi6rb")]
 zoom = Vector2(1.25, 1.25)
@@ -32,22 +31,7 @@ offset_left = -16.0
 offset_right = -16.0
 player = NodePath("../../OverworldChunk/Player")
 
-[node name="InfoText" parent="CanvasLayer/TypingInterface" index="1"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 772.0
-offset_bottom = 75.0
-
-[node name="RunningText" parent="CanvasLayer/TypingInterface/TypingInterfaceVector" index="0"]
-anchors_preset = -1
-anchor_right = 0.116935
-anchor_bottom = 0.332155
-offset_right = 617.0
-offset_bottom = 5.0
-theme_override_colors/default_color = Color(0.501961, 0.658824, 0.94902, 1)
-autowrap_mode = 1
-
-[node name="DoneButton" parent="CanvasLayer/TypingInterface" index="3"]
+[node name="DoneButton" parent="CanvasLayer/TypingInterface" index="0"]
 visible = false
 
 [node name="InfoBoxSadness" parent="CanvasLayer/TypingInterface/SadnessInterface" index="0"]

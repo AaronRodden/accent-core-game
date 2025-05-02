@@ -1,49 +1,11 @@
-[gd_scene load_steps=60 format=3 uid="uid://dfwo0v0x630d7"]
+[gd_scene load_steps=53 format=3 uid="uid://dfwo0v0x630d7"]
 
-[ext_resource type="Texture2D" uid="uid://bb52dv08t2h42" path="res://assets/snoblin_prototype_character/Assets/Prototype_Character/Prototype_Character.png" id="1_jiujg"]
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxhe8"]
-[ext_resource type="Texture2D" uid="uid://dfey8ceykln42" path="res://assets/neuron_beta.png" id="3_4o22o"]
 [ext_resource type="Texture2D" uid="uid://deaq301pubykw" path="res://assets/NeuronBlue.png" id="4_prua3"]
 [ext_resource type="Texture2D" uid="uid://joik2bovu4d7" path="res://assets/NeuronPurple.png" id="5_uyv6o"]
 [ext_resource type="Texture2D" uid="uid://bu4fnk2sg20md" path="res://assets/NeuronGreen.png" id="6_4garq"]
 [ext_resource type="Texture2D" uid="uid://dcrpwk7s1k8rx" path="res://assets/NeuronRed.png" id="7_5ig4t"]
 [ext_resource type="Texture2D" uid="uid://rn125iyob1v5" path="res://assets/NeuronYellow.png" id="9_2foni"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_41hn1"]
-atlas = ExtResource("1_jiujg")
-region = Rect2(0, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_q0th1"]
-atlas = ExtResource("1_jiujg")
-region = Rect2(32, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vtp1j"]
-atlas = ExtResource("1_jiujg")
-region = Rect2(64, 128, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n5qe4"]
-atlas = ExtResource("1_jiujg")
-region = Rect2(96, 128, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_wv7ja"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_41hn1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_q0th1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vtp1j")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n5qe4")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohqag"]
 atlas = ExtResource("4_prua3")
@@ -411,18 +373,6 @@ size = Vector2(9, 14)
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(4, 4)
 script = ExtResource("1_xxhe8")
-
-[node name="PrototypeSprite" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = SubResource("SpriteFrames_wv7ja")
-autoplay = "default"
-frame = 2
-frame_progress = 0.387244
-
-[node name="NeuronSprite_old" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.0263789, 0.0263789)
-texture = ExtResource("3_4o22o")
 
 [node name="NeuronSpriteBlue" type="AnimatedSprite2D" parent="."]
 visible = false

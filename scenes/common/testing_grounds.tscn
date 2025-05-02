@@ -1,12 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://sbef7166dgqs"]
+[gd_scene load_steps=5 format=3 uid="uid://m677yfctmw2q"]
 
-[ext_resource type="Script" path="res://scenes/common/testing_grounds.gd" id="1_87yv1"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="2_orqle"]
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="3_l1egy"]
 [ext_resource type="PackedScene" uid="uid://cvdd8deakeqwa" path="res://scenes/racing/object_spawner.tscn" id="3_qnbdx"]
 
+[sub_resource type="GDScript" id="GDScript_tabw4"]
+script/source = "extends Node
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+	$OverworldChunk.gameplay_mode = Global.RACING_MODE
+	$OverworldChunk.area_atlas_id = WorldManager.get_initalization_data(WorldManager.JOY_AREA)
+	$OverworldChunk.thought_path_passage = \"Well I want to write a new story about my day. At least I wasen't panicked when the saving didn't work! In many ways I have had a lot of smug joy recently, I mean even being able to play magic makes me content enough! Well I want to write a new story about my day. At least I wasen't panicked\"
+
+	$OverworldChunk/Player.initalize($OverworldChunk, \"racing\")
+	$OverworldChunk/ObjectSpawner.initalize($OverworldChunk)
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
 [node name="TestingGrounds" type="Node"]
-script = ExtResource("1_87yv1")
+script = SubResource("GDScript_tabw4")
 
 [node name="OverworldChunk" parent="." instance=ExtResource("2_orqle")]
 

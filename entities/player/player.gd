@@ -1,11 +1,7 @@
 extends CharacterBody2D
 
-@export var running_partner : CharacterBody2D
-@export var typing_interface : Control
 var NeuronSprite : AnimatedSprite2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 const KEYBOARD_SFX = ["res://assets/sfx/Key1final.wav", "res://assets/sfx/Key2final.wav", "res://assets/sfx/Key3final.wav"]
 
 var player_locked = false
@@ -26,7 +22,6 @@ func initalize(overworld_chunk : TileMapLayer, game_type : String):
 func _ready():
 	# Signals and Connections
 	SignalBus.player_hit.connect(_player_hit)
-	
 	
 	var random_color = randi_range(1, 5)
 	match random_color:
@@ -69,8 +64,6 @@ func _unhandled_input(event):
 			writing_move(event, keystroke)
 		elif self.game_stance == "racing" :
 			racing_move(event, keystroke)
-		else:
-			pass
 			
 			
 func _player_hit():
@@ -134,14 +127,6 @@ func racing_move(event : InputEventKey, keystroke : String):
 			target_tile_coords = forwards_coordinate
 		elif keystroke == KeyboardInterface.Backspace:
 			target_tile_coords = backwards_coordinate
-		elif keystroke == KeyboardInterface.Tab:
-			# Lock self then unlock running partner on the next frame
-			print("Swap!")
-			self.lock()
-			running_partner.call_deferred("unlock")
-			typing_interface.lock()
-			SignalBus.player_swap_keystroke.emit(event, keystroke)
-			return
 		else: 
 			print("Non-matching or non-actional key pressed...")
 			return 
