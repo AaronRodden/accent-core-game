@@ -31,7 +31,7 @@ const AreaComments = "area_comments"
 @export var world_initalization_data = {
 	self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : "What are you happy about coming to the end of the semester?\nIt is always good to share the positives!",
+		self.Prompt : "What were you happy about last year?\nIt is always good to share the positives!",
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
@@ -51,11 +51,11 @@ const AreaComments = "area_comments"
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
-		self.Prompt : "What made you melancholy about this semester?\nMaybe someone shares similar feelings.",
+		self.Prompt : "What made you melancholy about last year?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : "What are you fearful about coming to the end of this semester?\nMaybe someone shares similar feelings.",
+		self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
