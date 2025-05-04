@@ -1,6 +1,6 @@
 extends Node
 
-const VERSION_NUMBER = "2.3.0"
+const VERSION_NUMBER = "2.3.1"
 
 # Scene string constants
 const main = "main"
