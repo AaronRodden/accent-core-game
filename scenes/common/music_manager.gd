@@ -17,6 +17,22 @@ var SONG_DICTIONARY = {
 	"stage_select_sadness" : "res://assets/music/themindSadness.wav",
 	"success" : "res://assets/music/Success!.wav",
 }
+
+#var SONG_DICTIONARY = {
+	#"creative_anger" : "res://assets/music/AcreativeexcerciseangerFinal.mp3",
+	#"creative_fear" : "res://assets/music/AcreativeexcercisefearFinal.mp3",
+	#"creative_joy" : "res://assets/music/AcreativeexcercisejoyFinal.mp3",
+	#"creative_sadness" : "res://assets/music/acreativeexcercisesadnessFinal.mp3",
+	#"racing_anger" : "res://assets/music/RacingAngerFinal.mp3",
+	#"racing_fear" : "res://assets/music/RacingFearFinal.mp3",
+	#"racing_joy" : "res://assets/music/RacingJoyFinal.mp3",
+	#"racing_sadness" : "res://assets/music/RacingSadnessFinal.mp3",
+	#"stage_select_anger" : "res://assets/music/themindAnger.mp3",
+	#"stage_select_fear" : "res://assets/music/themindFear.mp3",
+	#"stage_select_joy" : "res://assets/music/themindJoy.mp3",
+	#"stage_select_sadness" : "res://assets/music/themindSadness.mp3",
+	#"success" : "res://assets/music/Success!.mp3",
+#}
 var current_song
 
 var loop_flag = true

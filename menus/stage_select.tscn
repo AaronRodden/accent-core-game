@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cksftjglahnm4" path="res://ui/general_progress_bar.tscn" id="4_6n1vn"]
 [ext_resource type="Texture2D" uid="uid://cf6m2nywwnorl" path="res://assets/area_select_oval_anger.png" id="4_ya3w6"]
 [ext_resource type="Texture2D" uid="uid://c30n5b5hqqx8b" path="res://assets/area_select_oval_fear.png" id="5_b82ao"]
-[ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="6_bx4uh"]
+[ext_resource type="Texture2D" uid="uid://ba17skp5lo5rw" path="res://assets/info_box.png" id="6_bx4uh"]
 [ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
 [ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
 [ext_resource type="Texture2D" uid="uid://ctwdd38xig0y2" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]

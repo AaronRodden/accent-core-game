@@ -181,9 +181,9 @@ const AreaComments = "area_comments"
 
 @export var world_dynamic_data = {
 	"world_data": {
-		"areas_completed" = 0,
-		"player_count" = 0,
-		"play_history" = [],
+		"areas_completed" = 1,
+		"player_count" = 1,
+		"play_history" = ["? ? ? - 612 keystrokes pressed"],
 	},
 	self.JOY_AREA_A : {
 		"current_area_passage" = null,
@@ -204,9 +204,9 @@ const AreaComments = "area_comments"
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_A : {
-		"current_area_passage" = null,
-		"current_area_passage_author" = null,
-		"passage_title" = null,
+		"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
+		"current_area_passage_author" = "? ? ?",
+		"passage_title" = "Neurons needs help!!",
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_B : {
