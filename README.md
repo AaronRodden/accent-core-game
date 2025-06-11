@@ -1,2 +1,2 @@
 # accent-core-game
-Prototype project space for me and my teams School of Information final project!
+Project space for me and my teams School of Information final project!
