@@ -179,6 +179,58 @@ const AreaComments = "area_comments"
 	#},
 #}
 
+# NOTE: Quints 08/29/25
+#@export var world_initalization_data = {
+	#self.JOY_AREA_A : {
+		#self.AtlasID : 1,
+		#self.Prompt : "Write what you like about someone at this party but don't mention their name.\nLet's see if we can figure it out.",
+	#},
+	#self.JOY_AREA_B : {
+		#self.AtlasID : 1,
+		#self.Prompt : "Write about the joy of the journey you have had with The Beans, and what it means to be here now!",
+	#},
+	#self.JOY_AREA_C : {
+		#self.AtlasID : 1,
+		#self.Prompt : "",
+	#},
+	#self.SADNESS_AREA_A : {
+		#self.AtlasID : 2,
+		#self.Prompt : "",
+	#},
+	#self.SADNESS_AREA_B : {
+		#self.AtlasID : 2,
+		#self.Prompt : "Share about the last piece of media that made you sad.\nMaybe someone can relate.",
+	#},
+	#self.SADNESS_AREA_C : {
+		#self.AtlasID : 2,
+		#self.Prompt : "What is something you miss about the college years?\nMaybe someone shares similar feelings.",
+	#},
+	#self.FEAR_AREA_A : {
+		#self.AtlasID : 3,
+		#self.Prompt : "What are you fearful about as we begin to become Unc's?\nMaybe someone shares similar feelings.",
+	#},
+	#self.FEAR_AREA_B : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Share about the last piece of media that made you scared?\nSome people love a good scary story.",
+	#},
+	#self.FEAR_AREA_C : {
+		#self.AtlasID : 3,
+		#self.Prompt : "Write a spooky scary story about The Beans.\nYour creativity might just fuel someone elses!",
+	#},
+	#self.ANGER_AREA_A : {
+		#self.AtlasID : 4,
+		#self.Prompt : "What angers you about the clankers right now?\n11001110000000001111001101...",
+	#},
+	#self.ANGER_AREA_B : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Share about the last adulting thing that made you angry.\nJust let it out.",
+	#},
+	#self.ANGER_AREA_C : {
+		#self.AtlasID : 4,
+		#self.Prompt : "Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
+	#},
+#}
+
 @export var world_dynamic_data = {
 	"world_data": {
 		"areas_completed" = 1,
