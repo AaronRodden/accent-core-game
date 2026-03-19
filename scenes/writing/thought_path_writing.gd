@@ -14,7 +14,7 @@ var player_initials : String
 var score_scene = preload("res://menus/score_screen.tscn").instantiate()
 
 
-func load_level(_area_enum : int, area_dynamic_data : Dictionary):
+func load_level(_area_enum : int, area_dynamic_data : Dictionary, overwrite_prompt = null):
 	# Initalize variables
 	area_enum = _area_enum
 	
@@ -40,13 +40,19 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	var area_init_data = WorldManager.get_initalization_data(area_enum)
 	
 	# Set up Instructions
-	instructions.get_child(0).text = area_init_data[WorldManager.Prompt]
+	if overwrite_prompt:
+		instructions.get_child(0).text = overwrite_prompt
+	else:
+		instructions.get_child(0).text = area_init_data[WorldManager.Prompt]
 	instructions.visible = true
 	
 	# Set up TypingInterface
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
 	$CanvasLayer/TypingInterface.area_enum = area_enum
-	$CanvasLayer/TypingInterface.prompt = area_init_data[WorldManager.Prompt]
+	if overwrite_prompt:
+		$CanvasLayer/TypingInterface.prompt = overwrite_prompt
+	else:
+		$CanvasLayer/TypingInterface.prompt = area_init_data[WorldManager.Prompt]
 		
 	# TODO: Need flow / way to pick character color before hand and pass that info to assets that need to know! 
 

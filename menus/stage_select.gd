@@ -4,11 +4,16 @@ var world_node : Node
 
 var thought_writing_scene = preload("res://scenes/writing/thought_path_writing.tscn").instantiate()
 var thought_racing_scene = preload("res://scenes/racing/thought_path_racing.tscn").instantiate()
+var prompt_chooser = preload("res://scenes/common/choose_prompt.tscn").instantiate()
 
 @onready var current_selector = $Selector1
 var areas_completed = 0
 var selector_number = 1
 var selector_max = 1
+
+# Experiment variables
+var selecting_prompt = false
+var selected_prompt_index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,33 +31,57 @@ func _ready():
 	_update_stage_select()
 	_update_title_box(current_selector, 1)
 	
+	_load_prompt_chooser()
+	
 	$NeuronCursor.position = current_selector.position
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_action_just_pressed("down"):
-		selector_number -= 1
-		selector_number = clamp(selector_number, 1, self.areas_completed + 1)
-		var next_selector_node = "Selector" + str(selector_number)
-		current_selector = get_node(next_selector_node)
-		$NeuronCursor.position = current_selector.position
-		_update_title_box(current_selector, selector_number)
+	if selecting_prompt:
+		var selector = $PromptChooser.get_child(1)
+		if Input.is_action_just_pressed("down"):
+			selected_prompt_index += 1
+			selected_prompt_index = clamp(selected_prompt_index, 0, 7)
+		if Input.is_action_just_pressed("up"):
+			selected_prompt_index -= 1
+		selected_prompt_index = clamp(selected_prompt_index, 0, 7)
+		var curr_anchor_node = "PromptChooser/SelectorAnchor" + str(selected_prompt_index)
+		var current_anchor = get_node(curr_anchor_node)
+		selector.position = current_anchor.position
+	
+	else:
+		if Input.is_action_just_pressed("down"):
+			selector_number -= 1
+			selector_number = clamp(selector_number, 1, self.areas_completed + 1)
+			var next_selector_node = "Selector" + str(selector_number)
+			current_selector = get_node(next_selector_node)
+			$NeuronCursor.position = current_selector.position
+			_update_title_box(current_selector, selector_number)
 
-	if Input.is_action_just_pressed("up"):
-		selector_number += 1
-		selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
-		selector_number = clamp(selector_number, 1, 12)  # Them clamp between 1 and 12 for completed games
-		var next_selector_node = "Selector" + str(selector_number)
-		current_selector = get_node(next_selector_node)
-		$NeuronCursor.position = current_selector.position
-		_update_title_box(current_selector, selector_number)
+		if Input.is_action_just_pressed("up"):
+			selector_number += 1
+			selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
+			selector_number = clamp(selector_number, 1, 12)  # Them clamp between 1 and 12 for completed games
+			var next_selector_node = "Selector" + str(selector_number)
+			current_selector = get_node(next_selector_node)
+			$NeuronCursor.position = current_selector.position
+			_update_title_box(current_selector, selector_number)
 		
 
 func _unhandled_input(event):
 	if event is InputEventKey and event.pressed:
 		var keystroke = KeyboardInterface.handle_input_event(event)
 		
+
+func _load_prompt_chooser():
+	pass
+	const PROMPT_DIVIDER = "----------------------------------------------------------------------------------------------------------------------------------------------"
+
+	$PromptChooser.get_child(0).text = ""
+	for prompt in WorldManager.prompts:
+		$PromptChooser.get_child(0).text += prompt + "\n"
+		$PromptChooser.get_child(0).text += PROMPT_DIVIDER + "\n"
 		
 func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: int):
 	# NOTE: Very sneaky debug keys
@@ -69,14 +98,23 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 		
 	var writing_flag = false
 	var racing_flag = false
+	
+
 
 	match selector_number:
 		1:
 			WorldManager.current_player_area = WorldManager.SADNESS_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
@@ -84,8 +122,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.SADNESS_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.SADNESS_AREA_B, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_B, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_B, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.SADNESS_AREA_B, area_dynamic_data)
@@ -93,8 +138,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area =  WorldManager.SADNESS_AREA_C
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_C)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.SADNESS_AREA_C, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_C, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.SADNESS_AREA_C, area_dynamic_data)
@@ -102,8 +154,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.ANGER_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.ANGER_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.ANGER_AREA_A, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_A, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.ANGER_AREA_A, area_dynamic_data)
@@ -111,8 +170,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.ANGER_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.ANGER_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.ANGER_AREA_B, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_B, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_B, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.ANGER_AREA_B, area_dynamic_data)
@@ -120,8 +186,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.ANGER_AREA_C
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.ANGER_AREA_C)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
@@ -129,8 +202,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.FEAR_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.FEAR_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.FEAR_AREA_A, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_A, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.FEAR_AREA_A, area_dynamic_data)
@@ -138,8 +218,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.FEAR_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.FEAR_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.FEAR_AREA_B, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_B, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_B, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.FEAR_AREA_B, area_dynamic_data)
@@ -147,8 +234,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.FEAR_AREA_C
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.FEAR_AREA_C)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.FEAR_AREA_C, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.FEAR_AREA_C, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.FEAR_AREA_C, area_dynamic_data)
@@ -156,8 +250,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.JOY_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.JOY_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.JOY_AREA_A, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_A, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_A, area_dynamic_data)
@@ -165,8 +266,15 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.JOY_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.JOY_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.JOY_AREA_B, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_B, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_B, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_B, area_dynamic_data)
@@ -174,11 +282,22 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			WorldManager.current_player_area = WorldManager.JOY_AREA_C
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.JOY_AREA_C)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_PROMPTING and selecting_prompt == false:
+					$PromptChooser.visible = true
+					selecting_prompt = true
+					return
 				writing_flag = true
-				thought_writing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data)
+				if selecting_prompt:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				else:
+					thought_writing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data)
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_C, area_dynamic_data)
+			
+	if selecting_prompt:
+		WorldManager.prompts.remove_at(self.selected_prompt_index)
+		selecting_prompt = false
 			
 	if not SessionManager.active_session:
 		SessionManager.start_session()

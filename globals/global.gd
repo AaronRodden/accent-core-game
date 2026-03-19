@@ -8,6 +8,7 @@ const stage_select = "stage_select"
 const thought_path_writing = "thought_path_writing"
 const thought_path_racing = "thought_path_racing"
 const score_screen = "score_screen"
+const prompt_chooser = "prompt_chooser"
 
 @onready var WORLD_NODE = get_node("/root/Main/World")
 
@@ -16,6 +17,10 @@ var TILE_SIZE = 64  # in pixels
 
 # Dictionaries and Enums
 enum {WRITING_MODE, RACING_MODE}
+enum ExperimentalConditions {INCREASING_PROMPTING, DECREASING_PROMPTING, RANDOM_PROMPTING, CHOICE_PROMPTING}
+
+var experiment_conditions_values = Global.ExperimentalConditions.values()
+var experiment_condition = experiment_conditions_values.pick_random()
 
 var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	# Upper case

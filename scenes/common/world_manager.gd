@@ -23,55 +23,75 @@ const AreaComments = "area_comments"
 
 @export var current_player_area = self.STAGE_SELECT
 
+# ordered!
+# TODO: Should this be entered in via file? Would be easy
+@export var prompts = [
+	"Write a short story about sadness.\nYour creativity just might fuel someone elses!",
+	"Share about the last movie that made you sad.\nMaybe someone can relate.",
+	"What made you melancholy about last year?\nMaybe someone shares similar feelings.",
+	"What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
+	"Share about the last movie that made you angry.\nI wonder if anyone else watched it?",
+	"Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
+	"What are you fearful about?\nMaybe someone shares similar feelings.",
+	"Share about the last movie that made you fearful?\nSome people love a good scary movie.",
+	"Write a story about how fear and joy interact.\nYour creativity might just fuel someone elses!",
+	"What were you happy about last year?\nIt is always good to share the positives!",
+	"Write about the joy of the journey, and what it means to reach the destination!",
+	"It's the end....\nWrite whatever you want!",
+]
+
 # NOTE: General Prompts
-@export var world_initalization_data = {
-	self.JOY_AREA_A : {
+@export var world_initalization_data = null
+
+func _set_world_initalization_data(prompts):
+	self.world_initalization_data = {
+		self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : "What were you happy about last year?\nIt is always good to share the positives!",
+		self.Prompt : prompts[9],
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
-		self.Prompt : "Write about the joy of the journey, and what it means to reach the destination!",
+		self.Prompt : prompts[10],
 	},
 	self.JOY_AREA_C : {
 		self.AtlasID : 1,
-		self.Prompt : "It's the end....\nWrite whatever you want!",
+		self.Prompt : prompts[11],
 	},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
-		self.Prompt : "Write a short story about sadness.\nYour creativity just might fuel someone elses!",
+		self.Prompt : prompts[0],
 	},
 	self.SADNESS_AREA_B : {
 		self.AtlasID : 2,
-		self.Prompt : "Share about the last movie that made you sad.\nMaybe someone can relate.",
+		self.Prompt : prompts[1],
 	},
 	self.SADNESS_AREA_C : {
 		self.AtlasID : 2,
-		self.Prompt : "What made you melancholy about last year?\nMaybe someone shares similar feelings.",
+		self.Prompt : prompts[2],
 	},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : "What are you fearful about?\nMaybe someone shares similar feelings.",
+		self.Prompt : prompts[6],
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
-		self.Prompt : "Share about the last movie that made you fearful?\nSome people love a good scary movie.",
+		self.Prompt : prompts[7],
 	},
 	self.FEAR_AREA_C : {
 		self.AtlasID : 3,
-		self.Prompt : "Write a story about how fear and joy interact.\nYour creativity might just fuel someone elses!",
+		self.Prompt : prompts[8],
 	},
 	self.ANGER_AREA_A : {
 		self.AtlasID : 4,
-		self.Prompt : "What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
+		self.Prompt : prompts[3],
 	},
 	self.ANGER_AREA_B : {
 		self.AtlasID : 4,
-		self.Prompt : "Share about the last movie that made you angry.\nI wonder if anyone else watched it?",
+		self.Prompt : prompts[4],
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
-		self.Prompt : "Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
+		self.Prompt : prompts[5],
 	},
 }
 
@@ -342,7 +362,25 @@ func write_world_data(area_enum : int, key : String, value):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
-
+	
+	# DEBUG:
+	Global.experiment_condition = Global.ExperimentalConditions.CHOICE_PROMPTING
+	
+	match Global.experiment_condition:
+		Global.ExperimentalConditions.INCREASING_PROMPTING:
+			_set_world_initalization_data(self.prompts)
+		Global.ExperimentalConditions.DECREASING_PROMPTING:
+			self.prompts.reverse()
+			_set_world_initalization_data(self.prompts)
+		Global.ExperimentalConditions.RANDOM_PROMPTING:
+			self.prompts.shuffle()
+			_set_world_initalization_data(self.prompts)
+		Global.ExperimentalConditions.CHOICE_PROMPTING:
+			_set_world_initalization_data(self.prompts)
+			
+	print(Global.experiment_condition)
+	print(self.world_initalization_data)
+			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass

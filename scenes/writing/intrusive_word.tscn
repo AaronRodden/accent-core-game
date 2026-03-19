@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://bii2bibwuhhnx"]
 
-[ext_resource type="Texture2D" uid="uid://3o5jmww2q2fl" path="res://assets/thought-bubble-temp-intrusive-word-vector.png" id="1_l6d41"]
+[ext_resource type="Texture2D" uid="uid://cahwmxl6m5pwi" path="res://assets/thought-bubble-temp-intrusive-word-vector.png" id="1_l6d41"]
 [ext_resource type="Shader" path="res://scenes/writing/intrusive_word.gdshader" id="1_ydwan"]
 [ext_resource type="Script" path="res://scenes/writing/intrusive_word.gd" id="3_4lmh2"]
 

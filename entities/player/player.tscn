@@ -1,11 +1,11 @@
 [gd_scene load_steps=53 format=3 uid="uid://dfwo0v0x630d7"]
 
 [ext_resource type="Script" path="res://entities/player/player.gd" id="1_xxhe8"]
-[ext_resource type="Texture2D" uid="uid://deaq301pubykw" path="res://assets/NeuronBlue.png" id="4_prua3"]
-[ext_resource type="Texture2D" uid="uid://joik2bovu4d7" path="res://assets/NeuronPurple.png" id="5_uyv6o"]
-[ext_resource type="Texture2D" uid="uid://bu4fnk2sg20md" path="res://assets/NeuronGreen.png" id="6_4garq"]
-[ext_resource type="Texture2D" uid="uid://dcrpwk7s1k8rx" path="res://assets/NeuronRed.png" id="7_5ig4t"]
-[ext_resource type="Texture2D" uid="uid://rn125iyob1v5" path="res://assets/NeuronYellow.png" id="9_2foni"]
+[ext_resource type="Texture2D" uid="uid://bxg2giq6utyof" path="res://assets/NeuronBlue.png" id="4_prua3"]
+[ext_resource type="Texture2D" uid="uid://38wqgqsx63yh" path="res://assets/NeuronPurple.png" id="5_uyv6o"]
+[ext_resource type="Texture2D" uid="uid://c5ogljyitc1lg" path="res://assets/NeuronGreen.png" id="6_4garq"]
+[ext_resource type="Texture2D" uid="uid://b6kihj22o0tlp" path="res://assets/NeuronRed.png" id="7_5ig4t"]
+[ext_resource type="Texture2D" uid="uid://7llhl5o2nk0m" path="res://assets/NeuronYellow.png" id="9_2foni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ohqag"]
 atlas = ExtResource("4_prua3")

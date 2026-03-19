@@ -1,16 +1,18 @@
-[gd_scene load_steps=50 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=52 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
-[ext_resource type="Texture2D" uid="uid://cwvxk04oe0vs2" path="res://assets/BrainTypeStageSelect.png" id="3_4iwbi"]
-[ext_resource type="Texture2D" uid="uid://cpytlofm3t258" path="res://assets/area_select_oval_sadness.png" id="3_vqr7c"]
+[ext_resource type="Texture2D" uid="uid://dv4bjokxmqw1l" path="res://assets/BrainTypeStageSelect.png" id="3_4iwbi"]
+[ext_resource type="Texture2D" uid="uid://js81ccrrhnfd" path="res://assets/area_select_oval_sadness.png" id="3_vqr7c"]
 [ext_resource type="PackedScene" uid="uid://cksftjglahnm4" path="res://ui/general_progress_bar.tscn" id="4_6n1vn"]
-[ext_resource type="Texture2D" uid="uid://cf6m2nywwnorl" path="res://assets/area_select_oval_anger.png" id="4_ya3w6"]
-[ext_resource type="Texture2D" uid="uid://c30n5b5hqqx8b" path="res://assets/area_select_oval_fear.png" id="5_b82ao"]
-[ext_resource type="Texture2D" uid="uid://ba17skp5lo5rw" path="res://assets/info_box.png" id="6_bx4uh"]
-[ext_resource type="Texture2D" uid="uid://dy4cbm0hvsttl" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
-[ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
-[ext_resource type="Texture2D" uid="uid://ctwdd38xig0y2" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]
-[ext_resource type="FontFile" uid="uid://chow06u5fioni" path="res://assets/fonts/CinnamonCoffeCake-Ea2Pr.ttf" id="11_t77rn"]
+[ext_resource type="Texture2D" uid="uid://rp8ucdaht02g" path="res://assets/area_select_oval_anger.png" id="4_ya3w6"]
+[ext_resource type="Texture2D" uid="uid://fsjbmo4vesmk" path="res://assets/area_select_oval_fear.png" id="5_b82ao"]
+[ext_resource type="Texture2D" uid="uid://dt3dfos0ig6ch" path="res://assets/info_box.png" id="6_bx4uh"]
+[ext_resource type="Texture2D" uid="uid://brng440rhivum" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
+[ext_resource type="Texture2D" uid="uid://2cn80ti6mxcc" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
+[ext_resource type="Texture2D" uid="uid://b3kibwj5ltf0u" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]
+[ext_resource type="FontFile" uid="uid://db0wr5u8nprwa" path="res://assets/fonts/CinnamonCoffeCake-Ea2Pr.ttf" id="11_t77rn"]
+[ext_resource type="Texture2D" uid="uid://bapnu6ncbcm5n" path="res://assets/prompt_chooser.png" id="12_22lxd"]
+[ext_resource type="Texture2D" uid="uid://bcjvyaur5vt8y" path="res://assets/enter_button.png" id="13_nday5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -1399,6 +1401,90 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center][wave]No passage here yet!
 Write a new one!"
+
+[node name="PromptChooser" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(973, 543)
+scale = Vector2(0.663911, 0.663911)
+texture = ExtResource("12_22lxd")
+
+[node name="Prompts" type="RichTextLabel" parent="PromptChooser"]
+offset_left = -771.0
+offset_top = -485.0
+offset_right = 789.0
+offset_bottom = 633.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 32
+text = "Write a short story about sadness.
+Your creativity just might fuel someone elses!
+----------------------------------------------------------------------------------------------------------------------------------------------
+Share about the last movie that made you sad.
+Maybe someone can relate.
+----------------------------------------------------------------------------------------------------------------------------------------------
+What made you melancholy about last year?
+Maybe someone shares similar feelings.
+----------------------------------------------------------------------------------------------------------------------------------------------
+What confuses you about anger?
+We always feel like, we have it figured it out sometimes...
+----------------------------------------------------------------------------------------------------------------------------------------------
+Share about the last movie that made you angry.
+I wonder if anyone else watched it?
+----------------------------------------------------------------------------------------------------------------------------------------------
+Write a story about how anger can turn into fear.
+Your creativity might just fuel someone elses!
+----------------------------------------------------------------------------------------------------------------------------------------------
+What are you fearful about?
+Maybe someone shares similar feelings.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Share about the last movie that made you fearful?
+Some people love a good scary movie.
+----------------------------------------------------------------------------------------------------------------------------------------------
+Write a story about how fear and joy interact.
+Your creativity might just fuel someone elses!
+----------------------------------------------------------------------------------------------------------------------------------------------
+What were you happy about last year?
+It is always good to share the positives!
+----------------------------------------------------------------------------------------------------------------------------------------------
+Write about the joy of the journey, and what it means to reach the destination!
+----------------------------------------------------------------------------------------------------------------------------------------------
+It's the end....
+Write whatever you want!"
+
+[node name="PromptSelector" type="Node2D" parent="PromptChooser"]
+position = Vector2(537.723, -427.768)
+
+[node name="NeuronHeadSprite" type="Sprite2D" parent="PromptChooser/PromptSelector"]
+position = Vector2(-100, -20)
+scale = Vector2(0.260377, 0.259433)
+texture = ExtResource("10_0xwyn")
+
+[node name="Sprite2D" type="Sprite2D" parent="PromptChooser/PromptSelector"]
+position = Vector2(115, 0)
+texture = ExtResource("13_nday5")
+
+[node name="SelectorAnchor0" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, -427.768)
+
+[node name="SelectorAnchor1" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, -295.22)
+
+[node name="SelectorAnchor2" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, -164.178)
+
+[node name="SelectorAnchor3" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, -27.1119)
+
+[node name="SelectorAnchor4" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, 109.955)
+
+[node name="SelectorAnchor5" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, 240.996)
+
+[node name="SelectorAnchor6" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, 378.063)
+
+[node name="SelectorAnchor7" type="Node2D" parent="PromptChooser"]
+position = Vector2(539.229, 507.598)
 
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="load" to="." method="_on_load_pressed"]
