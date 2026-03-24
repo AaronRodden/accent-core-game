@@ -23,18 +23,23 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_hit.connect(_player_hit)
 	
-	var random_color = randi_range(1, 5)
-	match random_color:
-		1:
-			NeuronSprite = $NeuronSpriteBlue
-		2:
-			NeuronSprite = $AnimatedSpritePurple
-		3:
-			NeuronSprite = $AnimatedSpriteGreen
-		4:
-			NeuronSprite = $AnimatedSpriteRed
-		5:
-			NeuronSprite = $AnimatedSpriteYellow
+	if Global.CURRENT_PLAYER == Global.player1:
+		NeuronSprite = $NeuronSpriteBlue
+	elif Global.CURRENT_PLAYER == Global.player2:
+		NeuronSprite = $AnimatedSpriteGreen
+	
+	#var random_color = randi_range(1, 5)
+	#match random_color:
+		#1:
+			#NeuronSprite = $NeuronSpriteBlue
+		#2:
+			#NeuronSprite = $AnimatedSpritePurple
+		#3:
+			#NeuronSprite = $AnimatedSpriteGreen
+		#4:
+			#NeuronSprite = $AnimatedSpriteRed
+		#5:
+			#NeuronSprite = $AnimatedSpriteYellow
 			
 	var random_animation = randi_range(0, 1)
 	if random_animation == 0:

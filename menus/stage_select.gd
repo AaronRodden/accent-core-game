@@ -4,7 +4,6 @@ var world_node : Node
 
 var thought_writing_scene = preload("res://scenes/writing/thought_path_writing.tscn").instantiate()
 var thought_racing_scene = preload("res://scenes/racing/thought_path_racing.tscn").instantiate()
-var prompt_chooser = preload("res://scenes/common/choose_prompt.tscn").instantiate()
 
 @onready var current_selector = $Selector1
 var areas_completed = 0
@@ -14,6 +13,12 @@ var selector_max = 1
 # Experiment variables
 var selecting_prompt = false
 var selected_prompt_index = 0
+
+func get_bbcode_color_tag(color : Color):
+	return "[color=#" + color.to_html(false) + "]"
+	
+func get_bbcode_end_color_tag():
+	return "[/color]"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +38,16 @@ func _ready():
 	
 	_load_prompt_chooser()
 	
+	if Global.CURRENT_PLAYER == Global.player1:
+		$NeuronCursor/NeuronCursorBlue.visible = true
+		$NeuronCursor/NeuronCursorGreen.visible = false
+		
+		$PlayerInfo/RichTextLabel.text = get_bbcode_color_tag(Color("#0082b9")) + "PLAYER 1 TURN" + get_bbcode_end_color_tag()
+	elif Global.CURRENT_PLAYER == Global.player2:
+		$NeuronCursor/NeuronCursorGreen.visible = true
+		$NeuronCursor/NeuronCursorBlue.visible = false
+		
+		$PlayerInfo/RichTextLabel.text = get_bbcode_color_tag(Color("#3eb155")) + "PLAYER 2 TURN" + get_bbcode_end_color_tag()
 	$NeuronCursor.position = current_selector.position
 	
 
@@ -360,13 +375,13 @@ func _update_stage_select():
 	
 func _update_title_box(current_selector: Node, area_selector: int):
 	$TitleBox.position = Vector2(current_selector.position.x - 250, current_selector.position.y)
-	if area_selector > self.areas_completed:
-		$TitleBox/TitleText.text = "[center][wave]" + "No passage here yet!\nWrite a new one!"
-	else:
-		var dynamic_area_data = WorldManager.get_dynamic_data(area_selector)
-		var area_passage_title = dynamic_area_data[WorldManager.CurrAreaPassageTitle]
-		var area_passage_author = dynamic_area_data[WorldManager.CurrAreaPassageAuthor]
+	var dynamic_area_data = WorldManager.get_dynamic_data(area_selector)
+	var area_passage_title = dynamic_area_data[WorldManager.CurrAreaPassageTitle]
+	var area_passage_author = dynamic_area_data[WorldManager.CurrAreaPassageAuthor]
+	if area_passage_title and area_passage_author:
 		$TitleBox/TitleText.text = "[center][wave]" + area_passage_title + "\n" + "By: " + area_passage_author
+	else:
+		$TitleBox/TitleText.text = "[center][wave]" + "No passage here yet!\nWrite a new one!"
 	
 func _update_world_data_text(session_dict = null):
 	# Update player count

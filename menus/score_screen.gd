@@ -156,6 +156,7 @@ func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keyst
 			story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.erase(curr_comment_thread_length - 1, 1)
 			new_comment_length -= 1
 		if keystroke == KeyboardInterface.Enter:
+			# BUG: It looks like the first comment does not get saved properly
 			var last_line_break_index = story_comments_sprite.get_child(0).text.rfind(COMMENT_DIVIDER)
 			var new_comment_substring = story_comments_sprite.get_child(0).text.substr(last_line_break_index+COMMENT_DIVIDER.length()+1, -1)
 			if new_comment_substring == "":
@@ -177,11 +178,19 @@ func _save_writing_data():
 	WorldManager.write_world_data(area_enum, WorldManager.CurrAreaPassageTitle, self.story_title.strip_edges())
 	KeyboardInterface.reset()
 	SignalBus.save_game.emit()
+	
+	# For multiplayer, always swap once a writing passage is complete
+	Global.swap_player()
 
 func _save_new_comment():
 	WorldManager.write_world_data(area_enum, WorldManager.AreaComments, self.area_comment)
 	SignalBus.save_game.emit()
 	
+	# For multiplayer, be sure to swap after the tutorial has been completed
+	if WorldManager.current_player_area == WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, swap players
+		Global.swap_player()
+	
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("down"):

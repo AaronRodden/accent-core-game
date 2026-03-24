@@ -82,6 +82,9 @@ func _thought_racing_complete():
 	SignalBus.scene_change.emit(Global.thought_path_racing, Global.score_screen, area_enum)
 	$CanvasLayer/HUD.victory()
 	await get_tree().create_timer(3.0).timeout
+	# Update World Dynamic Data
+	if WorldManager.current_player_area != WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, do not iterate completion varaiable
+		WorldManager.update_areas_completed()
 	# Change to score scene
 	score_scene.load_score_screen(Global.RACING_MODE, "", area_enum, running_initials)
 	Global.WORLD_NODE.add_child(score_scene)

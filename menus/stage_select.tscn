@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=54 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dv4bjokxmqw1l" path="res://assets/BrainTypeStageSelect.png" id="3_4iwbi"]
@@ -9,7 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dt3dfos0ig6ch" path="res://assets/info_box.png" id="6_bx4uh"]
 [ext_resource type="Texture2D" uid="uid://brng440rhivum" path="res://assets/area_select_oval_joy.png" id="6_fgnsn"]
 [ext_resource type="Texture2D" uid="uid://2cn80ti6mxcc" path="res://assets/TEMP_neuron_head.png" id="10_0xwyn"]
+[ext_resource type="Texture2D" uid="uid://boh4f42bi2gga" path="res://assets/neuron_head_blue.png" id="10_78ul3"]
 [ext_resource type="Texture2D" uid="uid://b3kibwj5ltf0u" path="res://assets/TEMP_arrow_key_icon.png" id="11_6jod1"]
+[ext_resource type="Texture2D" uid="uid://dcuo14irxkq7p" path="res://assets/neuron_head_green.png" id="11_j16br"]
 [ext_resource type="FontFile" uid="uid://db0wr5u8nprwa" path="res://assets/fonts/CinnamonCoffeCake-Ea2Pr.ttf" id="11_t77rn"]
 [ext_resource type="Texture2D" uid="uid://bapnu6ncbcm5n" path="res://assets/prompt_chooser.png" id="12_22lxd"]
 [ext_resource type="Texture2D" uid="uid://bcjvyaur5vt8y" path="res://assets/enter_button.png" id="13_nday5"]
@@ -1328,10 +1330,17 @@ theme_override_fonts/normal_font = ExtResource("11_t77rn")
 theme_override_font_sizes/normal_font_size = 64
 text = "0 Players Played Today"
 
-[node name="NeuronCursor" type="Sprite2D" parent="."]
-position = Vector2(416, 556)
-scale = Vector2(0.144725, 0.144725)
-texture = ExtResource("10_0xwyn")
+[node name="NeuronCursor" type="Node2D" parent="."]
+position = Vector2(421, 551)
+
+[node name="NeuronCursorBlue" type="Sprite2D" parent="NeuronCursor"]
+scale = Vector2(0.216265, 0.216265)
+texture = ExtResource("10_78ul3")
+
+[node name="NeuronCursorGreen" type="Sprite2D" parent="NeuronCursor"]
+visible = false
+scale = Vector2(0.216265, 0.216265)
+texture = ExtResource("11_j16br")
 
 [node name="InfoBox" type="Sprite2D" parent="."]
 position = Vector2(986.292, 823.125)
@@ -1485,6 +1494,21 @@ position = Vector2(539.229, 378.063)
 
 [node name="SelectorAnchor7" type="Node2D" parent="PromptChooser"]
 position = Vector2(539.229, 507.598)
+
+[node name="PlayerInfo" type="Sprite2D" parent="."]
+position = Vector2(325, 851)
+scale = Vector2(0.920336, 0.88401)
+texture = ExtResource("6_bx4uh")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerInfo"]
+offset_left = -192.321
+offset_top = -36.1986
+offset_right = 172.679
+offset_bottom = 33.8014
+theme_override_colors/default_color = Color(0, 0.509804, 0.72549, 1)
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "PLAYER 1 TURN"
 
 [connection signal="pressed" from="save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="load" to="." method="_on_load_pressed"]

@@ -1,7 +1,8 @@
 extends Node
 
 # NOTE: 34 was used for Caliburst Test, it seemed good!
-const MINIMUM_WORD_COUNT = 34
+#const MINIMUM_WORD_COUNT = 34
+const MINIMUM_WORD_COUNT = 1
 
 var area_enum : int
 
@@ -101,7 +102,7 @@ func _update_writing_progress_bar(progress):
 
 func _thought_path_complete(passage : String):
 	# Update World Dynamic Data
-	WorldManager.update_areas_completed()
+	#WorldManager.update_areas_completed()
 	# Change to score scene
 	score_scene.load_score_screen(Global.WRITING_MODE, passage, area_enum, self.player_initials)
 	Global.WORLD_NODE.add_child(score_scene)

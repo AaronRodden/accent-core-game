@@ -276,7 +276,8 @@ func _set_world_initalization_data(prompts):
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_A : {
-		"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
+		#"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
+		"current_area_passage" = "Tutorial Passage!",
 		"current_area_passage_author" = "? ? ?",
 		"passage_title" = "Neurons needs help!!",
 		"area_comments" = [],
@@ -360,11 +361,9 @@ func write_world_data(area_enum : int, key : String, value):
 	
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-	
+func _ready():	
 	# DEBUG:
-	Global.experiment_condition = Global.ExperimentalConditions.CHOICE_PROMPTING
+	#Global.experiment_condition = Global.ExperimentalConditions.CHOICE_PROMPTING
 	
 	match Global.experiment_condition:
 		Global.ExperimentalConditions.INCREASING_PROMPTING:
@@ -377,9 +376,6 @@ func _ready():
 			_set_world_initalization_data(self.prompts)
 		Global.ExperimentalConditions.CHOICE_PROMPTING:
 			_set_world_initalization_data(self.prompts)
-			
-	print(Global.experiment_condition)
-	print(self.world_initalization_data)
 			
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

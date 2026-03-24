@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cksftjglahnm4"]
+[gd_scene load_steps=6 format=3 uid="uid://cksftjglahnm4"]
 
-[ext_resource type="Texture2D" uid="uid://cdg6yls41lw5r" path="res://assets/progress_bar_empty.png" id="1_vhq17"]
-[ext_resource type="Texture2D" uid="uid://dxdgb0ks3xyrc" path="res://assets/progress_bar_fill.png" id="2_w6ur0"]
+[ext_resource type="Texture2D" uid="uid://26xq1dfspddp" path="res://assets/progress_bar_empty.png" id="1_vhq17"]
+[ext_resource type="Texture2D" uid="uid://brpouoawdcjxd" path="res://assets/progress_bar_fill.png" id="2_w6ur0"]
 [ext_resource type="Script" path="res://ui/general_progress_bar.gd" id="3_hvofg"]
-[ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="4_1vugq"]
+[ext_resource type="Texture2D" uid="uid://boh4f42bi2gga" path="res://assets/neuron_head_blue.png" id="4_kdq2h"]
+[ext_resource type="Texture2D" uid="uid://dcuo14irxkq7p" path="res://assets/neuron_head_green.png" id="5_dhuwb"]
 
 [node name="GeneralProgressBar" type="TextureProgressBar"]
 anchors_preset = 15
@@ -18,7 +19,13 @@ texture_under = ExtResource("1_vhq17")
 texture_progress = ExtResource("2_w6ur0")
 script = ExtResource("3_hvofg")
 
-[node name="NeuronHeadSprite" type="Sprite2D" parent="."]
+[node name="NeuronHeadSpriteBlue" type="Sprite2D" parent="."]
 position = Vector2(8, 104)
-scale = Vector2(1.0731, 1.06921)
-texture = ExtResource("4_1vugq")
+scale = Vector2(1.828, 1.821)
+texture = ExtResource("4_kdq2h")
+
+[node name="NeuronHeadSpriteGreen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 104)
+scale = Vector2(1.828, 1.821)
+texture = ExtResource("5_dhuwb")

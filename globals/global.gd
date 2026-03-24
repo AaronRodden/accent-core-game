@@ -10,10 +10,17 @@ const thought_path_racing = "thought_path_racing"
 const score_screen = "score_screen"
 const prompt_chooser = "prompt_chooser"
 
+# Multiplayer string constants
+const player1 = "Player 1"
+const player2 = "Player 2"
+
 @onready var WORLD_NODE = get_node("/root/Main/World")
 
 # Variables and Constants
 var TILE_SIZE = 64  # in pixels
+
+var MULTIPLAYER_INTRO_FLAG = false
+var CURRENT_PLAYER = player1
 
 # Dictionaries and Enums
 enum {WRITING_MODE, RACING_MODE}
@@ -114,6 +121,12 @@ var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 
 var INTRUSIVE_WORD_BANK = ['happy', 'sad', 'angry', 'excited', 'nervous', 'frustrated', 'joyful', 'anxious', 'peaceful', 'annoyed', 'hopeful', 'disappointed', 'grateful', 'fearful', 'content', 'guilty', 'embarrassed', 'proud', 'lonely', 'overwhelmed', 'relaxed', 'confused', 'jealous', 'loving', 'ashamed', 'determined', 'bored', 'resentful', 'ecstatic', 'miserable', 'furious', 'eager', 'doubtful', 'inspired', 'nostalgic', 'sorrowful', 'optimistic', 'hesitant', 'panicked', 'envious', 'relieved', 'indifferent', 'melancholic', 'startled', 'affectionate', 'irritated', 'empowered', 'insecure', 'heartbroken', 'smug', 'remorseful', 'suspicious', 'adventurous', 'weary', 'mortified', 'triumphant', 'defensive', 'sentimental', 'restless', 'vulnerable', 'discouraged', 'confident', 'betrayed', 'elated', 'furious', 'amused', 'sorrowful', 'exhausted', 'bitter', 'hopeful', 'shy', 'tender', 'uneasy', 'curious', 'regretful', 'cheerful', 'weary', 'brave', 'guilty', 'panicked', 'humiliated', 'liberated', 'comforted', 'enraptured', 'aggravated', 'uneasy', 'ambitious', 'stunned', 'devastated', 'enthusiastic', 'inadequate', 'loving']
 
+
+func swap_player():
+	if CURRENT_PLAYER == Global.player1:
+		CURRENT_PLAYER = Global.player2
+	elif CURRENT_PLAYER == Global.player2:
+		CURRENT_PLAYER = Global.player1
 
 
 # Called when the node enters the scene tree for the first time.
