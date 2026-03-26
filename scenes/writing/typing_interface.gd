@@ -38,7 +38,7 @@ func _ready():
 	SignalBus.player_racing_keystroke.connect(_render_racing_keystroke)
 	
 	match area_enum:
-		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
+		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 			$SadnessInterface.visible = true
 			info_box = $SadnessInterface/InfoBoxSadness
 			info_text = $SadnessInterface/InfoText
@@ -54,7 +54,7 @@ func _ready():
 			typing_text = $AngerInterface/RunningText
 			untyped_color = Color("#D68191") # light red
 			typed_color = Color("#AC2F46") # red
-		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
+		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
 			$FearInterface.visible = true
 			info_box = $FearInterface/InfoBoxFear
 			info_text = $FearInterface/InfoText
@@ -62,7 +62,7 @@ func _ready():
 			typing_text = $FearInterface/RunningText
 			untyped_color = Color("#9D9D9D")  # grey
 			typed_color = Color("#FFFFFF")  # white
-		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
+		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B:
 			$JoyInterface.visible = true
 			info_box = $JoyInterface/InfoBoxJoy
 			info_text = $JoyInterface/InfoText

@@ -24,10 +24,10 @@ var CURRENT_PLAYER = player1
 
 # Dictionaries and Enums
 enum {WRITING_MODE, RACING_MODE}
-enum ExperimentalConditions {INCREASING_PROMPTING, DECREASING_PROMPTING, RANDOM_PROMPTING, CHOICE_PROMPTING}
+enum ExperimentalConditions {NEUTRAL_CONDITION, INCREASING_CONDITION, DECREASING_CONDITION, CHOICE_CONDITION}
 
 var experiment_conditions_values = Global.ExperimentalConditions.values()
-var experiment_condition = experiment_conditions_values.pick_random()
+var experiment_condition = null
 
 var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	# Upper case

@@ -41,16 +41,16 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 		self.initials = _author
 		
 		match area_enum:
-			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
+			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewSadness
 				story_title_sprite = $WritingCanvasLayer/StoryTitleSadness
 			WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewAnger
 				story_title_sprite = $WritingCanvasLayer/StoryTitleAnger
-			WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
+			WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewFear
 				story_title_sprite = $WritingCanvasLayer/StoryTitleFear
-			WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
+			WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewJoy
 				story_title_sprite = $WritingCanvasLayer/StoryTitleJoy
 		
@@ -66,7 +66,7 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 		$RacingCanvasLayer.visible = true
 		
 		match area_enum:
-			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
+			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 				story_review_sprite = $RacingCanvasLayer/ReviewStorySadness
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsSadness
 				commenting_sprite = $RacingCanvasLayer/CommentingSadness
@@ -74,11 +74,11 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 				story_review_sprite = $RacingCanvasLayer/ReviewStoryAnger
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsAnger
 				commenting_sprite = $RacingCanvasLayer/CommentingAnger
-			WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
+			WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
 				story_review_sprite = $RacingCanvasLayer/ReviewStoryFear
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsFear
 				commenting_sprite = $RacingCanvasLayer/CommentingFear
-			WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
+			WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B:
 				story_review_sprite = $RacingCanvasLayer/ReviewStoryJoy
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsJoy
 				commenting_sprite = $RacingCanvasLayer/CommentingJoy
@@ -193,11 +193,12 @@ func _save_new_comment():
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	if Input.is_action_just_pressed("down"):
-		current_line_count += 2
-		current_line_count = clamp(current_line_count, 0, $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count())
-		$RacingCanvasLayer/CommentThreadBox/CommentThread.scroll_to_line(current_line_count)
-	if Input.is_action_just_pressed("up"):
-		current_line_count -= 2
-		current_line_count = clamp(current_line_count, 0, $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count())
-		$RacingCanvasLayer/CommentThreadBox/CommentThread.scroll_to_line(current_line_count)
+	pass  # BUG: Comment scrolling is broken
+	#if Input.is_action_just_pressed("down"):
+		#current_line_count += 2
+		#current_line_count = clamp(current_line_count, 0, $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count())
+		#$RacingCanvasLayer/CommentThreadBox/CommentThread.scroll_to_line(current_line_count)
+	#if Input.is_action_just_pressed("up"):
+		#current_line_count -= 2
+		#current_line_count = clamp(current_line_count, 0, $RacingCanvasLayer/CommentThreadBox/CommentThread.get_line_count())
+		#$RacingCanvasLayer/CommentThreadBox/CommentThread.scroll_to_line(current_line_count)

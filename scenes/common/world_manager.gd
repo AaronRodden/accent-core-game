@@ -1,11 +1,20 @@
 extends Node
 
+# Old base game 12 level enum
+#enum {
+	#STAGE_SELECT, SADNESS_AREA_A, SADNESS_AREA_B, SADNESS_AREA_C, 
+	#ANGER_AREA_A, ANGER_AREA_B, ANGER_AREA_C, 
+	#FEAR_AREA_A, FEAR_AREA_B, FEAR_AREA_C, 
+	#JOY_AREA_A, JOY_AREA_B, JOY_AREA_C, 
+	#}
+
+# New Experiment 9 level enum
 enum {
-	STAGE_SELECT, SADNESS_AREA_A, SADNESS_AREA_B, SADNESS_AREA_C, 
+	STAGE_SELECT, SADNESS_AREA_A, SADNESS_AREA_B, 
 	ANGER_AREA_A, ANGER_AREA_B, ANGER_AREA_C, 
-	FEAR_AREA_A, FEAR_AREA_B, FEAR_AREA_C, 
-	JOY_AREA_A, JOY_AREA_B, JOY_AREA_C, 
-	}
+	FEAR_AREA_A, FEAR_AREA_B, 
+	JOY_AREA_A, JOY_AREA_B
+}
 
 # Initalization data key constants
 const AtlasID = "overworld_chunk_atlas_id"
@@ -25,38 +34,61 @@ const AreaComments = "area_comments"
 
 # ordered!
 # TODO: Should this be entered in via file? Would be easy
-@export var prompts = [
-	"Write a short story about sadness.\nYour creativity just might fuel someone elses!",
-	"Share about the last movie that made you sad.\nMaybe someone can relate.",
-	"What made you melancholy about last year?\nMaybe someone shares similar feelings.",
-	"What confuses you about anger?\nWe always feel like, we have it figured it out sometimes...",
-	"Share about the last movie that made you angry.\nI wonder if anyone else watched it?",
-	"Write a story about how anger can turn into fear.\nYour creativity might just fuel someone elses!",
-	"What are you fearful about?\nMaybe someone shares similar feelings.",
-	"Share about the last movie that made you fearful?\nSome people love a good scary movie.",
-	"Write a story about how fear and joy interact.\nYour creativity might just fuel someone elses!",
-	"What were you happy about last year?\nIt is always good to share the positives!",
-	"Write about the joy of the journey, and what it means to reach the destination!",
-	"It's the end....\nWrite whatever you want!",
+@export var neutral_prompts = [
+	"Tutorial",
+	"When was the last time you walked for more than an hour? \nDescribe where you went and what you saw.",
+	"If you could invent a new flavor of ice cream, what would it be? \nWhy?",
+	"If you had to move from California, where would you go, and what would you miss about California? \nWhy would you miss this?",
+	"What is the best TV show you've seen in the last month? \nTell your partner about it. ",
+	"What was your impression of UC Berkeley the first time you came here? \nWhy?",
+	"What foreign country would you most like to visit? \nWhat attracts you to this place?",
+	"Do you think left-handed people are more creative than right-handed people? \nWhy?",
+	"Do you prefer digital watches and clocks or the kind with hands? \nWhy?",
+]
+
+@export var increasing_closeness_prompts = [
+	"Tutorial",
+	"When was the last time you walked for more than an hour? \nDescribe where you went and what you saw.",
+	"What would constitute a “perfect” day for you?",
+	"When did you last sing to yourself? To someone else? \nDescribe the situation.",
+	"If a crystal ball could tell you the truth about yourself, your life, the future, \nor anything else, what would you want to know? Why?",
+	"Is there something that you’ve dreamed of doing for a long time? \nWhy haven’t you done it?",
+	"If you knew that in one year you would die suddenly, would you change \nanything about the way you are now living? Why?",
+	"What is your most terrible memory? \nWhy so?",
+	"Of all the people in your family, whose death would you find most disturbing? \nWhy?",
+]
+
+@export var decreasing_closeness_prompts = [
+	"Tutorial",
+	"When was the last time you walked for more than an hour? \nDescribe where you went and what you saw.",
+	"Of all the people in your family, whose death would you find most disturbing? \nWhy?",
+	"What is your most terrible memory? \nWhy so?",
+	"If you knew that in one year you would die suddenly, would you change \nanything about the way you are now living? Why?",
+	"Is there something that you’ve dreamed of doing for a long time? \nWhy haven’t you done it?",
+	"If a crystal ball could tell you the truth about yourself, your life, the future, \nor anything else, what would you want to know? Why?",
+	"When did you last sing to yourself? To someone else? \nDescribe the situation.",
+	"What would constitute a “perfect” day for you?",
 ]
 
 # NOTE: General Prompts
 @export var world_initalization_data = null
 
-func _set_world_initalization_data(prompts):
+# TODO: Modify areas down to 8!!
+
+func set_world_initalization_data(prompts):
 	self.world_initalization_data = {
 		self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : prompts[9],
+		self.Prompt : prompts[7],
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
-		self.Prompt : prompts[10],
+		self.Prompt : prompts[8],
 	},
-	self.JOY_AREA_C : {
-		self.AtlasID : 1,
-		self.Prompt : prompts[11],
-	},
+	#self.JOY_AREA_C : {
+		#self.AtlasID : 1,
+		#self.Prompt : prompts[11],
+	#},
 	self.SADNESS_AREA_A : {
 		self.AtlasID : 2,
 		self.Prompt : prompts[0],
@@ -65,33 +97,33 @@ func _set_world_initalization_data(prompts):
 		self.AtlasID : 2,
 		self.Prompt : prompts[1],
 	},
-	self.SADNESS_AREA_C : {
-		self.AtlasID : 2,
-		self.Prompt : prompts[2],
-	},
+	#self.SADNESS_AREA_C : {
+		#self.AtlasID : 2,
+		#self.Prompt : prompts[2],
+	#},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : prompts[6],
+		self.Prompt : prompts[5],
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
-		self.Prompt : prompts[7],
+		self.Prompt : prompts[6],
 	},
-	self.FEAR_AREA_C : {
-		self.AtlasID : 3,
-		self.Prompt : prompts[8],
-	},
+	#self.FEAR_AREA_C : {
+		#self.AtlasID : 3,
+		#self.Prompt : prompts[8],
+	#},
 	self.ANGER_AREA_A : {
 		self.AtlasID : 4,
-		self.Prompt : prompts[3],
+		self.Prompt : prompts[2],
 	},
 	self.ANGER_AREA_B : {
 		self.AtlasID : 4,
-		self.Prompt : prompts[4],
+		self.Prompt : prompts[3],
 	},
 	self.ANGER_AREA_C : {
 		self.AtlasID : 4,
-		self.Prompt : prompts[5],
+		self.Prompt : prompts[4],
 	},
 }
 
@@ -252,6 +284,7 @@ func _set_world_initalization_data(prompts):
 #}
 
 @export var world_dynamic_data = {
+	"experiment_condition": null,
 	"world_data": {
 		"areas_completed" = 1,
 		"player_count" = 1,
@@ -269,12 +302,12 @@ func _set_world_initalization_data(prompts):
 		"passage_title" = null,
 		"area_comments" = [],
 	},
-	self.JOY_AREA_C : {
-		"current_area_passage" = null,
-		"current_area_passage_author" = null,
-		"passage_title" = null,
-		"area_comments" = [],
-	},
+	#self.JOY_AREA_C : {
+		#"current_area_passage" = null,
+		#"current_area_passage_author" = null,
+		#"passage_title" = null,
+		#"area_comments" = [],
+	#},
 	self.SADNESS_AREA_A : {
 		#"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
 		"current_area_passage" = "Tutorial Passage!",
@@ -288,12 +321,12 @@ func _set_world_initalization_data(prompts):
 		"passage_title" = null,
 		"area_comments" = [],
 	},
-	self.SADNESS_AREA_C : {
-		"current_area_passage" = null,
-		"current_area_passage_author" = null,
-		"passage_title" = null,
-		"area_comments" = [],
-	},
+	#self.SADNESS_AREA_C : {
+		#"current_area_passage" = null,
+		#"current_area_passage_author" = null,
+		#"passage_title" = null,
+		#"area_comments" = [],
+	#},
 	self.FEAR_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
@@ -306,12 +339,12 @@ func _set_world_initalization_data(prompts):
 		"passage_title" = null,
 		"area_comments" = [],
 	},
-	self.FEAR_AREA_C : {
-		"current_area_passage" = null,
-		"current_area_passage_author" = null,
-		"passage_title" = null,
-		"area_comments" = [],
-	},
+	#self.FEAR_AREA_C : {
+		#"current_area_passage" = null,
+		#"current_area_passage_author" = null,
+		#"passage_title" = null,
+		#"area_comments" = [],
+	#},
 	self.ANGER_AREA_A : {
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
@@ -350,6 +383,10 @@ func update_player_count():
 func update_play_history(play_feed_string : String):
 	self.world_dynamic_data["world_data"]["play_history"].append(play_feed_string)
 	
+func update_experiment_condition(condition: int):
+	var condition_name = Global.ExperimentalConditions.find_key(condition)
+	self.world_dynamic_data["experiment_condition"] = condition_name
+	
 func get_dynamic_data(area_enum : int):
 	return self.world_dynamic_data[area_enum]
 
@@ -361,22 +398,10 @@ func write_world_data(area_enum : int, key : String, value):
 	
 
 # Called when the node enters the scene tree for the first time.
-func _ready():	
-	# DEBUG:
-	#Global.experiment_condition = Global.ExperimentalConditions.CHOICE_PROMPTING
-	
-	match Global.experiment_condition:
-		Global.ExperimentalConditions.INCREASING_PROMPTING:
-			_set_world_initalization_data(self.prompts)
-		Global.ExperimentalConditions.DECREASING_PROMPTING:
-			self.prompts.reverse()
-			_set_world_initalization_data(self.prompts)
-		Global.ExperimentalConditions.RANDOM_PROMPTING:
-			self.prompts.shuffle()
-			_set_world_initalization_data(self.prompts)
-		Global.ExperimentalConditions.CHOICE_PROMPTING:
-			_set_world_initalization_data(self.prompts)
-			
+func _ready():
+	pass
+
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass

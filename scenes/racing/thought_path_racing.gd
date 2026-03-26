@@ -16,16 +16,16 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary):
 	$OverworldChunk.gameplay_mode = Global.RACING_MODE
 	
 	match area_enum:
-		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B, WorldManager.SADNESS_AREA_C:
+		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 			$OverworldChunk.area_atlas_id = 2
 			instructions_sprite = $MenusCanvasLayer/InstructionsSadness
 		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
 			$OverworldChunk.area_atlas_id = 4
 			instructions_sprite = $MenusCanvasLayer/InstructionsAnger
-		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B, WorldManager.FEAR_AREA_C:
+		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
 			$OverworldChunk.area_atlas_id = 3
 			instructions_sprite = $MenusCanvasLayer/InstructionsFear
-		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B, WorldManager.JOY_AREA_C:
+		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B:
 			$OverworldChunk.area_atlas_id = 1
 			instructions_sprite = $MenusCanvasLayer/InstructionsJoy
 	

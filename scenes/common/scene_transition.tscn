@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://scenes/common/circle_transition.gdshader" id="1_7c3y5"]
 [ext_resource type="Script" path="res://scenes/common/scene_transition.gd" id="1_agy8s"]
-[ext_resource type="Texture2D" uid="uid://dngniqsr51arx" path="res://assets/TEMP_neuron_head.png" id="3_vk23c"]
+[ext_resource type="Texture2D" uid="uid://2cn80ti6mxcc" path="res://assets/TEMP_neuron_head.png" id="3_vk23c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1rrvj"]
 shader = ExtResource("1_7c3y5")
@@ -154,6 +154,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1917.0
 offset_bottom = 1086.0
+mouse_filter = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1
@@ -167,6 +168,7 @@ offset_right = 0.5
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Control/CenterContainer"]
 layout_mode = 2

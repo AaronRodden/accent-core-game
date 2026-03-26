@@ -19,10 +19,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if timer_running:
-		if idle_timer.time_left <= 0:
-			# TODO: Should we also have a signal here that triggers the game to go back to stage select if a player is in a gameplay loop?
-			end_session()
+	pass  ## For experiment version we will manually end sessions
+	#if timer_running:
+		#if idle_timer.time_left <= 0:
+			## TODO: Should we also have a signal here that triggers the game to go back to stage select if a player is in a gameplay loop?
+			#end_session()
 			
 func _keystroke_session_update(event : InputEventKey, keystroke: String, total_keystrokes: int):
 	keystroke_count += 1
