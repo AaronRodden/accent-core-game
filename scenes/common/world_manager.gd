@@ -291,12 +291,14 @@ func set_world_initalization_data(prompts):
 		"play_history" = ["? ? ? - 612 keystrokes pressed"],
 	},
 	self.JOY_AREA_A : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.JOY_AREA_B : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
@@ -310,12 +312,14 @@ func set_world_initalization_data(prompts):
 	#},
 	self.SADNESS_AREA_A : {
 		#"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
-		"current_area_passage" = "Tutorial Passage!",
+		"first_response" = null,
+		"current_area_passage" = "Welcome to BrainType. Through the game, you will be interacting with a partner who is also playing in the same session. You will be asked to respond to a prompt (in around 50-75 words). After you respond, your partner will be able to see what you wrote and will be asked to type the response. Next, they will respond to the same prompt. You will then be asked to type out their response before moving to the next round. While they are responding, we ask that you not touch your monitor or keyboard as you wait for your turn. To begin, we will start with a practice round. ",
 		"current_area_passage_author" = "? ? ?",
 		"passage_title" = "Neurons needs help!!",
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_B : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
@@ -328,12 +332,14 @@ func set_world_initalization_data(prompts):
 		#"area_comments" = [],
 	#},
 	self.FEAR_AREA_A : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.FEAR_AREA_B : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
@@ -346,18 +352,21 @@ func set_world_initalization_data(prompts):
 		#"area_comments" = [],
 	#},
 	self.ANGER_AREA_A : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.ANGER_AREA_B : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
 		"area_comments" = [],
 	},
 	self.ANGER_AREA_C : {
+		"first_response" = null,
 		"current_area_passage" = null,
 		"current_area_passage_author" = null,
 		"passage_title" = null,
@@ -386,6 +395,25 @@ func update_play_history(play_feed_string : String):
 func update_experiment_condition(condition: int):
 	var condition_name = Global.ExperimentalConditions.find_key(condition)
 	self.world_dynamic_data["experiment_condition"] = condition_name
+	
+func save_area_first_passage(area_enum: int):
+	var first_passage = self.world_dynamic_data[area_enum]["current_area_passage"]
+	var first_passage_author = self.world_dynamic_data[area_enum]["current_area_passage_author"]
+	var first_passage_title = self.world_dynamic_data[area_enum]["passage_title"]
+	
+	self.world_dynamic_data[area_enum]["first_response"] = {"first_response_passage" : first_passage, 
+		"first_response_author": first_passage_author,
+		"first_passage_title": first_passage_title}
+	
+	self.world_dynamic_data[area_enum]["current_area_passage"] = null
+	self.world_dynamic_data[area_enum]["current_area_passage_author"] = null
+	self.world_dynamic_data[area_enum]["passage_title"] = null
+	
+func area_experiment_condition_completed(area_enum: int):
+	if self.world_dynamic_data[area_enum]["first_response"] != null and self.world_dynamic_data[area_enum]["current_area_passage"] != null:
+		return true
+	else:
+		return false
 	
 func get_dynamic_data(area_enum : int):
 	return self.world_dynamic_data[area_enum]

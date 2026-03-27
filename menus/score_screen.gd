@@ -189,6 +189,11 @@ func _save_new_comment():
 	# For multiplayer, be sure to swap after the tutorial has been completed
 	if WorldManager.current_player_area == WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, swap players
 		Global.swap_player()
+		
+	# If there is already a first passage and a player just finished racing, save that first passage so current player can no write on SAME prompt
+	var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.current_player_area)
+	if area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
+		WorldManager.save_area_first_passage(WorldManager.current_player_area)
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

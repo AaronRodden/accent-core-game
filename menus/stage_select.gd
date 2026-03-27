@@ -13,7 +13,6 @@ var selector_max = 1
 # Experiment variables
 var selecting_prompt = false
 var selected_prompt_index = 0
-var experiment_condition_set = false
 
 
 func get_bbcode_color_tag(color : Color):
@@ -52,12 +51,16 @@ func _ready():
 		$NeuronCursor/NeuronCursorBlue.visible = false
 		
 		$PlayerInfo/RichTextLabel.text = get_bbcode_color_tag(Color("#3eb155")) + "PLAYER 2 TURN" + get_bbcode_end_color_tag()
+	
+	if Global.experiment_condition != null:
+		$NeuronCursor.visible = true	
+	
 	$NeuronCursor.position = current_selector.position
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if experiment_condition_set == false:
+	if Global.experiment_condition == null:
 		return
 	
 	if selecting_prompt:
@@ -126,8 +129,6 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 	var writing_flag = false
 	var racing_flag = false
 	
-
-
 	match selector_number:
 		1:
 			WorldManager.current_player_area = WorldManager.SADNESS_AREA_A
@@ -421,36 +422,30 @@ func _on_load_pressed():
 
 
 func _on_neutral_condition_pressed() -> void:
-	if experiment_condition_set == false:
+	if Global.experiment_condition == null:
 		Global.experiment_condition = Global.ExperimentalConditions.NEUTRAL_CONDITION
 		WorldManager.set_world_initalization_data(WorldManager.neutral_prompts)
 		WorldManager.update_experiment_condition(Global.experiment_condition)
 		print("Experiment condition set too: Condition 1 - No order(as is) / Neutral (control)")
-		if experiment_condition_set == false:
-			$NeuronCursor.visible = true
-			experiment_condition_set = true
-			$PlayerCount.text =  "1 players played today"
+		$NeuronCursor.visible = true
+		$PlayerCount.text =  "1 players played today"
 
 
 func _on_increasing_condition_pressed() -> void:
-	if experiment_condition_set == false:
+	if Global.experiment_condition == null:
 		Global.experiment_condition = Global.ExperimentalConditions.INCREASING_CONDITION
 		WorldManager.set_world_initalization_data(WorldManager.increasing_closeness_prompts)
 		WorldManager.update_experiment_condition(Global.experiment_condition)
 		print("Experiment condition set too: Condition 2 - Increasing closeness (treatment 1)")
-		if experiment_condition_set == false:
-			$NeuronCursor.visible = true
-			experiment_condition_set = true
-			$PlayerCount.text =  "2 players played today"
+		$NeuronCursor.visible = true
+		$PlayerCount.text =  "2 players played today"
 
 
 func _on_decreasing_condition_pressed() -> void:
-	if experiment_condition_set == false:
+	if Global.experiment_condition == null:
 		Global.experiment_condition = Global.ExperimentalConditions.DECREASING_CONDITION
 		WorldManager.set_world_initalization_data(WorldManager.decreasing_closeness_prompts)
 		WorldManager.update_experiment_condition(Global.experiment_condition)
 		print("Condition 3: Decreasing closeness (treatment 2)")
-		if experiment_condition_set == false:
-			$NeuronCursor.visible = true
-			experiment_condition_set = true
-			$PlayerCount.text =  "3 players played today"
+		$NeuronCursor.visible = true
+		$PlayerCount.text =  "3 players played today"
