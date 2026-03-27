@@ -115,8 +115,9 @@ func _score_screen_input_event(event: InputEventKey, keystroke : String, total_k
 	elif $RacingCanvasLayer.visible == true:
 		if story_review_sprite.visible == true:
 			_review_story(event, keystroke, total_keystrokes)
-		else:
-			_enter_thread_comment(event, keystroke, total_keystrokes)
+		# No commenting flow for experiment verseion
+		#else:
+			#_enter_thread_comment(event, keystroke, total_keystrokes)
 
 func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	if $WritingCanvasLayer.visible == true:
@@ -125,8 +126,17 @@ func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : 
 			story_title_sprite.visible = true
 	elif $RacingCanvasLayer.visible == true:
 		if keystroke == KeyboardInterface.Enter:
-			story_review_sprite.visible = false
-			story_comments_sprite.visible = true
+			#story_review_sprite.visible = false
+			#story_comments_sprite.visible = true
+			
+			## For experiment, end reviewing process here
+			# If there is already a first passage and a player just finished racing, save that first passage so current player can now write on SAME prompt
+			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.current_player_area)
+			if area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
+				WorldManager.save_area_first_passage(WorldManager.current_player_area)
+				
+			WorldManager.current_player_area = WorldManager.STAGE_SELECT
+			SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
 		
 func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	if KeyboardInterface.is_input_event_printable(event):
@@ -144,32 +154,32 @@ func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : i
 				SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
 			
 			
-func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keystrokes : int):
-	if story_comments_sprite.get_child(0).text.contains(COMMENT_TOOL_TIP):
-		story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.replace(COMMENT_TOOL_TIP, "")
-	if KeyboardInterface.is_input_event_printable(event):
-		story_comments_sprite.get_child(0).text += keystroke
-		new_comment_length += 1
-	else:
-		if keystroke == KeyboardInterface.Backspace:
-			var curr_comment_thread_length = story_comments_sprite.get_child(0).text.length()
-			story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.erase(curr_comment_thread_length - 1, 1)
-			new_comment_length -= 1
-		if keystroke == KeyboardInterface.Enter:
-			# BUG: It looks like the first comment does not get saved properly
-			var last_line_break_index = story_comments_sprite.get_child(0).text.rfind(COMMENT_DIVIDER)
-			var new_comment_substring = story_comments_sprite.get_child(0).text.substr(last_line_break_index+COMMENT_DIVIDER.length()+1, -1)
-			if new_comment_substring == "":
-				self.area_comment[0] = "Thanks for the writing"
-			else:
-				self.area_comment[0] = new_comment_substring
-			_save_new_comment()
-			SessionManager.reply_count += 1
-			WorldManager.current_player_area = WorldManager.STAGE_SELECT
-			SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
-	var line_count = story_comments_sprite.get_child(0).get_line_count()
-	story_comments_sprite.get_child(0).scroll_to_line(line_count)
-	current_line_count = line_count
+#func _enter_thread_comment(event: InputEventKey, keystroke : String, total_keystrokes : int):
+	#if story_comments_sprite.get_child(0).text.contains(COMMENT_TOOL_TIP):
+		#story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.replace(COMMENT_TOOL_TIP, "")
+	#if KeyboardInterface.is_input_event_printable(event):
+		#story_comments_sprite.get_child(0).text += keystroke
+		#new_comment_length += 1
+	#else:
+		#if keystroke == KeyboardInterface.Backspace:
+			#var curr_comment_thread_length = story_comments_sprite.get_child(0).text.length()
+			#story_comments_sprite.get_child(0).text = story_comments_sprite.get_child(0).text.erase(curr_comment_thread_length - 1, 1)
+			#new_comment_length -= 1
+		#if keystroke == KeyboardInterface.Enter:
+			## BUG: It looks like the first comment does not get saved properly
+			#var last_line_break_index = story_comments_sprite.get_child(0).text.rfind(COMMENT_DIVIDER)
+			#var new_comment_substring = story_comments_sprite.get_child(0).text.substr(last_line_break_index+COMMENT_DIVIDER.length()+1, -1)
+			#if new_comment_substring == "":
+				#self.area_comment[0] = "Thanks for the writing"
+			#else:
+				#self.area_comment[0] = new_comment_substring
+			#_save_new_comment()
+			#SessionManager.reply_count += 1
+			#WorldManager.current_player_area = WorldManager.STAGE_SELECT
+			#SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
+	#var line_count = story_comments_sprite.get_child(0).get_line_count()
+	#story_comments_sprite.get_child(0).scroll_to_line(line_count)
+	#current_line_count = line_count
 	
 	
 func _save_writing_data():
@@ -182,18 +192,18 @@ func _save_writing_data():
 	# For multiplayer, always swap once a writing passage is complete
 	Global.swap_player()
 
-func _save_new_comment():
-	WorldManager.write_world_data(area_enum, WorldManager.AreaComments, self.area_comment)
-	SignalBus.save_game.emit()
-	
-	# For multiplayer, be sure to swap after the tutorial has been completed
-	if WorldManager.current_player_area == WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, swap players
-		Global.swap_player()
-		
-	# If there is already a first passage and a player just finished racing, save that first passage so current player can no write on SAME prompt
-	var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.current_player_area)
-	if area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
-		WorldManager.save_area_first_passage(WorldManager.current_player_area)
+#func _save_new_comment():
+	#WorldManager.write_world_data(area_enum, WorldManager.AreaComments, self.area_comment)
+	#SignalBus.save_game.emit()
+	#
+	## For multiplayer, be sure to swap after the tutorial has been completed
+	#if WorldManager.current_player_area == WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, swap players
+		#Global.swap_player()
+		#
+	## If there is already a first passage and a player just finished racing, save that first passage so current player can not write on SAME prompt
+	#var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.current_player_area)
+	#if area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
+		#WorldManager.save_area_first_passage(WorldManager.current_player_area)
 	
 		
 # Called every frame. 'delta' is the elapsed time since the previous frame.

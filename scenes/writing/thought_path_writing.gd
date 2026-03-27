@@ -2,7 +2,8 @@ extends Node
 
 # NOTE: 34 was used for Caliburst Test, it seemed good!
 #const MINIMUM_WORD_COUNT = 34
-const MINIMUM_WORD_COUNT = 1
+# NOTE: Experiment calls for 50-75 words
+const MINIMUM_WORD_COUNT = 50
 
 var area_enum : int
 

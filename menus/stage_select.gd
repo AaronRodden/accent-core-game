@@ -57,6 +57,16 @@ func _ready():
 	
 	$NeuronCursor.position = current_selector.position
 	
+	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
+	if updated_areas_completed < 9:
+		var next_selector_node =  "Selector" + str(updated_areas_completed + 1)
+		var next_selector = get_node(next_selector_node)
+		$GuidingArrow.visible = true
+		$GuidingArrow.position = next_selector.position
+		$GuidingArrow.position.y -= 100
+		$GuidingArrow.looping_movement()
+	else:
+		$GuidingArrow.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -122,6 +132,9 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 		$ButtonLayer/IncreasingCondition.emit_signal("pressed")
 	if event.ctrl_pressed and event.pressed and event.keycode == KEY_3:
 		$ButtonLayer/DecreasingCondition.emit_signal("pressed")
+	if event.pressed and event.keycode == KEY_ESCAPE:
+		$ButtonLayer/save.emit_signal("pressed")
+		get_tree().quit()
 	
 	if keystroke != KeyboardInterface.Enter:
 		return
@@ -341,9 +354,9 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 func _update_stage_select():
 	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
 	if updated_areas_completed == 0:
-		var incomplete_path_str = "Path" + str(1) + "Incomplete"
-		var incomplete_path_node = get_node(incomplete_path_str)
-		incomplete_path_node.visible = true
+		#var incomplete_path_str = "Path" + str(1) + "Incomplete"
+		#var incomplete_path_node = get_node(incomplete_path_str)
+		#incomplete_path_node.visible = true
 		
 		var selector_node = get_node(("Selector" + str(1)))
 		selector_node.visible = true
@@ -353,14 +366,14 @@ func _update_stage_select():
 		for level in range(1, updated_areas_completed+1):
 			if level == 12:
 				continue
-			var complete_path_str = "Path" + str(level) + "Complete"
-			var complete_path_node = get_node(complete_path_str)
-			complete_path_node.visible = true
-			
-			var incomplete_path_str = "Path" + str(level) + "Incomplete"
-			var incomplete_path_node = get_node(incomplete_path_str)
-			# TODO: Consolidate the incomplete nodes as well
-			incomplete_path_node.visible = false
+			#var complete_path_str = "Path" + str(level) + "Complete"
+			#var complete_path_node = get_node(complete_path_str)
+			#complete_path_node.visible = true
+			#
+			#var incomplete_path_str = "Path" + str(level) + "Incomplete"
+			#var incomplete_path_node = get_node(incomplete_path_str)
+			## TODO: Consolidate the incomplete nodes as well
+			#incomplete_path_node.visible = false
 			
 			var selector_node = get_node(("Selector" + str(level)))
 			selector_node.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=57 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dv4bjokxmqw1l" path="res://assets/BrainTypeStageSelect.png" id="3_4iwbi"]
@@ -15,6 +15,9 @@
 [ext_resource type="FontFile" uid="uid://db0wr5u8nprwa" path="res://assets/fonts/CinnamonCoffeCake-Ea2Pr.ttf" id="11_t77rn"]
 [ext_resource type="Texture2D" uid="uid://bapnu6ncbcm5n" path="res://assets/prompt_chooser.png" id="12_22lxd"]
 [ext_resource type="Texture2D" uid="uid://bcjvyaur5vt8y" path="res://assets/enter_button.png" id="13_nday5"]
+[ext_resource type="Script" path="res://menus/guiding_arrow.gd" id="16_fo1fn"]
+[ext_resource type="Texture2D" uid="uid://dov6y0skxi78c" path="res://assets/guiding_arrow_blue.png" id="17_l5o5b"]
+[ext_resource type="Texture2D" uid="uid://xw8bxla6ebsl" path="res://assets/guiding_arrow_green.png" id="18_20vgj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -629,7 +632,6 @@ libraries = {
 }
 
 [node name="Path1Complete" type="Node2D" parent="."]
-visible = false
 
 [node name="Path1Complete" type="Line2D" parent="Path1Complete"]
 points = PackedVector2Array(428, 570, 434, 561, 440, 554, 449, 545, 456, 540, 464, 533, 470, 527, 478, 519, 485, 511, 493, 504, 499, 498, 509, 491, 516, 487, 525, 482, 532, 480, 536, 480)
@@ -644,6 +646,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path1Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Path1Incomplete" type="Node2D" parent="Path1Incomplete"]
 
@@ -712,13 +715,13 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path2Complete" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(713, 453, 729, 443, 749, 435, 769, 431, 787, 424, 801, 416, 818, 409, 835, 406, 852, 395, 858, 382, 863, 375)
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path2Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path2Incomplete"]
 position = Vector2(0, -1)
@@ -756,13 +759,13 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path3Complete" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(863, 376, 860, 353, 875, 346, 894, 335, 884, 318, 875, 303, 886, 293, 900, 285, 910, 274, 916, 254, 935, 251)
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path3Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path3Incomplete"]
 position = Vector2(-1, 0)
@@ -814,13 +817,13 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path4Complete" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(938, 250, 959, 245, 976, 256, 995, 258, 1000, 271, 1000, 285, 1007, 296, 1008, 308, 1024, 310, 1028, 331, 1046, 333, 1061, 339, 1073, 344)
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path4Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path4Incomplete"]
 position = Vector2(4, 3)
@@ -865,7 +868,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path5Complete" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(1073, 344, 1099, 355, 1124, 361, 1150, 361, 1177, 359, 1209, 351, 1228, 346, 1253, 336, 1273, 320, 1283, 300)
 width_curve = SubResource("Curve_1h7hb")
 default_color = Color(0, 0, 0, 1)
@@ -873,6 +875,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path5Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path5Incomplete"]
 points = PackedVector2Array(1076, 345, 1099, 355)
@@ -923,7 +926,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path6Complete" type="Node2D" parent="."]
-visible = false
 
 [node name="Path7Complete" type="Line2D" parent="Path6Complete"]
 points = PackedVector2Array(1283, 299, 1295.86, 286.892, 1300, 283, 1321, 269, 1339, 259, 1361, 254, 1379, 250, 1401, 247, 1426, 247, 1443, 251, 1461, 261, 1469, 272, 1475, 285, 1476, 291)
@@ -938,6 +940,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path6Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Path7Incomplete" type="Node2D" parent="Path6Incomplete"]
 
@@ -1082,13 +1085,13 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path7Complete" type="Line2D" parent="."]
-visible = false
 points = PackedVector2Array(1351, 524, 1345, 532, 1345, 547, 1350, 560, 1359, 565, 1382, 572, 1403, 576, 1423, 586, 1432, 608, 1430, 626, 1423, 638, 1413, 647, 1399, 651, 1386, 651, 1373, 651, 1345, 641, 1321, 635, 1296, 629, 1282, 629)
 default_color = Color(0, 0, 0, 1)
 begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path7Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Line2D" type="Line2D" parent="Path7Incomplete"]
 position = Vector2(0, 2)
@@ -1175,7 +1178,6 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path8Complete" type="Node2D" parent="."]
-visible = false
 
 [node name="Path10Complete" type="Line2D" parent="Path8Complete"]
 points = PackedVector2Array(1280, 629, 1257, 633, 1242, 643, 1222, 659, 1200, 679, 1187, 689, 1169, 698, 1152, 705, 1130, 710, 1103, 711, 1082, 714)
@@ -1190,6 +1192,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Path8Incomplete" type="Node2D" parent="."]
+visible = false
 
 [node name="Path10Incomplete" type="Node2D" parent="Path8Incomplete"]
 
@@ -1306,6 +1309,7 @@ offset_bottom = 226.0
 value = 10.0
 
 [node name="GameHistory" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 24.0
 offset_top = 16.0
 offset_right = 407.0
@@ -1315,6 +1319,7 @@ theme_override_fonts/normal_font = ExtResource("11_t77rn")
 theme_override_font_sizes/normal_font_size = 28
 
 [node name="PlayerCount" type="RichTextLabel" parent="."]
+visible = false
 offset_left = 1380.0
 offset_top = 20.0
 offset_right = 1915.0
@@ -1355,17 +1360,15 @@ text = "[center]Press Enter on a solid path, to type a passage!
 Go to the blinking path to write a new one!"
 
 [node name="ArrowKeyInfoBox" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(290.888, 748)
+position = Vector2(290.888, 106)
 scale = Vector2(0.540259, 1.22522)
 texture = ExtResource("6_bx4uh")
 
 [node name="ArrowKeyInfoText" type="RichTextLabel" parent="."]
-visible = false
 offset_left = 165.0
-offset_top = 693.0
+offset_top = 50.9999
 offset_right = 418.0
-offset_bottom = 839.0
+offset_bottom = 197.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_t77rn")
 theme_override_font_sizes/normal_font_size = 36
@@ -1374,14 +1377,12 @@ text = "[center] Move between
 areas [center]"
 
 [node name="ArrowKeyUpTip" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(87.5938, 741.594)
+position = Vector2(87.5938, 99.5941)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("11_6jod1")
 
 [node name="ArrowKeyDownTip" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(88, 744)
+position = Vector2(88, 102)
 rotation = 3.14159
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("11_6jod1")
@@ -1504,6 +1505,22 @@ theme_override_colors/default_color = Color(0, 0.509804, 0.72549, 1)
 theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "PLAYER 1 TURN"
+
+[node name="GuidingArrow" type="Node2D" parent="."]
+visible = false
+script = ExtResource("16_fo1fn")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("17_l5o5b")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("18_20vgj")
 
 [node name="ButtonLayer" type="CanvasLayer" parent="."]
 visible = false

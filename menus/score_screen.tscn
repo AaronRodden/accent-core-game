@@ -189,6 +189,7 @@ theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="RacingCanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ReviewStorySadness" type="Sprite2D" parent="RacingCanvasLayer"]
 visible = false
@@ -204,6 +205,7 @@ theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStorySadness"]
+visible = false
 offset_left = -49.0
 offset_top = -209.0
 offset_right = 199.0
@@ -260,6 +262,7 @@ theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryAnger"]
+visible = false
 offset_left = -49.0
 offset_top = -209.0
 offset_right = 199.0
@@ -316,6 +319,7 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryFear"]
+visible = false
 offset_left = -40.0
 offset_top = -209.0
 offset_right = 199.0
@@ -372,6 +376,7 @@ theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 32
 
 [node name="InitialsLabel" type="RichTextLabel" parent="RacingCanvasLayer/ReviewStoryJoy"]
+visible = false
 offset_left = -49.0
 offset_top = -209.0
 offset_right = 199.0
