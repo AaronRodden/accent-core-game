@@ -313,9 +313,9 @@ func set_world_initalization_data(prompts):
 	self.SADNESS_AREA_A : {
 		#"current_area_passage" = "Hey! Thanks for finding your way to this here brain! I stumbled upon this world and I found out that a bunch of Neurons are in dire need of some help! We need to help them get to the end of the brain joureny though making connections between the different brain areas: Sadness, Anger, Fear, and Joy. The best way to do that... is putting our thoughts to words! Write out new passages or type out the stories of your friends! From 123's to abc's and all sorts of (){}@#& there is plenty to work with. Well I got to gather up other people to help finish the journey, thanks for helping out already!!!",
 		"first_response" = null,
-		"current_area_passage" = "Welcome to BrainType. Through the game, you will be interacting with a partner who is also playing in the same session. You will be asked to respond to a prompt (in around 50-75 words). After you respond, your partner will be able to see what you wrote and will be asked to type the response. Next, they will respond to the same prompt. You will then be asked to type out their response before moving to the next round. While they are responding, we ask that you not touch your monitor or keyboard as you wait for your turn. To begin, we will start with a practice round. ",
+		"current_area_passage" = "Welcome to BrainType. Through the game, you will be interacting with a partner who is also playing in the same session. You will be asked to respond to a prompt (in around 50-75 words). After you respond, your partner will be able to see what you wrote and will be asked to type the response. Next, they will respond to the same prompt. You will then be asked to type out their response before moving to the next round. While they are responding, we ask that you not touch your monitor or keyboard as you wait for your turn. To begin, we will start with a practice round.",
 		"current_area_passage_author" = "? ? ?",
-		"passage_title" = "Neurons needs help!!",
+		"passage_title" = "Tutorial Passage",
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_B : {

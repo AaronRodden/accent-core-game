@@ -132,7 +132,10 @@ func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : 
 			## For experiment, end reviewing process here
 			# If there is already a first passage and a player just finished racing, save that first passage so current player can now write on SAME prompt
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.current_player_area)
-			if area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
+			
+			if WorldManager.current_player_area == WorldManager.SADNESS_AREA_A: #  If in area 1 then you are doing the tutorial, be sure to swap
+				Global.swap_player()
+			elif area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
 				WorldManager.save_area_first_passage(WorldManager.current_player_area)
 				
 			WorldManager.current_player_area = WorldManager.STAGE_SELECT
