@@ -6,6 +6,7 @@ var COMMENT_TOOL_TIP = "[color=4d4d4d] Type a key to leave a comment! [/color]"
 var gameplay_mode : int
 var area_enum : int
 var passage : String
+var prompt : String
 
 var area_comment = [null, null]
 
@@ -39,6 +40,8 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 		$RacingCanvasLayer.visible = false
 		$WritingCanvasLayer.visible = true
 		self.initials = _author
+		
+		self.prompt = init_area_data[WorldManager.Prompt]
 		
 		match area_enum:
 			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
@@ -186,6 +189,7 @@ func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : i
 	
 	
 func _save_writing_data():
+	WorldManager.write_world_data(area_enum, WorldManager.Prompt, self.prompt.strip_edges())
 	WorldManager.write_world_data(area_enum, WorldManager.CurrAreaPassage, self.passage.strip_edges())
 	WorldManager.write_world_data(area_enum, WorldManager.CurrAreaPassageAuthor, self.initials.strip_edges())
 	WorldManager.write_world_data(area_enum, WorldManager.CurrAreaPassageTitle, self.story_title.strip_edges())

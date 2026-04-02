@@ -29,6 +29,9 @@ enum ExperimentalConditions {NEUTRAL_CONDITION, INCREASING_CONDITION, DECREASING
 var experiment_conditions_values = Global.ExperimentalConditions.values()
 var experiment_condition = null
 
+var start_timestamp = Time.get_datetime_dict_from_system()
+var start_timestamp_string = Time.get_datetime_string_from_datetime_dict(start_timestamp, false).replace(":", "-")
+
 var INPUT_MAP_LAYER_ATLAS_COORDINATE_ENUM = {
 	# Upper case
 	"A" : Vector2i(0,0),

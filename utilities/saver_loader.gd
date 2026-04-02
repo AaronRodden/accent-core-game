@@ -13,7 +13,8 @@ func _ready():
 	SignalBus.save_game.connect(save_game)
 	SignalBus.load_game.connect(load_game)
 	
-	SignalBus.save_session.connect(save_session)
+	SignalBus.save_session.connect(save_session)	
+	
 
 func save_game():
 	var saved_game : SavedGame = SavedGame.new()
@@ -23,8 +24,8 @@ func save_game():
 	var time = Time.get_time_dict_from_system()
 	
 	# TODO: Add computer / participant numbers? 
-	
-	var file_name = "savegame_" + datestamp + ".tres"
+		
+	var file_name = "savegame_" + Global.start_timestamp_string + ".tres"
 	var file_path = desktop_path.path_join(file_name)
 	ResourceSaver.save(saved_game, file_path)
 	
