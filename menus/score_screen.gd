@@ -140,9 +140,12 @@ func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : 
 				Global.swap_player()
 			elif area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == false:
 				WorldManager.save_area_first_passage(WorldManager.current_player_area)
+			elif area_dynamic_data[WorldManager.CurrAreaPassage] != null and WorldManager.area_experiment_condition_completed(WorldManager.current_player_area) == true:
+				Global.swap_player()  # Whenever you "finish" a prompt (e.g. both players have written AND raced) swao to alternate who goes "first"
 				
 			WorldManager.current_player_area = WorldManager.STAGE_SELECT
 			SceneTransition.change_scene("res://scenes/main/main.tscn", "change_scene")
+			queue_free()
 		
 func _enter_title(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	if KeyboardInterface.is_input_event_printable(event):
@@ -198,6 +201,8 @@ func _save_writing_data():
 	
 	# For multiplayer, always swap once a writing passage is complete
 	Global.swap_player()
+	queue_free()
+	
 
 #func _save_new_comment():
 	#WorldManager.write_world_data(area_enum, WorldManager.AreaComments, self.area_comment)

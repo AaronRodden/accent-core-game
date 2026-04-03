@@ -318,7 +318,7 @@ func set_world_initalization_data(prompts):
 		"current_area_passage" = "Welcome to BrainType. Through the game, you will be interacting with a partner who is also playing in the same session. You will be asked to respond to a prompt (in around 50-75 words). After you respond, your partner will be able to see what you wrote and will be asked to type the response. Next, they will respond to the same prompt. You will then be asked to type out their response before moving to the next round. While they are responding, we ask that you not touch your monitor or keyboard as you wait for your turn. To begin, we will start with a practice round.",
 		"current_area_passage_author" = "? ? ?",
 		"prompt" = "Tutorial Passage",
-		"passage_title" = "Tutorial Passage",
+		"passage_title" = "Follow the arrow to continue!",
 		"area_comments" = [],
 	},
 	self.SADNESS_AREA_B : {

@@ -26,10 +26,8 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_level_select)
 	SignalBus.load_update.connect(_update_stage_select)
-	SignalBus.save_session.connect(_update_world_data_text)
-	
-	$ButtonLayer/NeutralCondition.pressed.connect(_on_neutral_condition_pressed)
-	
+	#SignalBus.save_session.connect(_update_world_data_text)
+		
 	# Grab World Node again before moving between game scenes
 	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
 	
@@ -142,23 +140,28 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 	var writing_flag = false
 	var racing_flag = false
 	
+	# TODO: Remove this for game release, this is just for the experiment!
+	if WorldManager.get_world_data()["areas_completed"] >= selector_number:
+		return
+	
 	match selector_number:
 		1:
-			WorldManager.current_player_area = WorldManager.SADNESS_AREA_A
-			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_A)
-			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
-				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_CONDITION and selecting_prompt == false:
-					$PromptChooser.visible = true
-					selecting_prompt = true
-					return
-				writing_flag = true
-				if selecting_prompt:
-					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
-				else:
-					thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
-			else:  # If passage is present, then racing
-				racing_flag = true
-				thought_racing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
+			pass # No tutorial level for experiment!
+			#WorldManager.current_player_area = WorldManager.SADNESS_AREA_A
+			#var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_A)
+			#if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				#if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_CONDITION and selecting_prompt == false:
+					#$PromptChooser.visible = true
+					#selecting_prompt = true
+					#return
+				#writing_flag = true
+				#if selecting_prompt:
+					#thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				#else:
+					#thought_writing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
+			#else:  # If passage is present, then racing
+				#racing_flag = true
+				#thought_racing_scene.load_level(WorldManager.SADNESS_AREA_A, area_dynamic_data)
 		2:
 			WorldManager.current_player_area = WorldManager.SADNESS_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.SADNESS_AREA_B)
@@ -376,17 +379,17 @@ func _update_stage_select():
 			#incomplete_path_node.visible = false
 			
 			var selector_node = get_node(("Selector" + str(level)))
-			selector_node.visible = true
+			#selector_node.visible = true
 			
 			# Turn off existing blink animations, needed for proper file loading
 			selector_node.get_child(0).stop()
 			
 		if updated_areas_completed == 12:
 			var selector_node = get_node(("Selector" + str(updated_areas_completed)))
-			selector_node.visible = true
+			#selector_node.visible = true
 		else:
 			var selector_node = get_node(("Selector" + str(updated_areas_completed + 1)))
-			selector_node.visible = true
+			#selector_node.visible = true
 			selector_node.get_child(0).play("blink")  # Play blink animation for farthest node
 			
 	self.areas_completed = updated_areas_completed
@@ -406,7 +409,10 @@ func _update_title_box(current_selector: Node, area_selector: int):
 	var area_passage_title = dynamic_area_data[WorldManager.CurrAreaPassageTitle]
 	var area_passage_author = dynamic_area_data[WorldManager.CurrAreaPassageAuthor]
 	if area_passage_title and area_passage_author:
-		$TitleBox/TitleText.text = "[center][wave]" + area_passage_title + "\n" + "By: " + area_passage_author
+		if Global.CURRENT_PLAYER == Global.player1:
+			$TitleBox/TitleText.text = "[center][wave]" + "Player 1's Turn!\n" + area_passage_title
+		if Global.CURRENT_PLAYER == Global.player2:
+			$TitleBox/TitleText.text = "[center][wave]" + "Player 2's Turn!\n" + area_passage_title
 	else:
 		$TitleBox/TitleText.text = "[center][wave]" + "No passage here yet!\nWrite a new one!"
 	

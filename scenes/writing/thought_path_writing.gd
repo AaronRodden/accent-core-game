@@ -3,7 +3,7 @@ extends Node
 # NOTE: 34 was used for Caliburst Test, it seemed good!
 #const MINIMUM_WORD_COUNT = 34
 # NOTE: Experiment calls for 50-75 words
-const MINIMUM_WORD_COUNT = 50
+const MINIMUM_WORD_COUNT = 1
 
 var area_enum : int
 
@@ -78,6 +78,8 @@ func _writing_instructions_input_event(event: InputEventKey, keystroke : String,
 			initials_size = 0
 			instructions.get_child(1).text = ""
 		if keystroke == KeyboardInterface.Enter:
+			if initials_size == 0 || running_initials.replace(" ", "").is_valid_int() == false:  # Force computer number entry for experiment
+				return
 			if running_initials == "":
 				self.player_initials = "? ? ?"
 			else:

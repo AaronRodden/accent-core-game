@@ -24,6 +24,8 @@ func save_game():
 	var time = Time.get_time_dict_from_system()
 	
 	# TODO: Add computer / participant numbers? 
+	
+	# TODO: Save to both desktop and s://gowri
 		
 	var file_name = "savegame_" + Global.start_timestamp_string + ".tres"
 	var file_path = desktop_path.path_join(file_name)

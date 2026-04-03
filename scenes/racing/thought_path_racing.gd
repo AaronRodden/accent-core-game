@@ -59,6 +59,8 @@ func _racing_instructions_input_event(event: InputEventKey, keystroke : String, 
 			initials_size = 0
 			instructions_sprite.get_child(1).text = ""
 		if keystroke == KeyboardInterface.Enter:
+			if initials_size == 0 || running_initials.replace(" ", "").is_valid_int() == false:  # Force computer number entry for experiment
+				return
 			if running_initials == "":
 				self.running_initials = "? ? ?"
 			else:
