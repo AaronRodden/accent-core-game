@@ -13,7 +13,7 @@ func _ready():
 	SignalBus.save_game.connect(save_game)
 	SignalBus.load_game.connect(load_game)
 	
-	SignalBus.save_session.connect(save_session)	
+	#SignalBus.save_session.connect(save_session)  # Turned off for experiment
 	
 
 func save_game():
@@ -22,14 +22,16 @@ func save_game():
 	saved_game.world_dynamic_data = WorldManager.world_dynamic_data
 	
 	var time = Time.get_time_dict_from_system()
-	
-	# TODO: Add computer / participant numbers? 
-	
-	# TODO: Save to both desktop and s://gowri
 		
 	var file_name = "savegame_" + Global.start_timestamp_string + ".tres"
-	var file_path = desktop_path.path_join(file_name)
-	ResourceSaver.save(saved_game, file_path)
+	var desktop_file_path = desktop_path.path_join(file_name)
+	ResourceSaver.save(saved_game, desktop_file_path)
+	
+	# TODO: Needs to be tested / verified!
+	var network_path = "S:\\gowri"
+	var network_file_path = network_path.path_join(file_name)
+	ResourceSaver.save(saved_game, network_file_path)
+
 	
 func load_game():
 	var saved_game : SavedGame = load("user://savegame.tres") as SavedGame

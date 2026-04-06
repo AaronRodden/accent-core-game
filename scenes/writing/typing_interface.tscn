@@ -1,15 +1,15 @@
 [gd_scene load_steps=12 format=3 uid="uid://2gbmvh2mnekm"]
 
 [ext_resource type="Script" path="res://scenes/writing/typing_interface.gd" id="1_32vpw"]
-[ext_resource type="Texture2D" uid="uid://dpuym7u7k2q33" path="res://assets/enter_button.png" id="3_ef143"]
-[ext_resource type="Texture2D" uid="uid://dudae8gfcju3p" path="res://assets/info_box_sadness.png" id="6_mr6fk"]
-[ext_resource type="Texture2D" uid="uid://kfbctil8a5i5" path="res://assets/typing_box_sadness.png" id="7_jteba"]
-[ext_resource type="Texture2D" uid="uid://bacn0cro5fu82" path="res://assets/info_box_anger.png" id="8_7bk3m"]
-[ext_resource type="Texture2D" uid="uid://ckmjfqcudllkw" path="res://assets/typing_box_anger.png" id="8_f0s0v"]
-[ext_resource type="Texture2D" uid="uid://4pr468ktejjt" path="res://assets/typing_box_fear.png" id="10_cimiv"]
-[ext_resource type="Texture2D" uid="uid://dgylyo13gheew" path="res://assets/info_box_fear.png" id="10_mhnlh"]
-[ext_resource type="Texture2D" uid="uid://c1mybwmdgoxe4" path="res://assets/info_box_joy.png" id="12_22q6p"]
-[ext_resource type="Texture2D" uid="uid://br6fcvrkr6l81" path="res://assets/typing_box_joy.png" id="13_q5qvp"]
+[ext_resource type="Texture2D" uid="uid://bcjvyaur5vt8y" path="res://assets/enter_button.png" id="3_ef143"]
+[ext_resource type="Texture2D" uid="uid://bjecf301nrypu" path="res://assets/info_box_sadness.png" id="6_mr6fk"]
+[ext_resource type="Texture2D" uid="uid://bdfkmpljaq48m" path="res://assets/typing_box_sadness.png" id="7_jteba"]
+[ext_resource type="Texture2D" uid="uid://cjqgesw0kegj7" path="res://assets/info_box_anger.png" id="8_7bk3m"]
+[ext_resource type="Texture2D" uid="uid://coy8ytsjuvsmp" path="res://assets/typing_box_anger.png" id="8_f0s0v"]
+[ext_resource type="Texture2D" uid="uid://uqugrlpbp728" path="res://assets/typing_box_fear.png" id="10_cimiv"]
+[ext_resource type="Texture2D" uid="uid://cf1o3k7as4bo7" path="res://assets/info_box_fear.png" id="10_mhnlh"]
+[ext_resource type="Texture2D" uid="uid://gj2hywi3o7xf" path="res://assets/info_box_joy.png" id="12_22q6p"]
+[ext_resource type="Texture2D" uid="uid://bysb5xdofa1sr" path="res://assets/typing_box_joy.png" id="13_q5qvp"]
 
 [sub_resource type="FontVariation" id="FontVariation_drd1o"]
 variation_embolden = 1.0
@@ -27,7 +27,7 @@ script = ExtResource("1_32vpw")
 
 [node name="DoneButton" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.498039)
-position = Vector2(1773, 693)
+position = Vector2(1773, 606)
 texture = ExtResource("3_ef143")
 
 [node name="SadnessInterface" type="Node2D" parent="."]

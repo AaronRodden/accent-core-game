@@ -35,6 +35,11 @@ func handle_input_event(event : InputEventKey):
 		keystroke = OS.get_keycode_string(event.keycode)
 	_calculate_metrics()
 	SignalBus.player_keystroke.emit(event, keystroke, total_keystrokes)
+	
+	if event.pressed and event.keycode == KEY_ESCAPE:
+		SignalBus.save_game.emit()
+		get_tree().quit()
+	
 	return keystroke
 
 func start_typing_session():

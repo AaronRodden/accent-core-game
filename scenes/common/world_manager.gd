@@ -11,7 +11,7 @@ extends Node
 # New Experiment 9 level enum
 enum {
 	STAGE_SELECT, SADNESS_AREA_A, SADNESS_AREA_B, 
-	ANGER_AREA_A, ANGER_AREA_B, ANGER_AREA_C, 
+	ANGER_AREA_A, ANGER_AREA_B, 
 	FEAR_AREA_A, FEAR_AREA_B, 
 	JOY_AREA_A, JOY_AREA_B
 }
@@ -43,31 +43,28 @@ const AreaComments = "area_comments"
 	"What was your impression of UC Berkeley the first time you came here? \nWhy?",
 	"What foreign country would you most like to visit? \nWhat attracts you to this place?",
 	"Do you think left-handed people are more creative than right-handed people? \nWhy?",
-	"Do you prefer digital watches and clocks or the kind with hands? \nWhy?",
 ]
 
 @export var increasing_closeness_prompts = [
 	"Tutorial",
 	"When was the last time you walked for more than an hour? \nDescribe where you went and what you saw.",
-	"What would constitute a “perfect” day for you?",
-	"When did you last sing to yourself? To someone else? \nDescribe the situation.",
-	"If a crystal ball could tell you the truth about yourself, your life, the future, \nor anything else, what would you want to know? Why?",
-	"Is there something that you’ve dreamed of doing for a long time? \nWhy haven’t you done it?",
-	"If you knew that in one year you would die suddenly, would you change \nanything about the way you are now living? Why?",
-	"What is your most terrible memory? \nWhy so?",
-	"Of all the people in your family, whose death would you find most disturbing? \nWhy?",
+	"What do you value most in a friendship? \nWhy?",
+	"What would constitute a \"perfect\" day for you?",
+	"For what in your life do you feel most grateful? \nWhy?",
+	"What roles do love and affection play in your life? \nDescribe the roles and why you believe this. ",
+	"What is your most treasured memory? \nWhy?",
+	"How do you feel about your relationship with your mother? \nDescribe why.",
 ]
 
 @export var decreasing_closeness_prompts = [
 	"Tutorial",
 	"When was the last time you walked for more than an hour? \nDescribe where you went and what you saw.",
-	"Of all the people in your family, whose death would you find most disturbing? \nWhy?",
-	"What is your most terrible memory? \nWhy so?",
-	"If you knew that in one year you would die suddenly, would you change \nanything about the way you are now living? Why?",
-	"Is there something that you’ve dreamed of doing for a long time? \nWhy haven’t you done it?",
-	"If a crystal ball could tell you the truth about yourself, your life, the future, \nor anything else, what would you want to know? Why?",
-	"When did you last sing to yourself? To someone else? \nDescribe the situation.",
-	"What would constitute a “perfect” day for you?",
+	"How do you feel about your relationship with your mother? \nDescribe why.",
+	"What is your most treasured memory? \nWhy?",
+	"What roles do love and affection play in your life? \nDescribe the roles and why you believe this. ",
+	"For what in your life do you feel most grateful? \nWhy?",
+	"What would constitute a \"perfect\" day for you?",
+	"What do you value most in a friendship? \nWhy?",
 ]
 
 # NOTE: General Prompts
@@ -79,11 +76,11 @@ func set_world_initalization_data(prompts):
 	self.world_initalization_data = {
 		self.JOY_AREA_A : {
 		self.AtlasID : 1,
-		self.Prompt : prompts[7],
+		self.Prompt : prompts[6],
 	},
 	self.JOY_AREA_B : {
 		self.AtlasID : 1,
-		self.Prompt : prompts[8],
+		self.Prompt : prompts[7],
 	},
 	#self.JOY_AREA_C : {
 		#self.AtlasID : 1,
@@ -103,11 +100,11 @@ func set_world_initalization_data(prompts):
 	#},
 	self.FEAR_AREA_A : {
 		self.AtlasID : 3,
-		self.Prompt : prompts[5],
+		self.Prompt : prompts[4],
 	},
 	self.FEAR_AREA_B : {
 		self.AtlasID : 3,
-		self.Prompt : prompts[6],
+		self.Prompt : prompts[5],
 	},
 	#self.FEAR_AREA_C : {
 		#self.AtlasID : 3,
@@ -121,10 +118,10 @@ func set_world_initalization_data(prompts):
 		self.AtlasID : 4,
 		self.Prompt : prompts[3],
 	},
-	self.ANGER_AREA_C : {
-		self.AtlasID : 4,
-		self.Prompt : prompts[4],
-	},
+	#self.ANGER_AREA_C : {
+		#self.AtlasID : 4,
+		#self.Prompt : prompts[4],
+	#},
 }
 
 # NOTE: Caliburst Demo!
@@ -373,14 +370,14 @@ func set_world_initalization_data(prompts):
 		"passage_title" = null,
 		"area_comments" = [],
 	},
-	self.ANGER_AREA_C : {
-		"first_response" = null,
-		"current_area_passage" = null,
-		"current_area_passage_author" = null,
-		"prompt" = null,
-		"passage_title" = null,
-		"area_comments" = [],
-	},
+	#self.ANGER_AREA_C : {
+		#"first_response" = null,
+		#"current_area_passage" = null,
+		#"current_area_passage_author" = null,
+		#"prompt" = null,
+		#"passage_title" = null,
+		#"area_comments" = [],
+	#},
 }
 
 func get_initalization_data(area_enum : int):

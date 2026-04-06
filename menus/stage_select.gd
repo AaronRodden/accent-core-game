@@ -11,6 +11,9 @@ var selector_number = 1
 var selector_max = 1
 
 # Experiment variables
+var reading_instructions = false
+var confirmed_count = 0
+
 var selecting_prompt = false
 var selected_prompt_index = 0
 
@@ -26,7 +29,7 @@ func _ready():
 	# Signals and Connections
 	SignalBus.player_keystroke.connect(_level_select)
 	SignalBus.load_update.connect(_update_stage_select)
-	#SignalBus.save_session.connect(_update_world_data_text)
+	#SignalBus.save_session.connect(_update_world_data_text) # Turned off for experiment
 		
 	# Grab World Node again before moving between game scenes
 	Global.WORLD_NODE = get_node("/root/Main/World")  # NOTE: Hardcoded path
@@ -56,7 +59,7 @@ func _ready():
 	$NeuronCursor.position = current_selector.position
 	
 	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
-	if updated_areas_completed < 9:
+	if updated_areas_completed < 8:
 		var next_selector_node =  "Selector" + str(updated_areas_completed + 1)
 		var next_selector = get_node(next_selector_node)
 		$GuidingArrow.visible = true
@@ -65,6 +68,7 @@ func _ready():
 		$GuidingArrow.looping_movement()
 	else:
 		$GuidingArrow.visible = false
+		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -82,6 +86,9 @@ func _process(delta):
 		var curr_anchor_node = "PromptChooser/SelectorAnchor" + str(selected_prompt_index)
 		var current_anchor = get_node(curr_anchor_node)
 		selector.position = current_anchor.position
+		
+	#if reading_instructions:
+		
 	
 	else:
 		if Input.is_action_just_pressed("down"):
@@ -95,7 +102,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("up"):
 			selector_number += 1
 			selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
-			selector_number = clamp(selector_number, 1, 9)  # Them clamp between 1 and 12 for completed games
+			selector_number = clamp(selector_number, 1, 8)  # Them clamp between 1 and 12 for completed games
 			var next_selector_node = "Selector" + str(selector_number)
 			current_selector = get_node(next_selector_node)
 			$NeuronCursor.position = current_selector.position
@@ -136,6 +143,14 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 	
 	if keystroke != KeyboardInterface.Enter:
 		return
+		
+	if reading_instructions:  # User pressed enter and they are reading instructions
+		confirmed_count += 1
+		if confirmed_count >= 2:
+			$ExperimentInstructions.visible = false
+			reading_instructions = false
+		else:
+			$ExperimentInstructions/ConfirmationText.text = "[u]" + str(confirmed_count) + " / 2 Confirmed"
 		
 	var writing_flag = false
 	var racing_flag = false
@@ -226,23 +241,23 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.ANGER_AREA_B, area_dynamic_data)
+		#5:
+			#WorldManager.current_player_area = WorldManager.ANGER_AREA_C
+			#var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.ANGER_AREA_C)
+			#if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
+				#if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_CONDITION and selecting_prompt == false:
+					#$PromptChooser.visible = true
+					#selecting_prompt = true
+					#return
+				#writing_flag = true
+				#if selecting_prompt:
+					#thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
+				#else:
+					#thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
+			#else:  # If passage is present, then racing
+				#racing_flag = true
+				#thought_racing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
 		5:
-			WorldManager.current_player_area = WorldManager.ANGER_AREA_C
-			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.ANGER_AREA_C)
-			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
-				if Global.experiment_condition == Global.ExperimentalConditions.CHOICE_CONDITION and selecting_prompt == false:
-					$PromptChooser.visible = true
-					selecting_prompt = true
-					return
-				writing_flag = true
-				if selecting_prompt:
-					thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data, WorldManager.prompts[self.selected_prompt_index])
-				else:
-					thought_writing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
-			else:  # If passage is present, then racing
-				racing_flag = true
-				thought_racing_scene.load_level(WorldManager.ANGER_AREA_C, area_dynamic_data)
-		6:
 			WorldManager.current_player_area = WorldManager.FEAR_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.FEAR_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
@@ -258,7 +273,7 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.FEAR_AREA_A, area_dynamic_data)
-		7:
+		6:
 			WorldManager.current_player_area = WorldManager.FEAR_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.FEAR_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
@@ -290,7 +305,7 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			#else:  # If passage is present, then racing
 				#racing_flag = true
 				#thought_racing_scene.load_level(WorldManager.FEAR_AREA_C, area_dynamic_data)
-		8:
+		7:
 			WorldManager.current_player_area = WorldManager.JOY_AREA_A
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.JOY_AREA_A)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
@@ -306,7 +321,7 @@ func _level_select(event : InputEventKey, keystroke: String, total_keystrokes: i
 			else:  # If passage is present, then racing
 				racing_flag = true
 				thought_racing_scene.load_level(WorldManager.JOY_AREA_A, area_dynamic_data)
-		9:
+		8:
 			WorldManager.current_player_area = WorldManager.JOY_AREA_B
 			var area_dynamic_data = WorldManager.get_dynamic_data(WorldManager.JOY_AREA_B)
 			if area_dynamic_data[WorldManager.CurrAreaPassage] == null:  # If no passage present, then writing
@@ -367,7 +382,7 @@ func _update_stage_select():
 		selector_node.get_child(0).play("blink")
 	else:
 		for level in range(1, updated_areas_completed+1):
-			if level == 12:
+			if level == 7:
 				continue
 			#var complete_path_str = "Path" + str(level) + "Complete"
 			#var complete_path_node = get_node(complete_path_str)
@@ -384,7 +399,7 @@ func _update_stage_select():
 			# Turn off existing blink animations, needed for proper file loading
 			selector_node.get_child(0).stop()
 			
-		if updated_areas_completed == 12:
+		if updated_areas_completed == 8:
 			var selector_node = get_node(("Selector" + str(updated_areas_completed)))
 			#selector_node.visible = true
 		else:
@@ -393,7 +408,7 @@ func _update_stage_select():
 			selector_node.get_child(0).play("blink")  # Play blink animation for farthest node
 			
 	self.areas_completed = updated_areas_completed
-	$GeneralProgressBar.value = float(self.areas_completed)/9.0 * 100.0
+	$GeneralProgressBar.value = float(self.areas_completed)/8.0 * 100.0
 	
 	if areas_completed > 0:
 		$ArrowKeyInfoBox.visible = true
@@ -448,6 +463,8 @@ func _on_neutral_condition_pressed() -> void:
 		print("Experiment condition set too: Condition 1 - No order(as is) / Neutral (control)")
 		$NeuronCursor.visible = true
 		$PlayerCount.text =  "1 players played today"
+		reading_instructions = true
+		$ExperimentInstructions.visible = true
 
 
 func _on_increasing_condition_pressed() -> void:
@@ -458,6 +475,8 @@ func _on_increasing_condition_pressed() -> void:
 		print("Experiment condition set too: Condition 2 - Increasing closeness (treatment 1)")
 		$NeuronCursor.visible = true
 		$PlayerCount.text =  "2 players played today"
+		reading_instructions = true
+		$ExperimentInstructions.visible = true
 
 
 func _on_decreasing_condition_pressed() -> void:
@@ -468,3 +487,5 @@ func _on_decreasing_condition_pressed() -> void:
 		print("Condition 3: Decreasing closeness (treatment 2)")
 		$NeuronCursor.visible = true
 		$PlayerCount.text =  "3 players played today"
+		reading_instructions = true
+		$ExperimentInstructions.visible = true

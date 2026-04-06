@@ -83,4 +83,4 @@ func end_session():
 		"reply_count" : reply_count,
 	}
 	
-	SignalBus.save_session.emit(session_dict)
+	#SignalBus.save_session.emit(session_dict)  # Turned off for experiment

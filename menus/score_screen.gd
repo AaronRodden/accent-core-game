@@ -47,7 +47,7 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 			WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewSadness
 				story_title_sprite = $WritingCanvasLayer/StoryTitleSadness
-			WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+			WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 				story_overview_sprite = $WritingCanvasLayer/StoryOverviewAnger
 				story_title_sprite = $WritingCanvasLayer/StoryTitleAnger
 			WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
@@ -73,7 +73,7 @@ func load_score_screen(_gameplay_mode: int, _passage : String, _area_enum: int, 
 				story_review_sprite = $RacingCanvasLayer/ReviewStorySadness
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsSadness
 				commenting_sprite = $RacingCanvasLayer/CommentingSadness
-			WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+			WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 				story_review_sprite = $RacingCanvasLayer/ReviewStoryAnger
 				story_comments_sprite = $RacingCanvasLayer/ReviewCommentsAnger
 				commenting_sprite = $RacingCanvasLayer/CommentingAnger
@@ -121,6 +121,9 @@ func _score_screen_input_event(event: InputEventKey, keystroke : String, total_k
 		# No commenting flow for experiment verseion
 		#else:
 			#_enter_thread_comment(event, keystroke, total_keystrokes)
+	if event.pressed and event.keycode == KEY_ESCAPE:
+		$ButtonLayer/save.emit_signal("pressed")
+		get_tree().quit()
 
 func _review_story(event: InputEventKey, keystroke : String, total_keystrokes : int):
 	if $WritingCanvasLayer.visible == true:

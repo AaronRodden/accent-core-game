@@ -46,7 +46,7 @@ func _ready():
 			typing_text = $SadnessInterface/RunningText
 			untyped_color = Color("#80A8F2")  # light blue
 			typed_color = Color("#2F5BAC") # blue
-		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 			$AngerInterface.visible = true
 			info_box = $AngerInterface/InfoBoxAnger
 			info_text = $AngerInterface/InfoText

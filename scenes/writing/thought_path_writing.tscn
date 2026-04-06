@@ -29,8 +29,6 @@ playerA = NodePath("../Player")
 visible = false
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("7_lq5hx")]
-offset_top = -64.0
-offset_bottom = -64.0
 
 [node name="GeneralProgressBar" parent="CanvasLayer/HUD" index="4"]
 offset_left = 919.0

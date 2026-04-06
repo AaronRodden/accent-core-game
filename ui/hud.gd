@@ -2,10 +2,21 @@ extends Control
 
 var current_health = 5
 
+func get_bbcode_color_tag(color : Color):
+	return "[color=#" + color.to_html(false) + "]"
+	
+func get_bbcode_end_color_tag():
+	return "[/color]"
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Signals and Connections
 	SignalBus.player_hit.connect(_reduce_health)
+	
+	if Global.CURRENT_PLAYER == Global.player1:
+		$PlayerInfo/RichTextLabel.text = get_bbcode_color_tag(Color("#0082b9")) + "PLAYER 1 TURN" + get_bbcode_end_color_tag()
+	elif Global.CURRENT_PLAYER == Global.player2:
+		$PlayerInfo/RichTextLabel.text = get_bbcode_color_tag(Color("#3eb155")) + "PLAYER 2 TURN" + get_bbcode_end_color_tag()
 
 func _reduce_health():
 	if current_health == 5:

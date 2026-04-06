@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://c1mfi2u8badvo"]
 
-[ext_resource type="Texture2D" uid="uid://68d1eguleg30" path="res://assets/Pixel Heart Sprite Sheet Single.png" id="1_5g4at"]
+[ext_resource type="Texture2D" uid="uid://cmh0akwgjb466" path="res://assets/Pixel Heart Sprite Sheet Single.png" id="1_5g4at"]
 [ext_resource type="Script" path="res://ui/hud.gd" id="1_y47lj"]
-[ext_resource type="Texture2D" uid="uid://cplc8y3ggbney" path="res://assets/info_box.png" id="2_tkie3"]
-[ext_resource type="Texture2D" uid="uid://cbn7kcn13iu" path="res://assets/typing_box_individual.png" id="4_1oob8"]
+[ext_resource type="Texture2D" uid="uid://dt3dfos0ig6ch" path="res://assets/info_box.png" id="2_tkie3"]
+[ext_resource type="Texture2D" uid="uid://c5mf05bbrfnmi" path="res://assets/typing_box_individual.png" id="4_1oob8"]
 [ext_resource type="PackedScene" uid="uid://cksftjglahnm4" path="res://ui/general_progress_bar.tscn" id="5_6svcu"]
 
 [node name="HUD" type="Control"]
@@ -98,3 +98,25 @@ offset_top = 625.0
 offset_right = 5741.0
 offset_bottom = -51.0
 scale = Vector2(0.12, 0.12)
+
+[node name="PlayerInfo" type="Sprite2D" parent="."]
+position = Vector2(928, 34)
+scale = Vector2(0.587186, 0.56401)
+texture = ExtResource("2_tkie3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerInfo"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -458.542
+offset_top = -90.5675
+offset_right = -93.542
+offset_bottom = -20.5675
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0, 0.509804, 0.72549, 1)
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "PLAYER 1 TURN"

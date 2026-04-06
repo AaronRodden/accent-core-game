@@ -28,7 +28,7 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary, overwrite_prom
 		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 			$OverworldChunk.area_atlas_id = 2
 			instructions = $MenusCanvasLayer/InstructionsSadness
-		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 			$OverworldChunk.area_atlas_id = 4
 			instructions = $MenusCanvasLayer/InstructionsAnger
 		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
@@ -78,13 +78,14 @@ func _writing_instructions_input_event(event: InputEventKey, keystroke : String,
 			initials_size = 0
 			instructions.get_child(1).text = ""
 		if keystroke == KeyboardInterface.Enter:
-			if initials_size == 0 || running_initials.replace(" ", "").is_valid_int() == false:  # Force computer number entry for experiment
+			if initials_size == 0:  # Force computer number entry for experiment
 				return
 			if running_initials == "":
 				self.player_initials = "? ? ?"
 			else:
 				self.player_initials = running_initials
 			_start_writing()
+			
 			
 func _start_writing():
 	instructions.visible = false

@@ -5,11 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://dfwo0v0x630d7" path="res://entities/player/player.tscn" id="2_52l5i"]
 [ext_resource type="PackedScene" uid="uid://cky2j5ujb433" path="res://globals/typing_camera.tscn" id="3_yi6rb"]
 [ext_resource type="PackedScene" uid="uid://2gbmvh2mnekm" path="res://scenes/writing/typing_interface.tscn" id="4_nse8o"]
-[ext_resource type="Texture2D" uid="uid://cmohdnulsr2t4" path="res://assets/RacingInstructionsOverlaySadness.png" id="7_djae7"]
+[ext_resource type="Texture2D" uid="uid://dpd3mqwbxowot" path="res://assets/RacingInstructionsOverlaySadness.png" id="7_djae7"]
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_u7i4i"]
-[ext_resource type="Texture2D" uid="uid://riapy67hp4jb" path="res://assets/RacingInstructionsOverlayAnger.png" id="8_km605"]
-[ext_resource type="Texture2D" uid="uid://dxn1nsuwdrwp0" path="res://assets/RacingInstructionsOverlayFear.png" id="9_4s76o"]
-[ext_resource type="Texture2D" uid="uid://5705p4nsadbp" path="res://assets/RacingInstructionsOverlayJoy.png" id="10_8ascw"]
+[ext_resource type="Texture2D" uid="uid://lut7wvbpu4ts" path="res://assets/RacingInstructionsOverlayAnger.png" id="8_km605"]
+[ext_resource type="Texture2D" uid="uid://dby1imi3lepfe" path="res://assets/RacingInstructionsOverlayFear.png" id="9_4s76o"]
+[ext_resource type="Texture2D" uid="uid://nae0vom4ahba" path="res://assets/RacingInstructionsOverlayJoy.png" id="10_8ascw"]
 
 [node name="ThoughtPathRacing" type="Node"]
 script = ExtResource("1_frgdv")

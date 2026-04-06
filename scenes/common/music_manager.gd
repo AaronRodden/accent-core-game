@@ -61,7 +61,7 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 			main_music.set_stream(current_song)
 		Global.thought_path_writing:
 			match area_enum:
-				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 					current_song = load(SONG_DICTIONARY["creative_anger"])
 					main_music.set_stream(current_song)
 				WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
@@ -75,7 +75,7 @@ func _load_and_play(prev_scene: String, next_scene: String, area_enum: int):
 					main_music.set_stream(current_song)
 		Global.thought_path_racing:
 			match area_enum:
-				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B, WorldManager.ANGER_AREA_C:
+				WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 					current_song = load(SONG_DICTIONARY["racing_anger"])
 					main_music.set_stream(current_song)
 				WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
