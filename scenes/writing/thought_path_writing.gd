@@ -8,6 +8,7 @@ const MINIMUM_WORD_COUNT = 50
 var area_enum : int
 
 var instructions : Node
+var guiding_arrow : Node
 var instructions_text : Node
 var running_initials = ""
 var initials_size = 0
@@ -28,15 +29,19 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary, overwrite_prom
 		WorldManager.SADNESS_AREA_A, WorldManager.SADNESS_AREA_B:
 			$OverworldChunk.area_atlas_id = 2
 			instructions = $MenusCanvasLayer/InstructionsSadness
+			guiding_arrow = $MenusCanvasLayer/InstructionsSadness/GuidingArrow
 		WorldManager.ANGER_AREA_A, WorldManager.ANGER_AREA_B:
 			$OverworldChunk.area_atlas_id = 4
 			instructions = $MenusCanvasLayer/InstructionsAnger
+			guiding_arrow = $MenusCanvasLayer/InstructionsAnger/GuidingArrow
 		WorldManager.FEAR_AREA_A, WorldManager.FEAR_AREA_B:
 			$OverworldChunk.area_atlas_id = 3
 			instructions = $MenusCanvasLayer/InstructionsFear
+			guiding_arrow = $MenusCanvasLayer/InstructionsFear/GuidingArrow
 		WorldManager.JOY_AREA_A, WorldManager.JOY_AREA_B:
 			$OverworldChunk.area_atlas_id = 1
 			instructions = $MenusCanvasLayer/InstructionsJoy
+			guiding_arrow = $MenusCanvasLayer/InstructionsJoy/GuidingArrow
 	
 	# Get init data
 	var area_init_data = WorldManager.get_initalization_data(area_enum)
@@ -47,6 +52,8 @@ func load_level(_area_enum : int, area_dynamic_data : Dictionary, overwrite_prom
 	else:
 		instructions.get_child(0).text = area_init_data[WorldManager.Prompt]
 	instructions.visible = true
+	guiding_arrow.visible = true
+	guiding_arrow.looping_movement()
 	
 	# Set up TypingInterface
 	$CanvasLayer/TypingInterface.gameplay_mode = Global.WRITING_MODE
@@ -102,6 +109,8 @@ func _update_writing_progress_bar(progress):
 	
 	if (progress / 5) >= MINIMUM_WORD_COUNT:
 		$CanvasLayer/TypingInterface/DoneButton.modulate.a = 1
+		$CanvasLayer/TypingInterface/GuidingArrow.visible = true
+		$CanvasLayer/TypingInterface/GuidingArrow.looping_movement()
 		$CanvasLayer/TypingInterface.minimum_passage_size_flag = true
 
 func _thought_path_complete(passage : String):

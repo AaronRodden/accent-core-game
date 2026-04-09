@@ -36,6 +36,12 @@ func _ready():
 	
 	$VersionNumberDisplay.text = Global.VERSION_NUMBER
 	
+	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
+	var starting_selector_node =  "Selector" + str(updated_areas_completed)
+	current_selector = get_node(starting_selector_node)
+	selector_number = WorldManager.get_world_data()["areas_completed"]
+		
+	
 	# Render stage select according to dynamic data
 	_update_stage_select()
 	_update_title_box(current_selector, 1)
@@ -58,7 +64,6 @@ func _ready():
 	
 	$NeuronCursor.position = current_selector.position
 	
-	var updated_areas_completed = WorldManager.get_world_data()["areas_completed"]
 	if updated_areas_completed < 8:
 		var next_selector_node =  "Selector" + str(updated_areas_completed + 1)
 		var next_selector = get_node(next_selector_node)
@@ -91,7 +96,7 @@ func _process(delta):
 		
 	
 	else:
-		if Input.is_action_just_pressed("down"):
+		if Input.is_action_just_pressed("left"):
 			selector_number -= 1
 			selector_number = clamp(selector_number, 1, self.areas_completed + 1)
 			var next_selector_node = "Selector" + str(selector_number)
@@ -99,7 +104,7 @@ func _process(delta):
 			$NeuronCursor.position = current_selector.position
 			_update_title_box(current_selector, selector_number)
 
-		if Input.is_action_just_pressed("up"):
+		if Input.is_action_just_pressed("right"):
 			selector_number += 1
 			selector_number = clamp(selector_number, 1, self.areas_completed + 1)  # First clamp between 1 and areas complete
 			selector_number = clamp(selector_number, 1, 8)  # Them clamp between 1 and 12 for completed games

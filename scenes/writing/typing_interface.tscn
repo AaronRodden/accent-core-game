@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://2gbmvh2mnekm"]
+[gd_scene load_steps=15 format=3 uid="uid://2gbmvh2mnekm"]
 
 [ext_resource type="Script" path="res://scenes/writing/typing_interface.gd" id="1_32vpw"]
 [ext_resource type="Texture2D" uid="uid://bcjvyaur5vt8y" path="res://assets/enter_button.png" id="3_ef143"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://coy8ytsjuvsmp" path="res://assets/typing_box_anger.png" id="8_f0s0v"]
 [ext_resource type="Texture2D" uid="uid://uqugrlpbp728" path="res://assets/typing_box_fear.png" id="10_cimiv"]
 [ext_resource type="Texture2D" uid="uid://cf1o3k7as4bo7" path="res://assets/info_box_fear.png" id="10_mhnlh"]
+[ext_resource type="Script" path="res://menus/guiding_arrow.gd" id="11_ydka8"]
 [ext_resource type="Texture2D" uid="uid://gj2hywi3o7xf" path="res://assets/info_box_joy.png" id="12_22q6p"]
+[ext_resource type="Texture2D" uid="uid://dov6y0skxi78c" path="res://assets/guiding_arrow_blue.png" id="12_b8ck3"]
+[ext_resource type="Texture2D" uid="uid://xw8bxla6ebsl" path="res://assets/guiding_arrow_green.png" id="13_nh0au"]
 [ext_resource type="Texture2D" uid="uid://bysb5xdofa1sr" path="res://assets/typing_box_joy.png" id="13_q5qvp"]
 
 [sub_resource type="FontVariation" id="FontVariation_drd1o"]
@@ -177,3 +180,20 @@ theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 scroll_active = false
 metadata/_edit_use_anchors_ = true
+
+[node name="GuidingArrow" type="Node2D" parent="."]
+visible = false
+position = Vector2(1771, 492)
+script = ExtResource("11_ydka8")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("12_b8ck3")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("13_nh0au")

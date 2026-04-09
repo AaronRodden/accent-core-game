@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfqsu0ef0tbwr"]
+[gd_scene load_steps=14 format=3 uid="uid://bfqsu0ef0tbwr"]
 
 [ext_resource type="Script" path="res://scenes/writing/thought_path_writing.gd" id="1_bepvy"]
 [ext_resource type="PackedScene" uid="uid://bev4y77i8yuv4" path="res://scenes/common/overworld_chunk.tscn" id="1_v0cbj"]
@@ -8,7 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://c1mfi2u8badvo" path="res://ui/HUD.tscn" id="7_lq5hx"]
 [ext_resource type="Texture2D" uid="uid://ctrvsr7pdvlm5" path="res://assets/InstructionsOverlaySadness.png" id="7_rw13e"]
 [ext_resource type="Texture2D" uid="uid://b83f7eudc00s5" path="res://assets/InstructionsOverlayAnger.png" id="8_a2haq"]
+[ext_resource type="Script" path="res://menus/guiding_arrow.gd" id="8_smkc1"]
+[ext_resource type="Texture2D" uid="uid://dov6y0skxi78c" path="res://assets/guiding_arrow_blue.png" id="9_beejh"]
 [ext_resource type="Texture2D" uid="uid://calckuw7ya62v" path="res://assets/InstructionsOverlayFear.png" id="9_vkrg7"]
+[ext_resource type="Texture2D" uid="uid://xw8bxla6ebsl" path="res://assets/guiding_arrow_green.png" id="10_a3un0"]
 [ext_resource type="Texture2D" uid="uid://be6lq3ree4y6u" path="res://assets/InstructionsOverlayJoy.png" id="10_w4dex"]
 
 [node name="ThoughtPathWriting" type="Node"]
@@ -62,6 +65,22 @@ offset_bottom = 258.0
 theme_override_colors/default_color = Color(0.184314, 0.356863, 0.67451, 1)
 theme_override_font_sizes/normal_font_size = 48
 
+[node name="GuidingArrow" type="Node2D" parent="MenusCanvasLayer/InstructionsSadness"]
+position = Vector2(714, 199)
+script = ExtResource("8_smkc1")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="MenusCanvasLayer/InstructionsSadness/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("9_beejh")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="MenusCanvasLayer/InstructionsSadness/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("10_a3un0")
+
 [node name="InstructionsAnger" type="Sprite2D" parent="MenusCanvasLayer"]
 visible = false
 position = Vector2(958, 499)
@@ -82,6 +101,22 @@ offset_right = -517.0
 offset_bottom = 258.0
 theme_override_colors/default_color = Color(0.67451, 0.184314, 0.27451, 1)
 theme_override_font_sizes/normal_font_size = 48
+
+[node name="GuidingArrow" type="Node2D" parent="MenusCanvasLayer/InstructionsAnger"]
+position = Vector2(714, 199)
+script = ExtResource("8_smkc1")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="MenusCanvasLayer/InstructionsAnger/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("9_beejh")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="MenusCanvasLayer/InstructionsAnger/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("10_a3un0")
 
 [node name="InstructionsFear" type="Sprite2D" parent="MenusCanvasLayer"]
 visible = false
@@ -104,6 +139,22 @@ offset_bottom = 258.0
 theme_override_colors/default_color = Color(0.288518, 0.288518, 0.288518, 1)
 theme_override_font_sizes/normal_font_size = 48
 
+[node name="GuidingArrow" type="Node2D" parent="MenusCanvasLayer/InstructionsFear"]
+position = Vector2(714, 199)
+script = ExtResource("8_smkc1")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="MenusCanvasLayer/InstructionsFear/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("9_beejh")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="MenusCanvasLayer/InstructionsFear/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("10_a3un0")
+
 [node name="InstructionsJoy" type="Sprite2D" parent="MenusCanvasLayer"]
 visible = false
 position = Vector2(958, 499)
@@ -124,6 +175,22 @@ offset_right = -517.0
 offset_bottom = 258.0
 theme_override_colors/default_color = Color(0.631373, 0.560784, 0.152941, 1)
 theme_override_font_sizes/normal_font_size = 48
+
+[node name="GuidingArrow" type="Node2D" parent="MenusCanvasLayer/InstructionsJoy"]
+position = Vector2(714, 199)
+script = ExtResource("8_smkc1")
+
+[node name="ExperimentArrowBlue" type="Sprite2D" parent="MenusCanvasLayer/InstructionsJoy/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("9_beejh")
+
+[node name="ExperimentArrowGreen" type="Sprite2D" parent="MenusCanvasLayer/InstructionsJoy/GuidingArrow"]
+visible = false
+rotation = -3.14159
+scale = Vector2(0.224299, 0.224299)
+texture = ExtResource("10_a3un0")
 
 [editable path="OverworldChunk"]
 [editable path="CanvasLayer/HUD"]

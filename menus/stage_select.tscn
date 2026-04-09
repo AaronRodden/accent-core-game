@@ -1365,15 +1365,15 @@ text = "[center]Press Enter on a solid path, to type a passage!
 Go to the blinking path to write a new one!"
 
 [node name="ArrowKeyInfoBox" type="Sprite2D" parent="."]
-position = Vector2(290.888, 106)
+position = Vector2(353.111, 103)
 scale = Vector2(0.540259, 1.22522)
 texture = ExtResource("6_bx4uh")
 
 [node name="ArrowKeyInfoText" type="RichTextLabel" parent="."]
-offset_left = 165.0
-offset_top = 50.9999
-offset_right = 418.0
-offset_bottom = 197.0
+offset_left = 227.223
+offset_top = 47.9996
+offset_right = 480.223
+offset_bottom = 194.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_fonts/normal_font = ExtResource("11_t77rn")
 theme_override_font_sizes/normal_font_size = 36
@@ -1382,13 +1382,14 @@ text = "[center] Move between
 areas [center]"
 
 [node name="ArrowKeyUpTip" type="Sprite2D" parent="."]
-position = Vector2(87.5938, 99.5941)
+position = Vector2(102.594, 102.594)
+rotation = 1.5708
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("11_6jod1")
 
 [node name="ArrowKeyDownTip" type="Sprite2D" parent="."]
-position = Vector2(88, 102)
-rotation = 3.14159
+position = Vector2(97.5, 102.5)
+rotation = -1.5708
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("11_6jod1")
 
