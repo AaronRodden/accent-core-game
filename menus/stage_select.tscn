@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://xtul7u7t640j"]
+[gd_scene load_steps=59 format=3 uid="uid://xtul7u7t640j"]
 
 [ext_resource type="Script" path="res://menus/stage_select.gd" id="1_xgjc3"]
 [ext_resource type="Texture2D" uid="uid://dv4bjokxmqw1l" path="res://assets/BrainTypeStageSelect.png" id="3_4iwbi"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dov6y0skxi78c" path="res://assets/guiding_arrow_blue.png" id="17_l5o5b"]
 [ext_resource type="Texture2D" uid="uid://xw8bxla6ebsl" path="res://assets/guiding_arrow_green.png" id="18_20vgj"]
 [ext_resource type="Texture2D" uid="uid://dxj4ut18nh2oc" path="res://assets/experiment_instructions.png" id="19_jqq8g"]
+[ext_resource type="Texture2D" uid="uid://c5mf05bbrfnmi" path="res://assets/typing_box_individual.png" id="20_4vwnc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3s68k"]
 
@@ -1613,6 +1614,33 @@ text = "[u]0 / 2 Confirmed"
 [node name="Sprite2D" type="Sprite2D" parent="ExperimentInstructions"]
 position = Vector2(786, 912)
 texture = ExtResource("13_nday5")
+
+[node name="CompletionSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(955, 533)
+scale = Vector2(0.878975, 1.17447)
+texture = ExtResource("20_4vwnc")
+
+[node name="GameEndTitle" type="RichTextLabel" parent="CompletionSprite"]
+offset_left = -243.465
+offset_top = -112.391
+offset_right = 188.535
+offset_bottom = 10.6089
+theme_override_colors/default_color = Color(0, 0.509804, 0.72549, 1)
+theme_override_font_sizes/normal_font_size = 84
+theme_override_font_sizes/bold_font_size = 0
+text = "Complete!"
+
+[node name="GameEndText" type="RichTextLabel" parent="CompletionSprite"]
+offset_left = -692.852
+offset_top = 14.4746
+offset_right = 676.148
+offset_bottom = 69.4746
+theme_override_colors/default_color = Color(0, 0.509804, 0.72549, 1)
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 32
+bbcode_enabled = true
+text = "You have completed the game! Please raise your hand to get help started on the survey."
 
 [connection signal="pressed" from="ButtonLayer/save" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="ButtonLayer/load" to="." method="_on_load_pressed"]

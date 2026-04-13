@@ -73,6 +73,7 @@ func _ready():
 		$GuidingArrow.looping_movement()
 	else:
 		$GuidingArrow.visible = false
+		$CompletionSprite.visible = true
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
